@@ -273,7 +273,7 @@ section
 	right: 0;
 	width: 44px;
 	height: 100%;
-	background: #ff6600;
+	background: #F22430;
 	text-align: center;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -732,7 +732,7 @@ section
 }
 .menu_nav ul li a:hover
 {
-	color: #ff6600;
+	color: #F22430;
 }
 .menu .search
 {
@@ -804,7 +804,7 @@ section
 }
 .menu .search_input:focus
 {
-	border-bottom: solid 2px #ff6600;
+	border-bottom: solid 2px #F22430;
 }
 .header_search_button
 {
@@ -878,7 +878,7 @@ section
 }
 .menu_social ul li a i:hover
 {
-	color: #ff6600;
+	color: #F22430;
 }
 
 /*********************************
@@ -1299,7 +1299,7 @@ section
 }
 .latest_post_title a:hover
 {
-	color: #ff6600;
+	color: #F22430;
 }
 .latest_post_author
 {
@@ -1319,7 +1319,7 @@ section
 }
 .latest_post_author a:hover
 {
-	color: #ff6600;
+	color: #F22430;
 }
 .sidebar_elearn
 {
@@ -1466,7 +1466,7 @@ section
 .footer_social ul li a i
 {
 	font-size: 16px;
-	color: #ff6600;
+	color: #F22430;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -1526,7 +1526,7 @@ section
 {
 	font-size: 14px;
 	font-weight: 500;
-	color: #ff6600;
+	color: #F22430;
 }
 .footer_contact_line
 {
