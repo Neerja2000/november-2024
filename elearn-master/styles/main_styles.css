@@ -945,9 +945,9 @@ section
 .home_title
 {
 	width: 100%;
-	font-size: 72px;
+	font-size: 40px;
 	line-height: 1.2;
-	font-weight: 600;
+	font-weight: 800;
 	color: #FFFFFF;
 }
 .home_subtitle
