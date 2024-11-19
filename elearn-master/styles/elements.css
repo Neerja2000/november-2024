@@ -110,7 +110,7 @@ p a:hover::after
 }
 ::selection
 {
-	background: #ff8a00;
+	background: #FF3845;
 	color: #FFFFFF;
 }
 p::selection
@@ -245,7 +245,7 @@ section
 	display: inline-block;
 	width: auto;
 	height: 47px;
-	background: #ff8a00;
+	background: #FF3845;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -297,7 +297,7 @@ section
 }
 .button:hover .button_arrow
 {
-	background: #ff8a00;
+	background: #FF3845;
 }
 .button:hover .button_arrow i
 {
@@ -417,7 +417,7 @@ section
 }
 .top_bar_login ul li a:hover
 {
-	color: #ff8a00;
+	color: #FF3845;
 }
 .top_bar_login ul li:not(:last-child)::after
 {
@@ -530,11 +530,11 @@ section
 .main_nav li.active a
 {
 	color: #FFFFFF;
-	background: #ff8a00;
+	background: #FF3845;
 }
 .main_nav li a:hover
 {
-	background: #ff8a00;
+	background: #FF3845;
 }
 .search_button
 {
@@ -553,7 +553,7 @@ section
 }
 .search_button:hover i
 {
-	color: #ff8a00;
+	color: #FF3845;
 }
 .header_search_form
 {
@@ -594,7 +594,7 @@ section
 	outline: none;
 	padding-left: 20px;
 	background: transparent;
-	border-bottom: solid 2px #ff8a00;
+	border-bottom: solid 2px #FF3845;
 	color: #FFFFFF;
 }
 .search_input::-webkit-input-placeholder
@@ -669,7 +669,7 @@ section
 }
 .hamburger:hover i
 {
-	color: #ff8a00;
+	color: #FF3845;
 }
 
 /*********************************
@@ -868,7 +868,7 @@ section
 }
 .header_search_button:hover i
 {
-	color: #ff8a00;
+	color: #FF3845;
 }
 .menu_extra
 {
@@ -950,7 +950,7 @@ section
 {
 	display: inline-block;
 	position: relative;
-	color: #ff8a00;
+	color: #FF3845;
 	font-size: 12px;
 	font-weight: 600;
 }
@@ -966,7 +966,7 @@ section
 }
 .breadcrumbs ul li a:hover
 {
-	color: #ff8a00;
+	color: #FF3845;
 }
 .breadcrumbs ul li:not(:last-child)::after
 {
@@ -1019,11 +1019,11 @@ section
 }
 .button_2 .button_arrow
 {
-	background: #ff8a00;
+	background: #FF3845;
 }
 .button_2:hover
 {
-	background: #ff8a00;
+	background: #FF3845;
 }
 .button_2:hover .button_arrow
 {
@@ -1487,7 +1487,7 @@ section
 }
 .footer_list li a:hover
 {
-	color: #ff8a00;
+	color: #FF3845;
 }
 .footer_contact_info
 {
