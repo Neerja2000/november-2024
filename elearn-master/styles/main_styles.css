@@ -923,7 +923,7 @@ section
 .home_container
 {
 	position: absolute;
-	top: 35.5%;
+	top: 20.5%;
 	left: 0;
 	width: 100%;
 }
@@ -962,7 +962,7 @@ section
 }
 .home_buttons
 {
-	margin-top: 50px;
+	margin-top: 10px;
 }
 .home_button:first-child
 {
