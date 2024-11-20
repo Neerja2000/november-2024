@@ -11,6 +11,32 @@
 <link href="plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/courses.css">
 <link rel="stylesheet" type="text/css" href="styles/courses_responsive.css">
+<style>
+	.course_filter_button {
+	background-color: red;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	margin: 0 10px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.course_filter_button.active {
+	background-color: black;
+	color: white;
+}
+
+.course_filter_button:hover {
+	background-color: darkred;
+}
+
+.course_item {
+	display: block; /* Default display */
+}
+
+</style>
 </head>
 <body>
 
@@ -188,6 +214,12 @@
 				</div>
 			</div>
 
+			<div class="row mt-5">
+				<div class="col-md d-flex align-items-center justify-content-center">
+					<a href="./Online-courses.html"><button class="course_button bg-dark"><span>Online courses</span></button></a>
+					<a href="./courses.html"><button class="course_button"><span>Ofline courses</span></button></a>
+				</div>
+			</div>
 			<!-- Featured Course -->
 			<div class="row featured_row">
 				<div class="col-lg-6 featured_col">
@@ -324,7 +356,243 @@
 			</div> -->
 		</div>
 	</div>
+	<div class="courses">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="section_title text-center"><h2>Choose your course</h2></div>
+					<div class="section_subtitle">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ab corrupti neque, corporis autem animi reiciendis vitae.
+					</div>
+				</div>
+			</div>
+	
+			<!-- Course Search -->
+			<div class="row">
+				<div class="col">
+					<div class="course_search">
+						<form class="course_search_form d-flex flex-md-row flex-column align-items-start justify-content-between">
+							<input type="text" class="course_input" placeholder="Course" required="required">
+							<button class="course_button"><span>Search Course</span><span class="button_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+						</form>
+					</div>
+				</div>
+			</div>
+	
+			<!-- Filter Buttons -->
+			<div class="row mt-5">
+				<div class="col-md d-flex align-items-center justify-content-center">
+					<button class="course_filter_button active" onclick="filterCourses('all')">All Courses</button>
+					<button class="course_filter_button" onclick="filterCourses('online')">Online Courses</button>
+					<button class="course_filter_button" onclick="filterCourses('offline')">Offline Courses</button>
+				</div>
+			</div>
+	
+			<!-- Courses -->
+			<div class="row courses_row mt-4">
+				<!-- Online Course -->
+				
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="offline">
+			<div class="course">
+				<div class="course_image"><img src="./images/portrait-male.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="#">Bachelor of Business Administration(Offline)</a></h3></div>
+					<div class="course_text"> Designed to cultivate leadership, entrepreneurship, and business strategy skills.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<!-- <div class="course_price ml-auto">Price: <span>$35</span></div> -->
+					</div>
+					
+				</div>
+			</div>
+		</div>
 
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="offline">
+			<div class="course">
+				<div class="course_image"><img src="images/youngsters-coworking.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="courses.html">Bachelor of Engineering(Offline)</a></h3></div>
+					<div class="course_text">A comprehensive program offering training in various engineering disciplines to prepare students for industrial,  technological roles.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<!-- <div class="course_price ml-auto">Price: <span>$35</span></div> -->
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="offline">
+			<div class="course">
+				<div class="course_image"><img src="./images/africans-caucasian.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="courses.html">Bachelor of Arts and Social Sciences(Offline)</a></h3></div>
+					<div class="course_text">Explores human behavior, societal structures, and creative disciplines to prepare students for diverse careers.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<!-- <div class="course_price ml-auto">Price: <span>$35</span></div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="offline">
+			<div class="course">
+				<div class="course_image"><img src="./images/pretty-african-girl.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="courses.html">Bachelor of Business and Management Sciences(Offline)</a></h3></div>
+					<div class="course_text">Ideal for students aiming for careers in business leadership, entrepreneurship, and administration.
+
+					</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<!-- <div class="course_price ml-auto">Price: <span>$35</span></div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="offline">
+			<div class="course">
+				<div class="course_image"><img src="./images/three-african.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="courses.html">Bachelor of Information Technology(Offline)</a></h3></div>
+					<div class="course_text">Equips students with modern IT skills to solve real-world problems and develop advanced technologies.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<!-- <div class="course_price ml-auto">Price: <span>$35</span></div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="offline">
+			<div class="course">
+				<div class="course_image"><img src="./images/smiling-cheerful.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="courses.html">Bachelor of Tourism and Hospitality Management(Offline)</a></h3></div>
+					<div class="course_text">Focuses on preparing professionals for the dynamic tourism and service industries.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<!-- <div class="course_price ml-auto">Price: <span>$35</span></div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-4 col-md-6 course_item" data-type="online">
+			<div class="course">
+				<div class="course_image"><img src="./images/portrait-male.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="#">Technical and IT Training(Online)</a></h3></div>
+					<div class="course_text">Courses on software tools like Microsoft Office, SAP, Oracle, and Adobe, catering to professionals looking to upgrade their technical expertise.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<div class="course_price ml-auto">Price: <span>$35</span></div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="online">
+			<div class="course">
+				<div class="course_image"><img src="images/youngsters-coworking.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="">Digital Marketing and Social Media(Online)</a></h3></div>
+					<div class="course_text">These courses explore modern strategies for effective online marketing, including social media management, public relations, and negotiation skills.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<div class="course_price ml-auto">Price: <span>$35</span></div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="online">
+			<div class="course">
+				<div class="course_image"><img src="./images/africans-caucasian.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="">Bachelor of Arts and Social Sciences(Online)</a></h3></div>
+					<div class="course_text">Explores human behavior, societal structures, and creative disciplines to prepare students for diverse careers.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<div class="course_price ml-auto">Price: <span>$35</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="online">
+			<div class="course">
+				<div class="course_image"><img src="./images/pretty-african-girl.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="">Bachelor of Business and Management Sciences(Online)</a></h3></div>
+					<div class="course_text">Ideal for students aiming for careers in business leadership, entrepreneurship, and administration.
+
+					</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<div class="course_price ml-auto">Price: <span>$35</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="online">
+			<div class="course">
+				<div class="course_image"><img src="./images/three-african.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="">Bachelor of Information Technology (IT)(Online)</a></h3></div>
+					<div class="course_text">Equips students with modern IT skills to solve real-world problems and develop advanced technologies.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<div class="course_price ml-auto">Price: <span>$35</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Course -->
+		<div class="col-lg-4 col-md-6 course_item" data-type="online">
+			<div class="course">
+				<div class="course_image"><img src="./images/smiling-cheerful.jpg" alt=""></div>
+				<div class="course_body">
+					
+					<div class="course_title"><h3><a href="">Bachelor of Tourism and Hospitality Management(Online)</a></h3></div>
+					<div class="course_text">Focuses on preparing professionals for the dynamic tourism and service industries.</div>
+					<div class="course_header d-flex flex-row align-items-center justify-content-start mt-5">
+						<div class="course_tag"><a href="#">View</a></div>
+						<div class="course_price ml-auto">Price: <span>$35</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+			</div>
+		</div>
+	</div>
 	<!-- Footer -->
 
 	<footer class="footer">
@@ -388,7 +656,26 @@
 		</div>
 	</footer>
 </div>
+<script>
+	function filterCourses(type) {
+		// Get all course items and filter buttons
+		const courses = document.querySelectorAll('.course_item');
+		const buttons = document.querySelectorAll('.course_filter_button');
 
+		// Show/Hide courses based on filter type
+		courses.forEach(course => {
+			if (type === 'all' || course.dataset.type === type) {
+				course.style.display = 'block';
+			} else {
+				course.style.display = 'none';
+			}
+		});
+
+		// Update active button styling
+		buttons.forEach(button => button.classList.remove('active'));
+		document.querySelector(`button[onclick="filterCourses('${type}')"]`).classList.add('active');
+	}
+</script>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
