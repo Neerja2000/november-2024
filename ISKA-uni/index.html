@@ -221,6 +221,65 @@
 
 
 
+
+
+
+
+
+.content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      background-color: #003f7f; /* Darker blue */
+      color: white;
+    }
+
+    .features-section {
+      width: 50%;
+      padding-right: 20px;
+    }
+
+    .features-section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      border-left: 5px solid #ffc107;
+      padding-left: 10px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .feature-item img {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    .feature-description {
+      font-size: 18px;
+    }
+
+    .iframe-section {
+      width: 50%;
+      height: 600px;
+      overflow-y: scroll; /* Makes it scrollable */
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      color: black;
+      padding: 10px;
+    }
+
+    .scrollable-iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+
 </style>
 
 </head>
@@ -769,7 +828,45 @@
 		</div>
 	</div>
 
-
+	<div class="content-wrapper">
+		<!-- Features Section -->
+		<div class="features-section">
+		  <h2 class="text-light">WHY CHOOSE US?</h2>
+		  <div class="feature-item">
+			<img src="icon-legacy.png" alt="Legacy Icon">
+			<div class="feature-description">
+			  <strong>LEGACY OF 25+ YEARS</strong><br>
+			  Delivering quality since 1997
+			</div>
+		  </div>
+		  <div class="feature-item">
+			<img src="icon-research.png" alt="Research Icon">
+			<div class="feature-description">
+			  <strong>RESEARCH FOCUSED UNIVERSITY</strong><br>
+			  Internationally recognized since 1997
+			</div>
+		  </div>
+		  <div class="feature-item">
+			<img src="icon-programs.png" alt="Programs Icon">
+			<div class="feature-description">
+			  <strong>100+ PROGRAMS</strong><br>
+			  Multidisciplinary courses
+			</div>
+		  </div>
+		  <div class="feature-item">
+			<img src="icon-diversity.png" alt="Diversity Icon">
+			<div class="feature-description">
+			  <strong>DIVERSITY</strong><br>
+			  10,000+ students from across India
+			</div>
+		  </div>
+		</div>
+	
+		<!-- Iframe Section -->
+		<div class="iframe-section">
+		  <iframe class="scrollable-iframe" src="Online-courses.html"></iframe>
+		</div>
+	  </div>
 	
 	
 	<div class="latest_news_section">
