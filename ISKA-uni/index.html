@@ -14,6 +14,8 @@
 <link href="plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 <style>
 	/* Styling for the feature cards */
 .feature_box {
@@ -281,6 +283,44 @@
       height: 100%;
     }
 
+
+
+
+
+
+
+
+
+
+	.quick_links {
+  
+    z-index: 9999; /* Ensure it's above other elements */
+    background-color: #fff; /* Optional, for better visibility */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional, for shadow effect */
+	
+}
+
+.quick_links .quick_link_item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 5px;
+	font-size: 16px;
+    text-decoration: none;
+    color: white; /* Text color */
+    border-radius: 5px;
+	text-align: center;
+}
+
+.quick_links .quick_link_item:hover {
+    background-color: #f1f1f1;
+	color: black; /* Hover effect */
+}
+
+.quick_link_icon {
+    margin-right: 10px;
+}
+
 </style>
 
 </head>
@@ -530,11 +570,15 @@
 				</div>
 
 			</div>
+			
 		</div>
+		<!-- Quick Links -->
+
+
 	</div>
 
 	<!-- Featured Course -->
-
+	
 	<div class="featured mt-5 py-5">
 		<div class="container">
 			<div class="row">
@@ -545,6 +589,30 @@
 						<div class="home_slider_nav home_slider_next trans_200"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
 					</div>
 					<div class="featured_container">
+						<div class="quick_links" style="background-color: #003f7f;">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-4">
+										<a href="student-portal.html" class="quick_link_item">
+											<div class="quick_link_icon"><i class="fa fa-user"></i></div>
+											<div class="quick_link_text">Student Portal</div>
+										</a>
+									</div>
+									<div class="col-lg-4">
+										<a href="faculty-portal.html" class="quick_link_item">
+											<div class="quick_link_icon"><i class="fas fa-chalkboard-teacher"></i></div>
+											<div class="quick_link_text">Faculty Portal</div>
+										</a>
+									</div>
+									<div class="col-lg-4">
+										<a href="candidate-portal.html" class="quick_link_item">
+											<div class="quick_link_icon"><i class="fa fa-graduation-cap"></i></div>
+											<div class="quick_link_text">Candidate Portal</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-lg-6 featured_col">
 								<div class="featured_content">
@@ -568,7 +636,8 @@
 			</div>
 		</div>
 	</div>
-
+	
+	
 
 
 	<div class="portals">
