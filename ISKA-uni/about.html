@@ -100,6 +100,71 @@
       height: 100%;
     }
 
+
+
+	/* Campus Life Section Styling */
+#campus-life {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 50px 0;
+}
+
+#campus-life h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #343a40; /* Dark gray color */
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+#campus-life p {
+    font-size: 1.1rem;
+    color: #6c757d; /* Muted text color */
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+#campus-life .campus-image-wrapper {
+    border-radius: 10px; /* Rounded corners for images */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#campus-life .campus-image-wrapper img {
+    width: 100%; /* Ensure images fit within the container */
+    height: auto;
+    display: block;
+}
+
+#campus-life .campus-image-wrapper:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+
+#campus-life .btn-primary {
+    background-color: #007bff; /* Primary color */
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 10px 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#campus-life .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight button zoom on hover */
+}
+
+@media (max-width: 768px) {
+    #campus-life h2 {
+        font-size: 2rem;
+    }
+
+    #campus-life p {
+        font-size: 1rem;
+    }
+}
+
+
 </style>
 </head>
 <body>
@@ -256,11 +321,30 @@
 	<div class="about">
 		<div class="container">
 			<div class="row about_row row-lg-eq-height">
+				<div class="col-lg-6 order-lg-1 order-2">
+					<div class="about_image"><img src="./images/smiling-cheerful.jpg" alt="Our Vision"></div>
+				</div>
+				<div class="col-lg-6 order-lg-2 order-1">
+					<div class="about_content">
+						<div class="about_title">ISKA University's History</div>
+						<div class="about_text">
+							<p> ISKA University began as a small academic institution with a vision to revolutionize education and inspire future leaders. Over the years, it has grown into a globally recognized university, renowned for its innovative research, diverse academic programs, and inclusive community. With a foundation rooted in excellence and a commitment to empowering students, ISKA has nurtured countless graduates who have made significant contributions across industries and societies worldwide. Our legacy is built upon a tradition of intellectual curiosity, collaboration, and a drive to address the pressing challenges of our time.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row about_row row-lg-eq-height">
 				<div class="col-lg-6">
 					<div class="about_content">
-						<div class="about_title">Our Platform's Main Goal</div>
+						<div class="about_title "><h2>ISKA University's Mission</h2></div>
 						<div class="about_text">
-							<p>ISKA University is dedicated to providing world-class education through both online and offline programs. Our primary goal is to empower students with the knowledge and skills they need to thrive in an ever-changing world. With a focus on innovation, accessibility, and excellence, we aim to create a learning environment that bridges the gap between education and real-world applications.</p>
+							<p>
+								Our mission at ISKA University is to provide quality education that inspires and empowers
+								students to achieve their goals. We are committed to creating a learning environment that
+								fosters knowledge, innovation, and leadership. By focusing on academic excellence and
+								community development, we aim to contribute to the growth and success of Angola and the
+								world.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -332,44 +416,13 @@
 		</div>
 	</div>
 
-	<!-- Teachers -->
-	<div class="Section mt-5">
-		<div class="container">
-			<div class="row">
-				<!-- Left Side: Image -->
-				<div class="col-lg-6">
-					<div class="about_image">
-						<img src="https://img.freepik.com/free-photo/students-studying-together-medium-shot_23-2148913227.jpg?t=st=1732024147~exp=1732027747~hmac=68fb437e077e9364313e4e873a57f1253aeca39f26b5070f56f004a392fe7210&w=826" alt="Empowering Education" class="img-fluid rounded shadow">
-					</div>
-				</div>
-				<!-- Right Side: Content -->
-				<div class="col-lg-6">
-					<div class="about_content">
-						<h2 class="about_title">Why Choose ISKA University?</h2>
-						<p>
-							At ISKA University, we believe in transforming education with innovative methods and an inclusive approach. Here's what sets us apart:
-						</p>
-						<ul style="list-style-type: disc; padding-left: 20px;">
-							<li> Tailored programs for personal and professional growth.</li>
-							<li> State-of-the-art infrastructure and digital learning tools.</li>
-							<li> Strong connections with industry leaders for practical exposure.</li>
-							<li> A supportive and vibrant learning community.</li>
-						</ul>
-						 
-			  <div class="home_buttons mt-3">
-				<div class="button home_button"><a href="./contact.html">Start Your Journey Today<div class="button_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></div></a></div>
-			</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	
 	<div class="teachers">
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<div class="teachers_title text-center">Meet the Teachers</div>
+					<div class="teachers_title text-center">Meet the Leadership</div>
 				</div>
 			</div>
 			<div class="row teachers_row">
@@ -379,8 +432,8 @@
 					<div class="teacher">
 						<div class="teacher_image"><img src="images/teacher_1.jpg" alt="https://unsplash.com/@nickkarvounis"></div>
 						<div class="teacher_body text-center">
-							<div class="teacher_title"><a href="#">Jonathan Smith</a></div>
-							<div class="teacher_subtitle">Marketing</div>
+							<div class="teacher_title"><a href="#">Dr. John Doe</a></div>
+							<div class="teacher_subtitle">Vice-Chancellor</div>
 							<div class="teacher_social">
 								<ul>
 									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
@@ -398,8 +451,8 @@
 					<div class="teacher">
 						<div class="teacher_image"><img src="images/teacher_2.jpg" alt="https://unsplash.com/@rawpixel"></div>
 						<div class="teacher_body text-center">
-							<div class="teacher_title"><a href="#">Michelle Williams</a></div>
-							<div class="teacher_subtitle">Art & Design</div>
+							<div class="teacher_title"><a href="#">Dr. Emily Carter</a></div>
+							<div class="teacher_subtitle">Director of Research</div>
 							<div class="teacher_social">
 								<ul>
 									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
@@ -436,8 +489,8 @@
 					<div class="teacher">
 						<div class="teacher_image"><img src="images/teacher_4.jpg" alt="https://unsplash.com/@benjaminrobyn"></div>
 						<div class="teacher_body text-center">
-							<div class="teacher_title"><a href="#">Christinne Smith</a></div>
-							<div class="teacher_subtitle">Marketing</div>
+							<div class="teacher_title"><a href="#">Dr. Sophia Bennett</a></div>
+							<div class="teacher_subtitle">Chief Financial Officer</div>
 							<div class="teacher_social">
 								<ul>
 									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
@@ -456,7 +509,7 @@
 						<div class="teacher_image"><img src="images/teacher_5.jpg" alt="https://unsplash.com/@christinhumephoto"></div>
 						<div class="teacher_body text-center">
 							<div class="teacher_title"><a href="#">Michelle Williams</a></div>
-							<div class="teacher_subtitle">Art & Design</div>
+							<div class="teacher_subtitle">Director of Student Affairs</div>
 							<div class="teacher_social">
 								<ul>
 									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
@@ -474,8 +527,8 @@
 					<div class="teacher">
 						<div class="teacher_image"><img src="images/teacher_6.jpg" alt="https://unsplash.com/@rawpixel"></div>
 						<div class="teacher_body text-center">
-							<div class="teacher_title"><a href="#">Jack Gallagan</a></div>
-							<div class="teacher_subtitle">Marketing</div>
+							<div class="teacher_title"><a href="#">Prof. Anna Martinez</a></div>
+							<div class="teacher_subtitle">Head of Admissions</div>
 							<div class="teacher_social">
 								<ul>
 									<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
@@ -498,8 +551,73 @@
 	</div>
 
 
+	<div class="Section mt-5 mb-5">
+		<div class="container">
+			<div class="row">
+				<!-- Left Side: Image -->
+				<div class="col-lg-6">
+					<div class="about_image">
+						<img src="https://img.freepik.com/free-photo/students-studying-together-medium-shot_23-2148913227.jpg?t=st=1732024147~exp=1732027747~hmac=68fb437e077e9364313e4e873a57f1253aeca39f26b5070f56f004a392fe7210&w=826" alt="Empowering Education" class="img-fluid rounded shadow">
+					</div>
+				</div>
+				<!-- Right Side: Content -->
+				<div class="col-lg-6">
+					<div class="about_content">
+						<h2 class="about_title">Global Accreditation and Excellence</h2>
+						<p>
+							ISKA University is proud to hold prestigious accreditations from global and national educational bodies, ensuring world-class education standards. Here's why our accreditation matters:
+					</p>
+						<ul style="list-style-type: disc; padding-left: 20px;">
+						<li> Recognized by leading international accreditation councils.</li>
+						<li> Verified quality assurance for all academic programs.</li>
+						<li> Credentials that enhance employability and global mobility.</li>
+						<li> Continuous evaluation and improvement for academic excellence.</li>
+						</ul>
+						 
+			 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
+
+	<section id="campus-life" class="py-5 bg-light">
+		<div class="container">
+			<!-- Section Title -->
+			<div class="text-center mb-5">
+				<h2 class="display-4 font-weight-bold">Campus Life</h2>
+				<p class="lead text-muted">Experience the vibrant and diverse community at ISKA University! Our campus offers state-of-the-art facilities, recreational spaces, and a welcoming environment that fosters academic and personal growth.</p>
+			</div>
+			<!-- Content -->
+			<div class="row">
+				<!-- Campus Image 1 -->
+				<div class="col-md-4 mb-4">
+					<div class="campus-image-wrapper shadow rounded overflow-hidden">
+						<img src="./images/portrait-male.jpg" alt="Campus Image 1" class="img-fluid">
+					</div>
+				</div>
+				<!-- Campus Image 2 -->
+				<div class="col-md-4 mb-4">
+					<div class="campus-image-wrapper shadow rounded overflow-hidden">
+						<img src="./images/full-shot.jpg" alt="Campus Image 2" class="img-fluid">
+					</div>
+				</div>
+				<!-- Campus Image 3 -->
+				<div class="col-md-4 mb-4">
+					<div class="campus-image-wrapper shadow rounded overflow-hidden">
+						<img src="./images/smiling-cheerful.jpg" alt="Campus Image 3" class="img-fluid">
+					</div>
+				</div>
+			</div>
+			<!-- Virtual Tour Button -->
+			<div class="text-center mt-4">
+				<a href="./blog.html" class="btn btn-primary btn-lg px-5">Take a Virtual Tour</a>
+			</div>
+		</div>
+	</section>
+	
 	
 	<!-- Footer -->
 	<div class="contact_us_button">
