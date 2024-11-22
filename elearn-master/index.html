@@ -14,6 +14,215 @@
 <link href="plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<style>
+	/* Styling for the feature cards */
+.feature_box {
+    position: relative;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+
+.feature_box:hover {
+    border: 2px solid red;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a red line at the bottom-right corner */
+
+
+/* On hover, extend the red line */
+.feature_box:hover::after {
+    opacity: 1;
+    width: 100%;
+}
+
+/* Icon styling */
+.feature_icon {
+    font-size: 40px;
+    color: red;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.feature_box:hover .feature_icon {
+    transform: scale(1.2);
+    color: #d00000;
+}
+
+/* Title styling */
+.feature_title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.feature_box:hover .feature_title {
+    color: red;
+}
+
+/* Text styling */
+.feature_text p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.feature_box:hover .feature_text p {
+    color: #333;
+}
+
+
+
+/* Portal Box Styling */
+.portal_box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border: 5px solid lightgray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.portal_box:hover {
+    transform: scale(1.1);
+    border-color: var(--circle-color, lightgray);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Portal Icon Styling */
+.portal_icon {
+    font-size: 50px;
+    transition: transform 0.3s ease;
+}
+
+.portal_box:hover .portal_icon {
+    transform: scale(1.2);
+}
+
+/* Portal Title Styling */
+.portal_title {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Dynamic color change on hover */
+.portal_box:hover {
+    background-color: var(--circle-color, lightgray);
+}
+
+/* Data-driven color assignment */
+.portal_box[data-color="red"] {
+    --circle-color: rgba(255, 0, 0, 0.2);
+}
+
+.portal_box[data-color="blue"] {
+    --circle-color: rgba(0, 0, 255, 0.2);
+}
+
+.portal_box[data-color="green"] {
+    --circle-color: rgba(0, 255, 0, 0.2);
+}
+
+/* Latest News Section */
+.latest_news_section {
+    background: linear-gradient(to right, #f9f9f9, #ffffff);
+    padding: 50px 20px;
+    margin: 20px 0;
+}
+
+.image_section img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Title */
+.content_wrapper h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-left: 5px solid #ffa500;
+    padding-left: 10px;
+}
+
+/* News Wrapper */
+.news_wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-height: 400px;
+    border: 2px solid #ffa500;
+    border-radius: 10px;
+}
+
+/* Iframe Styling */
+.news_iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow-y: auto;
+}
+
+.news_iframe:hover {
+    overflow-y: hidden; /* Stops scrolling on hover */
+}
+
+/* News Item */
+.news_item {
+    display: flex;
+    padding: 15px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+.news_item:last-child {
+    border-bottom: none;
+}
+
+.news_image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin-right: 15px;
+    object-fit: cover;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.news_content h4 {
+    font-size: 18px;
+    color: #ffa500;
+    margin-bottom: 5px;
+}
+
+.news_content p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+
+
+</style>
+
 </head>
 <body>
 
@@ -300,6 +509,187 @@
 		</div>
 	</div>
 
+
+
+	<div class="portals">
+		<div class="container">
+			
+			<div class="row text-center">
+				<!-- Student Portal -->
+				<div class="col-lg-4 col-md-6 mb-4">
+					<a href="#" class="portal_link">
+						<div class="portal_box" data-color="red">
+							<div class="portal_icon" style="color: red;">🎓</div>
+							<div class="portal_title">Student </div>
+						</div>
+					</a>
+					
+				</div>
+				<!-- Faculty Portal -->
+				<div class="col-lg-4 col-md-6 mb-4">
+					<a href="#" class="portal_link">
+						<div class="portal_box" data-color="blue">
+							<div class="portal_icon" style="color: blue;">👩‍🏫</div>
+							<div class="portal_title">Faculty </div>
+						</div>
+					</a>
+					
+				</div>
+				<!-- Candidate Portal -->
+				<div class="col-lg-4 col-md-6 mb-4">
+					<a href="#" class="portal_link">
+						<div class="portal_box" data-color="green">
+							<div class="portal_icon" style="color: green;">📝</div>
+							<div class="portal_title">Candidate </div>
+						</div>
+					</a>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	
+	<!-- About -->
+	<div class="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1 mx-5">
+					<div class="section_title text-center mt-5 mb-5">
+						<h2 class="section_title ">About Us</h2>
+					</div>
+				</div>
+			</div>
+	
+			<!-- Mission Section -->
+			<div class="row about_row align-items-center">
+				<div class="col-lg-6 mb-4 mb-lg-0">
+					<div class="about_content">
+						
+						<div class="section_title "><h2>ISKA University's Mission</h2></div>
+						<div class="about_text">
+							<p>
+								Our mission at ISKA University is to provide quality education that inspires and empowers
+								students to achieve their goals. We are committed to creating a learning environment that
+								fosters knowledge, innovation, and leadership. By focusing on academic excellence and
+								community development, we aim to contribute to the growth and success of Angola and the
+								world.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="about_image">
+						<img src="https://img.freepik.com/free-photo/study-group-african-people_23-2149156385.jpg?t=st=1732023462~exp=1732027062~hmac=6290afe6c6aac34c9433c82452dcb734e986f801e20fcaf78f71102b13fd8947&w=826" 
+							 alt="Our Goal" class="img-fluid rounded">
+					</div>
+				</div>
+			</div>
+	
+			<!-- Vision Section -->
+			<div class="row about_row align-items-center mt-5">
+				<div class="col-lg-6 order-lg-1 order-2">
+					<div class="about_image">
+						<img src="https://img.freepik.com/free-photo/students-studying-together_23-2148913226.jpg?t=st=1732023483~exp=1732027083~hmac=ea9d64ba97c30704c5332486c46dcbbe34f8bd85ef1e95e16f19f686335ac0e4&w=826" 
+							 alt="Our Vision" class="img-fluid rounded">
+					</div>
+				</div>
+				<div class="col-lg-6 order-lg-2 order-1 mb-4 mb-lg-0">
+					<div class="about_content">
+						
+						<div class="section_title "><h2>ISKA University's Vision</h2></div>
+						<div class="about_text">
+							<p>
+								Our vision is to become a beacon of education in Angola and globally, offering cutting-edge
+								programs that cater to diverse learning needs. We strive to integrate technology with
+								traditional teaching methods to make education accessible to all. Through partnerships with
+								industry leaders and a commitment to academic excellence, ISKA University envisions shaping
+								future leaders and innovators who will make a lasting impact in their communities and beyond.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-lg-10 offset-lg-1 mb-5">
+					<div class="section_title text-center">
+						<h2>Key Features</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="feature_box">
+						<div class="feature_icon mb-3">
+							🌍
+						</div>
+						<div class="feature_title">Global Perspective</div>
+						<div class="feature_text">
+							<p>ISKA University integrates global trends into its curriculum to prepare students for international opportunities.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="feature_box">
+						<div class="feature_icon mb-3">
+							🎓
+						</div>
+						<div class="feature_title">Academic Excellence</div>
+						<div class="feature_text">
+							<p>We provide top-notch programs designed to challenge and inspire intellectual growth.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="feature_box">
+						<div class="feature_icon mb-3">
+							🤝
+						</div>
+						<div class="feature_title">Strong Community</div>
+						<div class="feature_text">
+							<p>We foster a supportive and collaborative environment for students, faculty, and staff.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="feature_box">
+						<div class="feature_icon mb-3">
+							💻
+						</div>
+						<div class="feature_title">Technology Integration</div>
+						<div class="feature_text">
+							<p>Our programs embrace modern technology to enhance learning and research.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="feature_box">
+						<div class="feature_icon mb-3">
+							🌱
+						</div>
+						<div class="feature_title">Sustainability Focus</div>
+						<div class="feature_text">
+							<p>ISKA University is committed to sustainable development in education and beyond.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4">
+					<div class="feature_box">
+						<div class="feature_icon mb-3">
+							🌟
+						</div>
+						<div class="feature_title">Leadership Development</div>
+						<div class="feature_text">
+							<p>We nurture leadership qualities in students to make a positive impact in their communities.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+
 	<!-- Courses -->
 
 	<div class="courses">
@@ -378,6 +768,69 @@
 			</div>
 		</div>
 	</div>
+
+
+	
+	
+	<div class="latest_news_section">
+		<div class="container">
+			<div class="row">
+				<!-- Left Side: Image -->
+				<div class="col-lg-6 col-md-6 image_section">
+					<div class="news_image_container">
+						<img src="./images/about_1.jpg" alt="Latest News" />
+					</div>
+				</div>
+	
+				<!-- Right Side: Content -->
+				<div class="col-lg-6 col-md-6 content_section">
+					<div class="content_wrapper">
+						<h2>Latest Announcements & Events</h2>
+						<div class="news_wrapper">
+							<!-- News Item 1 -->
+							<div class="news_item">
+								<div class="news_image">
+									<img src="event1.jpg" alt="Global Student Conference 2024">
+								</div>
+								<div class="news_content">
+									<h4>Global Student Conference 2024</h4>
+									<p>15-06-2024</p>
+									<p>Students and scholars from around the globe gathered to share ideas and innovations at the annual conference.</p>
+								</div>
+							</div>
+	
+							<!-- News Item 2 -->
+							<div class="news_item">
+								<div class="news_image">
+									<img src="event2.jpg" alt="Tech Innovation Awards">
+								</div>
+								<div class="news_content">
+									<h4>Tech Innovation Awards</h4>
+									<p>10-06-2024</p>
+									<p>A celebration of groundbreaking technologies developed by young innovators.</p>
+								</div>
+							</div>
+	
+							<!-- News Item 3 -->
+							<div class="news_item">
+								<div class="news_image">
+									<img src="event3.jpg" alt="Cultural Fest 2024">
+								</div>
+								<div class="news_content">
+									<h4>Cultural Fest 2024</h4>
+									<p>05-06-2024</p>
+									<p>Explore and enjoy diverse cultures through music, dance, and art in this year's grand festival.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 
 	<!-- Milestones -->
 
