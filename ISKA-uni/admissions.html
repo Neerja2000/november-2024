@@ -7,10 +7,48 @@
 <meta name="description" content="Elearn project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/contact.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Bundle with Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    .how-to-apply {
+    background-color: #f8f9fa; /* Light background for better readability */
+}
+
+.how-to-apply h2 {
+    font-family: 'Poppins', sans-serif; /* Stylish font for headings */
+    font-weight: bold;
+    color: #343a40; /* Dark text for contrast */
+}
+
+.how-to-apply .card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.how-to-apply .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* Form Field Styles */
+
+
+        
+</style>
 </head>
 <body>
 
@@ -65,12 +103,22 @@
 							</div>
 							<nav class="main_nav_contaner ml-auto">
 								<ul class="main_nav">
-									<li><a href="index.html">Home</a></li>
-									<li><a href="about.html">About us</a></li>
-									<li><a href="courses.html">Courses</a></li>
-									<li ><a href="blog.html">Blog</a></li>
-									<li class="active"><a href="contact.html">Contact</a></li>
-								</ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="courses.html">Courses</a></li>
+                                    <li><a href="blog.html">Blog</a></li>
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Admissions</a>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="./admissions.html" class="dropdown-item">How to Apply?</a></li>
+                                        <li><a href="./online-application-portal.html" class="dropdown-item">Online Application Portal</a></li>
+                                        <li><a href="international.html" class="dropdown-item">Scholarship Opportunities</a></li>
+                                        <li><a href="international.html" class="dropdown-item">Admissions FAQ</a></li>
+                                      </ul>
+                                    </li>
+                                    <li class="active"><a href="contact.html">Contact</a></li>
+                                  </ul>
+                                  
 								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
 								<!-- Hamburger -->
@@ -151,7 +199,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="home_content text-center">
-							<div class="home_title">Contact</div>
+							<div class="home_title">Way to Apply in ISKA University</div>
 							
 						</div>
 					</div>
@@ -159,90 +207,56 @@
 			</div>
 		</div>
 	</div>
+    <section class="how-to-apply py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">How to Apply</h2>
+            <p class="text-center mb-5">Follow these steps to complete your application process:</p>
+            <div class="row">
+                <!-- Step 1 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">1. Create an Account</h5>
+                            <p class="card-text">
+                                Start by creating your account with a valid email address. Use a non-school email to ensure long-term accessibility.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">2. Fill Out the Application</h5>
+                            <p class="card-text">
+                                Complete all sections, including personal details, academic history, and activities. Save your progress as you go.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">3. Submit Your Application</h5>
+                            <p class="card-text">
+                                Review your application carefully and submit it before the deadline. Keep a copy of the confirmation receipt.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- Contact -->
 
-	<div class="contact">
-		<div class="container-fluid">
-			<div class="row row-xl-eq-height">
-				<!-- Contact Content -->
-				<div class="col-xl-6">
-					<div class="contact_content">
-						<div class="row">
-							<div class="col-xl-6 col-md-6">
-								<div class="contact_about">
-									<div class="logo_container">
-										<a href="#">
-											<div class="logo_content d-flex flex-row align-items-end justify-content-start">
-												<div class="logo_img"><img src="images/logo-removebg-preview.png" alt="" style="height: 100px; width:100px"></div>
-												
-											</div>
-										</a>
-									</div>
-									<div class="contact_about_text">
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, sequi eos vero soluta ea nesciunt numquam impedit molestias cum perferendis, nostrum aut voluptatibus animi facilis beatae. Autem eaque, animi hic dolorum possimus vel quo porro veniam sunt eos iusto recusandae!</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-6 col-md-6">
-								<div class="contact_info_container">
-									<div class="contact_info_main_title">Contact Us</div>
-									<div class="contact_info">
-										<div class="contact_info_item">
-											<div class="contact_info_title">Address:</div>
-											<div class="contact_info_line">1481 Creekside Lane Avila Beach, CA 93424</div>
-										</div>
-										<div class="contact_info_item">
-											<div class="contact_info_title">Phone:</div>
-											<div class="contact_info_line">+53 345 7953 32453</div>
-										</div>
-										<div class="contact_info_item">
-											<div class="contact_info_title">Email:</div>
-											<div class="contact_info_line">yourmail@gmail.com</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="contact_form_container">
-							<form action="#" id="contact_form" class="contact_form">
-								<div>
-									<div class="row">
-										<div class="col-lg-6 contact_name_col">
-											<input type="text" class="contact_input" placeholder="Name" required="required">
-										</div>
-										<div class="col-lg-6">
-											<input type="email" class="contact_input" placeholder="E-mail" required="required">
-										</div>
-									</div>
-								</div>
-								<div><input type="text" class="contact_input" placeholder="Subject" required="required"></div>
-								<div><textarea class="contact_input contact_textarea" placeholder="Message"></textarea></div>
-								<button class="contact_button"><span>send message</span><span class="button_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
-							</form>
-						</div>
-					</div>
-				</div>
 
-				<!-- Contact Map -->
-				<div class="col-xl-6 map_col">
-					<div class="contact_map">
-
-						<!-- Google Map -->
-						<div id="google_map" class="google_map">
-							<div class="map_container">
-								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8016745.391188679!2d12.478625071036003!3d-11.156026865251777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f24ecaad8b27%3A0x590a289d0d4a4e3d!2sAngola!5e0!3m2!1sen!2sin!4v1732079262506!5m2!1sen!2sin" width="900" height="860" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-				
-		</div>
-	</div>
-
-	<!-- Footer -->
+ 
+          
+          
+          
+          
+          
 
 	<footer class="footer">
 		<div class="container">
@@ -320,5 +334,29 @@
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 <script src="js/contact.js"></script>
+<script>
+    const form = document.getElementById('applicationForm');
+    const docUpload = document.getElementById('documentUpload');
+    const paymentSection = document.getElementById('paymentSection');
+    
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        form.classList.add('d-none');
+        docUpload.classList.remove('d-none');
+        updateStep(2);
+    });
+
+    document.getElementById('toPayment').addEventListener('click', () => {
+        docUpload.classList.add('d-none');
+        paymentSection.classList.remove('d-none');
+        updateStep(3);
+    });
+
+    function updateStep(step) {
+        document.querySelectorAll('.step').forEach((el, index) => {
+            el.classList.toggle('step-active', index === step - 1);
+        });
+    }
+</script>
 </body>
 </html>

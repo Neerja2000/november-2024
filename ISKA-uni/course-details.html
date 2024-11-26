@@ -6,17 +6,153 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Elearn project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/contact.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+
+
+<style>
+	.course-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.course-subtitle {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+/* Course Details */
+.course-details {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.6rem;
+  color: #34495e;
+  border-bottom: 2px solid #F22430;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* Course Description */
+.course-description {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* Images */
+img.img-fluid {
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Objectives List */
+.course-objectives {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.course-objectives li {
+  margin-bottom: 10px;
+  list-style-type: disc;
+}
+
+/* Duration Text */
+.duration-text {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Prerequisites List */
+.prerequisites-list {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.prerequisites-list li {
+  margin-bottom: 10px;
+  list-style-type: circle;
+}
+
+/* Faculty Description */
+.faculty-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Faculty Images */
+.faculty-images img {
+  margin-top: 20px;
+}
+
+/* Enrollment & Tuition */
+.enrollment-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.enroll-btn {
+  background-color: #F22430;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.enroll-btn:hover {
+    background-color: #ffae00;
+    color: white;
+    animation: vibrate 0.3s ease-in-out infinite;
+  }
+
+  /* Vibrate Animation Keyframes */
+  @keyframes vibrate {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-2px);
+    }
+    50% {
+      transform: translateX(2px);
+    }
+    75% {
+      transform: translateX(-2px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+</style>
 </head>
 <body>
 
 <div class="super_container">
-
-	<!-- Header -->
 
 	<header class="header">
 			
@@ -104,9 +240,6 @@
 			</div>			
 		</div>			
 	</header>
-
-	<!-- Menu -->
-
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
 		<div class="search">
@@ -140,9 +273,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Home -->
-
 	<div class="home">
 		
 		<div class="home_background parallax_background parallax-window" data-parallax="scroll" data-image-src="images/contact.jpg" data-speed="0.8"></div>
@@ -151,7 +281,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="home_content text-center">
-							<div class="home_title">Contact</div>
+							<div class="home_title">Academic Program</div>
 							
 						</div>
 					</div>
@@ -159,91 +289,86 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Contact -->
-
-	<div class="contact">
-		<div class="container-fluid">
-			<div class="row row-xl-eq-height">
-				<!-- Contact Content -->
-				<div class="col-xl-6">
-					<div class="contact_content">
-						<div class="row">
-							<div class="col-xl-6 col-md-6">
-								<div class="contact_about">
-									<div class="logo_container">
-										<a href="#">
-											<div class="logo_content d-flex flex-row align-items-end justify-content-start">
-												<div class="logo_img"><img src="images/logo-removebg-preview.png" alt="" style="height: 100px; width:100px"></div>
-												
-											</div>
-										</a>
-									</div>
-									<div class="contact_about_text">
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, sequi eos vero soluta ea nesciunt numquam impedit molestias cum perferendis, nostrum aut voluptatibus animi facilis beatae. Autem eaque, animi hic dolorum possimus vel quo porro veniam sunt eos iusto recusandae!</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-6 col-md-6">
-								<div class="contact_info_container">
-									<div class="contact_info_main_title">Contact Us</div>
-									<div class="contact_info">
-										<div class="contact_info_item">
-											<div class="contact_info_title">Address:</div>
-											<div class="contact_info_line">1481 Creekside Lane Avila Beach, CA 93424</div>
-										</div>
-										<div class="contact_info_item">
-											<div class="contact_info_title">Phone:</div>
-											<div class="contact_info_line">+53 345 7953 32453</div>
-										</div>
-										<div class="contact_info_item">
-											<div class="contact_info_title">Email:</div>
-											<div class="contact_info_line">yourmail@gmail.com</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="contact_form_container">
-							<form action="#" id="contact_form" class="contact_form">
-								<div>
-									<div class="row">
-										<div class="col-lg-6 contact_name_col">
-											<input type="text" class="contact_input" placeholder="Name" required="required">
-										</div>
-										<div class="col-lg-6">
-											<input type="email" class="contact_input" placeholder="E-mail" required="required">
-										</div>
-									</div>
-								</div>
-								<div><input type="text" class="contact_input" placeholder="Subject" required="required"></div>
-								<div><textarea class="contact_input contact_textarea" placeholder="Message"></textarea></div>
-								<button class="contact_button"><span>send message</span><span class="button_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
-							</form>
-						</div>
-					</div>
-				</div>
-
-				<!-- Contact Map -->
-				<div class="col-xl-6 map_col">
-					<div class="contact_map">
-
-						<!-- Google Map -->
-						<div id="google_map" class="google_map">
-							<div class="map_container">
-								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8016745.391188679!2d12.478625071036003!3d-11.156026865251777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f24ecaad8b27%3A0x590a289d0d4a4e3d!2sAngola!5e0!3m2!1sen!2sin!4v1732079262506!5m2!1sen!2sin" width="900" height="860" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-				
+	<div class="container my-5">
+		<!-- Course Header -->
+		<div class="text-center mb-5">
+		  <h1 class="course-title">Undergraduate Programs</h1>
+		  <p class="course-subtitle">Begin Your Journey at ISKA University and Build a Solid Foundation</p>
+		  <img src="https://img.freepik.com/free-photo/three-african-students-female-posed-with-backpacks-school-items-yard-university_627829-13637.jpg?t=st=1732520392~exp=1732523992~hmac=5b16fd18a5cc54a14110bb5955ff8e08c33415158dcc4068e5052a13e7410cd2&w=826" alt="University Campus" class="img-fluid rounded shadow-lg">
 		</div>
-	</div>
+	
+		<!-- Course Details Section -->
+		
+		<div class="course-details">
+			<div class="course d-flex align-items-start">
+				<!-- Content Side -->
+				<div class="content " style="flex: 3;">
+				  <h3 class="section-title">Course Overview</h3>
+				  <p class="course-description">
+					Our Undergraduate programs provide students with a solid foundation for a successful career. From engineering to business studies, we offer diverse courses designed to cater to the ever-changing demands of the global job market. Our program ensures that each student is well-prepared with knowledge and practical skills needed to succeed.
+				  </p>
+				</div>
+				<!-- Image Side -->
+				<div class="image mt-5 " style="flex: 1;">
+				  <img src="https://img.freepik.com/free-photo/crop-student-with-notebook-classmates_23-2147664027.jpg?t=st=1732521019~exp=1732524619~hmac=f2a5988f7a2b8db1ac7c9e69ea9f981a27eb02ec17db246ded70e6719d6bd068&w=826" alt="Classroom" class="img-fluid rounded mb-4 ">
+				</div>
+			  </div>
+			  
+		  <!-- Course Objectives -->
+		  <div class="section">
+			<h5 class="section-title">Course Objectives</h5>
+			<ul class="course-objectives">
+			  <li>Develop critical thinking and problem-solving skills applicable in real-world scenarios.</li>
+			  <li>Equip students with the ability to manage tasks, deadlines, and resources effectively.</li>
+			  <li>Enhance leadership, communication, and teamwork abilities, preparing students for global career opportunities.</li>
+			  <li>Offer exposure to a diverse set of academic fields and industries.</li>
+			</ul>
+		  </div>
+	
+		  <!-- Course Duration -->
+		  <div class="section">
+			<h5 class="section-title">Course Duration</h5>
+			<p class="duration-text">The Undergraduate program spans 4 years, divided into 8 semesters. Each semester blends theoretical learning with practical application, offering students both in-class and hands-on experience.</p>
+		  </div>
+	
+		  <!-- Prerequisites -->
+		  <div class="section">
+			<h5 class="section-title">Prerequisites</h5>
+			<ul class="prerequisites-list">
+			  <li>High School Diploma (or equivalent) with strong marks in relevant subjects.</li>
+			  <li>Basic understanding of mathematics and science (depending on course choice).</li>
+			  <li>English language proficiency (IELTS/TOEFL or equivalent) is required for non-native speakers.</li>
+			</ul>
+		  </div>
+	
+		  <!-- Faculty and Department -->
+		  <div class="section">
+			<h5 class="section-title">Faculty and Department Information</h5>
+			<p class="faculty-description">
+			  The course is delivered by highly experienced faculty members who bring both academic expertise and industry experience. The department offers state-of-the-art facilities, including research labs, online resources, and excellent student support services.
+			</p>
+			<div class="faculty-images d-flex justify-content-between">
+			  <img src="../ISKA-uni/images/faculity1.jpg" alt="Faculty Member 1" class="img-fluid rounded-circle" style="max-width: 200px;">
+			  <img src="../ISKA-uni/images/faculity2.jpg" alt="Faculty Member 2" class="img-fluid rounded-circle" style="max-width: 200px;">
+			  <img src="../ISKA-uni/images/faculity3.jpg" alt="Faculty Member 3" class="img-fluid rounded-circle" style="max-width: 200px;">
+			</div>
+		  </div>
+	
+		  <!-- Enrollment and Tuition -->
+		  <div class="section mt-2">
+			<h5 class="section-title">Enrollment Options and Tuition Fees</h5>
+			<p class="enrollment-description">
+			  Enrollment is open year-round. Students can apply directly online or visit the admissions office. The tuition fee for the program is $10,000 per year, with additional costs for materials, activities, and international trips.
+			</p>
+			<p><strong>Note:</strong> Scholarships and financial aid are available for qualified students.</p>
+			<a href="#" class="enroll-btn">Apply Now</a>
+		  </div>
+		</div>
+	  </div>
+	
+	
 
-	<!-- Footer -->
-
+	
 	<footer class="footer">
 		<div class="container">
 			<div class="row">

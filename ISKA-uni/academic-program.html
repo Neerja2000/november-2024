@@ -6,17 +6,82 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Elearn project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/contact.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+
+
+<style>.iska-header {
+    color: #1d3557;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .iska-card {
+    background:linear-gradient(135deg,  #2c3e50, #4e5d6c);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 350px;
+  }
+  @media screen and (max-width: 576px) {
+  .iska-card {
+    height: auto; /* Auto height for dynamic content */
+    padding: 20px 15px; /* Adjust padding for smaller screens */
+	margin-top: 20px;
+  }}
+  .iska-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .iska-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .iska-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+	color: white;
+  }
+  
+  .iska-card-text {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    color: #f1f7f8;
+  }
+  
+  .iska-btn {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #F22430;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .iska-btn:hover {
+    background-color: #ffae00;
+    color: #ffffff;
+  }</style>
 </head>
 <body>
 
 <div class="super_container">
-
-	<!-- Header -->
 
 	<header class="header">
 			
@@ -104,9 +169,6 @@
 			</div>			
 		</div>			
 	</header>
-
-	<!-- Menu -->
-
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
 		<div class="search">
@@ -140,9 +202,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- Home -->
-
 	<div class="home">
 		
 		<div class="home_background parallax_background parallax-window" data-parallax="scroll" data-image-src="images/contact.jpg" data-speed="0.8"></div>
@@ -151,7 +210,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="home_content text-center">
-							<div class="home_title">Contact</div>
+							<div class="home_title">Academic Program</div>
 							
 						</div>
 					</div>
@@ -160,90 +219,61 @@
 		</div>
 	</div>
 
-	<!-- Contact -->
+    <div class="iska-container my-5 mt-5">
+        <h1 class="iska-header text-center mb-4">Explore Our Courses</h1>
+        <div class="row g-4 justify-content-center mt-5">
+          <!-- Undergraduate -->
+          <div class="col-md-6 col-lg-3">
+            <div class="iska-card">
+              <div class="iska-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h5 class="iska-card-title">Undergraduate</h5>
+              <p class="iska-card-text">Build a solid foundation with our bachelor's programs.</p>
+              <a href="./course-details.html" class="iska-btn">Learn More</a>
+            </div>
+          </div>
+    
+          <!-- Postgraduate -->
+          <div class="col-md-6 col-lg-3">
+            <div class="iska-card">
+              <div class="iska-icon">
+                <i class="fas fa-university"></i>
+              </div>
+              <h5 class="iska-card-title">Postgraduate</h5>
+              <p class="iska-card-text">Specialize and advance your career with our master's programs.</p>
+              <a href="./course-details.html" class="iska-btn">Learn More</a>
+            </div>
+          </div>
+    
+          <!-- Technical -->
+          <div class="col-md-6 col-lg-3">
+            <div class="iska-card">
+              <div class="iska-icon">
+                <i class="fas fa-tools"></i>
+              </div>
+              <h5 class="iska-card-title">Technical</h5>
+              <p class="iska-card-text">Master technical skills with practical certifications.</p>
+			  <a href="./course-details.html" class="iska-btn">Learn More</a>
+            </div>
+          </div>
+    
+          <!-- Professional -->
+          <div class="col-md-6 col-lg-3">
+            <div class="iska-card">
+              <div class="iska-icon">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <h5 class="iska-card-title">Professional</h5>
+              <p class="iska-card-text">Prepare for industry leadership with our professional courses.</p>
+              <a href="./course-details.html" class="iska-btn">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+	
 
-	<div class="contact">
-		<div class="container-fluid">
-			<div class="row row-xl-eq-height">
-				<!-- Contact Content -->
-				<div class="col-xl-6">
-					<div class="contact_content">
-						<div class="row">
-							<div class="col-xl-6 col-md-6">
-								<div class="contact_about">
-									<div class="logo_container">
-										<a href="#">
-											<div class="logo_content d-flex flex-row align-items-end justify-content-start">
-												<div class="logo_img"><img src="images/logo-removebg-preview.png" alt="" style="height: 100px; width:100px"></div>
-												
-											</div>
-										</a>
-									</div>
-									<div class="contact_about_text">
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, sequi eos vero soluta ea nesciunt numquam impedit molestias cum perferendis, nostrum aut voluptatibus animi facilis beatae. Autem eaque, animi hic dolorum possimus vel quo porro veniam sunt eos iusto recusandae!</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-6 col-md-6">
-								<div class="contact_info_container">
-									<div class="contact_info_main_title">Contact Us</div>
-									<div class="contact_info">
-										<div class="contact_info_item">
-											<div class="contact_info_title">Address:</div>
-											<div class="contact_info_line">1481 Creekside Lane Avila Beach, CA 93424</div>
-										</div>
-										<div class="contact_info_item">
-											<div class="contact_info_title">Phone:</div>
-											<div class="contact_info_line">+53 345 7953 32453</div>
-										</div>
-										<div class="contact_info_item">
-											<div class="contact_info_title">Email:</div>
-											<div class="contact_info_line">yourmail@gmail.com</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="contact_form_container">
-							<form action="#" id="contact_form" class="contact_form">
-								<div>
-									<div class="row">
-										<div class="col-lg-6 contact_name_col">
-											<input type="text" class="contact_input" placeholder="Name" required="required">
-										</div>
-										<div class="col-lg-6">
-											<input type="email" class="contact_input" placeholder="E-mail" required="required">
-										</div>
-									</div>
-								</div>
-								<div><input type="text" class="contact_input" placeholder="Subject" required="required"></div>
-								<div><textarea class="contact_input contact_textarea" placeholder="Message"></textarea></div>
-								<button class="contact_button"><span>send message</span><span class="button_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
-							</form>
-						</div>
-					</div>
-				</div>
-
-				<!-- Contact Map -->
-				<div class="col-xl-6 map_col">
-					<div class="contact_map">
-
-						<!-- Google Map -->
-						<div id="google_map" class="google_map">
-							<div class="map_container">
-								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8016745.391188679!2d12.478625071036003!3d-11.156026865251777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f24ecaad8b27%3A0x590a289d0d4a4e3d!2sAngola!5e0!3m2!1sen!2sin!4v1732079262506!5m2!1sen!2sin" width="900" height="860" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-				
-		</div>
-	</div>
-
-	<!-- Footer -->
-
+	
 	<footer class="footer">
 		<div class="container">
 			<div class="row">
