@@ -38,88 +38,81 @@
             </div>
         </div>
     </div>
-    <div class="sidebar-menu">
-        <ul class="menu">
+    <div id="sidebar">
+        <div class="sidebar-wrapper active">
+<div class="sidebar-header position-relative">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="logo">
+            <a href="index.html">Opticatijuana</a>
+        </div>
+       
+        <div class="sidebar-toggler  x">
+            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+        </div>
+    </div>
+</div>
+<div class="sidebar-menu">
+    <ul class="menu">
+       
+        
+        <li
+            class="sidebar-item  ">
+            <a href="index.html" class='sidebar-link'>
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </a>
+            
+
+        </li>
+        
+        <li
+            class="sidebar-item  active">
+            <a href="./user-details.html" class='sidebar-link'>
+                <i class="bi bi-person-fill"></i>
+                <span>User</span>
+            </a>
+            
            
             
-            <li
-                class="sidebar-item  ">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-                
 
-            </li>
-            
-            <li
-                class="sidebar-item active ">
-                <a href="./user-details.html" class='sidebar-link'>
-                    <i class="bi bi-person-fill"></i>
-                    <span>User</span>
-                </a>
-                
-               
-                
-
-            </li>
-            
-            <li
-                class="sidebar-item  ">
-                <a href="./view-Opticatijuana.html" class='sidebar-link'>
-                    <i class="bi bi-people-fill"></i>
-                    <span>Opticatijuana</span>
-                </a>
-                
-            
-                
-
-            </li>
-            
-            <li
-                class="sidebar-item  ">
-                <a href="./Ticket-Management.html" class='sidebar-link'>
-                    <i class="bi bi-ticket-fill"></i>
-                    <span>Ticket Management</span>
-                </a>
-             
-                
-
-            </li>
-            
-          
-            
-            <li
-                class="sidebar-item  ">
-                <a href="./transaction.html" class='sidebar-link'>
-                    <i class="bi bi-cash-coin"></i>
-                    <span>Transactions</span>
-                </a>
-            
-                
-
-            </li>
-            
-            <li
-                class="sidebar-item  ">
-                <a href="./Privacy-Policy.html" class='sidebar-link'>
-                    <i class="bi bi-shield-fill-check"></i>
-                    <span>Privacy Policy</span>
-                </a>
-                
-
-            </li>
+        </li>
+        
+        <li
+            class="sidebar-item  ">
+            <a href="./view-product.html" class='sidebar-link'>
+                <i class="bi bi-people-fill"></i>
+                <span>View Products</span>
+            </a>
             
         
             
-           
+
+        </li>
+        
+        
+        
+        <li
+            class="sidebar-item  ">
+            <a href="./Privacy-Policy.html" class='sidebar-link'>
+                <i class="bi bi-shield-fill-check"></i>
+                <span>Privacy Policy</span>
+            </a>
             
-         
-         
-            
-         
-      
-        </ul>
+
+        </li>
+        
+    
+        
+       
+        
+     
+     
+        
+     
+  
+    </ul>
+</div>
+</div>
     </div>
 </div>
         </div>
@@ -183,6 +176,13 @@
                                         <div class="col-sm-4 font-weight-bold"> Remaining Credits:</div>
                                         <div class="col-sm-8">800</div>
                                     </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-4 font-weight-bold">Document:</div>
+                                        <div class="col-sm-8">
+                                            <!-- Displaying the document (image) from backend -->
+                                            <img src="path/to/your/document.png" alt="Document" class="img-fluid" style="max-width: 100px; height: auto;">
+                                        </div>
+                                    </div>
 
                               
                         </div>
@@ -224,7 +224,16 @@
                                             
                                             <td>12-03-24</td>
 
-                                            <td></td>
+                                            <td>
+                                                <!-- Flex container to align input and button in a row -->
+                                                <div class="d-flex">
+                                                    <!-- Text Field -->
+                                                    <input type="text" class="form-control me-2" placeholder="Enter value" >
+                                
+                                                    <!-- OK Button -->
+                                                    <button class="btn btn-success btn-sm">OK</button>
+                                                </div>
+                                            </td>
                                            
                                               <td>
                                                 <button class="btn btn-danger">Reminder</button>
@@ -235,7 +244,13 @@
                                             
                                             <td>12-04-24</td>
 
-                                            <td></td>
+                                            <td> <div class="d-flex">
+                                                <!-- Text Field -->
+                                                <input type="text" class="form-control me-2" placeholder="Enter value" >
+                            
+                                                <!-- OK Button -->
+                                                <button class="btn btn-success btn-sm">OK</button>
+                                            </div></td>
                                             <td>
                                                 <button class="btn btn-danger">Reminder</button>
                                               </td>
