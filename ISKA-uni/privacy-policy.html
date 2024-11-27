@@ -6,7 +6,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Elearn project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
@@ -17,79 +16,46 @@
 
 <!-- Bootstrap Bundle with Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-<style>.iska-header {
-    color: #1d3557;
-    font-size: 2.5rem;
-    font-weight: bold;
-  }
-  
-  .iska-card {
-    background:linear-gradient(135deg,  #2c3e50, #4e5d6c);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    height: 350px;
-  }
-  @media screen and (max-width: 576px) {
-  .iska-card {
-    height: auto; /* Auto height for dynamic content */
-    padding: 20px 15px; /* Adjust padding for smaller screens */
-	margin-top: 20px;
-  }}
-  .iska-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-  }
-  
-  .iska-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #ffffff;
-  }
-  
-  .iska-card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-	color: white;
-  }
-  
-  .iska-card-text {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    color: #f1f7f8;
-  }
-  
-  .iska-btn {
-    display: inline-block;
-    background-color: #ffffff;
-    color: #F22430;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .iska-btn:hover {
-    background-color: #ffae00;
-    color: #ffffff;
-  }</style>
+<style>
+    
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
+        .content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .content p {
+            line-height: 1.6;
+        }
+        .content a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .content a:hover {
+            text-decoration: underline;
+        }
+</style>
 </head>
 <body>
 
 <div class="super_container">
 
+	<!-- Header -->
+
 	<header class="header">
 			
-		
+	
 		<!-- Header Content -->
 		<div class="header_container">
 			<div class="container">
@@ -110,7 +76,7 @@
 									<li><a href="about.html">About us</a></li>
 									
 									
-									<li class="active"><a href="academic-program.html">Academic Program</a></li>
+									<li ><a href="academic-program.html">Academic Program</a></li>
                                     <li class="dropdown">
                                       <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Admissions</a>
                                       <ul class="dropdown-menu">
@@ -122,7 +88,7 @@
                                     </li>
 									<li><a href="./Library.html">Library</a></li>
 									<li ><a href="blog.html">Blog</a></li>
-									<li><a href="./privacy-policy.html">Privacy Policy</a></li>
+									<li class="active"><a href="./privacy-policy.html">Privacy Policy</a></li>
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
 								<div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -158,6 +124,9 @@
 			</div>			
 		</div>			
 	</header>
+
+	<!-- Menu -->
+
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
 		<div class="search">
@@ -168,7 +137,7 @@
 				</button>
 			</form>
 		</div>
-		<nav class="menu_nav">
+        <nav class="menu_nav">
 			<ul class="menu_mm">
 				
 					<li ><a href="index.html">Home</a></li>
@@ -205,6 +174,9 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Home -->
+
 	<div class="home">
 		
 		<div class="home_background parallax_background parallax-window" data-parallax="scroll" data-image-src="images/contact.jpg" data-speed="0.8"></div>
@@ -213,7 +185,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="home_content text-center">
-							<div class="home_title">Academic Program</div>
+							<div class="home_title">Privacy Policy</div>
 							
 						</div>
 					</div>
@@ -222,62 +194,52 @@
 		</div>
 	</div>
 
-    <div class="iska-container my-5 mt-5">
-        <h1 class="iska-header text-center mb-4">Explore Our Courses</h1>
-        <div class="row g-4 justify-content-center mt-5">
-          <!-- Undergraduate -->
-          <div class="col-md-6 col-lg-3">
-            <div class="iska-card">
-              <div class="iska-icon">
-                <i class="fas fa-graduation-cap"></i>
-              </div>
-              <h5 class="iska-card-title">Undergraduate</h5>
-              <p class="iska-card-text">Build a solid foundation with our bachelor's programs.</p>
-              <a href="./courses.html" class="iska-btn">Learn More</a>
-            </div>
-          </div>
-    
-          <!-- Postgraduate -->
-          <div class="col-md-6 col-lg-3">
-            <div class="iska-card">
-              <div class="iska-icon">
-                <i class="fas fa-university"></i>
-              </div>
-              <h5 class="iska-card-title">Postgraduate</h5>
-              <p class="iska-card-text">Specialize and advance your career with our master's programs.</p>
-              <a href="./courses.html" class="iska-btn">Learn More</a>
-            </div>
-          </div>
-    
-          <!-- Technical -->
-          <div class="col-md-6 col-lg-3">
-            <div class="iska-card">
-              <div class="iska-icon">
-                <i class="fas fa-tools"></i>
-              </div>
-              <h5 class="iska-card-title">Technical</h5>
-              <p class="iska-card-text">Master technical skills with practical certifications.</p>
-			  <a href="./courses.html" class="iska-btn">Learn More</a>
-            </div>
-          </div>
-    
-          <!-- Professional -->
-          <div class="col-md-6 col-lg-3">
-            <div class="iska-card">
-              <div class="iska-icon">
-                <i class="fas fa-briefcase"></i>
-              </div>
-              <h5 class="iska-card-title">Professional</h5>
-              <p class="iska-card-text">Prepare for industry leadership with our professional courses.</p>
-              <a href="./courses.html" class="iska-btn">Learn More</a>
-            </div>
-          </div>
-        </div>
-      </div>
 	
 
-	
-	  <footer class="footer">
+    <div class="container mt-5">
+        <!-- Privacy Policy Section -->
+        <section>
+            <h2 class="section-title mt-5">Privacy Policy</h2>
+            <div class="content">
+                <p>
+                    At ISKA University, we value and respect your privacy. This policy outlines how we collect, use, and protect your personal information when you visit our website, apply to our programs, or engage with our university in any other way.
+                </p>
+                <ul>
+                    <li><strong>Information Collection:</strong> We collect personal data such as your name, email address, phone number, and academic records when you submit forms, request information, or register for services.</li>
+                    <li><strong>Usage of Data:</strong> The personal data we collect is used to provide educational services, process admissions, and improve your experience with our university.</li>
+                    <li><strong>Cookies:</strong> Our website uses cookies to enhance functionality, analyze website traffic, and improve your experience. By using our website, you consent to the use of cookies.</li>
+                    <li><strong>Data Sharing:</strong> ISKA University will never share your personal information with third parties without your explicit consent, except as required by law or to provide necessary services.</li>
+                    <li><strong>Security Measures:</strong> We implement robust security measures to protect your personal information from unauthorized access or disclosure. However, no data transmission over the internet can be guaranteed to be completely secure.</li>
+                    <li><strong>Your Rights:</strong> You have the right to access, update, and delete your personal information at any time. For any inquiries regarding your data, please contact our Data Protection Officer.</li>
+                </ul>
+                <p>For more detailed information, <a href="#">read our full Privacy Policy</a>.</p>
+            </div>
+        </section>
+
+        <!-- Terms of Use Section -->
+        <section>
+            <h2 class="section-title mt-4">Terms of Use</h2>
+            <div class="content">
+                <p>
+                    By accessing or using ISKA University's website, you agree to comply with the terms and conditions set forth below. Please read them carefully.
+                </p>
+                <ul>
+                    <li><strong>Website Use:</strong> You agree to use the website in accordance with the laws and regulations of ISKA University and the country where the university is located.</li>
+                    <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your account and personal details. Any unauthorized use of your account is prohibited.</li>
+                    <li><strong>Content Usage:</strong> All content, including academic materials, university news, and online courses, is for your personal use only. Any redistribution, reproduction, or modification without permission is strictly prohibited.</li>
+                    <li><strong>Student Conduct:</strong> By using this website, you agree to abide by the student conduct guidelines set forth by ISKA University, including academic integrity and respectful behavior towards others.</li>
+                    <li><strong>Intellectual Property:</strong> All intellectual property rights related to the university’s content, including trademarks, logos, and course materials, remain the exclusive property of ISKA University.</li>
+                    <li><strong>Modification of Terms:</strong> ISKA University reserves the right to modify or update these terms at any time. It is your responsibility to review these terms periodically for changes.</li>
+                    <li><strong>Limitation of Liability:</strong> ISKA University is not liable for any damages arising from your use or inability to use the website or any of its services, including academic resources and online services.</li>
+                </ul>
+                <p>For complete terms, <a href="#">read our full Terms of Use</a>.</p>
+            </div>
+        </section>
+    </div>
+
+	<!-- Footer -->
+
+    <footer class="footer">
 		<div class="container">
 			<div class="row">
 
