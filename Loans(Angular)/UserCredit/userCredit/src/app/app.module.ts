@@ -8,6 +8,7 @@ import { LayoutComponent } from './user/layout/layout.component';
 import { HeaderComponent } from './user/layout/header/header.component';
 import { FooterComponent } from './user/layout/footer/footer.component';
 import { SidebarComponent } from './user/layout/sidebar/sidebar.component';
+import { ApplyFormComponent } from './user/apply-form/apply-form.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SidebarComponent } from './user/layout/sidebar/sidebar.component';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    ApplyFormComponent
   ],
   imports: [
     BrowserModule,

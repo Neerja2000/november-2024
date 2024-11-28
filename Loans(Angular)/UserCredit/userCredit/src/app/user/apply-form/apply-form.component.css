@@ -1,0 +1,8 @@
+	/* Big icon style */
+    .icon-big {
+        font-size: 1.3rem; /* Adjust size as needed */
+        transition: transform 0.3s, color 0.3s; /* Smooth animation on hover */
+        margin-right: 10px; /* Space between icon and text */
+    }
+    
+    
