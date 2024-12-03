@@ -1,0 +1,75 @@
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row align-items-center">
+            <!-- Product List Heading -->
+            <div class="col-12 col-md-10">
+                <h3 class="text-start">Product List</h3>
+            </div>
+            <!-- Add Product Button -->
+            <div class="col-12 col-md-2">
+                <a routerLink="/admin/layout/add-products" class="btn btn-success">
+                    Add Product
+                </a>
+            </div>
+        </div>
+
+    </div></div>
+    <section class="section">
+        <div class="row" id="table-responsive">
+            <div class="col-md mt-5">
+                <div class="card">
+                 
+                    <div class="card-content">
+                       
+                        <!-- table responsive -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Price ($)</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Product 1</td>
+                                        <td><img src="https://via.placeholder.com/50" alt="Product 1" class="img-fluid rounded"></td>
+                                        <td>25.00</td>
+                                        <td>
+                                            <a routerLink="/admin/layout/update-products" class="btn btn-primary btn-sm">Update</a>
+                                            <button class="btn btn-danger btn-sm ms-1">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Product 2</td>
+                                        <td><img src="https://via.placeholder.com/50" alt="Product 2" class="img-fluid rounded"></td>
+                                        <td>50.00</td>
+                                        <td>
+                                            <a routerLink="/admin/layout/update-products"  class="btn btn-primary btn-sm">Update</a>
+                                            <button class="btn btn-danger btn-sm ms-1">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Product 3</td>
+                                        <td><img src="https://via.placeholder.com/50" alt="Product 3" class="img-fluid rounded"></td>
+                                        <td>75.00</td>
+                                        <td>
+                                            <a routerLink="/admin/layout/update-products"  class="btn btn-primary btn-sm">Update</a>
+                                            <button class="btn btn-danger btn-sm ms-1">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </section>
