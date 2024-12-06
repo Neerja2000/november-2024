@@ -1,0 +1,5 @@
+@media (min-width: 1200px) {
+    #main-wrapper[data-layout=vertical][data-sidebartype=full] .body-wrapper {
+        margin-left: 270px;
+    }
+}
