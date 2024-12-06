@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 import { UserLoginService } from 'src/app/shared/userLogin/user-login.service';
 
 @Component({
@@ -11,11 +12,13 @@ import { UserLoginService } from 'src/app/shared/userLogin/user-login.service';
 export class OtpVerificationComponent implements OnInit {
   otpForm!: FormGroup;
   otpFields = Array(6).fill(null); // Represents 6 OTP input fields
-
+  phone_number: string = '';
   constructor(
     private fb: FormBuilder,
     private userLoginService: UserLoginService,
-    private router: Router
+    private router: Router,
+    private authService:AuthService
+    ,private route:ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -23,7 +26,11 @@ export class OtpVerificationComponent implements OnInit {
       phone_number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       ...this.createOtpControls(),
     });
+    this.route.queryParams.subscribe((params) => {
+      this.phone_number = params['phone_number'] || 'N/A';
+    });
   }
+  
 
   // Dynamically creates form controls for OTP fields
   private createOtpControls() {
@@ -62,6 +69,7 @@ export class OtpVerificationComponent implements OnInit {
       next: (response) => {
         console.log('OTP Verified Successfully:', response);
         alert('OTP Verified Successfully');
+        this.authService.storedata(response); 
         this.router.navigate(['user/layout/home']);
       },
       error: (error) => {

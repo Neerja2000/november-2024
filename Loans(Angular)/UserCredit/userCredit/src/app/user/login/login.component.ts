@@ -40,18 +40,22 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log('hello');
     if (this.registrationForm.valid) {
+      const phoneNumber = this.registrationForm.value.phone_number;
+  
       this.userLoginService
         .register(
           this.registrationForm.value.name,
           this.registrationForm.value.email,
-          this.registrationForm.value.phone_number,
+          phoneNumber,
           this.registrationForm.value.password
         )
         .subscribe({
           next: (response) => {
             console.log('Registration successful:', response);
             alert('Registration successful! Please verify your OTP.');
-            this.router.navigate(['/otp-verification']);
+  
+            // Pass phone number as a query parameter
+            this.router.navigate(['/otp-verification'], { queryParams: { phone_number: phoneNumber } });
           },
           error: (err) => {
             console.error('Registration failed:', err);
@@ -62,6 +66,7 @@ export class LoginComponent implements OnInit {
       console.log('Form is invalid');
     }
   }
+  
 
   // Login form submission logic
   onLogin(): void {
