@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { UserLoginService } from 'src/app/shared/userLogin/user-login.service';
-// Import AuthService
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userLoginService: UserLoginService,
-    private authService:AuthService,  // Inject AuthService
+    private authService: AuthService,  // Inject AuthService
     private router: Router
   ) {
     // Initialize the loginForm
@@ -38,6 +38,11 @@ export class LoginComponent implements OnInit {
 
   // Registration form submission logic
   onSubmit() {
+    if (this.registrationForm.invalid) {
+      Swal.fire('Error', 'Please fill in all fields correctly.', 'error'); // Show error for invalid form
+      return;
+    }
+
     console.log('hello');
     if (this.registrationForm.valid) {
       const phoneNumber = this.registrationForm.value.phone_number;
@@ -52,14 +57,14 @@ export class LoginComponent implements OnInit {
         .subscribe({
           next: (response) => {
             console.log('Registration successful:', response);
-            alert('Registration successful! Please verify your OTP.');
+            Swal.fire('Success', 'Registration successful! Please verify your OTP.', 'success'); // SweetAlert2 success message
   
             // Pass phone number as a query parameter
             this.router.navigate(['/otp-verification'], { queryParams: { phone_number: phoneNumber } });
           },
           error: (err) => {
             console.error('Registration failed:', err);
-            alert('Registration failed. Please try again.');
+            Swal.fire('Error', 'Registration failed. Please try again.', 'error'); // SweetAlert2 error message
           },
         });
     } else {
@@ -70,6 +75,11 @@ export class LoginComponent implements OnInit {
 
   // Login form submission logic
   onLogin(): void {
+    if (this.loginForm.invalid) {
+      Swal.fire('Error', 'Please fill in all fields correctly.', 'error'); // Show error for invalid form
+      return;
+    }
+
     console.log('Login form data:', this.loginForm.value);
     console.log('hello login');
     if (this.loginForm.valid) {
@@ -90,15 +100,20 @@ export class LoginComponent implements OnInit {
             // Store token using AuthService
             this.authService.storedata(response); 
 
-            // Navigate to OTP verification page
+            // Show success message
+            Swal.fire('Success', 'Login successful! Redirecting...', 'success'); // SweetAlert2 success message
+
+            // Navigate to the home page
             this.router.navigate(['user/layout/home']);
           } else {
             console.error('Login failed: Token not received');
+            Swal.fire('Error', 'Login failed. Please check your credentials.', 'error'); // SweetAlert2 error message
           }
         },
         error: (error) => {
           console.error('Login error:', error);
           console.log('Error details:', error.error);
+          Swal.fire('Error', 'Login failed. Please try again later.', 'error'); // SweetAlert2 error message
         },
       });
     } else {

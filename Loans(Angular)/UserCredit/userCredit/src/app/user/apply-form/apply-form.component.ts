@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { UserLoginService } from 'src/app/shared/userLogin/user-login.service';
-
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 @Component({
   selector: 'app-apply-form',
@@ -17,7 +17,7 @@ export class ApplyFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private applyFormService:UserLoginService,
+    private applyFormService: UserLoginService,
     private router: Router
   ) {}
 
@@ -32,7 +32,6 @@ export class ApplyFormComponent implements OnInit {
     });
 
     // Check login status
-  
   }
 
   onFileSelected(event: any): void {
@@ -43,11 +42,11 @@ export class ApplyFormComponent implements OnInit {
     const token = this.authService.getToken();
     console.log('Token:', token); // Debugging
     if (!token) {
-      alert('Unauthorized access. Redirecting to login page.');
+      Swal.fire('Unauthorized', 'Unauthorized access. Redirecting to login page.', 'error'); // SweetAlert2 for unauthorized access
       this.router.navigate(['/login']);
       return; // Stop further code execution if no token
     }
-  
+
     console.log('Form submission started...');
     if (this.applyForm.valid && this.selectedFile) {
       const formData = new FormData();
@@ -55,27 +54,25 @@ export class ApplyFormComponent implements OnInit {
         formData.append(key, this.applyForm.value[key])
       );
       formData.append('identity_proof', this.selectedFile);
-  
+
       this.applyFormService.submitApplication(formData).subscribe({
         next: (response) => {
           console.log('Application submitted successfully:', response);
-          alert('Application submitted successfully!');
+          Swal.fire('Success', 'Application submitted successfully!', 'success'); // SweetAlert2 success message
           this.applyForm.reset();
         },
         error: (error) => {
           console.error('Error submitting application:', error);
           if (error.status === 401) {
-            alert('Unauthorized access. Please log in again.');
+            Swal.fire('Unauthorized', 'Unauthorized access. Please log in again.', 'error'); // SweetAlert2 for unauthorized access
             this.router.navigate(['/login']);
           } else {
-            alert('Error submitting application. Please try again.');
+            Swal.fire('Error', 'Error submitting application. Please try again.', 'error'); // SweetAlert2 for general error
           }
         },
       });
     } else {
-      alert('Please fill all fields and upload a document.');
+      Swal.fire('Invalid', 'Please fill all fields and upload a document.', 'warning'); // SweetAlert2 for form validation error
     }
   }
-  
-  
 }
