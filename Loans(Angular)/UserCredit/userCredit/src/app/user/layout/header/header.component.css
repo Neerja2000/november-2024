@@ -7,23 +7,26 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: #fff;
+    background-color: #000000;
+   
     border: 1px solid #ddd;
     position: absolute;
-    /* top: 100%; */
+    top: 100%; /* Dropdown appears right below the toggle button */
     left: 0;
     width: 100%;
     z-index: 1000;
+    overflow: hidden; /* Prevents extra scrollbars */
 }
 
 .slicknav_nav li {
     margin: 0;
     padding: 10px;
+    color: #fff;
 }
 
 .slicknav_nav a {
     text-decoration: none;
-    color: #333;
+    color: #fff;
     display: block;
 }
 
@@ -31,19 +34,23 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding: 10px;
+    background-color: #f43f00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
 }
 
 .slicknav_icon {
     margin-left: 10px;
 }
 
-/* Checkbox to toggle menu */
 .menu-toggle {
-    display: none; /* Hide checkbox */
+    display: none; /* Hide the checkbox */
 }
 
-.menu-toggle:checked + .slicknav_btn + .slicknav_nav {
-    display: block; /* Show menu when checkbox is checked */
+.menu-toggle:checked ~ .slicknav_nav {
+    display: block; /* Show the menu when checkbox is checked */
 }
 
 /* Responsive styles */
@@ -54,6 +61,11 @@
 
     .slicknav_menu {
         display: block; /* Show toggle menu */
+    }
+
+    .slicknav_nav {
+        position: static; /* Fix for mobile view */
+        top: auto; /* Ensure proper placement */
     }
 }
 
