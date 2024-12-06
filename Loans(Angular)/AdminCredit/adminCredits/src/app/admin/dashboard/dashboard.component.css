@@ -1,0 +1,23 @@
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  .card-body {
+    text-align: left;
+  }
+  
+  .text-muted {
+    font-size: 14px;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .font-extrabold {
+    font-weight: 800;
+    font-size: 18px;
+  }
+  
