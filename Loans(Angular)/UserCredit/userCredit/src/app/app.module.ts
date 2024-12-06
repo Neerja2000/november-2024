@@ -9,6 +9,11 @@ import { HeaderComponent } from './user/layout/header/header.component';
 import { FooterComponent } from './user/layout/footer/footer.component';
 import { SidebarComponent } from './user/layout/sidebar/sidebar.component';
 import { ApplyFormComponent } from './user/apply-form/apply-form.component';
+import { LoginComponent } from './user/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { OtpVerificationComponent } from './user/otp-verification/otp-verification.component';
+
 
 @NgModule({
   declarations: [
@@ -18,11 +23,18 @@ import { ApplyFormComponent } from './user/apply-form/apply-form.component';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    ApplyFormComponent
+    ApplyFormComponent,
+    LoginComponent,
+    OtpVerificationComponent,
+    
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

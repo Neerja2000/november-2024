@@ -1,0 +1,30 @@
+<div class="otp-container text-center">
+    <h4>OTP Verification</h4>
+    <p>Please enter the OTP sent to your phone/email.</p>
+  
+    <form [formGroup]="otpForm" (ngSubmit)="onVerifyOTP()">
+      <input
+        type="text"
+        formControlName="phone_number"
+        placeholder="Phone Number"
+        class="form-control mb-3"
+        required
+      />
+  
+      <div class="d-flex justify-content-center mb-3">
+        <input
+          *ngFor="let field of otpFields; let i = index"
+          type="text"
+          maxlength="1"
+          class="otp-input mx-1 text-center"
+          [formControlName]="'otp' + i"
+          required
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-submit w-100 py-2" [disabled]="otpForm.invalid">
+        Verify OTP
+      </button>
+    </form>
+  </div>
+  
