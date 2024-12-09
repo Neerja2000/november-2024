@@ -7,10 +7,14 @@ import { ViewUserDetailsComponent } from './admin/view-user-details/view-user-de
 import { ViewProductComponent } from './admin/view-product/view-product.component';
 import { NewUsersComponent } from './admin/new-users/new-users.component';
 import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 const routes: Routes = [
   {
-    path:'',redirectTo:"/layout/dashboard",pathMatch:'full'
+    path:'',redirectTo:"/adminLogin",pathMatch:'full'
+  },
+  {
+    path:'adminLogin',component:AdminLoginComponent
   },
   {
     path:"layout",component:LayoutComponent,

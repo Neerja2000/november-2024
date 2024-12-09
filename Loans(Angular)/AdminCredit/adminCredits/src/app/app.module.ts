@@ -13,6 +13,7 @@ import { ViewUserDetailsComponent } from './admin/view-user-details/view-user-de
 import { ViewProductComponent } from './admin/view-product/view-product.component';
 import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.component';
 import { NewUsersComponent } from './admin/new-users/new-users.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NewUsersComponent } from './admin/new-users/new-users.component';
     ViewUserDetailsComponent,
     ViewProductComponent,
     PrivacyPolicyComponent,
-    NewUsersComponent
+    NewUsersComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
