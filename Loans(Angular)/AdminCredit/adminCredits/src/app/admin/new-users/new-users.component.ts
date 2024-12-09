@@ -15,18 +15,22 @@ ngOnInit(): void {
 getUserApplications() {
   this.userService.userApplications().subscribe(
     (res: any) => {
-      this.userApplications = res.map((application: any) => ({
-        ...application,
-        identity_proof: `http://194.238.17.235:7700/${application.identity_proof}`
-      }));
+      // Filter out applications where status is 'Approved'
+      this.userApplications = res
+        .filter((application: any) => application.status !== 'Approved') // Filter out 'Approved' status
+        .map((application: any) => ({
+          ...application,
+          identity_proof: `http://194.238.17.235:7700/${application.identity_proof}` // Add base URL to identity_proof
+        }));
 
-      console.log('User Applications:', this.userApplications);
+      console.log('User Applications:', this.userApplications); // Log the filtered applications
     },
     (err: any) => {
       console.error('Error fetching user applications:', err);
     }
   );
 }
+
 statusChanged(applicationId: number, status: string) {
   this.userService.changeStatus(applicationId, status).subscribe(
     (res: any) => {

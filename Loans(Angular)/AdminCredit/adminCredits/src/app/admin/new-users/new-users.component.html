@@ -33,18 +33,27 @@
                                   <a [href]="application.identity_proof" target="_blank">View Document</a>
                                 </td>
                                 <td>{{ application.address }}</td>
-                                <td>
+                                
+                                  <td>
                                     <div class="d-flex">
-                                      <button type="button" class="btn btn-success btn-sm" (click)="statusChanged(application.id, 'Approved')">
-                                        Approve
-                                      </button>
-                                      <button type="button" class="btn btn-warning btn-sm ms-1" (click)="statusChanged(application.id, 'Review Required')">
-                                        Review
-                                      </button>
-                                      <button type="button" class="btn btn-danger btn-sm ms-1" (click)="statusChanged(application.id, 'Rejected')">
-                                        Reject
-                                      </button>
-                                    </div>
+                                        <i 
+                                          class="bi bi-check text-success  me-2 cursor-pointer" 
+                                          (click)="statusChanged(application.id, 'Approved')" 
+                                          title="Approved" style="font-size: 30px;">
+                                        </i>
+                                       
+                                        <i 
+                                          class="bi bi-x text-danger cursor-pointer" 
+                                          (click)="statusChanged(application.id, 'Rejected')" 
+                                          title="Rejected" style="font-size: 30px;">
+                                        </i>
+                                        <i 
+                                        class="bi bi-exclamation text-warning  me-2 cursor-pointer" 
+                                        (click)="statusChanged(application.id, 'Review Required')" 
+                                        title="Review Required" style="font-size: 30px;">
+                                      </i>
+                                      </div>
+                                      
                                   </td>
                                   
                               </tr>
