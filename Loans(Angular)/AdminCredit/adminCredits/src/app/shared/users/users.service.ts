@@ -21,4 +21,14 @@ export class UsersService {
     const body = { applicationId, status }; // Construct the body with the applicationId and status
     return this.http.post(this.adminbaseurl + '/application/status', body, { headers });
   }
+
+
+
+creditAdded(body: { userId: number; creditLimit: number }) {
+  const headers = new HttpHeaders().set('auth-token', this.token);
+  console.log('Sending credit limit update request with body:', body); // Debug log
+
+  return this.http.post(this.adminbaseurl + '/credit-limit', body, { headers });
+}
+
 }

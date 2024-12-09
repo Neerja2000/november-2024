@@ -38,18 +38,18 @@
                                     <div class="d-flex">
                                         <i 
                                           class="bi bi-check text-success  me-2 cursor-pointer" 
-                                          (click)="statusChanged(application.id, 'Approved')" 
+                                          (click)="statusChanged(application.id, 'Approved',application.user_id)" 
                                           title="Approved" style="font-size: 30px;">
                                         </i>
                                        
                                         <i 
                                           class="bi bi-x text-danger cursor-pointer" 
-                                          (click)="statusChanged(application.id, 'Rejected')" 
+                                          (click)="statusChanged(application.id, 'Rejected',application.user_id)" 
                                           title="Rejected" style="font-size: 30px;">
                                         </i>
                                         <i 
                                         class="bi bi-exclamation text-warning  me-2 cursor-pointer" 
-                                        (click)="statusChanged(application.id, 'Review Required')" 
+                                        (click)="statusChanged(application.id, 'Review Required',application.user_id)" 
                                         title="Review Required" style="font-size: 30px;">
                                       </i>
                                       </div>
