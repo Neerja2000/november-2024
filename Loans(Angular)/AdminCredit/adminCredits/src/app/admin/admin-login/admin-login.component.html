@@ -1,17 +1,26 @@
 <div class="login-box">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm">
-      <div class="user-box">
-        <input type="email" name="email" required="" formControlName="email">
-        <label>Email</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="password" required="" formControlName="password">
-        <label>Password</label>
-      </div>
-      <button type="submit" class="submit-button" (click)="login()">
-        Submit
-      </button>
-    </form>
-  </div>
-  
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="user-box">
+      <input
+        type="email"
+        name="email"
+        required
+        formControlName="email"
+        [class.filled]="loginForm.get('email')?.value"
+      />
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input
+        type="password"
+        name="password"
+        required
+        formControlName="password"
+        [class.filled]="loginForm.get('password')?.value"
+      />
+      <label>Password</label>
+    </div>
+    <button type="submit" class="submit-button">Submit</button>
+  </form>
+</div>
