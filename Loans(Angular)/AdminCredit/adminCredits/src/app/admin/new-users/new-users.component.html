@@ -11,36 +11,39 @@
                             <tr>
                                 <th>SR NO.</th>
                                 <th>NAME</th>
-                                <th>EMAIL</th>
+                                <th>Employer Name</th>
                                 <th>PHONE NO.</th>
                                <th>Salary</th>
+                               <th>Employment Type</th>
                                <th>Document</th>
+                               <th>Address</th>
                                <th>Action</th>
                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td class="text-bold-500">Michael Right</td>
-                                <td>Michael@gmail.com</td>
-                                <td class="text-bold-500">+91 9874635534</td>
-                                <td>200000</td>
-                                <td>document1</td>
+                            <tr *ngFor="let application of userApplications; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td class="text-bold-500">{{ application.full_name }}</td>
+                                <td>{{ application.employer_name }}</td>
+                                <td class="text-bold-500">{{ application.contact_details }}</td>
+                                <td>{{ application.monthly_income }}</td>
+                                <td>{{application.employment_type}}</td>
                                 <td>
-                                    <!-- Accept Button -->
-                                     <div class="div d-flex ">
-                                        <button type="button" class="btn btn-success btn-sm " data-bs-toggle="modal" data-bs-target="#creditModal">
-                                            Accept
-                                        </button>
-                                        <!-- Reject Button -->
-                                        <button type="button" class="btn btn-danger btn-sm ms-1">
-                                            Reject
-                                        </button>
-                                     </div>
-                                    
+                                    <a [href]="application.identity_proof" >View Document</a>
+                                  </td>
+                                <td>{{application.address}}</td>
+                                <td>
+                                  <div class="d-flex">
+                                    <button type="button" class="btn btn-success btn-sm">
+                                      Accept
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm ms-1">
+                                      Reject
+                                    </button>
+                                  </div>
                                 </td>
-                            </tr>
+                              </tr>
 <!-- Modal -->
 <div class="modal fade" id="creditModal" tabindex="-1" aria-labelledby="creditModalLabel" aria-hidden="true">
     <div class="modal-dialog">
