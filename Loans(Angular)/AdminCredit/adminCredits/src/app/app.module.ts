@@ -15,6 +15,7 @@ import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.co
 import { NewUsersComponent } from './admin/new-users/new-users.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import{HttpClientModule}from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
