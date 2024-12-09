@@ -35,13 +35,13 @@
                                 <td>{{ application.address }}</td>
                                 <td>
                                     <div class="d-flex">
-                                      <button type="button" class="btn btn-success btn-sm" (click)="statusChanged(application.id, 'Approve')">
+                                      <button type="button" class="btn btn-success btn-sm" (click)="statusChanged(application.id, 'Approved')">
                                         Approved
                                       </button>
-                                      <button type="button" class="btn btn-warning btn-sm ms-1" (click)="statusChanged(application.id, 'Review')">
+                                      <button type="button" class="btn btn-warning btn-sm ms-1" (click)="statusChanged(application.id, 'Reviewed')">
                                         Reviewed
                                       </button>
-                                      <button type="button" class="btn btn-danger btn-sm ms-1" (click)="statusChanged(application.id, 'Reject')">
+                                      <button type="button" class="btn btn-danger btn-sm ms-1" (click)="statusChanged(application.id, 'Rejected')">
                                         Reject
                                       </button>
                                     </div>
