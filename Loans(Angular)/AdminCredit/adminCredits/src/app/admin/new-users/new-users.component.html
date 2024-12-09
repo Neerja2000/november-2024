@@ -28,22 +28,23 @@
                                 <td>{{ application.employer_name }}</td>
                                 <td class="text-bold-500">{{ application.contact_details }}</td>
                                 <td>{{ application.monthly_income }}</td>
-                                <td>{{application.employment_type}}</td>
+                                <td>{{ application.employment_type }}</td>
                                 <td>
-                                    <a [href]="application.identity_proof" >View Document</a>
-                                  </td>
-                                <td>{{application.address}}</td>
+                                  <a [href]="application.identity_proof" target="_blank">View Document</a>
+                                </td>
+                                <td>{{ application.address }}</td>
                                 <td>
                                   <div class="d-flex">
-                                    <button type="button" class="btn btn-success btn-sm">
-                                      Accept
+                                    <button type="button" class="btn btn-success btn-sm" (click)="statusChanged(application.id, 'Approved')">
+                                      Approved
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-sm ms-1">
+                                    <button type="button" class="btn btn-danger btn-sm ms-1" (click)="statusChanged(application.id, 'Rejected')">
                                       Reject
                                     </button>
                                   </div>
                                 </td>
                               </tr>
+                              
 <!-- Modal -->
 <div class="modal fade" id="creditModal" tabindex="-1" aria-labelledby="creditModalLabel" aria-hidden="true">
     <div class="modal-dialog">
