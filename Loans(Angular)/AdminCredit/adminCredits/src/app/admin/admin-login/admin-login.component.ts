@@ -25,13 +25,15 @@ login() {
     this.loginService.loginapi(loginData).subscribe(
       (res: any) => {
         console.log('Login Successful', res);
-        this.authService.storeData(this.loginForm.value)
-        this.router.navigateByUrl("/layout/dashboard")
-        // Handle success response here (e.g., navigate to another page)
+        if (res.token) {
+          this.authService.storeData(res.token); // Store token
+          this.router.navigateByUrl('/layout/dashboard');
+        } else {
+          console.error('No token found in response');
+        }
       },
       (err: any) => {
         console.error('Login Failed', err);
-        // Handle error response here (e.g., display error message)
       }
     );
   } else {
@@ -39,4 +41,5 @@ login() {
   }
 }
 }
+
 

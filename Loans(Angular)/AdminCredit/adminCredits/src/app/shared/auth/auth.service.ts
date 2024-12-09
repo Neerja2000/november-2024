@@ -6,15 +6,16 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   constructor() { }
-  storeData(data:any)
-  {
-    console.log('Token to store:', data.token);
-    sessionStorage.setItem('token',data.token)
+  storeData(token: string) {
+    console.log('Token to store:', token);
+    sessionStorage.setItem('token', token);
   }
-  getToken(){
-    return sessionStorage.getItem('token')
+
+  getToken() {
+    return sessionStorage.getItem('token');
   }
-  removedata(){
-    sessionStorage.removeItem('token')
+
+  removeData() {
+    sessionStorage.removeItem('token');
   }
 }
