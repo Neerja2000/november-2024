@@ -1,13 +1,17 @@
 <div class="login-box">
     <h2>Login</h2>
-    <form>
+    <form [formGroup]="loginForm">
       <div class="user-box">
-        <input type="text" name="" required="">
-        <label>Username</label>
+        <input type="email" name="email" required="" formControlName="email">
+        <label>Email</label>
       </div>
       <div class="user-box">
-        <input type="password" name="" required="">
+        <input type="password" name="password" required="" formControlName="password">
         <label>Password</label>
       </div>
+      <button type="submit" class="submit-button" (click)="login()">
+        Submit
+      </button>
     </form>
   </div>
+  

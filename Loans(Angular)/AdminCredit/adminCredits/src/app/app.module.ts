@@ -14,6 +14,7 @@ import { ViewProductComponent } from './admin/view-product/view-product.componen
 import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.component';
 import { NewUsersComponent } from './admin/new-users/new-users.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
