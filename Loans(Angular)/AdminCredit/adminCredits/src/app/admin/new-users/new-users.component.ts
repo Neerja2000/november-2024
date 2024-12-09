@@ -37,74 +37,112 @@ export class NewUsersComponent implements OnInit {
   }
 
   // Handle status change
-  statusChanged(applicationId: number, status: string, userId: number) {
-    if (status === 'Approved') {
-      Swal.fire({
-        title: 'Enter Credit Limit',
-        input: 'number',
-        inputPlaceholder: 'Enter the credit limit',
-        showCancelButton: true,
-        confirmButtonText: 'Approve',
-        cancelButtonText: 'Cancel',
-        inputValidator: (value) => {
-          const creditLimit = parseFloat(value);
-
-          if (!value) {
-            return 'Credit limit is required!';
-          }
-          if (isNaN(creditLimit) || creditLimit <= 0) {
-            return 'Please enter a valid credit limit';
-          }
-          return undefined; // Valid input
+ // Handle status change
+statusChanged(applicationId: number, status: string, userId: number) {
+  if (status === 'Approved') {
+    Swal.fire({
+      title: 'Enter Credit Limit',
+      input: 'number',
+      inputPlaceholder: 'Enter the credit limit',
+      showCancelButton: true,
+      confirmButtonText: 'Approve',
+      cancelButtonText: 'Cancel',
+      inputValidator: (value) => {
+        const creditLimit = parseFloat(value);
+        if (!value) {
+          return 'Credit limit is required!';
         }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          const creditLimit = parseFloat(result.value);
-          // Add credit limit first
-          this.updateCreditLimit(userId, creditLimit)
-            .then(() => {
-              // Then change the status after credit is added
-              return this.changeStatus(applicationId, status);
-            })
-            .then(() => {
-              this.getUserApplications(); // Refresh applications
-              Swal.fire('Success', 'Credit limit added and status updated!', 'success');
-            })
-            .catch((error) => {
-              console.error('Error in the process:', error);
-              Swal.fire('Error', 'Something went wrong!', 'error');
-            });
+        if (isNaN(creditLimit) || creditLimit <= 0) {
+          return 'Please enter a valid credit limit';
         }
-      });
-    } else {
-      // Directly change the status if not 'Approved'
-      this.changeStatus(applicationId, status)
-        .then(() => {
-          this.getUserApplications(); // Refresh applications
-          Swal.fire('Success', 'Status updated successfully!', 'success');
-        })
-        .catch((error) => {
-          console.error('Error changing status:', error);
-          Swal.fire('Error', 'Could not update status!', 'error');
-        });
-    }
-  }
-
-  // Change application status
-  changeStatus(applicationId: number, status: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.userService.changeStatus(applicationId, status).subscribe(
-        (res: any) => {
-          console.log('Status changed successfully:', res);
-          resolve();
-        },
-        (err: any) => {
-          console.error('Error changing status:', err);
-          reject(err);
-        }
-      );
+        return undefined; // Valid input
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const creditLimit = parseFloat(result.value);
+        // Add credit limit first
+        this.updateCreditLimit(userId, creditLimit)
+          .then(() => {
+            // Then change the status after credit is added
+            return this.changeStatus(applicationId, status, '', userId); // No review message for approved
+          })
+          .then(() => {
+            this.getUserApplications(); // Refresh applications
+            Swal.fire('Success', 'Credit limit added and status updated!', 'success');
+          })
+          .catch((error) => {
+            console.error('Error in the process:', error);
+            Swal.fire('Error', 'Something went wrong!', 'error');
+          });
+      }
     });
+  } else if (status === 'Review Required') {
+    // If status is 'Review Required', ask for a review message
+    Swal.fire({
+      title: 'Enter Review Message',
+      input: 'text',
+      inputPlaceholder: 'Enter a message for the review',
+      showCancelButton: true,
+      confirmButtonText: 'Submit Review',
+      cancelButtonText: 'Cancel',
+      inputValidator: (value) => {
+        if (!value) {
+          return 'Review message is required!';
+        }
+        return undefined; // Valid input
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const reviewMessage = result.value;
+        // Send the status change request with the review message
+        this.changeStatus(applicationId, status, reviewMessage, userId) // Pass reviewMessage here
+          .then(() => {
+            this.getUserApplications(); // Refresh applications
+            Swal.fire('Success', 'Review message added and status updated!', 'success');
+          })
+          .catch((error) => {
+            console.error('Error in the process:', error);
+            Swal.fire('Error', 'Something went wrong!', 'error');
+          });
+      }
+    });
+  } else {
+    // Directly change the status if not 'Approved' or 'Review Required'
+    this.changeStatus(applicationId, status, '', userId) // No review message
+      .then(() => {
+        this.getUserApplications(); // Refresh applications
+        Swal.fire('Success', 'Status updated successfully!', 'success');
+      })
+      .catch((error) => {
+        console.error('Error changing status:', error);
+        Swal.fire('Error', 'Could not update status!', 'error');
+      });
   }
+}
+
+// Change application status and handle review message if provided
+changeStatus(applicationId: number, status: string, reviewMessage: string = '', userId: number): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const body = {
+      applicationId,
+      status,
+      reviewMessage,  // Include review message if available
+      userId
+    };
+
+    this.userService.changeStatus(applicationId, status, reviewMessage, userId).subscribe(
+      (res: any) => {
+        console.log('Status changed successfully:', res);
+        resolve();
+      },
+      (err: any) => {
+        console.error('Error changing status:', err);
+        reject(err);
+      }
+    );
+  });
+}
+
 
   // Update credit limit
   updateCreditLimit(userId: number, creditLimit: number): Promise<void> {

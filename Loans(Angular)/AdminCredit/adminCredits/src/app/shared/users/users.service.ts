@@ -16,12 +16,18 @@ export class UsersService {
   userApplications(){
     return this.http.get(this.adminbaseurl+'/applications')
   }
-  changeStatus(applicationId: number, status: string) {
+  changeStatus(applicationId: number, status: string, reviewMessage: string, userId: number) {
     const headers = new HttpHeaders().set('auth-token', this.token);
-    const body = { applicationId, status }; // Construct the body with the applicationId and status
+  
+    const body = {
+      applicationId,
+      status,
+      reviewMessage, // Add the review message if available
+      userId
+    };
+  
     return this.http.post(this.adminbaseurl + '/application/status', body, { headers });
   }
-
 
 
 creditAdded(body: { userId: number; creditLimit: number }) {
