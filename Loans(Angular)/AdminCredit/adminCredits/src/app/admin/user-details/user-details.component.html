@@ -9,45 +9,27 @@
                    <table class="table table-bordered mt-5">
                     <thead>
                         <tr>
-                            <th>SR NO.</th>
-                                <th>NAME</th>
-                                <th>EMAIL</th>
-                                <th>PHONE NO.</th>
-                                <th>MORE DETAILS</th>
+                            <th>Sr No.</th>
+                                <th>Name</th>
+                                <th>Employer Name</th>
+                               
+                                <th>Phone No.</th>
+                                <th>More Details</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                                <td class="text-bold-500">Michael Right</td>
-                                <td>Michael@gmail.com</td>
-                                <td class="text-bold-500">+91 9874635534</td>
+                        <tr  *ngFor="let user of users; let i = index">
+                            <td>{{i+1}}</td>
+                                <td class="text-bold-500">{{user.full_name}}</td>
+                                <td class="text-bold-500">{{user.employer_name}} </td>
+                                <td>{{user.contact_details}}</td>
+                              
                                
-                                 <td><a  routerLink="/layout/viewUserDetails" class="btn btn-outline-success">View Details</a></td>
+                                 <td>  <a [routerLink]="['/layout/viewUserDetails', user.id]" class="btn btn-outline-success">
+                                    View Details
+                                  </a></td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                    <td class="text-bold-500">Michael Right</td>
-                                    <td>Michael@gmail.com</td>
-                                    <td class="text-bold-500">+91 9874635534</td>
-                                   
-                                    <td><a  routerLink="/layout/viewUserDetails" class="btn btn-outline-success">View Details</a></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                        <td class="text-bold-500">Michael Right</td>
-                                        <td>Michael@gmail.com</td>
-                                        <td class="text-bold-500">+91 9874635534</td>
-                                        <td><a  routerLink="/layout/viewUserDetails" class="btn btn-outline-success">View Details</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                            <td class="text-bold-500">Michael Right</td>
-                                            <td>Michael@gmail.com</td>
-                                            <td class="text-bold-500">+91 9874635534</td>
-                                         
-                                            <td><a  routerLink="/layout/viewUserDetails" class="btn btn-outline-success">View Details</a></td>
-                                        </tr>
+                          
                         
                     </tbody>
                 </table>

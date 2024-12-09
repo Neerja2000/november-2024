@@ -5,47 +5,55 @@
             <h1>Users Details</h1>
       
             <div class="container mt-5">
-        <h1>View Details</h1>
+                <h1>View Details</h1>
                 
-                <div class="row mb-2">
+                <div>
+                  <div class="row mb-2">
                     <div class="col-sm-4 font-weight-bold">Name:</div>
-                    <div class="col-sm-8">Michael</div>
-                </div>
-               
-                <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold">Email:</div>
-                    <div class="col-sm-8">abc@gmail.com</div>
-                </div>
-                <div class="row mb-2">
+                    <div class="col-sm-8">{{ user.full_name }}</div>
+                  </div>
+              
+                
+              
+                  <div class="row mb-2">
                     <div class="col-sm-4 font-weight-bold">Phone:</div>
-                    <div class="col-sm-8">947837594</div>
-                </div>
-                <div class="row mb-2">
+                    <div class="col-sm-8">{{ user.contact_details }}</div>
+                  </div>
+              
+                  <div class="row mb-2">
                     <div class="col-sm-4 font-weight-bold">Product:</div>
-                    <div class="col-sm-8">Optic Glasses</div>
-                </div>
-                <div class="row mb-2">
+                    <div class="col-sm-8">{{ user.product || 'N/A' }}</div> <!-- Assuming a custom product field -->
+                  </div>
+              
+                  <div class="row mb-2">
                     <div class="col-sm-4 font-weight-bold">Salary:</div>
-                    <div class="col-sm-8">1,00000</div>
-                </div>
-                <div class="row mb-2">
+                    <div class="col-sm-8">{{ user.monthly_income | currency }}</div>
+                  </div>
+              
+                  <div class="row mb-2">
                     <div class="col-sm-4 font-weight-bold">Total Credits:</div>
-                    <div class="col-sm-8">1000</div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold"> Remaining Credits:</div>
-                    <div class="col-sm-8">800</div>
-                </div>
-                <div class="row mb-2">
+                    <div class="col-sm-8">{{ user.total_credits || 'N/A' }}</div>
+                  </div>
+              
+                  <div class="row mb-2">
+                    <div class="col-sm-4 font-weight-bold">Remaining Credits:</div>
+                    <div class="col-sm-8">{{ user.remaining_credits || 'N/A' }}</div>
+                  </div>
+              
+                  <div class="row mb-2">
                     <div class="col-sm-4 font-weight-bold">Document:</div>
                     <div class="col-sm-8">
-                        <!-- Displaying the document (image) from backend -->
-                        <img src="path/to/your/document.png" alt="Document" class="img-fluid" style="max-width: 100px; height: auto;">
-                    </div>
+                        <a [href]="user.identity_proof" target="_blank" rel="noopener noreferrer">
+                          <img [src]="user.identity_proof" alt="Document" class="img-fluid" style="max-width: 100px; height: auto;">
+                        </a>
+                      
+                      
+                  </div>
                 </div>
-
-          
-    </div>
+              
+              
+              </div>
+              
         </div>
         <div class="card-body">
             <table class="table table-bordered mt-5">
