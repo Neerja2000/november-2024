@@ -21,7 +21,7 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    console.log('Login function called');
+  
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
 

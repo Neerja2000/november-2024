@@ -1,0 +1,6 @@
+.active {
+    background-color: #51a992;  /* Example background color */
+    color: white;  /* Text color when active */
+    font-weight: bold;  /* Optional: Make the active item bold */
+  }
+  
