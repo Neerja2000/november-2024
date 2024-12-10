@@ -29,12 +29,16 @@ export class AdminLoginComponent implements OnInit {
         (res: any) => {
           console.log('API Response:', res);
           // If login is successful, you can navigate to the dashboard or other page
-          this.router.navigate(['/dashboard']);  // Example redirection
+          this.router.navigate(['/layout/dashboard']);  // Example redirection
           Swal.fire({
             icon: 'success',
             title: 'Login Successful',
             text: 'You have logged in successfully!',
           });
+
+
+         
+        
         },
         (err: any) => {
           console.error('API Error:', err);
