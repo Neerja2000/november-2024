@@ -31,6 +31,7 @@ export class UserLoginService {
   verifyOTP(phone_number: string, otp: number): Observable<any> {
     const url = `${this.globalbaseurl}/verify-otp`;
     const requestBody = { phone_number, otp };
+    console.log('Received request:', requestBody);
     return this.http.post(url, requestBody);
   }
 

@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 export class ApplyFormComponent implements OnInit {
   applyForm!: FormGroup;
   selectedFile!: File;
-
+  formSubmitted: boolean = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -58,6 +58,7 @@ export class ApplyFormComponent implements OnInit {
       this.applyFormService.submitApplication(formData).subscribe({
         next: (response) => {
           console.log('Application submitted successfully:', response);
+          this.formSubmitted = true;
           Swal.fire('Success', 'Application submitted successfully!', 'success'); // SweetAlert2 success message
           this.applyForm.reset();
         },
