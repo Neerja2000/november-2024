@@ -26,7 +26,7 @@ const routes: Routes = [
         path:"userDetails",component:UserDetailsComponent
       },
       {
-        path:"viewUserDetails/:id",component:ViewUserDetailsComponent
+        path:"viewUserDetails/:userId",component:ViewUserDetailsComponent
       },
       {
         path:'viewProduct',component:ViewProductComponent

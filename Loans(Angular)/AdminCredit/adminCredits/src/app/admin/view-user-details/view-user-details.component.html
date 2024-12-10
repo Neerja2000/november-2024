@@ -3,123 +3,17 @@
     <div class="card">
         <div class="card-header">
             <h1>Users Details</h1>
-      
-            <div class="container mt-5">
-                <h1>View Details</h1>
-                
-                <div>
-                  <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold">Name:</div>
-                    <div class="col-sm-8">{{ user.full_name }}</div>
-                  </div>
-              
-                
-              
-                  <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold">Phone:</div>
-                    <div class="col-sm-8">{{ user.contact_details }}</div>
-                  </div>
-              
-                  <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold">Product:</div>
-                    <div class="col-sm-8">{{ user.product || 'N/A' }}</div> <!-- Assuming a custom product field -->
-                  </div>
-              
-                  <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold">Salary:</div>
-                    <div class="col-sm-8">{{ user.monthly_income | currency }}</div>
-                  </div>
-              
-                  <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold">Total Credits:</div>
-                    <div class="col-sm-8">{{ user.total_credits || 'N/A' }}</div>
-                  </div>
-              
-                  <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold">Remaining Credits:</div>
-                    <div class="col-sm-8">{{ user.remaining_credits || 'N/A' }}</div>
-                  </div>
-              
-                  <div class="row mb-2">
-                    <div class="col-sm-4 font-weight-bold">Document:</div>
-                    <div class="col-sm-8">
-                        <a [href]="user.identity_proof" target="_blank" rel="noopener noreferrer">
-                          <img [src]="user.identity_proof" alt="Document" class="img-fluid" style="max-width: 100px; height: auto;">
-                        </a>
-                      
-                      
-                  </div>
-                </div>
-              
-              
-              </div>
-              
-        </div>
-      
-          <!-- First Table -->
-          <div class="card-body">
-            <h2>Table 1</h2>
-            <table class="table table-bordered mt-5">
-              <thead>
-                <tr>
-                  <th>SR NO.</th>
-                  <th>Date</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let row of table1; let i = index">
-                  <td>{{ i + 1 }}</td>
-                  <td><input type="text" class="form-control" placeholder="Enter Date" [(ngModel)]="row.date"></td>
-                  <td>
-                    <div class="d-flex">
-                      <input type="text" class="form-control me-2" placeholder="Enter value" [(ngModel)]="row.amount">
-                      <button class="btn btn-success btn-sm">OK</button>
-                    </div>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Reminder</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <button class="btn btn-primary mt-4" (click)="addRow('table1')">+</button>
           </div>
-        
-          <!-- Second Table -->
-          <div class="card-body">
-            <h2>Table 2</h2>
-            <table class="table table-bordered mt-5">
-              <thead>
-                <tr>
-                  <th>SR NO.</th>
-                  <th>Date</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let row of table2; let i = index">
-                  <td>{{ i + 1 }}</td>
-                  <td><input type="text" class="form-control" placeholder="Enter Date" [(ngModel)]="row.date"></td>
-                  <td>
-                    <div class="d-flex">
-                      <input type="text" class="form-control me-2" placeholder="Enter value" [(ngModel)]="row.amount">
-                      <button class="btn btn-success btn-sm">OK</button>
-                    </div>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Reminder</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <button class="btn btn-primary mt-4" (click)="addRow('table2')">+</button>
+          <div class="container mt-5">
+
+            </div>
           </div>
+          
+      
+       
         
         
-    </div>
+   
 
   
 </div>

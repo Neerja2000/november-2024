@@ -18,8 +18,13 @@ export class UserDetailsComponent implements OnInit {
   getUserApplications() {
     this.userService.userApplications().subscribe(
       (res: any) => {
-        // Filter users whose status is "Approved"
-        this.users = res.filter((user: any) => user.status === 'Approved');
+        // Filter users whose status is "Approved" and map the identity_proof URL
+        this.users = res
+          .filter((user: any) => user.status === 'Approved')
+          .map((user: any) => ({
+            ...user,
+            identity_proof: `http://194.238.17.235:7700/${user.identity_proof}`
+          }));
         console.log('Approved Users:', this.users);
       },
       (err: any) => {

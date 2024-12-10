@@ -14,6 +14,10 @@
                                 <th>Employer Name</th>
                                
                                 <th>Phone No.</th>
+                                <th>Monthly Income</th>
+                                <th>Employment_Type</th>
+                                <th>Identity Proof</th>
+                                
                                 <th>More Details</th>
                         </tr>
                     </thead>
@@ -23,9 +27,13 @@
                                 <td class="text-bold-500">{{user.full_name}}</td>
                                 <td class="text-bold-500">{{user.employer_name}} </td>
                                 <td>{{user.contact_details}}</td>
-                              
+                              <td>{{user.monthly_income}}</td>
+                              <td>{{user.employment_type}}</td>
+                              <td><a [href]="user.identity_proof" target="_blank" rel="noopener noreferrer">
+                                <img [src]="user.identity_proof" alt="Document" class="img-fluid" style="max-width: 100px; height: auto;">
+                              </a></td>
                                
-                                 <td>  <a [routerLink]="['/layout/viewUserDetails', user.id]" class="btn btn-outline-success">
+                                 <td>  <a [routerLink]="['/layout/viewUserDetails', user.user_id]" class="btn btn-outline-success">
                                     View Details
                                   </a></td>
                             </tr>

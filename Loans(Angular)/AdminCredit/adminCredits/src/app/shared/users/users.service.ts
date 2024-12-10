@@ -37,4 +37,9 @@ creditAdded(body: { userId: number; creditLimit: number }) {
   return this.http.post(this.adminbaseurl + '/credit-limit', body, { headers });
 }
 
+
+getCreditStatus(userId: string) {
+  const headers = new HttpHeaders().set('auth-token', this.token);
+  return this.http.get(`${this.adminbaseurl}/user/${userId}/credit-status`, { headers });
+}
 }
