@@ -14,6 +14,20 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getUserApplications();
   }
+  searchTerm: string = '';
+
+  // Method to filter users based on searchTerm
+  filteredUsers() {
+    if (!this.searchTerm) {
+      return this.users;
+    }
+
+    const term = this.searchTerm.toLowerCase();
+    return this.users.filter(user => 
+      user.full_name.toLowerCase().includes(term) || 
+      user.contact_details.includes(term)
+    );
+  }
   isImage(fileUrl: string): boolean {
     const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
     const extension = this.getFileExtension(fileUrl);
