@@ -29,9 +29,24 @@
                                 <td>{{user.contact_details}}</td>
                               <td>{{user.monthly_income}}</td>
                               <td>{{user.employment_type}}</td>
-                              <td><a [href]="user.identity_proof" target="_blank" rel="noopener noreferrer">
-                                <img [src]="user.identity_proof" alt="Document" class="img-fluid" style="max-width: 100px; height: auto;">
-                              </a></td>
+                              <td>
+                                <a [href]="user.identity_proof" target="_blank" rel="noopener noreferrer">
+                                  <ng-container *ngIf="isImage(user.identity_proof); else fileIcon">
+                                    <!-- Show image preview for images -->
+                                    <img [src]="user.identity_proof" alt="Uploaded File" class="img-fluid" style="max-width: 100px; height: auto;">
+                                  </ng-container>
+                                  <ng-template #fileIcon>
+                                    <!-- Show icons for other file types -->
+                                    <div class="text-center">
+                                      <i *ngIf="isPDF(user.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                      <i *ngIf="isZIP(user.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                      <i *ngIf="!isImage(user.identity_proof) && !isPDF(user.identity_proof) && !isZIP(user.identity_proof)" 
+                                         class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                      <p>{{ getFileExtension(user.identity_proof) | uppercase }} File</p>
+                                    </div>
+                                  </ng-template>
+                                </a>
+                              </td>
                                
                                  <td>  <a [routerLink]="['/layout/viewUserDetails', user.user_id]" class="btn btn-outline-success">
                                     View Details

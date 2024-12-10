@@ -31,9 +31,23 @@
                                 <td>{{ application.employment_type }}</td>
                                 <td>
                                     <a [href]="application.identity_proof" target="_blank" rel="noopener noreferrer">
-                                        <img [src]="application.identity_proof" alt="Document" class="img-fluid" style="max-width: 100px; height: auto;">
-                                      </a>
-                                </td>
+                                      <ng-container *ngIf="isImage(application.identity_proof); else fileIcon">
+                                        <!-- Show image preview for images -->
+                                        <img [src]="application.identity_proof" alt="Uploaded File" class="img-fluid" style="max-width: 100px; height: auto;">
+                                      </ng-container>
+                                      <ng-template #fileIcon>
+                                        <!-- Show icons for other file types -->
+                                        <div class="text-center">
+                                          <i *ngIf="isPDF(application.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                          <i *ngIf="isZIP(application.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                          <i *ngIf="!isImage(application.identity_proof) && !isPDF(application.identity_proof) && !isZIP(application.identity_proof)" 
+                                             class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                          <p>{{ getFileExtension(application.identity_proof) | uppercase }} File</p>
+                                        </div>
+                                      </ng-template>
+                                    </a>
+                                  </td>
+                                  
                                 <td>{{ application.address }}</td>
                                 
                                   <td>
