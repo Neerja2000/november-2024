@@ -30,7 +30,9 @@
                                 <td>{{ application.monthly_income }}</td>
                                 <td>{{ application.employment_type }}</td>
                                 <td>
-                                  <a [href]="application.identity_proof" target="_blank">View Document</a>
+                                    <a [href]="application.identity_proof" target="_blank" rel="noopener noreferrer">
+                                        <img [src]="application.identity_proof" alt="Document" class="img-fluid" style="max-width: 100px; height: auto;">
+                                      </a>
                                 </td>
                                 <td>{{ application.address }}</td>
                                 

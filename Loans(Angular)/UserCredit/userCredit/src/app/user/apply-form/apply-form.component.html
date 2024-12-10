@@ -38,18 +38,22 @@
     </div>
 </section>
 <section class="loan-application-section mt-3">
-  <div class="container">
+  <div class="alert alert-success form-submitted-alert bg-dark" style="height: 400px;" *ngIf="formSubmitted">
+    <h4 class="alert-heading display-4 text-white d-flex justify-content-center  align-items-center text-center" style="margin-top: 100px;">Application Submitted Successfully!</h4>
+    <p class="lead text  d-flex justify-content-center  align-items-center text-center">Thank you for applying. We will review your application and get back to you shortly.</p>
+  </div>
+  
+  <div class="container"  *ngIf="!formSubmitted">
     <h2 class="section-title">Apply for Credit</h2>
+  
+  
 
     <!-- Show confirmation message if form is submitted successfully -->
-    <div *ngIf="formSubmitted" class="alert alert-success">
-      <h4>Application Submitted Successfully!</h4>
-      <p>Thank you for applying. We will review your application and get back to you shortly.</p>
-    </div>
+    
 
     <!-- Show form if it is not submitted yet -->
     <form
-      *ngIf="!formSubmitted"
+     
       [formGroup]="applyForm"
       (ngSubmit)="onSubmit()"
       enctype="multipart/form-data"
