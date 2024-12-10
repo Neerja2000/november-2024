@@ -11,43 +11,64 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
-loginForm=new FormGroup({
-  'email':new FormControl(''),
-  'password':new FormControl('')
-})
-constructor(private loginService:LoginService,private authService:AuthService,private router:Router){}
-ngOnInit(): void {
-  
-}
-login() {
-  console.log('Login function called');
-  if (this.loginForm.valid) {
-    const loginData = this.loginForm.value;
+  loginForm = new FormGroup({
+    'email': new FormControl(''),
+    'password': new FormControl('')
+  });
 
-    this.loginService.loginapi(loginData).subscribe(
-      (res: any) => {
-        console.log('API Response:', res);
-        Swal.fire({
-          icon: 'success',
-          title: 'Login Successful',
-          text: 'You have logged in successfully!',
-        });
-      },
-      (err: any) => {
-        console.error('API Error:', err);
-      }
-    );
-  } else {
-    console.log('Invalid form data');
-    Swal.fire({
-      icon: 'warning',
-      title: 'Invalid Form',
-      text: 'Please fill in all required fields correctly.',
-    });
+  constructor(private loginService: LoginService, private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {}
+
+  login() {
+    console.log('Login function called');
+    if (this.loginForm.valid) {
+      const loginData = this.loginForm.value;
+
+      this.loginService.loginapi(loginData).subscribe(
+        (res: any) => {
+          console.log('API Response:', res);
+          // If login is successful, you can navigate to the dashboard or other page
+          this.router.navigate(['/dashboard']);  // Example redirection
+          Swal.fire({
+            icon: 'success',
+            title: 'Login Successful',
+            text: 'You have logged in successfully!',
+          });
+        },
+        (err: any) => {
+          console.error('API Error:', err);
+          if (err.status === 401) {
+            // Unauthorized, wrong credentials
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Credentials',
+              text: 'The email or password you entered is incorrect. Please try again.',
+            });
+          } else if (err.status === 500) {
+            // Server error
+            Swal.fire({
+              icon: 'error',
+              title: 'Server Error',
+              text: 'There was an issue with the server. Please try again later.',
+            });
+          } else {
+            // General error
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'An unexpected error occurred. Please try again.',
+            });
+          }
+        }
+      );
+    } else {
+      console.log('Invalid form data');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid Form',
+        text: 'Please fill in all required fields correctly.',
+      });
+    }
   }
 }
-
-
-}
-
-
