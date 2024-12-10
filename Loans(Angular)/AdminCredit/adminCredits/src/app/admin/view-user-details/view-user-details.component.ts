@@ -39,4 +39,29 @@ export class ViewUserDetailsComponent implements OnInit {
       }
     );
   }
+
+
+
+
+
+
+
+
+
+
+  table1: { date: string; amount: string }[] = [
+    { date: '', amount: '' },
+  ];
+
+  table2: { date: string; amount: string }[] = [
+    { date: '', amount: '' },
+  ];
+
+  addRow(table: string): void {
+    if (table === 'table1') {
+      this.table1.push({ date: '', amount: '' });
+    } else if (table === 'table2') {
+      this.table2.push({ date: '', amount: '' });
+    }
+  }
 }

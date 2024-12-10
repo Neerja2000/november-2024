@@ -55,93 +55,70 @@
               </div>
               
         </div>
-        <div class="card-body">
-          <h2>nn</h2>
+      
+          <!-- First Table -->
+          <div class="card-body">
+            <h2>Table 1</h2>
             <table class="table table-bordered mt-5">
-                <thead>
-                    <tr>
-                        <th>SR NO.</th>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                    <tr>
-                        <td>1</td>
-                        
-                        <td>12-03-24</td>
-
-                        <td>
-                            <!-- Flex container to align input and button in a row -->
-                            <div class="d-flex">
-                                <!-- Text Field -->
-                                <input type="text" class="form-control me-2" placeholder="Enter value" >
-            
-                                <!-- OK Button -->
-                                <button class="btn btn-success btn-sm">OK</button>
-                            </div>
-                        </td>
-                       
-                          <td>
-                            <button class="btn btn-danger">Reminder</button>
-                          </td>
-                    </tr>
-                   
-                        <button class="btn btn-primary mt-4">Add</button>
-                     
-                 
-
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="card-body">
-          <h2>nn</h2>
-          <table class="table table-bordered mt-5">
               <thead>
-                  <tr>
-                      <th>SR NO.</th>
-                      <th>Date</th>
-                      <th>Amount</th>
-                      <th>Status</th>
-
-                  </tr>
+                <tr>
+                  <th>SR NO.</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
               </thead>
               <tbody>
-                 
-                  <tr>
-                      <td>1</td>
-                      
-                      <td>12-03-24</td>
-
-                      <td>
-                          <!-- Flex container to align input and button in a row -->
-                          <div class="d-flex">
-                              <!-- Text Field -->
-                              <input type="text" class="form-control me-2" placeholder="Enter value" >
-          
-                              <!-- OK Button -->
-                              <button class="btn btn-success btn-sm">OK</button>
-                          </div>
-                      </td>
-                     
-                        <td>
-                          <button class="btn btn-danger">Reminder</button>
-                        </td>
-                  </tr>
-                 
-                      <button class="btn btn-primary mt-4">Add</button>
-                   
-               
-
-
+                <tr *ngFor="let row of table1; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td><input type="text" class="form-control" placeholder="Enter Date" [(ngModel)]="row.date"></td>
+                  <td>
+                    <div class="d-flex">
+                      <input type="text" class="form-control me-2" placeholder="Enter value" [(ngModel)]="row.amount">
+                      <button class="btn btn-success btn-sm">OK</button>
+                    </div>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">Reminder</button>
+                  </td>
+                </tr>
               </tbody>
-          </table>
-      </div>
+            </table>
+            <button class="btn btn-primary mt-4" (click)="addRow('table1')">+</button>
+          </div>
+        
+          <!-- Second Table -->
+          <div class="card-body">
+            <h2>Table 2</h2>
+            <table class="table table-bordered mt-5">
+              <thead>
+                <tr>
+                  <th>SR NO.</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of table2; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td><input type="text" class="form-control" placeholder="Enter Date" [(ngModel)]="row.date"></td>
+                  <td>
+                    <div class="d-flex">
+                      <input type="text" class="form-control me-2" placeholder="Enter value" [(ngModel)]="row.amount">
+                      <button class="btn btn-success btn-sm">OK</button>
+                    </div>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">Reminder</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-primary mt-4" (click)="addRow('table2')">+</button>
+          </div>
+        
+        
     </div>
 
   
