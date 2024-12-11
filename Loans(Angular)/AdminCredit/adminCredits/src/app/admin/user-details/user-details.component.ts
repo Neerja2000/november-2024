@@ -23,9 +23,9 @@ export class UserDetailsComponent implements OnInit {
     }
 
     const term = this.searchTerm.toLowerCase();
-    return this.users.filter(user => 
-      user.full_name.toLowerCase().includes(term) || 
-      user.contact_details.includes(term)
+    return this.users.filter(application => 
+      application.full_name.toLowerCase().includes(term) || 
+      application.contact_details.includes(term)
     );
   }
   isImage(fileUrl: string): boolean {

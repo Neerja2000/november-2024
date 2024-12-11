@@ -9,12 +9,26 @@ import { UsersService } from 'src/app/shared/users/users.service';
 })
 export class NewUsersComponent implements OnInit {
   userApplications: any[] = [];
-
+  filteredApplications: any[] = [];
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
     this.getUserApplications();
   }
+searchTerm:string=''
+filterApplications() {
+  if (!this.searchTerm.trim()) {
+    return this.userApplications;
+  }
+
+  const term = this.searchTerm.toLowerCase();
+  return this.userApplications.filter(application =>
+    application.full_name.toLowerCase().includes(term) ||
+    application.contact_details.includes(term)
+  );
+}
+
+
   isImage(fileUrl: string): boolean {
     const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
     const extension = this.getFileExtension(fileUrl);

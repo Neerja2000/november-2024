@@ -4,7 +4,28 @@
             <div class="card mt-5">
                 <div class="card-body">
                    
-                    <h1>New Users</h1>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h1>View Users</h1>
+                        </div>
+                        <div class="col-md">
+         <!-- Search Box -->
+                            <div class="input-group mb-3">
+                                <input
+                                type="text"
+                               class="form-control"
+                                placeholder=" Search "
+                                [(ngModel)]="searchTerm"
+                                aria-label="Search"
+                                aria-describedby="button-search"
+                                style=""
+                                />
+                                <button class="btn btn-primary" type="button" id="button-search">
+                                    Search
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <table class="table table-striped mt-5" id="table1">
                         <thead>
@@ -22,7 +43,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let application of userApplications; let i = index">
+                            <tr *ngFor="let application of filterApplications(); let i = index">
                                 <td>{{ i + 1 }}</td>
                                 <td class="text-bold-500">{{ application.full_name }}</td>
                                 <td>{{ application.employer_name }}</td>
@@ -30,49 +51,43 @@
                                 <td>{{ application.monthly_income }}</td>
                                 <td>{{ application.employment_type }}</td>
                                 <td>
-                                    <a [href]="application.identity_proof" target="_blank" rel="noopener noreferrer">
-                                      <ng-container *ngIf="isImage(application.identity_proof); else fileIcon">
-                                        <!-- Show image preview for images -->
-                                        <img [src]="application.identity_proof" alt="Uploaded File" class="img-fluid" style="max-width: 100px; height: auto;">
-                                      </ng-container>
-                                      <ng-template #fileIcon>
-                                        <!-- Show icons for other file types -->
-                                        <div class="text-center">
-                                          <i *ngIf="isPDF(application.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
-                                          <i *ngIf="isZIP(application.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
-                                          <i *ngIf="!isImage(application.identity_proof) && !isPDF(application.identity_proof) && !isZIP(application.identity_proof)" 
-                                             class="bi bi-file-earmark" style="font-size: 2rem;"></i>
-                                          <p>{{ getFileExtension(application.identity_proof) | uppercase }} File</p>
-                                        </div>
-                                      </ng-template>
-                                    </a>
-                                  </td>
-                                  
-                                <td>{{ application.address }}</td>
-                                
-                                  <td>
-                                    <div class="d-flex">
-                                        <i 
-                                          class="bi bi-check text-success  me-2 cursor-pointer" 
-                                          (click)="statusChanged(application.id, 'Approved',application.user_id)" 
-                                          title="Approved" style="font-size: 30px;">
-                                        </i>
-                                       
-                                        <i 
-                                          class="bi bi-x text-danger cursor-pointer" 
-                                          (click)="statusChanged(application.id, 'Rejected',application.user_id)" 
-                                          title="Rejected" style="font-size: 30px;">
-                                        </i>
-                                        <i 
-                                        class="bi bi-exclamation text-warning  me-2 cursor-pointer" 
-                                        (click)="statusChanged(application.id, 'Review Required',application.user_id)" 
-                                        title="Review Required" style="font-size: 30px;">
-                                      </i>
+                                  <a [href]="application.identity_proof" target="_blank" rel="noopener noreferrer">
+                                    <ng-container *ngIf="isImage(application.identity_proof); else fileIcon">
+                                      <img [src]="application.identity_proof" alt="Uploaded File" class="img-fluid" style="max-width: 100px; height: auto;">
+                                    </ng-container>
+                                    <ng-template #fileIcon>
+                                      <div class="text-center">
+                                        <i *ngIf="isPDF(application.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                        <i *ngIf="isZIP(application.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                        <i *ngIf="!isImage(application.identity_proof) && !isPDF(application.identity_proof) && !isZIP(application.identity_proof)" 
+                                           class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                        <p>{{ getFileExtension(application.identity_proof) | uppercase }} File</p>
                                       </div>
-                                      
-                                  </td>
-                                  
+                                    </ng-template>
+                                  </a>
+                                </td>
+                                <td>{{ application.address }}</td>
+                                <td>
+                                  <div class="d-flex">
+                                    <i 
+                                      class="bi bi-check text-success me-2 cursor-pointer" 
+                                      (click)="statusChanged(application.id, 'Approved', application.user_id)" 
+                                      title="Approved" style="font-size: 30px;">
+                                    </i>
+                                    <i 
+                                      class="bi bi-x text-danger cursor-pointer" 
+                                      (click)="statusChanged(application.id, 'Rejected', application.user_id)" 
+                                      title="Rejected" style="font-size: 30px;">
+                                    </i>
+                                    <i 
+                                      class="bi bi-exclamation text-warning me-2 cursor-pointer" 
+                                      (click)="statusChanged(application.id, 'Review Required', application.user_id)" 
+                                      title="Review Required" style="font-size: 30px;">
+                                    </i>
+                                  </div>
+                                </td>
                               </tr>
+                              
                               
 <!-- Modal -->
 <div class="modal fade" id="creditModal" tabindex="-1" aria-labelledby="creditModalLabel" aria-hidden="true">
