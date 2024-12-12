@@ -8,6 +8,7 @@ import { ViewProductComponent } from './admin/view-product/view-product.componen
 import { NewUsersComponent } from './admin/new-users/new-users.component';
 import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,9 @@ const routes: Routes = [
       },
       {
         path:"privacyPolicy",component:PrivacyPolicyComponent
+      },
+      {
+        path:'emiDetails',component:EmiDetailsComponent
       }
     ]
   }

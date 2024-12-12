@@ -1,0 +1,94 @@
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-md mt-4">
+        <div class="card mt-5">
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1> <h1>EMI Details</h1></h1>
+                </div>
+                
+            </div>
+           
+  
+           
+              
+  
+          
+  <div class="container mt-4">
+    
+
+    <!-- Transaction Table -->
+    <div class="table-responsive mt-4">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>EMI</th>
+            <th>EMI Amount</th>
+            <th>Due Date</th>
+
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td>1</td>
+            <td>90</td>
+            <td>2024-12-31</td>
+         
+            <td>
+               
+                <button
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#openSettleModal"
+                
+              >
+                Settle
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="modal fade" id="openSettleModal" tabindex="-1" aria-labelledby="openSettleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="openSettleModalLabel">
+            Settle EMI
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="amount" class="form-label">Amount</label>
+              <input type="number" class="form-control" id="amount"  />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" >Settle EMI</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
