@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { TransactionService } from 'src/app/shared/transaction/transaction.service';
 import { UsersService } from 'src/app/shared/users/users.service';
 
 @Component({
@@ -11,20 +13,27 @@ export class EmiDetailsComponent implements OnInit {
   userId: string = '';
   transactionId: string = '';
   emiDetails: any = [];
+  selectedEmi: any = null;
+
+  emiForm: FormGroup;
 
   constructor(
-    private route: ActivatedRoute,  // ActivatedRoute to fetch route params
-    private emiService: UsersService   // Service to fetch EMI details
-  ) {}
+    private route: ActivatedRoute,
+    private emiService: UsersService,
+    private fb: FormBuilder,
+    private transactionService:TransactionService
+  ) {
+    this.emiForm = this.fb.group({
+      amount: ['', [Validators.required, Validators.min(1)]],
+    });
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.userId = params['userId'];  // Get userId from URL
-      this.transactionId = params['transactionId'];  // Get transactionId from URL
-      console.log('Transaction ID from URL:', this.transactionId);  // Log to verify
+      this.userId = params['userId'];
+      this.transactionId = params['transactionId'];
       this.fetchEmiDetails();
     });
-    
   }
 
   fetchEmiDetails(): void {
@@ -32,30 +41,40 @@ export class EmiDetailsComponent implements OnInit {
       console.error('User ID or Transaction ID is missing!');
       return;
     }
-  
+
     this.emiService.getCreditStatus(this.userId).subscribe(
       (response: any) => {
-        console.log('Full response:', response);  // Log the response to inspect the structure
         if (response && response.transactions) {
-          // Find the specific transaction by matching the transactionId
           const transaction = response.transactions.find((tx: any) => tx.transactionId === Number(this.transactionId));
-          console.log('Found transaction:', transaction);  // Log the found transaction
-  
-          if (transaction && transaction.emis) {
-            this.emiDetails = transaction.emis;
-            console.log('EMIs:', this.emiDetails);  // Log the EMIs if found
-          } else {
-            console.error('No EMIs found for this transaction');
-          }
-        } else {
-          console.error('No transactions found');
+          this.emiDetails = transaction?.emis || [];
         }
       },
-      (error) => {
-        console.error('Error fetching EMI details:', error);
-      }
+      (error) => console.error('Error fetching EMI details:', error)
     );
   }
-  
-  
+
+  openSettleModal(emi: any): void {
+    this.selectedEmi = emi;
+    this.emiForm.patchValue({ amount: emi.amount });
+  }
+
+  settleEMI(): void {
+    if (this.emiForm.invalid || !this.selectedEmi) {
+      console.error('Form is invalid or no EMI selected!');
+      return;
+    }
+
+    const body = {
+      emiId: this.selectedEmi.emiId,
+      amount: this.emiForm.value.amount,
+    };
+
+    this.transactionService.emiSettle(body).subscribe(
+      (response) => {
+        console.log('EMI settled successfully:', response);
+        this.fetchEmiDetails(); // Refresh EMI list
+      },
+      (error) => console.error('Error settling EMI:', error)
+    );
+  }
 }
