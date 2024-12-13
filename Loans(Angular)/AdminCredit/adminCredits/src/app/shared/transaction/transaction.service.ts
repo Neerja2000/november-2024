@@ -31,4 +31,9 @@ export class TransactionService {
     return this.http.post(this.adminbaseurl + '/credit-limit', body, { headers });
   }
 
+
+  emiSettle(body: { emiId: number; amount: number }) {
+    const headers = new HttpHeaders().set('auth-token', this.token);
+    return this.http.post(`${this.adminbaseurl}/emi/settle`, body, { headers });
+  }
 }
