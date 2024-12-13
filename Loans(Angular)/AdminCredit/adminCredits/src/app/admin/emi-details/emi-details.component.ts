@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from 'src/app/shared/transaction/transaction.service';
@@ -14,14 +14,15 @@ export class EmiDetailsComponent implements OnInit {
   transactionId: string = '';
   emiDetails: any = [];
   selectedEmi: any = null;
+ 
 
   emiForm: FormGroup;
-
+  @ViewChild('openSettleModal') openSettleModalRef!: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private emiService: UsersService,
     private fb: FormBuilder,
-    private transactionService:TransactionService
+    private transactionService:TransactionService, private renderer: Renderer2
   ) {
     this.emiForm = this.fb.group({
       amount: ['', [Validators.required, Validators.min(1)]],
@@ -72,9 +73,24 @@ export class EmiDetailsComponent implements OnInit {
     this.transactionService.emiSettle(body).subscribe(
       (response) => {
         console.log('EMI settled successfully:', response);
-        this.fetchEmiDetails(); // Refresh EMI list
+
+        // Update local data
+        const emiIndex = this.emiDetails.findIndex((emi: any) => emi.emiId === this.selectedEmi.emiId);
+        if (emiIndex > -1) {
+          this.emiDetails[emiIndex].isSettled = true;
+        }
+
+        // Close modal using Renderer2
+        const modalElement = this.openSettleModalRef.nativeElement;
+        this.renderer.setAttribute(modalElement, 'style', 'display: none');
+        modalElement.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) backdrop.remove();
       },
       (error) => console.error('Error settling EMI:', error)
     );
   }
 }
+
+

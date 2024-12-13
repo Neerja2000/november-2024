@@ -27,16 +27,20 @@
                     <td>{{ emi.emiId }}</td> <!-- Changed emiNumber to emiId -->
                     <td>{{ emi.amount }}</td>
                     <td>{{ emi.dueDate }}</td>
+                    
                     <td>
                       <button
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#openSettleModal"
-          (click)="openSettleModal(emi)"
-        >
-          Settle
-        </button>
+                        *ngIf="!emi.isSettled"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#openSettleModal"
+                        (click)="openSettleModal(emi)"
+                      >
+                        Settle
+                      </button>
+                      <span *ngIf="emi.isSettled" class="text-success">Amount Fully Settled</span>
                     </td>
+                    
                   </tr>
                 </tbody>
               </table>
