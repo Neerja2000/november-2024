@@ -160,10 +160,12 @@
           <td>{{ transaction.remark }}</td>
           <td>₹{{ transaction.remainingBalance }}</td>
           <td>
-            <button class="btn btn-success btn-sm"   routerLink="/layout/emiDetails" >
+            <button class="btn btn-success btn-sm" [routerLink]="['/layout/emiDetails', userId, transaction.transactionId]">
               View EMI Details
             </button>
           </td>
+          
+          
         </tr>
       </tbody>
     </table>

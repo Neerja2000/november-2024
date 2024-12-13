@@ -39,7 +39,7 @@ const routes: Routes = [
         path:"privacyPolicy",component:PrivacyPolicyComponent
       },
       {
-        path:'emiDetails',component:EmiDetailsComponent
+        path:'emiDetails/:userId/:transactionId',component:EmiDetailsComponent
       }
     ]
   }
