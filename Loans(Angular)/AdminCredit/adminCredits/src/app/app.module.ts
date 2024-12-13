@@ -10,7 +10,7 @@ import { SidebarComponent } from './admin/layout/sidebar/sidebar.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UserDetailsComponent } from './admin/user-details/user-details.component';
 import { ViewUserDetailsComponent } from './admin/view-user-details/view-user-details.component';
-import { ViewProductComponent } from './admin/view-product/view-product.component';
+
 import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.component';
 import { NewUsersComponent } from './admin/new-users/new-users.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
@@ -28,7 +28,7 @@ import { EmiDetailsComponent } from './admin/emi-details/emi-details.component'
     DashboardComponent,
     UserDetailsComponent,
     ViewUserDetailsComponent,
-    ViewProductComponent,
+  
     PrivacyPolicyComponent,
     NewUsersComponent,
     AdminLoginComponent,

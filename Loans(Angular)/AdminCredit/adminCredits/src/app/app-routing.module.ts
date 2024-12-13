@@ -4,7 +4,7 @@ import { LayoutComponent } from './admin/layout/layout.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UserDetailsComponent } from './admin/user-details/user-details.component';
 import { ViewUserDetailsComponent } from './admin/view-user-details/view-user-details.component';
-import { ViewProductComponent } from './admin/view-product/view-product.component';
+
 import { NewUsersComponent } from './admin/new-users/new-users.component';
 import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
@@ -29,9 +29,7 @@ const routes: Routes = [
       {
         path:"viewUserDetails/:userId",component:ViewUserDetailsComponent
       },
-      {
-        path:'viewProduct',component:ViewProductComponent
-      },
+   
       {
         path:'newUser',component:NewUsersComponent
       },
