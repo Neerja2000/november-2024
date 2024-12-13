@@ -152,6 +152,7 @@
         </tr>
       </thead>
       <tbody>
+       
         <tr *ngFor="let transaction of transactions">
           <td>{{ transaction.transactionId }}</td>
           <td>₹{{ transaction.amount }}</td>
@@ -159,7 +160,7 @@
           <td>{{ transaction.remark }}</td>
           <td>₹{{ transaction.remainingBalance }}</td>
           <td>
-            <button class="btn btn-success btn-sm" (click)="viewEMIDetails(transaction.emis)">
+            <button class="btn btn-success btn-sm"   routerLink="/layout/emiDetails" >
               View EMI Details
             </button>
           </td>
