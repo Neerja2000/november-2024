@@ -64,22 +64,23 @@ export class EmiDetailsComponent implements OnInit {
       console.error('Form is invalid or no EMI selected!');
       return;
     }
-
+  
     const body = {
       emiId: this.selectedEmi.emiId,
       amount: this.emiForm.value.amount,
     };
-
+  
     this.transactionService.emiSettle(body).subscribe(
       (response) => {
         console.log('EMI settled successfully:', response);
-
-        // Update local data
+  
+        // Update local data (just set it as settled without showing "Amount Fully Settled")
         const emiIndex = this.emiDetails.findIndex((emi: any) => emi.emiId === this.selectedEmi.emiId);
         if (emiIndex > -1) {
           this.emiDetails[emiIndex].isSettled = true;
+          this.emiDetails[emiIndex].settled = this.emiForm.value.amount;  // Optionally update settled amount if needed
         }
-
+  
         // Close modal using Renderer2
         const modalElement = this.openSettleModalRef.nativeElement;
         this.renderer.setAttribute(modalElement, 'style', 'display: none');
@@ -91,6 +92,8 @@ export class EmiDetailsComponent implements OnInit {
       (error) => console.error('Error settling EMI:', error)
     );
   }
+  
+  
 }
 
 
