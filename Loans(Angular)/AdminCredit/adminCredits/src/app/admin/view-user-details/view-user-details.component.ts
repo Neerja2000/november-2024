@@ -115,7 +115,7 @@ export class ViewUserDetailsComponent implements OnInit {
     this.userService.creditAdded(body).subscribe(
       (res: any) => {
         console.log('Credit limit updated successfully:', res);
-        
+        this.fetchCreditStatus()
         resolve();
       },
       (err: any) => {
