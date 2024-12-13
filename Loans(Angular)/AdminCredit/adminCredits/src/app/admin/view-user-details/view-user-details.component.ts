@@ -59,6 +59,7 @@ export class ViewUserDetailsComponent implements OnInit {
           availableCredit: status.availableCredit || 0
         };
         this.transactions = status.transactions || [];
+        
         console.log('Fetched Credit Status:', this.creditStatus);
         console.log('Fetched Transactions:', this.transactions);
       },
@@ -88,7 +89,8 @@ export class ViewUserDetailsComponent implements OnInit {
         (response: any) => {
           console.log('Transaction added successfully:', response);
           alert('Transaction added successfully!');
-          this.transactionForm.reset(); // Reset form after successful submission
+          this.transactionForm.reset(); 
+          this.fetchCreditStatus() 
         },
         (error) => {
           console.error('Error adding transaction:', error.message, error);
