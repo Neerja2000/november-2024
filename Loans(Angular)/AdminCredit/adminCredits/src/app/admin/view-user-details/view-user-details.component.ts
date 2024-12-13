@@ -12,11 +12,16 @@ import { UsersService } from 'src/app/shared/users/users.service';
 export class ViewUserDetailsComponent implements OnInit {
   userId: number = 0; // Default value
   transactionForm: FormGroup;
+  creditStatus: any = {
+    creditLimit: 0,
+    creditUsed: 0,
+    availableCredit: 0,
+  };
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,private userService:UsersService
   ) {
     // Initialize form
     this.transactionForm = this.fb.group({
@@ -35,8 +40,26 @@ export class ViewUserDetailsComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       this.userId = +params['userId'] || 0; // Default to 0 if no `userId` provided
       console.log('Fetched userId:', this.userId);
+      this.fetchCreditStatus();
     });
   }
+
+  fetchCreditStatus(): void {
+    this.userService.getCreditStatus(this.userId.toString()).subscribe(
+      (status: any) => {
+        this.creditStatus = {
+          creditLimit: status.creditLimit || 0,
+          creditUsed: status.creditUsed || 0,
+          availableCredit: status.availableCredit || 0,
+        };
+        console.log('Credit Status fetched successfully:', this.creditStatus);
+      },
+      (err) => {
+        console.error('Error fetching credit status:', err.message, err);
+      }
+    );
+  }
+  
 
   addTransaction(): void {
     if (this.transactionForm.valid) {
