@@ -17,7 +17,7 @@ export class ViewUserDetailsComponent implements OnInit {
     creditUsed: 0,
     availableCredit: 0,
   };
-
+  transactions: any[] = [];
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -50,13 +50,11 @@ export class ViewUserDetailsComponent implements OnInit {
         this.creditStatus = {
           creditLimit: status.creditLimit || 0,
           creditUsed: status.creditUsed || 0,
-          availableCredit: status.availableCredit || 0,
+          availableCredit: status.availableCredit || 0
         };
-        console.log('Credit Status fetched successfully:', this.creditStatus);
-        console.log(status)
-
-
-
+        this.transactions = status.transactions || [];
+        console.log('Fetched Credit Status:', this.creditStatus);
+        console.log('Fetched Transactions:', this.transactions);
       },
       (err) => {
         console.error('Error fetching credit status:', err.message, err);
@@ -97,7 +95,10 @@ export class ViewUserDetailsComponent implements OnInit {
     }
   }
   
-  
+  viewEMIDetails(emis: any[]): void {
+    console.log('EMI Details:', emis);
+    // You can implement modal or additional view logic here
+  }
   
 
   

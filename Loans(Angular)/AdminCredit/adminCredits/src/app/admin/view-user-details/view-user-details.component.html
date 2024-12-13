@@ -151,13 +151,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr >
-          <td>9</td>
-          <td>90000</td>
-          <td>2024-12-31</td>
-          <td>kkk</td>
+        <tr *ngFor="let transaction of transactions">
+          <td>{{ transaction.transactionId }}</td>
+          <td>₹{{ transaction.amount }}</td>
+          <td>{{ transaction.dueDate }}</td>
+          <td>{{ transaction.remark }}</td>
+          <td>₹{{ transaction.remainingBalance }}</td>
           <td>
-            <button class="btn btn-success btn-sm" routerLink="/layout/emiDetails" >View Details</button>
+            <button class="btn btn-success btn-sm" (click)="viewEMIDetails(transaction.emis)">
+              View EMI Details
+            </button>
           </td>
         </tr>
       </tbody>
