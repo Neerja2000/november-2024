@@ -53,6 +53,10 @@ export class ViewUserDetailsComponent implements OnInit {
           availableCredit: status.availableCredit || 0,
         };
         console.log('Credit Status fetched successfully:', this.creditStatus);
+        console.log(status)
+
+
+
       },
       (err) => {
         console.error('Error fetching credit status:', err.message, err);
@@ -60,30 +64,42 @@ export class ViewUserDetailsComponent implements OnInit {
     );
   }
   
-
   addTransaction(): void {
     if (this.transactionForm.valid) {
+      const formValue = this.transactionForm.value;
       const transactionData = {
+        amount: formValue.amount,
+        dueDate: formValue.dueDate,
+        remark: formValue.remark || '',
+        emiDetails: {
+          numberOfEmis: formValue.emiDetails.Emis || 0,
+          annualInterestRate: formValue.emiDetails.interest || 0,
+        },
         userId: this.userId,
-        ...this.transactionForm.value, // Spread operator to simplify field extraction
       };
   
-      console.log('Transaction Data:', transactionData);
+      console.log('Transaction data to be sent:', transactionData);
   
-      // Send data as JSON (no need for FormData)
       this.transactionService.transactionAdd(transactionData).subscribe(
-        (res) => {
-          console.log('Transaction added successfully:', res);
+        (response: any) => {
+          console.log('Transaction added successfully:', response);
+          alert('Transaction added successfully!');
+          this.transactionForm.reset(); // Reset form after successful submission
         },
-        (err) => {
-          console.error('Error adding transaction:', err.message, err);
+        (error) => {
+          console.error('Error adding transaction:', error.message, error);
+          alert('Failed to add transaction. Please try again.');
         }
       );
     } else {
-      console.error('Transaction form is invalid');
+      console.error('Transaction form is invalid:', this.transactionForm.errors);
+      alert('Please fill all required fields.');
     }
   }
   
+  
+  
+
   
 }
 
