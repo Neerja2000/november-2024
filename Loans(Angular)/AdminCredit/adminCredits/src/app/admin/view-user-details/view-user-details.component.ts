@@ -18,6 +18,8 @@ export class ViewUserDetailsComponent implements OnInit {
     availableCredit: 0,
   };
   transactions: any[] = [];
+  updateCreditForm!: FormGroup;
+
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -33,6 +35,10 @@ export class ViewUserDetailsComponent implements OnInit {
         interest: [0, Validators.required],
       }),
     });
+    this.updateCreditForm = this.fb.group({
+      creditLimit: [null, [Validators.required, Validators.min(1)]],
+    });
+    
   }
 
   ngOnInit(): void {
@@ -95,12 +101,30 @@ export class ViewUserDetailsComponent implements OnInit {
     }
   }
   
+
+
   viewEMIDetails(emis: any[]): void {
     console.log('EMI Details:', emis);
     // You can implement modal or additional view logic here
   }
   
 
+ updateCreditLimit(userId: number, creditLimit: number): Promise<void> {
+  const body = { userId, creditLimit };
+  return new Promise((resolve, reject) => {
+    this.userService.creditAdded(body).subscribe(
+      (res: any) => {
+        console.log('Credit limit updated successfully:', res);
+        
+        resolve();
+      },
+      (err: any) => {
+        console.error('Error updating credit limit:', err);
+        reject(err);
+      }
+    );
+  });
+}
   
 }
 
