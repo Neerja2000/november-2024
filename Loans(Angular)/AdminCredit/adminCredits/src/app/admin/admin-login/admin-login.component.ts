@@ -21,28 +21,33 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-  
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
-
+  
       this.loginService.loginapi(loginData).subscribe(
         (res: any) => {
           console.log('API Response:', res);
-          // If login is successful, you can navigate to the dashboard or other page
-          this.router.navigate(['/layout/dashboard']);  // Example redirection
+  
+          // Store the token in sessionStorage using AuthService
+          if (res && res.token) {
+            this.authService.storeData(res.token); // Save the token
+            console.log('Token stored successfully');
+          } else {
+            console.error('Token is missing in API response');
+          }
+  
+          // Navigate to the dashboard or other page
+          this.router.navigate(['/layout/dashboard']); // Example redirection
+  
           Swal.fire({
             icon: 'success',
             title: 'Login Successful',
             text: 'You have logged in successfully!',
           });
-
-
-         
-        
         },
-        
         (err: any) => {
           console.error('API Error:', err);
+  
           if (err.status === 401) {
             // Unauthorized, wrong credentials
             Swal.fire({
@@ -76,4 +81,5 @@ export class AdminLoginComponent implements OnInit {
       });
     }
   }
+  
 }

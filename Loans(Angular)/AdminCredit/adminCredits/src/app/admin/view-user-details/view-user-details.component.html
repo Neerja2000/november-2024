@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <div class="container">
   <div class="row">
     <div class="col-md mt-4">
@@ -11,16 +6,11 @@
         <div class="card-body">
           <div class="row">
               <div class="col-md-9">
-                  <h1> <h1>Users Details</h1></h1>
+                 <h1>Users Details</h1>
               </div>
               
           </div>
-         
-
-         
-            
-
-        
+     
 <div class="container mt-4">
   <!-- Top Cards -->
   <div class="row">
@@ -84,29 +74,56 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form [formGroup]="transactionForm">
           <div class="mb-3">
             <label for="amount" class="form-label">Amount</label>
-            <input type="number" class="form-control" id="amount" />
+            <input
+              type="number"
+              class="form-control"
+              id="amount"
+              formControlName="amount"
+            />
           </div>
           <div class="mb-3">
             <label for="dueDate" class="form-label">Due Date</label>
-            <input type="date" class="form-control" id="dueDate" />
+            <input
+              type="date"
+              class="form-control"
+              id="dueDate"
+              formControlName="dueDate"
+            />
           </div>
           <div class="mb-3">
-            <label for="remarks" class="form-label">Remarks</label>
-            <textarea class="form-control" id="remarks"></textarea>
+            <label for="remark" class="form-label">Remarks</label>
+            <textarea
+              class="form-control"
+              id="remark"
+              formControlName="remark"
+            ></textarea>
           </div>
-          <div class="mb-3">
-            <label for="numOfEmis" class="form-label">Number of EMIs</label>
-            <input type="number" class="form-control" id="numOfEmis" />
-          </div>
-          <div class="mb-3">
-            <label for="annualInterest" class="form-label">Annual Interest Rate</label>
-            <input type="number" class="form-control" id="annualInterest" />
+          <div formGroupName="emiDetails">
+            <div class="mb-3">
+              <label for="Emis" class="form-label">Number of EMIs</label>
+              <input
+                type="number"
+                class="form-control"
+                id="Emis"
+                formControlName="Emis"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="interest" class="form-label">Annual Interest Rate</label>
+              <input
+                type="number"
+                class="form-control"
+                id="interest"
+                formControlName="interest"
+              />
+            </div>
           </div>
         </form>
       </div>
+      
       <div class="modal-footer">
         <button
           type="button"
