@@ -23,7 +23,15 @@
             <td>{{ application.employer_name }}</td>
             <td>{{ application.employment_type }}</td>
             <td>
-              <a [href]="application.identity_proof" target="_blank">View Proof</a>
+              <!-- Open image in new tab -->
+              <a
+                *ngIf="application.identity_proof"
+                [href]="application.identity_proof"
+                
+              >
+                View Proof
+              </a>
+              <span *ngIf="!application.identity_proof">No Proof Uploaded</span>
             </td>
             <td>
                 <span [ngClass]="{

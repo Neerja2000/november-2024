@@ -19,11 +19,15 @@ export class ViewCreditStatusComponent implements OnInit {
   fetchCreditApplications(): void {
     this.userLoginService.getCreditApplications().subscribe({
       next: (data) => {
-        this.creditApplications = data.creditApplications || []; // Assuming 'creditApplications' is part of response
+        this.creditApplications = data.creditApplications.map((application: any) => ({
+          ...application,
+          identity_proof: `http://194.238.17.235:7700/${application.identity_proof}`, 
+        }));
       },
       error: (err) => {
         console.error('Error fetching credit applications:', err);
-      }
+      },
     });
   }
 }
+
