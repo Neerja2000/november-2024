@@ -6,6 +6,7 @@ import { ApplyFormComponent } from './user/apply-form/apply-form.component';
 import { LoginComponent } from './user/login/login.component';
 import { OtpVerificationComponent } from './user/otp-verification/otp-verification.component';
 import { ViewCreditStatusComponent } from './user/view-credit-status/view-credit-status.component';
+import { AuthGuard } from './authGuard/auth.guard';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
     path:'',redirectTo:"user/layout/home",pathMatch:'full'
   },
   {
-    path:'applyForm',component:ApplyFormComponent
+    path:'applyForm',component:ApplyFormComponent,canActivate:[AuthGuard]
   },
   {
     path:'login',component:LoginComponent
@@ -27,7 +28,7 @@ const routes: Routes = [
         path:'home',component:HomeComponent
       },
       {
-        path:'view-credit-status',component:ViewCreditStatusComponent
+        path:'view-credit-status',component:ViewCreditStatusComponent,canActivate:[AuthGuard]
       }
     ]
 
