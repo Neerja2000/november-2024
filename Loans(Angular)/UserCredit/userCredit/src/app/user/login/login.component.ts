@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) {
     // Initialize the loginForm
     this.loginForm = this.fb.group({
-      phone_number: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      phone_number: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit {
 
   // Login form submission logic
   onLogin(): void {
+    console.log("hello")
     if (this.loginForm.invalid) {
       Swal.fire('Error', 'Please fill in all fields correctly.', 'error'); // Show error for invalid form
       return;
