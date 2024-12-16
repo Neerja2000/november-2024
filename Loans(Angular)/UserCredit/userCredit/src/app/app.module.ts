@@ -13,6 +13,7 @@ import { LoginComponent } from './user/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { OtpVerificationComponent } from './user/otp-verification/otp-verification.component';
+import { ViewCreditStatusComponent } from './user/view-credit-status/view-credit-status.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { OtpVerificationComponent } from './user/otp-verification/otp-verificati
     ApplyFormComponent,
     LoginComponent,
     OtpVerificationComponent,
+    ViewCreditStatusComponent,
     
    
   ],

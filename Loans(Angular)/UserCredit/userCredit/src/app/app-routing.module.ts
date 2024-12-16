@@ -5,6 +5,7 @@ import { HomeComponent } from './user/home/home.component';
 import { ApplyFormComponent } from './user/apply-form/apply-form.component';
 import { LoginComponent } from './user/login/login.component';
 import { OtpVerificationComponent } from './user/otp-verification/otp-verification.component';
+import { ViewCreditStatusComponent } from './user/view-credit-status/view-credit-status.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,9 @@ const routes: Routes = [
     children:[
       {
         path:'home',component:HomeComponent
+      },
+      {
+        path:'view-credit-status',component:ViewCreditStatusComponent
       }
     ]
 

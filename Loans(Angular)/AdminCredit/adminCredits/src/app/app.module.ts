@@ -16,7 +16,8 @@ import { NewUsersComponent } from './admin/new-users/new-users.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{HttpClientModule}from '@angular/common/http';
-import { EmiDetailsComponent } from './admin/emi-details/emi-details.component'
+import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EmiDetailsComponent } from './admin/emi-details/emi-details.component'
     PrivacyPolicyComponent,
     NewUsersComponent,
     AdminLoginComponent,
-    EmiDetailsComponent
+    EmiDetailsComponent,
+  
   ],
   imports: [
     BrowserModule,
