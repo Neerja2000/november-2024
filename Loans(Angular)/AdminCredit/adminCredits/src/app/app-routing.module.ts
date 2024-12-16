@@ -9,6 +9,7 @@ import { NewUsersComponent } from './admin/new-users/new-users.component';
 import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
+import { AuthGuard } from './authGuard/auth.guard';
 
 const routes: Routes = [
   {
@@ -24,20 +25,20 @@ const routes: Routes = [
         path:"dashboard",component:DashboardComponent
       },
       {
-        path:"userDetails",component:UserDetailsComponent
+        path:"userDetails",component:UserDetailsComponent,canActivate:[AuthGuard]
       },
       {
-        path:"viewUserDetails/:userId",component:ViewUserDetailsComponent
+        path:"viewUserDetails/:userId",component:ViewUserDetailsComponent,canActivate:[AuthGuard]
       },
    
       {
-        path:'newUser',component:NewUsersComponent
+        path:'newUser',component:NewUsersComponent,canActivate:[AuthGuard]
       },
       {
         path:"privacyPolicy",component:PrivacyPolicyComponent
       },
       {
-        path:'emiDetails/:userId/:transactionId',component:EmiDetailsComponent
+        path:'emiDetails/:userId/:transactionId',component:EmiDetailsComponent,canActivate:[AuthGuard]
       }
     ]
   }
