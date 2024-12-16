@@ -37,12 +37,12 @@ export class LoginComponent implements OnInit {
   }
 
   // Registration form submission logic
-  onSubmit() {
+  onSubmit(): void {
     if (this.registrationForm.invalid) {
       Swal.fire('Error', 'Please fill in all fields correctly.', 'error'); // Show error for invalid form
       return;
     }
-
+  
     console.log('hello');
     if (this.registrationForm.valid) {
       const phoneNumber = this.registrationForm.value.phone_number;
@@ -64,13 +64,22 @@ export class LoginComponent implements OnInit {
           },
           error: (err) => {
             console.error('Registration failed:', err);
-            Swal.fire('Error', 'Registration failed. Please try again.', 'error'); // SweetAlert2 error message
+  
+            // Check for "Duplicate entry" error in the response
+            if (err.status === 500 && err.error.sqlMessage && err.error.sqlMessage.includes('Duplicate entry')) {
+              const duplicateEmail = err.error.sqlMessage.split('\'')[1]; // Extract duplicate email from the error message
+              Swal.fire('Error', `The email address ${duplicateEmail} is already registered. Please use a different email.`, 'error');
+            } else {
+              Swal.fire('Error', 'Registration failed. Please try again.', 'error'); // General error message
+            }
           },
         });
     } else {
       console.log('Form is invalid');
     }
   }
+  
+  
   
 
   // Login form submission logic

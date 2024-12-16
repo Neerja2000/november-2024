@@ -46,7 +46,7 @@ export class ApplyFormComponent implements OnInit {
       this.router.navigate(['/login']);
       return; // Stop further code execution if no token
     }
-
+  
     console.log('Form submission started...');
     if (this.applyForm.valid && this.selectedFile) {
       const formData = new FormData();
@@ -54,7 +54,7 @@ export class ApplyFormComponent implements OnInit {
         formData.append(key, this.applyForm.value[key])
       );
       formData.append('identity_proof', this.selectedFile);
-
+  
       this.applyFormService.submitApplication(formData).subscribe({
         next: (response) => {
           console.log('Application submitted successfully:', response);
@@ -64,7 +64,10 @@ export class ApplyFormComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error submitting application:', error);
-          if (error.status === 401) {
+          if (error.status === 500 && error.error.message === "Database error") {
+            // Custom SweetAlert for "A credit application already exists" error
+            Swal.fire('Error', 'A credit application already exists for this user. Please check your application status.', 'error');
+          } else if (error.status === 401) {
             Swal.fire('Unauthorized', 'Unauthorized access. Please log in again.', 'error'); // SweetAlert2 for unauthorized access
             this.router.navigate(['/login']);
           } else {
@@ -76,4 +79,6 @@ export class ApplyFormComponent implements OnInit {
       Swal.fire('Invalid', 'Please fill all fields and upload a document.', 'warning'); // SweetAlert2 for form validation error
     }
   }
+  
+  
 }
