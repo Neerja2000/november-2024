@@ -1,39 +1,22 @@
-<!-- Header Section -->
 <header class="header-section">
     <a href="index.html" class="site-logo">
-        <p style="font-size: 20px; color: #f43f00;">Opticatijuana</p>
+      <p style="font-size: 20px; color: #f43f00;">Opticatijuana</p>
     </a>
     <nav class="header-nav">
-        <ul class="main-menu">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#score">Credit Score</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="header-right">
-            <a routerLink="/login">
-                <div class="hr-btn hr-btn-2">Sign Up</div>
-            </a>
-        </div>
+      <ul class="main-menu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#score">Credit Score</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="header-right">
+        <!-- Show 'Sign Up' if not logged in -->
+        <a *ngIf="!isLoggedIn" routerLink="/login">
+          <div class="hr-btn hr-btn-2">Sign Up</div>
+        </a>
+        <!-- Show 'Sign Out' if logged in -->
+        <div *ngIf="isLoggedIn" class="hr-btn hr-btn-2" (click)="logout()">Sign Out</div>
+      </div>
     </nav>
-    <div class="slicknav_menu">
-        <!-- Hidden Checkbox for Toggle -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-        <label for="menu-toggle" class="slicknav_btn" style="outline: none;">
-            <span class="slicknav_menutxt">MENU</span>
-            <span class="slicknav_icon">
-                <span class="slicknav_icon-bar"></span>
-                <span class="slicknav_icon-bar"></span>
-                <span class="slicknav_icon-bar"></span>
-            </span>
-        </label>
-        <ul class="slicknav_nav">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#score">Credit Score</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li>  <a routerLink="/login"><button class="btn btn-dark">Sign up</button></a></li>
-        </ul>
-    </div>
-</header>
-<!-- Header Section end -->
+  </header>
+  
