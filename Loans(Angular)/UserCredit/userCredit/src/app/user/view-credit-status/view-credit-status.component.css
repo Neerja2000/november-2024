@@ -21,3 +21,23 @@
     text-align: center;
     font-family: Arial, sans-serif;
   }
+  .status-pending {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .status-approved {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .status-rejected {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .status-review {
+    color: blue;
+    font-weight: bold;
+  }
+  

@@ -7,7 +7,12 @@
                 <div class="hs-text">
                     <h2>Looking for a Credit?</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas placeat iusto accusamus. Modi veritatis quasi similique mollitia provident dolorem quisquam! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, ipsa! Ex praesentium illum molestiae facere nostrum amet corporis perspiciatis animi .iusto accusamus. Modi veritatis quasi similique mollitia provident dolorem quisquam! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, ipsa! Ex praesentium illum molestiae facere nostrum amet corporis perspiciatis animi!</p>
-                    <a routerLink="/applyForm"class="site-btn sb-danger">Apply Credit</a>
+                    <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger">Apply Credit</a>
+                        
+                    <!-- Show "View Credit Status" if application exists -->
+                    <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status" class="site-btn sb-danger">View Credit Application Status</a>
+                      
+                      
                 </div>
             </div>
         

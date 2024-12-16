@@ -25,7 +25,18 @@
             <td>
               <a [href]="application.identity_proof" target="_blank">View Proof</a>
             </td>
-            <td>{{ application.status }}</td>
+            <td>
+                <span [ngClass]="{
+                      'status-pending': application.status === 'Pending',
+                      'status-approved': application.status === 'Approved',
+                      'status-rejected': application.status === 'Rejected',
+                      'status-review': application.status === 'Review Required'
+                    }">
+                  {{ application.status }}
+                </span>
+              </td>
+              
+              
           </tr>
         </tbody>
       </table>
