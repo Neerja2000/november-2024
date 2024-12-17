@@ -15,7 +15,7 @@ export class UserLoginService {
 
 
 
-  register(name: string, email: string, phone_number: number, password: string): Observable<any> {
+  register(name: string, email: string, phone_number: string, password: string): Observable<any> {
     const url = `${this.globalbaseurl}/register`;
     const requestBody = { name, email, phone_number, password };
     return this.http.post(url, requestBody);
