@@ -19,7 +19,7 @@
         <div class="card-body">
           <h5 class="card-title">Credit Limit</h5>
           <div class="d-flex justify-content-center">
-            <p class="card-text mb-2">₹{{ creditStatus.creditLimit.toLocaleString() }}</p>
+            <p class="card-text mb-2">${{ creditStatus.creditLimit.toLocaleString() }}</p>
             <span class="ms-2">|</span>
             <span class="ms-2 text-success" role="button" data-bs-toggle="modal" data-bs-target="#updateCreditLimitModal">
               Update
@@ -73,7 +73,7 @@
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Credit Used</h5>
-          <p class="card-text">₹{{ creditStatus.creditUsed.toLocaleString() }}</p>
+          <p class="card-text">${{ creditStatus.creditUsed.toLocaleString() }}</p>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Available Credit</h5>
-          <p class="card-text">₹{{ creditStatus.availableCredit.toLocaleString() }}</p>
+          <p class="card-text">${{ creditStatus.availableCredit.toLocaleString() }}</p>
         </div>
       </div>
     </div>
@@ -202,10 +202,10 @@
       <tbody>
         <tr *ngFor="let transaction of transactions">
           <td>{{ transaction.transactionId }}</td>
-          <td>₹{{ transaction.amount }}</td>
+          <td>${{ transaction.amount }}</td>
           <td>{{ transaction.dueDate }}</td>
           <td>{{ transaction.remark }}</td>
-          <td>₹{{ transaction.remainingBalance }}</td>
+          <td>${{ transaction.remainingBalance }}</td>
           <td>
             <button class="btn btn-success btn-sm" [routerLink]="['/layout/emiDetails', userId, transaction.transactionId]">
               View EMI Details
