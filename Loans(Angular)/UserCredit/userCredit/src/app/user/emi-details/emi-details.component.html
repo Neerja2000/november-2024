@@ -11,36 +11,34 @@
        
   <div class="container mt-4">
    
-   
-  
- 
-  
-    <!-- Transaction Table -->
     <div class="table-responsive mt-4">
-     
       <table class="table table-bordered">
         <thead>
           <tr>
             <th>EMI ID</th>
             <th>Amount</th>
-            <th>Date</th>
-           
-           
-            <th>Actions</th>
+            <th>Due Date</th>
+            <th>Interest</th>
+            <th>Settled</th>
+            <th>Remaining Balance</th>
+            
           </tr>
         </thead>
         <tbody>
-          <tr >
-            <td>1</td>
-            <td> 10 </td>
-            <td> 8</td>
-           
-            <td>Settel </td>
-          
+          <tr *ngFor="let emi of emiDetails">
+            <td>{{ emi.emiId }}</td>
+            <td>{{ emi.principalAmount }}</td>
+            <td>{{ emi.dueDate }}</td>
+            <td>{{ emi.interest }}</td>
+            <td>{{ emi.settled }}</td>
+            <td>{{ emi.remainingBalance }}</td>
+            
           </tr>
         </tbody>
       </table>
     </div>
+    
+    
     
   </div>
           </div>

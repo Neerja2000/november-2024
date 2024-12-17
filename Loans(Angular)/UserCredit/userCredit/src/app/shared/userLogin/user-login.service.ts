@@ -59,4 +59,18 @@ export class UserLoginService {
     return this.http.get(`${this.globalbaseurl}/details-with-credit-applications`, { headers });
   }
   
+
+
+
+  userCreditDetails(){
+    const token = this.authService.getToken(); // Retrieve token from AuthService
+  
+    if (!token) {
+      console.error('No authentication token found');
+      throw new Error('No authentication token found');
+    }
+  
+    const headers = new HttpHeaders().set('auth-token', token); // Custom header
+    return this.http.get(`${this.globalbaseurl}/details_with_credit_applications`, { headers });
+  }
 }

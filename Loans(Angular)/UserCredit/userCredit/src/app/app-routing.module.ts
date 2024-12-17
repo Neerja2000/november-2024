@@ -35,8 +35,10 @@ const routes: Routes = [
       {
         path:'all-user-details',component:AllDetailsComponent,canActivate:[AuthGuard]
       },
-      {
-        path:'emi-details',component:EmiDetailsComponent,canActivate:[AuthGuard]
+      { 
+        path: 'emi-details/:transactionId', 
+        component: EmiDetailsComponent, 
+        canActivate: [AuthGuard] 
       }
     ]
 

@@ -44,9 +44,13 @@
                   {{ application.status }}
                 </span>
               </td>
-              <td routerLink="/user/layout/all-user-details" >
-               <button class="btn btn-dark">View Details</button>
-              </td>
+             <td>
+  <button 
+    class="btn btn-dark" 
+    [routerLink]="['/user/layout/all-user-details']">
+    View Details
+  </button>
+</td>
               
               
           </tr>
