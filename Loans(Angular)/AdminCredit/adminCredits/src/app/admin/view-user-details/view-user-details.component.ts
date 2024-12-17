@@ -19,6 +19,7 @@ export class ViewUserDetailsComponent implements OnInit {
     creditUsed: 0,
     availableCredit: 0,
   };
+  users: any[] = [];
   transactions: any[] = [];
   updateCreditForm!: FormGroup;
 
@@ -49,6 +50,7 @@ export class ViewUserDetailsComponent implements OnInit {
       this.userId = +params['userId'] || 0; // Default to 0 if no `userId` provided
       console.log('Fetched userId:', this.userId);
       this.fetchCreditStatus();
+      this.fetchUsers(); 
     });
   }
 
@@ -130,28 +132,60 @@ export class ViewUserDetailsComponent implements OnInit {
   });
 }
   
+fetchUsers(): void {
+  this.userService.userApplications().subscribe(
+    (response: any) => {
+      this.users = response || []; // Make sure the response is assigned to this.users
+      console.log(this.users); // This will now log the users array
+    
 
+    },
+    (error) => {
+      console.error('Error fetching users:', error.message);
+    }
+  );
+}
 
 
 
 exportToExcel(): void {
-  const worksheetData = this.transactions.map(transaction => ({
+  // Prepare User Data for Excel
+  const userWorksheetData = this.users.map((user, index) => ({
+    'Sr No.': index + 1,
+    Name: user.full_name,
+    'Employer Name': user.employer_name,
+    'Phone No.': user.contact_details,
+    'Monthly Income': user.monthly_income,
+    Employment_Type: user.employment_type,
+    'Identity Proof': user.identity_proof,
+  }));
+
+  // Prepare Transaction Data for Excel
+  const transactionWorksheetData = this.transactions.map((transaction) => ({
     'Transaction ID': transaction.transactionId,
-    'Amount': transaction.amount,
+    Amount: transaction.amount,
     'Due Date': transaction.dueDate,
-    'Remarks': transaction.remark,
+    Remarks: transaction.remark,
     'Remaining Balance': transaction.remainingBalance,
   }));
 
-  const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+  // Create Workbooks
   const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Transactions');
 
-  // Save the file
+  // Add User Details to the Workbook
+  const userWorksheet = XLSX.utils.json_to_sheet(userWorksheetData);
+  XLSX.utils.book_append_sheet(workbook, userWorksheet, 'User Details');
+
+  // Add Transaction Details to the Workbook
+  const transactionWorksheet = XLSX.utils.json_to_sheet(transactionWorksheetData);
+  XLSX.utils.book_append_sheet(workbook, transactionWorksheet, 'Transaction Details');
+
+  // Generate Excel File
   const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
   const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-  saveAs(blob, `Transactions_${this.userId}.xlsx`);
+  saveAs(blob, `Full_Details_${new Date().toISOString()}.xlsx`);
 }
+
 
 }
 

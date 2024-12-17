@@ -20,7 +20,7 @@
 
 .slicknav_nav li {
     margin: 0;
-    padding: 10px;
+    padding: 5px;
     color: #fff;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .slicknav_icon {
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .menu-toggle {
