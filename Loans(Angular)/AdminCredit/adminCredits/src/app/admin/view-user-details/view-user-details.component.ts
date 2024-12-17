@@ -30,7 +30,7 @@ export class ViewUserDetailsComponent implements OnInit {
   ) {
     // Initialize form
     this.transactionForm = this.fb.group({
-      principalAmount: ['', Validators.required],
+      amount: ['', Validators.required],
       dueDate: ['', Validators.required],
       remark: [''],
       emiDetails: this.fb.group({
@@ -77,7 +77,7 @@ export class ViewUserDetailsComponent implements OnInit {
     if (this.transactionForm.valid) {
       const formValue = this.transactionForm.value;
       const transactionData = {
-        principalAmount: formValue.principalAmount,
+        amount: formValue.amount,
         dueDate: formValue.dueDate,
         remark: formValue.remark || '',
         emiDetails: {
