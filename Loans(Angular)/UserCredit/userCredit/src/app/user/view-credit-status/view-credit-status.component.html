@@ -1,61 +1,55 @@
 <div class="container my-5">
-    <h2 class="table-title" style="margin-top: 200px;">Credit Applications</h2>
-    <div class="table-responsive">
-      <table class="table table-striped custom-table">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Monthly Income</th>
-            <th scope="col">Employer Name</th>
-            <th scope="col">Employment Type</th>
-            <th scope="col">Identity Proof</th>
-            <th scope="col">Status</th>
-            <th>View Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let application of creditApplications">
-            <td>{{ application.full_name }}</td>
-            <td>{{ application.address }}</td>
-            <td>{{ application.contact_details }}</td>
-            <td>{{ application.monthly_income | currency }}</td>
-            <td>{{ application.employer_name }}</td>
-            <td>{{ application.employment_type }}</td>
-            <td>
-              <!-- Open image in new tab -->
-              <a
-                *ngIf="application.identity_proof"
-                [href]="application.identity_proof"
-                
-              >
-                View Proof
-              </a>
-              <span *ngIf="!application.identity_proof">No Proof Uploaded</span>
-            </td>
-            <td>
-                <span [ngClass]="{
-                      'status-pending': application.status === 'Pending',
-                      'status-approved': application.status === 'Approved',
-                      'status-rejected': application.status === 'Rejected',
-                      'status-review': application.status === 'Review Required'
-                    }">
-                  {{ application.status }}
-                </span>
-              </td>
-             <td>
-  <button 
-    class="btn btn-dark" 
-    [routerLink]="['/user/layout/all-user-details']">
-    View Details
-  </button>
-</td>
-              
-              
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <h2 class="table-title" style="margin-top: 200px;">Credit Applications</h2>
+  <div class="table-responsive">
+    <table class="table table-striped custom-table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Contact</th>
+          <th scope="col">Monthly Income</th>
+          <th scope="col">Employer Name</th>
+          <th scope="col">Employment Type</th>
+          <th scope="col">Identity Proof</th>
+          <th scope="col">Status</th>
+          <th>View Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let application of creditApplications">
+          <td>{{ application.full_name }}</td>
+          <td>{{ application.address }}</td>
+          <td>{{ application.contact_details }}</td>
+          <td>{{ application.monthly_income | currency }}</td>
+          <td>{{ application.employer_name }}</td>
+          <td>{{ application.employment_type }}</td>
+          <td>
+            <!-- Open image in new tab -->
+            <a *ngIf="application.identity_proof" [href]="application.identity_proof" target="_blank">
+              View Proof
+            </a>
+            <span *ngIf="!application.identity_proof">No Proof Uploaded</span>
+          </td>
+          <td>
+            <span [ngClass]="{
+                  'status-pending': application.status === 'Pending',
+                  'status-approved': application.status === 'Approved',
+                  'status-rejected': application.status === 'Rejected',
+                  'status-review': application.status === 'Review Required'
+                }">
+              {{ application.status }}
+            </span>
+          </td>
+          <td>
+            <button 
+              *ngIf="application.status === 'Approved'" 
+              class="btn btn-dark" 
+              [routerLink]="['/user/layout/all-user-details']">
+              View Details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+</div>
