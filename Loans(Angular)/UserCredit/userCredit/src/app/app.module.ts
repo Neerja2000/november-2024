@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { OtpVerificationComponent } from './user/otp-verification/otp-verification.component';
 import { ViewCreditStatusComponent } from './user/view-credit-status/view-credit-status.component';
+import { AllDetailsComponent } from './user/all-details/all-details.component';
+import { EmiDetailsComponent } from './user/emi-details/emi-details.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { ViewCreditStatusComponent } from './user/view-credit-status/view-credit
     LoginComponent,
     OtpVerificationComponent,
     ViewCreditStatusComponent,
+    AllDetailsComponent,
+    EmiDetailsComponent,
     
    
   ],

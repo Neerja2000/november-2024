@@ -1,0 +1,70 @@
+.card {
+    border: none; /* Remove default border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px; /* Rounded corners */
+  }
+  
+  .card:hover {
+    transform: translateY(-8px); /* Lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
+  
+  /* Card Titles */
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40; /* Dark gray */
+  }
+  
+  /* Card Text */
+  .card-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f43f00; /* Bootstrap Primary Color */
+  }
+  
+  /* Table Styling */
+  .table {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Table Shadow */
+  }
+  
+  .table thead th {
+    background-color: #f43f00; /* Header background */
+    color: #fff; /* Header text */
+    border: none;
+    text-align: center;
+  }
+  
+  .table tbody tr {
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1; /* Light hover effect */
+  }
+  
+  /* Buttons */
+  .btn-success {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05); /* Button pop-up effect */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .card-text {
+      font-size: 1.2rem;
+    }
+  }
