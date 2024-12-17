@@ -187,6 +187,7 @@
 
   <!-- Transaction Table -->
   <div class="table-responsive mt-4">
+    <button class="btn btn-success mb-3" (click)="exportToExcel()"> Download Excel</button>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -199,7 +200,6 @@
         </tr>
       </thead>
       <tbody>
-       
         <tr *ngFor="let transaction of transactions">
           <td>{{ transaction.transactionId }}</td>
           <td>₹{{ transaction.amount }}</td>
@@ -211,12 +211,11 @@
               View EMI Details
             </button>
           </td>
-          
-          
         </tr>
       </tbody>
     </table>
   </div>
+  
 </div>
         </div>
       </div>

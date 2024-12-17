@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from
 import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from 'src/app/shared/transaction/transaction.service';
 import { UsersService } from 'src/app/shared/users/users.service';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-view-user-details',
@@ -128,6 +130,29 @@ export class ViewUserDetailsComponent implements OnInit {
   });
 }
   
+
+
+
+
+exportToExcel(): void {
+  const worksheetData = this.transactions.map(transaction => ({
+    'Transaction ID': transaction.transactionId,
+    'Amount': transaction.amount,
+    'Due Date': transaction.dueDate,
+    'Remarks': transaction.remark,
+    'Remaining Balance': transaction.remainingBalance,
+  }));
+
+  const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Transactions');
+
+  // Save the file
+  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+  const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+  saveAs(blob, `Transactions_${this.userId}.xlsx`);
+}
+
 }
 
 
