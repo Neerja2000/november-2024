@@ -128,7 +128,7 @@
               type="number"
               class="form-control"
               id="amount"
-              formControlName="amount"
+              formControlName="principalAmount"
             />
           </div>
           <div class="mb-3">
@@ -202,7 +202,7 @@
       <tbody>
         <tr *ngFor="let transaction of transactions">
           <td>{{ transaction.transactionId }}</td>
-          <td>${{ transaction.amount }}</td>
+          <td>${{ transaction.principalAmount }}</td>
           <td>{{ transaction.dueDate }}</td>
           <td>{{ transaction.remark }}</td>
           <td>${{ transaction.remainingBalance }}</td>
