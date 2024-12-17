@@ -5,7 +5,7 @@ import { TransactionService } from 'src/app/shared/transaction/transaction.servi
 import { UsersService } from 'src/app/shared/users/users.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-view-user-details',
   templateUrl: './view-user-details.component.html',
@@ -73,7 +73,7 @@ export class ViewUserDetailsComponent implements OnInit {
     );
   }
   
-  addTransaction(): void {
+  addTransaction(): void { 
     if (this.transactionForm.valid) {
       const formValue = this.transactionForm.value;
       const transactionData = {
@@ -92,18 +92,40 @@ export class ViewUserDetailsComponent implements OnInit {
       this.transactionService.transactionAdd(transactionData).subscribe(
         (response: any) => {
           console.log('Transaction added successfully:', response);
-          alert('Transaction added successfully!');
-          this.transactionForm.reset(); 
-          this.fetchCreditStatus() 
+  
+          // Success alert using SweetAlert2
+          Swal.fire({
+            title: 'Success!',
+            text: 'Transaction added successfully!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          });
+  
+          this.transactionForm.reset();
+          this.fetchCreditStatus();
         },
         (error) => {
           console.error('Error adding transaction:', error.message, error);
-          alert('Failed to add transaction. Please try again.');
+  
+          // Error alert using SweetAlert2
+          Swal.fire({
+            title: 'Error!',
+            text: 'Failed to add transaction. Please try again.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
         }
       );
     } else {
       console.error('Transaction form is invalid:', this.transactionForm.errors);
-      alert('Please fill all required fields.');
+  
+      // Invalid form alert using SweetAlert2
+      Swal.fire({
+        title: 'Warning!',
+        text: 'Please fill all required fields.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
     }
   }
   
