@@ -27,13 +27,10 @@
                   <!-- Loop through EMIs -->
                   <tr *ngFor="let emi of emiDetails">
                     <td>{{ emi.emiNumber }}</td>
-                    <td>{{ emi.principalAmount | number: '1.2-2' }}</td> <!-- For principalAmount -->
-                    <td>{{ emi.interestAmount | number: '1.2-2' }}</td> <!-- For interestAmount -->
+                    <td>{{ emi.principalAmount }}</td>
+                    <td>{{ emi.interestAmount }}</td>
                     <td>{{ emi.dueDate }}</td>
-                    <td>{{ emi.settled ? (emi.principalAmount + emi.interestAmount) | number: '1.2-2' : 'Not Settled' }}</td> <!-- For total (principal + interest) -->
-
-                   
-                   
+                    <td>{{ emi.settled ? emi.principalAmount + emi.interestAmount : 'Not Settled' }}</td> <!-- Display total of principal + interest if settled -->
                     <td>
                       <button
                         class="btn btn-primary"
