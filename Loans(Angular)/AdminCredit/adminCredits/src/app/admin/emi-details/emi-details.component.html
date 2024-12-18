@@ -17,6 +17,7 @@
                   <tr>
                     <th>EMI</th>
                     <th>EMI Amount</th>
+                    <th>EMI Interest</th>
                     <th>Due Date</th>
                     <th>Settled Amount </th>
                     <th>Actions</th>
@@ -27,6 +28,7 @@
                   <tr *ngFor="let emi of emiDetails">
                     <td>{{ emi.emiId }}</td> <!-- Changed emiNumber to emiId -->
                     <td>{{ emi.principalAmount }}</td>
+                    <td>{{emi.interestAmount}}</td>
                     <td>{{ emi.dueDate }}</td>
                     <td>{{ emi.settled || 'Not Settled' }}</td>  <!-- Show settled amount or 'Not Settled' -->
                     <td>

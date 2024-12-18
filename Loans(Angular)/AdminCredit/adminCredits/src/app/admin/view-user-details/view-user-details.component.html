@@ -193,6 +193,7 @@
         <tr>
           <th>Transaction ID</th>
           <th>Amount</th>
+          <th>Total Interest</th>
           <th>Due Date</th>
           <th>Remarks</th>
           <th>Remaining Balance</th>
@@ -202,7 +203,8 @@
       <tbody>
         <tr *ngFor="let transaction of transactions">
           <td>{{ transaction.transactionId }}</td>
-          <td>${{ transaction.principalAmount }}</td>
+          <td>${{transaction.principalAmount }}</td>
+          <td>{{transaction.totalInterest}}</td>
           <td>{{ transaction.dueDate }}</td>
           <td>{{ transaction.remark }}</td>
           <td>${{ transaction.remainingBalance }}</td>
