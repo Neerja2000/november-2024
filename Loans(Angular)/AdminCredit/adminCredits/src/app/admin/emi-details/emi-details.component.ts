@@ -69,7 +69,8 @@ export class EmiDetailsComponent implements OnInit {
     }
 
     // Calculate the total amount (Principal + Interest)
-    const totalAmount = this.selectedEmi.principalAmount + this.selectedEmi.interestAmount;
+    const totalAmount = (this.selectedEmi.principalAmount + this.selectedEmi.interestAmount).toFixed(2);
+
 
     // Check if the entered amount exceeds the remaining balance (Principal + Interest)
     if (this.emiForm.value.principalAmount > totalAmount) {
