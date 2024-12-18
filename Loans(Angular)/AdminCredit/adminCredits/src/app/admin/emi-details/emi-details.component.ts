@@ -53,13 +53,13 @@ export class EmiDetailsComponent implements OnInit {
       (error) => console.error('Error fetching EMI details:', error)
     );
   }
-
   openSettleModal(emi: any): void {
     this.selectedEmi = emi;
-    // Set total of principal and interest in the form control
-    const totalAmount = emi.principalAmount + emi.interestAmount;
+    // Set total of principal and interest in the form control with rounding
+    const totalAmount = Number((emi.principalAmount + emi.interestAmount).toFixed(2));
     this.emiForm.patchValue({ principalAmount: totalAmount });
-  }
+}
+
   
   
   settleEMI(): void {

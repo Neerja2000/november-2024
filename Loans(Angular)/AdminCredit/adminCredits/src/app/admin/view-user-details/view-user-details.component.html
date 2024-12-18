@@ -191,7 +191,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Transaction ID</th>
+          <th>Sr No.</th>
           <th>Amount</th>
           <th>Total Interest</th>
           <th>Due Date</th>
@@ -205,7 +205,7 @@
           <td>{{ i + 1 }}</td> 
           <td>${{transaction.principalAmount }}</td>
           <td>{{transaction.totalInterest}}</td>
-          <td>{{ transaction.dueDate }}</td>
+          <td>{{ transaction.dueDate | date: 'yyyy-MM-dd' }}</td>
           <td>{{ transaction.remark }}</td>
           <td>${{ transaction.remainingBalance }}</td>
           <td>

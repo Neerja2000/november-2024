@@ -74,10 +74,10 @@
               type="number" 
               class="form-control" 
               id="amount" 
-              formControlName="principalAmount" 
-              [value]="selectedEmi ? (selectedEmi.principalAmount + selectedEmi.interestAmount).toFixed(2) : 0" 
+              [value]="selectedEmi ? (selectedEmi.principalAmount + selectedEmi.interestAmount).toFixed(2) : '0.00'" 
               [disabled]="true" 
-          />
+            />
+            
           
           </div>
       </form>
