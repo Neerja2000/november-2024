@@ -11,10 +11,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./review-required.component.css']
 })
 export class ReviewRequiredComponent implements OnInit {
-
   applyForm!: FormGroup;
   selectedFile!: File;
   formSubmitted: boolean = false;
+  creditApplications: any[] = [];
+  isLoading: boolean = true;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -24,15 +26,45 @@ export class ReviewRequiredComponent implements OnInit {
 
   ngOnInit(): void {
     this.applyForm = this.fb.group({
-      full_name: ['', Validators.required],
-      address: ['', Validators.required],
-      contact_details: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-      monthly_income: [0, Validators.required],
-      employer_name: ['', Validators.required],
-      employment_type: ['', Validators.required],
+      full_name: [''],
+      address: [''],
+      contact_details: [
+        '',
+        ,
+      ],
+      monthly_income: [0, ],
+      employer_name: [''],
+      employment_type: [''],
     });
+    this.fetchAndPopulateData();
+  }
 
-    // Check login status
+  fetchAndPopulateData(): void {
+    this.applyFormService.getCreditApplications().subscribe({
+      next: (data) => {
+        const application = data.creditApplications[0]; // Assuming single application for the user
+        if (application) {
+          this.applyForm.patchValue({
+            full_name: application.full_name,
+            address: application.address,
+            contact_details: application.contact_details,
+            monthly_income: application.monthly_income,
+            employer_name: application.employer_name,
+            employment_type: application.employment_type,
+          });
+        }
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching credit applications:', err);
+        Swal.fire(
+          'Error',
+          'Failed to fetch application details. Please try again later.',
+          'error'
+        );
+        this.isLoading = false;
+      },
+    });
   }
 
   onFileSelected(event: any): void {
@@ -40,46 +72,39 @@ export class ReviewRequiredComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.applyForm.invalid || !this.selectedFile) {
+      Swal.fire('Invalid', 'Please fill all fields and upload a document.', 'warning');
+      return;
+    }
+
     const token = this.authService.getToken();
-    console.log('Token:', token); // Debugging
     if (!token) {
-      Swal.fire('Unauthorized', 'Unauthorized access. Redirecting to login page.', 'error'); // SweetAlert2 for unauthorized access
+      Swal.fire('Unauthorized', 'Please log in again.', 'error');
       this.router.navigate(['/login']);
-      return; // Stop further code execution if no token
+      return;
     }
-  
-    console.log('Form submission started...');
-    if (this.applyForm.valid && this.selectedFile) {
-      const formData = new FormData();
-      Object.keys(this.applyForm.value).forEach((key) =>
-        formData.append(key, this.applyForm.value[key])
-      );
-      formData.append('identity_proof', this.selectedFile);
-  
-      this.applyFormService.submitApplication(formData).subscribe({
-        next: (response) => {
-          console.log('Application submitted successfully:', response);
-          this.formSubmitted = true;
-          Swal.fire('Success', 'Application submitted successfully!', 'success'); // SweetAlert2 success message
-          this.applyForm.reset();
-        },
-        error: (error) => {
-          console.error('Error submitting application:', error);
-          if (error.status === 500 && error.error.message === "Database error") {
-            // Custom SweetAlert for "A credit application already exists" error
-            Swal.fire('Error', 'A credit application already exists for this user. Please check your application status.', 'error');
-          } else if (error.status === 401) {
-            Swal.fire('Unauthorized', 'Unauthorized access. Please log in again.', 'error'); // SweetAlert2 for unauthorized access
-            this.router.navigate(['/login']);
-          } else {
-            Swal.fire('Error', 'Error submitting application. Please try again.', 'error'); // SweetAlert2 for general error
-          }
-        },
-      });
-    } else {
-      Swal.fire('Invalid', 'Please fill all fields and upload a document.', 'warning'); // SweetAlert2 for form validation error
-    }
+
+    const formData = new FormData();
+    Object.keys(this.applyForm.value).forEach((key) =>
+      formData.append(key, this.applyForm.value[key])
+    );
+    formData.append('identity_proof', this.selectedFile);
+
+    this.applyFormService.submitApplication(formData).subscribe({
+      next: (response) => {
+        console.log('Application updated successfully:', response);
+        this.formSubmitted = true;
+        Swal.fire('Success', 'Application updated successfully!', 'success');
+        this.applyForm.reset();
+      },
+      error: (error) => {
+        console.error('Error updating application:', error);
+        Swal.fire(
+          'Error',
+          'Error updating application. Please try again later.',
+          'error'
+        );
+      },
+    });
   }
-  
-  
 }
