@@ -28,7 +28,7 @@ export class ReviewRequiredComponent implements OnInit {
   ngOnInit(): void {
     // Initialize the form before using it
     this.applyForm = this.fb.group({
-      applicationId: [''],  // Add applicationId field to the form
+      
       full_name: [''],
       address: [''],
       contact_details: ['', Validators.required],
@@ -55,7 +55,7 @@ export class ReviewRequiredComponent implements OnInit {
         const application = data.creditApplications[0]; // Assuming single application for the user
         if (application) {
           this.applyForm.patchValue({
-            applicationId: application.applicationId,  // Set the applicationId
+       // Set the applicationId
             full_name: application.full_name,
             address: application.address,
             contact_details: application.contact_details,
