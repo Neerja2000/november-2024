@@ -12,7 +12,8 @@
           <th scope="col">Employment Type</th>
           <th scope="col">Identity Proof</th>
           <th scope="col">Status</th>
-          <th>View Details</th>
+          <th *ngIf="hasApprovedApplications()">View Details</th>
+          <th *ngIf="hasReviewRequiredApplications()">Edit Application</th>
         </tr>
       </thead>
       <tbody>
@@ -43,10 +44,19 @@
           <td>
             <button 
               *ngIf="application.status === 'Approved'" 
-              class="btn btn-dark" 
+              class="btn btn-dark btn-sm" 
               [routerLink]="['/user/layout/all-user-details']">
               View Details
             </button>
+          </td>
+
+          <td>
+            <button 
+            *ngIf="application.status === 'Review Required'" 
+            class="btn btn-dark" 
+            [routerLink]="['/user/layout/all-user-details']">
+           Edit
+          </button>
           </td>
         </tr>
       </tbody>
