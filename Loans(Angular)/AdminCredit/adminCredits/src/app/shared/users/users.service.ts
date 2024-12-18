@@ -14,7 +14,8 @@ export class UsersService {
     this.token=this.authService.getToken()
   }
   userApplications(){
-    return this.http.get(this.adminbaseurl+'/applications')
+    const headers = new HttpHeaders().set('auth-token', this.token);
+    return this.http.get(this.adminbaseurl+'/applications',{ headers })
   }
   changeStatus(applicationId: number, status: string, reviewMessage: string, userId: number) {
     const headers = new HttpHeaders().set('auth-token', this.token);
