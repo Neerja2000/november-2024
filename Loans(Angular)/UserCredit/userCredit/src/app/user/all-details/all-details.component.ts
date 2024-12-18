@@ -29,4 +29,10 @@ export class AllDetailsComponent implements OnInit {
       },
     });
   }
+
+  calculateTotalAmount(transaction: any): number {
+    const principalAmount = transaction.principalAmount || 0;
+    const totalInterest = transaction.totalInterest || 0;
+    return principalAmount + totalInterest;
+  }
 }

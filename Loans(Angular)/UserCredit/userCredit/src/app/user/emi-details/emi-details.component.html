@@ -17,8 +17,10 @@
           <tr>
             <th>EMI ID</th>
             <th>Amount</th>
-            <th>Due Date</th>
+            
             <th>Interest</th>
+            <th>Total Amount</th>
+            <th>Due Date</th>
             <th>Settled</th>
             <th>Remaining Balance</th>
             
@@ -28,10 +30,12 @@
           <tr *ngFor="let emi of emiDetails">
             <td>{{ emi.emiId }}</td>
             <td>{{ emi.principalAmount }}</td>
-            <td>{{ emi.dueDate }}</td>
-            <td>{{ emi.interest }}</td>
+            
+            <td>{{ emi.interestAmount }}</td>
+            <td>${{ calculateTotalAmount(emi) }}</td>
+            <td>{{ emi.dueDate | date: 'yyyy-MM-dd' }}</td>
             <td>{{ emi.settled }}</td>
-            <td>{{ emi.remainingBalance }}</td>
+            <td>${{  calculateTotalremaining(emi) }}</td>
             
           </tr>
         </tbody>

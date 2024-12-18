@@ -50,5 +50,19 @@ export class EmiDetailsComponent implements OnInit {
     });
   }
   
+
+  calculateTotalAmount(emi: any): number {
+    const principalAmount = emi.principalAmount || 0;
+    const interestAmount = emi.interestAmount || 0;
+    return principalAmount + interestAmount;
+  }
+
+ 
   
+
+  calculateTotalremaining(emi: any): number {
+    const remainingPrincipal = emi.remainingPrincipal || 0;
+    const remainingInterest = emi.remainingInterest || 0;
+    return remainingPrincipal + remainingInterest;
+  }
 }

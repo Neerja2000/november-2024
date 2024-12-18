@@ -50,6 +50,8 @@
                     <tr>
                       <th>Transaction ID</th>
                       <th>Amount</th>
+                      <th>Interest</th>
+                      <th>Total Amount</th>
                       <th>Due Date</th>
                       <th>Remarks</th>
                       <th>Remaining Balance</th>
@@ -59,8 +61,10 @@
                   <tbody>
                     <tr *ngFor="let transaction of transactions">
                       <td>{{ transaction.transactionId }}</td>
-                      <td>${{ transaction.totalAmountAfterInterest }}</td>
-                      <td>{{ transaction.dueDate }}</td>
+                      <td>${{ transaction.principalAmount }}</td>
+                      <td>{{transaction.totalInterest}}</td>
+                      <td>${{ calculateTotalAmount(transaction) }}</td>
+                      <td>{{ transaction.dueDate  | date: 'yyyy-MM-dd'}}</td>
                       <td>{{ transaction.remark }}</td>
                       <td>${{ transaction.remainingBalance }}</td>
                       <td>
