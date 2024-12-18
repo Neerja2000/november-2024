@@ -21,17 +21,15 @@
     <h4 class="alert-heading display-4 text-white d-flex justify-content-center  align-items-center text-center" style="margin-top: 100px;">Application Updated Successfully!</h4>
     <p class="lead text  d-flex justify-content-center  align-items-center text-center">Thank you. We will review your application and get back to you shortly.</p>
   </div>
-  <div class="container">
+  <div class="container" *ngIf="!formSubmitted">
     <div class="row">
       <div class="col-md mb-4">
         <div class="card text-center shadow-lg" style="border-radius: 10px;">
-         
           <div class="card-body">
             <h6 class="card-title text-dark">Update Requirement</h6>
             <p class="card-text text-muted">
-              Please upload the missing documents to proceed with the review.
+              {{ reviewMessage }}
             </p>
-           
           </div>
         </div>
       </div>
@@ -52,8 +50,7 @@
       enctype="multipart/form-data"
       class="hero-form mt-4"
     >
-      <!-- Name Field -->
-       <!-- Example: You could also show the application ID somewhere in the form -->
+     
       
       
 

@@ -16,6 +16,7 @@ export class ReviewRequiredComponent implements OnInit {
   formSubmitted: boolean = false;
   creditApplications: any[] = [];
   isLoading: boolean = true;
+  reviewMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -66,6 +67,7 @@ export class ReviewRequiredComponent implements OnInit {
             employer_name: application.employer_name,
             employment_type: application.employment_type,
           });
+          this.reviewMessage = application.review_message || 'No review message available.';
         }
         this.isLoading = false;
       },
