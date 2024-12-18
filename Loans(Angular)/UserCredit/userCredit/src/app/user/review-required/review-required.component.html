@@ -16,7 +16,7 @@
 </section>
 
 
-<section class="loan-application-section mt-3">
+<section class="loan-application-section mt-5 mb-5">
   <div class="alert alert-success form-submitted-alert bg-dark" style="height: 400px;" *ngIf="formSubmitted">
     <h4 class="alert-heading display-4 text-white d-flex justify-content-center  align-items-center text-center" style="margin-top: 100px;">Application Updated Successfully!</h4>
     <p class="lead text  d-flex justify-content-center  align-items-center text-center">Thank you. We will review your application and get back to you shortly.</p>
@@ -25,11 +25,9 @@
     <div class="row">
       <div class="col-md mb-4">
         <div class="card text-center shadow-lg" style="border-radius: 10px;">
-          <div class="card-header  text-white" style="background-color: #f43f00;">
-            <h5>Revision Required</h5>
-          </div>
+         
           <div class="card-body">
-            <h4 class="card-title text-dark">Additional Information Needed</h4>
+            <h6 class="card-title text-dark">Update Requirement</h6>
             <p class="card-text text-muted">
               Please upload the missing documents to proceed with the review.
             </p>
@@ -42,7 +40,7 @@
 
  
   
-  <div class="container"  *ngIf="!formSubmitted">
+  <div class="container mt-5"  *ngIf="!formSubmitted">
     <h2 class="section-title">Update Details</h2>
   
   
