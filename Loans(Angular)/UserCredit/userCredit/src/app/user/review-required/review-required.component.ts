@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { UserLoginService } from 'src/app/shared/userLogin/user-login.service';
 import Swal from 'sweetalert2';
@@ -21,23 +21,33 @@ export class ReviewRequiredComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private applyFormService: UserLoginService,
-    private router: Router
+    private router: Router,
+    private route:ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    // Initialize the form before using it
     this.applyForm = this.fb.group({
+      applicationId: [''],  // Add applicationId field to the form
       full_name: [''],
       address: [''],
-      contact_details: [
-        '',
-        ,
-      ],
-      monthly_income: [0, ],
+      contact_details: ['', Validators.required],
+      monthly_income: [0, Validators.required],
       employer_name: [''],
       employment_type: [''],
     });
+  
+    const applicationId = this.route.snapshot.paramMap.get('applicationId');
+    console.log('Application ID:', applicationId);
+  
+    // Ensure applyForm is initialized before calling patchValue
+    if (applicationId) {
+      this.applyForm.patchValue({ applicationId: applicationId }); // Populate the form with the application ID
+    }
+  
     this.fetchAndPopulateData();
   }
+  
 
   fetchAndPopulateData(): void {
     this.applyFormService.getCreditApplications().subscribe({
@@ -45,6 +55,7 @@ export class ReviewRequiredComponent implements OnInit {
         const application = data.creditApplications[0]; // Assuming single application for the user
         if (application) {
           this.applyForm.patchValue({
+            applicationId: application.applicationId,  // Set the applicationId
             full_name: application.full_name,
             address: application.address,
             contact_details: application.contact_details,
@@ -72,12 +83,17 @@ export class ReviewRequiredComponent implements OnInit {
   }
 
   onSubmit(): void {
-   
-
     const token = this.authService.getToken();
     if (!token) {
       Swal.fire('Unauthorized', 'Please log in again.', 'error');
       this.router.navigate(['/login']);
+      return;
+    }
+
+    const applicationId = this.applyForm.value.applicationId; // Retrieve applicationId from the form
+    if (!applicationId) {
+      console.log("Application ID is missing")
+      Swal.fire('Error', 'Application ID is missing.', 'error');
       return;
     }
 
@@ -87,7 +103,8 @@ export class ReviewRequiredComponent implements OnInit {
     );
     formData.append('identity_proof', this.selectedFile);
 
-    this.applyFormService.submitApplication(formData).subscribe({
+    // Pass the applicationId along with formData to the updateApplication method
+    this.applyFormService.updateApplication(applicationId, formData).subscribe({
       next: (response) => {
         console.log('Application updated successfully:', response);
         this.formSubmitted = true;

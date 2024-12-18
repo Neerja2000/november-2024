@@ -26,7 +26,7 @@ const routes: Routes = [
     path:'otp-verification',component:OtpVerificationComponent
   },
   {
-    path:'reviwed-required',component:ReviewRequiredComponent,canActivate:[AuthGuard]
+    path:'review-required/:applicationId',component:ReviewRequiredComponent,canActivate:[AuthGuard]
   },
   { path:'user/layout', component:LayoutComponent,
     children:[

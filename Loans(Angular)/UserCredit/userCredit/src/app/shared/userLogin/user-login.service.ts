@@ -47,6 +47,25 @@ export class UserLoginService {
     const headers = new HttpHeaders().set('auth-token', token); // Use 'auth-token' as the custom header name
     return this.http.post(`${this.globalbaseurl}/credit-application`, formData, { headers });
   }
+
+
+  updateApplication(applicationId: string, formData: FormData): Observable<any> {
+    const token = this.authService.getToken(); // Retrieve token from AuthService
+    
+    // If no token is found, return early with an error or handle the scenario
+    if (!token) {
+      console.error('No authentication token found');
+      throw new Error('No authentication token found');
+    }
+  
+    const headers = new HttpHeaders().set('auth-token', token); // Use 'auth-token' as the custom header name
+    
+    // Adjust the URL to include the applicationId
+    const url = `${this.globalbaseurl}/users/applications/${applicationId}`;
+    
+    return this.http.put(url, formData, { headers });
+  }
+  
   getCreditApplications(): Observable<any> {
     const token = this.authService.getToken(); // Retrieve token from AuthService
   

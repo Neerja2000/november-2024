@@ -52,11 +52,13 @@
 
           <td *ngIf="application.status === 'Review Required'" >
             <button 
-            
             class="btn btn-dark" 
-            [routerLink]="['/reviwed-required']">
-           Edit
+            [routerLink]="['/review-required', application.id]">
+            Edit
           </button>
+          
+          
+          
           </td>
         </tr>
       </tbody>
