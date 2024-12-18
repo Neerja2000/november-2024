@@ -16,6 +16,7 @@ import { OtpVerificationComponent } from './user/otp-verification/otp-verificati
 import { ViewCreditStatusComponent } from './user/view-credit-status/view-credit-status.component';
 import { AllDetailsComponent } from './user/all-details/all-details.component';
 import { EmiDetailsComponent } from './user/emi-details/emi-details.component';
+import { ReviewRequiredComponent } from './user/review-required/review-required.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { EmiDetailsComponent } from './user/emi-details/emi-details.component';
     ViewCreditStatusComponent,
     AllDetailsComponent,
     EmiDetailsComponent,
+    ReviewRequiredComponent,
     
    
   ],

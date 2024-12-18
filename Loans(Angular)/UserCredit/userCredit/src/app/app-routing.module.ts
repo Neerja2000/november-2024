@@ -9,6 +9,7 @@ import { ViewCreditStatusComponent } from './user/view-credit-status/view-credit
 import { AuthGuard } from './authGuard/auth.guard';
 import { AllDetailsComponent } from './user/all-details/all-details.component';
 import { EmiDetailsComponent } from './user/emi-details/emi-details.component';
+import { ReviewRequiredComponent } from './user/review-required/review-required.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,9 @@ const routes: Routes = [
         path: 'emi-details/:transactionId', 
         component: EmiDetailsComponent, 
         canActivate: [AuthGuard] 
+      },
+      {
+        path:'reviwed-required',component:ReviewRequiredComponent,canActivate:[AuthGuard]
       }
     ]
 
