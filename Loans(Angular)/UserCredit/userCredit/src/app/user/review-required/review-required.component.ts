@@ -72,10 +72,7 @@ export class ReviewRequiredComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.applyForm.invalid || !this.selectedFile) {
-      Swal.fire('Invalid', 'Please fill all fields and upload a document.', 'warning');
-      return;
-    }
+   
 
     const token = this.authService.getToken();
     if (!token) {
