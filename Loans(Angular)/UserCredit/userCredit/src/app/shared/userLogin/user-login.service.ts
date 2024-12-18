@@ -61,7 +61,7 @@ export class UserLoginService {
     const headers = new HttpHeaders().set('auth-token', token); // Use 'auth-token' as the custom header name
     
     // Adjust the URL to include the applicationId
-    const url = `${this.globalbaseurl}/users/applications/${applicationId}`;
+    const url = `${this.globalbaseurl}/applications/${applicationId}`;
     
     return this.http.put(url, formData, { headers });
   }

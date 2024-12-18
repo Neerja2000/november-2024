@@ -28,7 +28,7 @@ export class ReviewRequiredComponent implements OnInit {
   ngOnInit(): void {
     // Initialize the form before using it
     this.applyForm = this.fb.group({
-      
+      applicationId: [''],
       full_name: [''],
       address: [''],
       contact_details: ['', Validators.required],
@@ -38,14 +38,17 @@ export class ReviewRequiredComponent implements OnInit {
     });
   
     const applicationId = this.route.snapshot.paramMap.get('applicationId');
-    console.log('Application ID:', applicationId);
-  
-    // Ensure applyForm is initialized before calling patchValue
-    if (applicationId) {
-      this.applyForm.patchValue({ applicationId: applicationId }); // Populate the form with the application ID
-    }
-  
-    this.fetchAndPopulateData();
+  console.log('Application ID from URL:', applicationId);
+
+  if (applicationId) {
+    this.applyForm.patchValue({ applicationId });
+    console.log('Application ID patched into the form:', applicationId);
+  } else {
+    console.warn('Application ID is missing in the URL or not found in paramMap.');
+  }
+
+  this.fetchAndPopulateData();
+
   }
   
 
@@ -83,26 +86,44 @@ export class ReviewRequiredComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log('Form Submission Initiated');
+  
+    // Retrieve token for authentication
     const token = this.authService.getToken();
+    console.log('Retrieved Token:', token);
+  
     if (!token) {
       Swal.fire('Unauthorized', 'Please log in again.', 'error');
       this.router.navigate(['/login']);
       return;
     }
-
-    const applicationId = this.applyForm.value.applicationId; // Retrieve applicationId from the form
+  
+    // Retrieve applicationId from the form
+    const applicationId = this.applyForm.value.applicationId;
+    console.log('Application ID from form:', applicationId);
+    console.log('Full Form Values:', this.applyForm.value);
+  
     if (!applicationId) {
-      console.log("Application ID is missing")
+      console.error('Application ID is missing, form values:', this.applyForm.value);
       Swal.fire('Error', 'Application ID is missing.', 'error');
       return;
     }
-
+  
+    // Prepare formData for submission
     const formData = new FormData();
-    Object.keys(this.applyForm.value).forEach((key) =>
-      formData.append(key, this.applyForm.value[key])
-    );
-    formData.append('identity_proof', this.selectedFile);
-
+    Object.keys(this.applyForm.value).forEach((key) => {
+      console.log(`Appending key: ${key}, value: ${this.applyForm.value[key]}`);
+      formData.append(key, this.applyForm.value[key]);
+    });
+    if (this.selectedFile) {
+      console.log('Appending selected file:', this.selectedFile.name);
+      formData.append('identity_proof', this.selectedFile);
+    } else {
+      console.warn('No file selected for identity_proof');
+    }
+  
+    console.log('Final FormData prepared:', formData);
+  
     // Pass the applicationId along with formData to the updateApplication method
     this.applyFormService.updateApplication(applicationId, formData).subscribe({
       next: (response) => {
@@ -121,4 +142,5 @@ export class ReviewRequiredComponent implements OnInit {
       },
     });
   }
+  
 }
