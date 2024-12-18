@@ -29,8 +29,10 @@
                     <td>{{ emi.emiNumber }}</td>
                     <td>{{ emi.principalAmount }}</td>
                     <td>{{ emi.interestAmount }}</td>
-                    <td>{{ emi.dueDate }}</td>
-                    <td>{{ emi.settled ? emi.principalAmount + emi.interestAmount : 'Not Settled' }}</td> <!-- Display total of principal + interest if settled -->
+                    <td>{{ emi.dueDate | date: 'yyyy-MM-dd' }}</td>
+
+                    <td>{{ emi.settled ? (emi.principalAmount + emi.interestAmount | number: '1.2-2') : 'Not Settled' }}</td>
+
                     <td>
                       <button
                         class="btn btn-primary"
@@ -69,13 +71,14 @@
           <div class="mb-3">
               <label for="amount" class="form-label">Total Amount (Principal + Interest)</label>
               <input 
-                  type="number" 
-                  class="form-control" 
-                  id="amount" 
-                  formControlName="principalAmount" 
-                  [value]="selectedEmi ? (selectedEmi.principalAmount + selectedEmi.interestAmount) : 0" 
-                  [disabled]="true" 
-              />
+              type="number" 
+              class="form-control" 
+              id="amount" 
+              formControlName="principalAmount" 
+              [value]="selectedEmi ? (selectedEmi.principalAmount + selectedEmi.interestAmount).toFixed(2) : 0" 
+              [disabled]="true" 
+          />
+          
           </div>
       </form>
       
