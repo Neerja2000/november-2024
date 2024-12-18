@@ -25,7 +25,7 @@ export class EmiDetailsComponent implements OnInit {
     private transactionService:TransactionService, private renderer: Renderer2
   ) {
     this.emiForm = this.fb.group({
-      principalAmount: ['', [Validators.required, Validators.min(1)]],
+      principalAmount: [0, [Validators.required, Validators.min(1)]],
     });
   }
 
@@ -56,43 +56,56 @@ export class EmiDetailsComponent implements OnInit {
 
   openSettleModal(emi: any): void {
     this.selectedEmi = emi;
-    this.emiForm.patchValue({ principalAmount: emi.principalAmount });  // Corrected the key to match the formControlName
+    // Set total of principal and interest in the form control
+    const totalAmount = emi.principalAmount + emi.interestAmount;
+    this.emiForm.patchValue({ principalAmount: totalAmount });
   }
   
-
+  
   settleEMI(): void {
     if (this.emiForm.invalid || !this.selectedEmi) {
-      console.error('Form is invalid or no EMI selected!');
-      return;
+        console.error('Form is invalid or no EMI selected!');
+        return;
     }
-  
+
+    // Calculate the total amount (Principal + Interest)
+    const totalAmount = this.selectedEmi.principalAmount + this.selectedEmi.interestAmount;
+
+    // Check if the entered amount exceeds the remaining balance (Principal + Interest)
+    if (this.emiForm.value.principalAmount > totalAmount) {
+        console.error('Settlement amount exceeds the remaining balance for this EMI');
+        return;
+    }
+
     const body = {
-      emiId: this.selectedEmi.emiId,
-      amount: this.emiForm.value.principalAmount,
+        emiId: this.selectedEmi.emiId,
+        amount: this.emiForm.value.principalAmount, // Only principal is sent for settlement
     };
-  
+
     this.transactionService.emiSettle(body).subscribe(
-      (response) => {
-        console.log('EMI settled successfully:', response);
-  
-        // Update local data (just set it as settled without showing "Amount Fully Settled")
-        const emiIndex = this.emiDetails.findIndex((emi: any) => emi.emiId === this.selectedEmi.emiId);
-        if (emiIndex > -1) {
-          this.emiDetails[emiIndex].isSettled = true;
-          this.emiDetails[emiIndex].settled = this.emiForm.value.principalAmount;  // Optionally update settled amount if needed
-        }
-  
-        // Close modal using Renderer2
-        const modalElement = this.openSettleModalRef.nativeElement;
-        this.renderer.setAttribute(modalElement, 'style', 'display: none');
-        modalElement.classList.remove('show');
-        document.body.classList.remove('modal-open');
-        const backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) backdrop.remove();
-      },
-      (error) => console.error('Error settling EMI:', error)
+        (response) => {
+            console.log('EMI settled successfully:', response);
+
+            // Update local data (settle the EMI)
+            const emiIndex = this.emiDetails.findIndex((emi: any) => emi.emiId === this.selectedEmi.emiId);
+            if (emiIndex > -1) {
+                this.emiDetails[emiIndex].isSettled = true;
+                this.emiDetails[emiIndex].settled = totalAmount; // Set total (principal + interest)
+            }
+
+            // Close modal using Renderer2
+            const modalElement = this.openSettleModalRef.nativeElement;
+            this.renderer.setAttribute(modalElement, 'style', 'display: none');
+            modalElement.classList.remove('show');
+            document.body.classList.remove('modal-open');
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) backdrop.remove();
+        },
+        (error) => console.error('Error settling EMI:', error)
     );
-  }
+}
+
+  
   
   
 }

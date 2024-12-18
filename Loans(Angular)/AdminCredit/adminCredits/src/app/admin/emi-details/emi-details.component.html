@@ -26,14 +26,13 @@
                 <tbody>
                   <!-- Loop through EMIs -->
                   <tr *ngFor="let emi of emiDetails">
-                    <td>{{ emi.emiNumber }}</td> <!-- Changed emiNumber to emiId -->
+                    <td>{{ emi.emiNumber }}</td>
                     <td>{{ emi.principalAmount }}</td>
-                    <td>{{emi.interestAmount}}</td>
+                    <td>{{ emi.interestAmount }}</td>
                     <td>{{ emi.dueDate }}</td>
-                    <td>{{ emi.settled || 'Not Settled' }}</td>  <!-- Show settled amount or 'Not Settled' -->
+                    <td>{{ emi.settled ? emi.principalAmount + emi.interestAmount : 'Not Settled' }}</td> <!-- Display total of principal + interest if settled -->
                     <td>
                       <button
-                       
                         class="btn btn-primary"
                         data-bs-toggle="modal"
                         data-bs-target="#openSettleModal"
@@ -41,9 +40,9 @@
                       >
                         Settle
                       </button>
-                      <!-- Removed 'Amount Fully Settled' span, not needed anymore -->
                     </td>
                   </tr>
+                  
                   
                 </tbody>
               </table>
@@ -68,11 +67,22 @@
       <div class="modal-body">
         <form [formGroup]="emiForm">
           <div class="mb-3">
-            <label for="amount" class="form-label">Amount</label>
-            <input type="number" class="form-control" id="amount" formControlName="principalAmount" />
+              <label for="amount" class="form-label">Total Amount (Principal + Interest)</label>
+              <input 
+                  type="number" 
+                  class="form-control" 
+                  id="amount" 
+                  formControlName="principalAmount" 
+                  [value]="selectedEmi ? (selectedEmi.principalAmount + selectedEmi.interestAmount) : 0" 
+                  [disabled]="true" 
+              />
           </div>
-        </form>
+      </form>
+      
       </div>
+      
+      
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="settleEMI()">Settle EMI</button>
