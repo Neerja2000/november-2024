@@ -41,18 +41,18 @@
               {{ application.status }}
             </span>
           </td>
-          <td>
+          <td *ngIf="application.status === 'Approved'" >
             <button 
-              *ngIf="application.status === 'Approved'" 
+              
               class="btn btn-dark btn-sm" 
               [routerLink]="['/user/layout/all-user-details']">
               View Details
             </button>
           </td>
 
-          <td>
+          <td *ngIf="application.status === 'Review Required'" >
             <button 
-            *ngIf="application.status === 'Review Required'" 
+            
             class="btn btn-dark" 
             [routerLink]="['/user/layout/all-user-details']">
            Edit
