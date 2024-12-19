@@ -26,7 +26,9 @@ export class OtpVerificationComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialize OTP form with dynamic controls for each digit
-    this.otpForm = this.fb.group({});
+    this.otpForm = this.fb.group({
+      phone_number: ['', [Validators.required]],
+    });
     for (let i = 0; i < 6; i++) {
       this.otpForm.addControl('otp' + i, this.fb.control('', [Validators.required, Validators.pattern(/^\d$/)]));  // Add control for each OTP digit
     }
@@ -61,9 +63,10 @@ export class OtpVerificationComponent implements OnInit {
 
   // Submit OTP verification
   onVerifyOTP(): void {
-    const phoneNumber = this.otpForm.get('phone_number')?.value;
+    const phoneNumber = this.otpForm.get('phone_number')?.value;  // Ensure phone number is fetched correctly
     const otp = this.getOtpString();  // Get the OTP from the input fields
     console.log("OTP from input:", otp);
+    console.log("Phone Number from form:", phoneNumber);  // Check phone number value
   
     if (otp.length !== 6 || isNaN(Number(otp))) {
       Swal.fire('Error', 'Please enter a valid 6-digit OTP.', 'error');
@@ -73,6 +76,12 @@ export class OtpVerificationComponent implements OnInit {
     // Convert OTP to a number
     const otpNumber = Number(otp);
   
+    // Ensure phoneNumber is not undefined before making the request
+    if (!phoneNumber) {
+      Swal.fire('Error', 'Phone number is required.', 'error');
+      return;
+    }
+
     // Call the API to verify OTP
     this.userLoginService.verifyOTP(phoneNumber, otpNumber).subscribe({
       next: (response) => {
