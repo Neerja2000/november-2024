@@ -54,12 +54,14 @@ filterApplications() {
       (res: any) => {
         // Filter and format the applications
         this.userApplications = res
-          .filter((application: any) => application.status !== 'Approved') // Exclude 'Approved'
+          .filter(
+            (application: any) => application.status !== 'Approved' && application.status !== 'Rejected'
+          ) // Exclude 'Approved' and 'Rejected'
           .map((application: any) => ({
             ...application,
             identity_proof: `http://194.238.17.235:7700/${application.identity_proof}`
           }));
-
+  
         console.log('User Applications:', this.userApplications);
       },
       (err: any) => {
@@ -67,6 +69,7 @@ filterApplications() {
       }
     );
   }
+  
 
   // Handle status change
  // Handle status change
