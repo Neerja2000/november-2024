@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { UserLoginService } from 'src/app/shared/userLogin/user-login.service';
 import Swal from 'sweetalert2'; // Import SweetAlert2
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,14 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   registrationForm!: FormGroup;
-
+  countries: { name: string; code: string }[] = [];
+  selectedCountryCode: string = '';
   constructor(
     private fb: FormBuilder,
     private userLoginService: UserLoginService,
     private authService: AuthService,  // Inject AuthService
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     // Initialize the loginForm
     this.loginForm = this.fb.group({
@@ -33,7 +36,40 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone_number: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      countryCode: [''], // Add country code control
     });
+    this.fetchCountries();
+  }
+
+
+  fetchCountries(): void {
+    this.http
+      .get<any[]>('https://restcountries.com/v3.1/all?fields=name,idd')
+      .subscribe({
+        next: (data) => {
+          this.countries = data
+            .filter(
+              (country) =>
+                country.idd &&
+                country.idd.root &&
+                country.idd.suffixes &&
+                country.idd.suffixes.length > 0
+            )
+            .map((country) => ({
+              name: country.name.common,
+              code: `${country.idd.root}${country.idd.suffixes[0]}`,
+            }));
+          // Default to the first country in the list
+          this.selectedCountryCode = this.countries[0]?.code || '';
+          this.registrationForm.patchValue({ countryCode: this.selectedCountryCode });
+        },
+        error: (err) => console.error('Error fetching countries:', err),
+      });
+  }
+
+  onCountryChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.selectedCountryCode = target.value;
   }
 
   // Registration form submission logic
