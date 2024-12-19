@@ -40,12 +40,23 @@
                   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
                     <label for="chk" aria-hidden="true">Login</label>
                     
-                    <input
-                      type="text"
-                      id="phone_number"
-                      formControlName="phone_number"
-                      placeholder="phone_number"
-                    />
+                    <div class="phone-container">
+                      <!-- Country Code Dropdown -->
+                      <select formControlName="countryCode" (change)="onCountryChange($event)" class="country-code">
+                        <option *ngFor="let country of countries" [value]="country.code">
+                          {{ country.name }} ({{ country.code }})
+                        </option>
+                      </select>
+                    
+                      <!-- Phone Number Field -->
+                      <input
+                        type="text"
+                        formControlName="phone_number" style="border-top-right-radius:5px; border-bottom-right-radius:5px;border-top-left-radius:0px; border-bottom-left-radius:0px;  "
+                        placeholder="Phone Number"
+                        [value]="selectedCountryCode"
+                        required
+                      />
+                    </div>
                   
                     
                     <input
