@@ -88,3 +88,50 @@ button:hover{
 #chk:checked ~ .signup label{
 	transform: scale(.6);
 }
+
+
+
+
+.phone-container {
+	width: 60%;
+	
+	justify-content: center;
+	margin: 20px auto;
+	position: relative;
+	
+  }
+  
+  .country-code {
+	width: 25%;
+	height: 25px;
+	background: #e0dede;
+	border-top-left-radius:5px; 
+	
+	border-bottom-left-radius:5px; 
+	
+	margin-right: 5px;
+	
+	border: none;
+	outline: none;
+	position: absolute;
+	left: 0;
+  }
+  
+  input[type="text"][formControlName="phone_number"] {
+	width: 75%;
+	height: 25px;
+	background: #e0dede;
+	color: #888585;
+    margin-right: 0px;
+	margin-top: 0px;
+	border: none;
+	outline: none;
+	position: relative;
+  }
+
+
+
+
+
+
+  
