@@ -16,6 +16,7 @@ export class OtpVerificationComponent implements OnInit {
   otpValue: string = '';  // To store OTP for autofill
   otpFields: string[] = Array(6).fill('');  // For 6 OTP input fields
 
+  
   constructor(
     private fb: FormBuilder,
     private userLoginService: UserLoginService,
