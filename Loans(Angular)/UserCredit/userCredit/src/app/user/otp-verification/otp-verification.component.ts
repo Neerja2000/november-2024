@@ -12,9 +12,10 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 })
 export class OtpVerificationComponent implements OnInit {
   otpForm!: FormGroup;
-  otpFields = Array(6).fill(null); // Represents 6 OTP input fields
-  phone_number: string = ''; // Store phone number from query params
-  
+  phone_number: string = '';  // To store phone number from query params
+  otpValue: string = '';  // To store OTP for autofill
+  otpFields: string[] = Array(6).fill('');  // For 6 OTP input fields
+
   constructor(
     private fb: FormBuilder,
     private userLoginService: UserLoginService,
@@ -24,61 +25,69 @@ export class OtpVerificationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Initialize OTP form and fetch phone number from query parameters
-    this.otpForm = this.fb.group({
-      phone_number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]], // Ensure valid phone number
-      ...this.createOtpControls(),
-    });
-
-    this.route.queryParams.subscribe((params) => {
-      this.phone_number = params['phone_number'] || ''; // Set phone number from URL params
-      this.otpForm.patchValue({ phone_number: this.phone_number }); // Patch phone number into the form
-    });
-  }
-
-  // Dynamically creates form controls for OTP fields
-  private createOtpControls() {
-    const controls: { [key: string]: any } = {};
+    // Initialize OTP form with dynamic controls for each digit
+    this.otpForm = this.fb.group({});
     for (let i = 0; i < 6; i++) {
-      controls[`otp${i}`] = ['', [Validators.required, Validators.pattern('^[0-9]$')]]; // Ensure OTP is a digit
+      this.otpForm.addControl('otp' + i, this.fb.control('', [Validators.required, Validators.pattern(/^\d$/)]));  // Add control for each OTP digit
     }
-    return controls;
+
+    // Fetch phone number and OTP from the query parameters
+    this.route.queryParams.subscribe((params) => {
+      this.phone_number = params['phone_number'] || '';
+      this.otpValue = params['otp'] || '';  // Autofill OTP value
+      this.otpForm.patchValue({ phone_number: this.phone_number });
+
+      // Autofill OTP fields
+      if (this.otpValue) {
+        this.autoFillOtp(this.otpValue);
+      }
+    });
+    console.log('Phone Number:', this.phone_number);
+    console.log('OTP:', this.otpValue);
   }
 
-  // Combine OTP fields into a single string
+  // Auto-fill OTP input fields
+  private autoFillOtp(otp: string): void {
+    this.otpFields = otp.split('');
+    this.otpFields.forEach((digit, index) => {
+      this.otpForm.get('otp' + index)?.setValue(digit);  // Set the value of each individual OTP field
+    });
+  }
+
+  // Get OTP as a string
   private getOtpString(): string {
-    return this.otpFields.map((_, i) => this.otpForm.get(`otp${i}`)?.value).join('');
+    return this.otpFields.join('');
   }
 
-  // Trigger OTP verification process
+  // Submit OTP verification
   onVerifyOTP(): void {
     const phoneNumber = this.otpForm.get('phone_number')?.value;
-    const otpString = this.getOtpString();
-
-    // Ensure OTP is valid (6 digits)
-    if (otpString.length !== 6 || isNaN(Number(otpString))) {
-      Swal.fire('Error', 'Please enter a valid 6-digit OTP.', 'error'); // SweetAlert2 error message
+    const otp = this.getOtpString();  // Get the OTP from the input fields
+    console.log("OTP from input:", otp);
+  
+    if (otp.length !== 6 || isNaN(Number(otp))) {
+      Swal.fire('Error', 'Please enter a valid 6-digit OTP.', 'error');
       return;
     }
-
-    // Convert OTP string to a number
-    const otp = Number(otpString);
-
-    // Log request payload for debugging
-    console.log('Request Payload:', { phone_number: phoneNumber, otp });
-
+  
+    // Convert OTP to a number
+    const otpNumber = Number(otp);
+  
     // Call the API to verify OTP
-    this.userLoginService.verifyOTP(phoneNumber, otp).subscribe({
+    this.userLoginService.verifyOTP(phoneNumber, otpNumber).subscribe({
       next: (response) => {
-        console.log('OTP Verified Successfully:', response);
-        // Store data and navigate on success
-        this.authService.storedata(response);
-        Swal.fire('Success', 'OTP Verified Successfully', 'success'); 
-        this.router.navigate(['user/layout/home']);
+        console.log('OTP Verified:', response);
+        if (response.token) {
+          this.authService.storedata(response);
+          Swal.fire('Success', 'OTP Verified Successfully', 'success');
+          this.router.navigate(['user/layout/home']);
+        } else {
+          Swal.fire('Error', 'OTP Verification failed.', 'error');
+        }
       },
       error: (error) => {
-        console.error('OTP Verification Failed:', error);
-        Swal.fire('Error', 'Invalid OTP. Please try again.', 'error'); // SweetAlert2 error message
+        console.error('OTP Verification error:', error);
+        Swal.fire('Error', 'OTP Verification failed. Please try again later.', 'error');
       },
     });
   }
