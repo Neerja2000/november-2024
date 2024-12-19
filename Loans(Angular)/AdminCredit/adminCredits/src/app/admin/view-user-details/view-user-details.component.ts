@@ -170,43 +170,6 @@ fetchUsers(): void {
 
 
 
-exportToExcel(): void {
-  // Prepare User Data for Excel
-  const userWorksheetData = this.users.map((user, index) => ({
-    'Sr No.': index + 1,
-    Name: user.full_name,
-    'Employer Name': user.employer_name,
-    'Phone No.': user.contact_details,
-    'Monthly Income': user.monthly_income,
-    Employment_Type: user.employment_type,
-    'Identity Proof': user.identity_proof,
-  }));
-
-  // Prepare Transaction Data for Excel
-  const transactionWorksheetData = this.transactions.map((transaction) => ({
-    'Transaction ID': transaction.transactionId,
-    Amount: transaction.amount,
-    'Due Date': transaction.dueDate,
-    Remarks: transaction.remark,
-    'Remaining Balance': transaction.remainingBalance,
-  }));
-
-  // Create Workbooks
-  const workbook = XLSX.utils.book_new();
-
-  // Add User Details to the Workbook
-  const userWorksheet = XLSX.utils.json_to_sheet(userWorksheetData);
-  XLSX.utils.book_append_sheet(workbook, userWorksheet, 'User Details');
-
-  // Add Transaction Details to the Workbook
-  const transactionWorksheet = XLSX.utils.json_to_sheet(transactionWorksheetData);
-  XLSX.utils.book_append_sheet(workbook, transactionWorksheet, 'Transaction Details');
-
-  // Generate Excel File
-  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-  const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-  saveAs(blob, `Full_Details_${new Date().toISOString()}.xlsx`);
-}
 
 
 }
