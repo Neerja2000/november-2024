@@ -95,9 +95,11 @@ export class LoginComponent implements OnInit {
           next: (response) => {
             console.log('Registration successful:', response);
             Swal.fire('Success', 'Registration successful! Please verify your OTP.', 'success'); // SweetAlert2 success message
-  
+            const generatedOtp = response.otp;
             // Pass phone number as a query parameter
-            this.router.navigate(['/otp-verification'], { queryParams: { phone_number: phoneNumber } });
+            this.router.navigate(['/otp-verification'], {
+              queryParams: { phone_number: phoneNumber, otp: generatedOtp },
+            });
           },
           error: (err) => {
             console.error('Registration failed:', err);
