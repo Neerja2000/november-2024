@@ -35,7 +35,9 @@
             <td>{{ emi.interestAmount }}</td>
             <td>${{ calculateTotalAmount(emi) }}</td>
             <td>{{ emi.dueDate | date: 'yyyy-MM-dd' }}</td>
-            <td>{{ emi.settled }}</td>
+            
+            <td>{{ calculateTotalremaining(emi) === 0 ? 'Fully Settled' : emi.settled }}</td>
+ 
             <td>${{  calculateTotalremaining(emi) }}</td>
             
           </tr>

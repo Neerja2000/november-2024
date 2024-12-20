@@ -28,14 +28,13 @@ export class EmiDetailsComponent implements OnInit {
   fetchEmiDetails(): void {
     this.userLoginService.getCreditApplications().subscribe({
       next: (data) => {
-        console.log('API Response:', data); // Debugging: Check full API response
+     
   
         // Find transaction with the matching transactionId
         const transaction = data.creditStatus.transactions.find(
           (t: any) => t.transactionId === this.transactionId
         );
   
-        console.log('Matched Transaction:', transaction); // Check the matched transaction
   
         if (transaction && transaction.emis && transaction.emis.length > 0) {
           this.emiDetails = transaction.emis; // Assign EMI details
@@ -63,6 +62,8 @@ export class EmiDetailsComponent implements OnInit {
   calculateTotalremaining(emi: any): number {
     const remainingPrincipal = emi.remainingPrincipal || 0;
     const remainingInterest = emi.remainingInterest || 0;
+    console.log("remaining",remainingPrincipal + remainingInterest)
     return remainingPrincipal + remainingInterest;
+   
   }
 }
