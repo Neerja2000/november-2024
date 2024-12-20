@@ -48,9 +48,11 @@ export class LoginComponent implements OnInit {
       .get<any[]>('https://restcountries.com/v3.1/all?fields=name,idd')
       .subscribe({
         next: (data) => {
+          const allowedCountries = ['India', 'Mexico', 'United States']; // Add countries you want to include
           this.countries = data
             .filter(
               (country) =>
+                allowedCountries.includes(country.name.common) &&
                 country.idd &&
                 country.idd.root &&
                 country.idd.suffixes &&
@@ -60,6 +62,7 @@ export class LoginComponent implements OnInit {
               name: country.name.common,
               code: `${country.idd.root}${country.idd.suffixes[0]}`,
             }));
+  
           // Default to the first country in the list
           this.selectedCountryCode = this.countries[0]?.code || '';
           this.registrationForm.patchValue({ countryCode: this.selectedCountryCode });
@@ -67,6 +70,7 @@ export class LoginComponent implements OnInit {
         error: (err) => console.error('Error fetching countries:', err),
       });
   }
+  
 
   onCountryChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
