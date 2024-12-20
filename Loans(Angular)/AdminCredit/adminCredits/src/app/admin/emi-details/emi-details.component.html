@@ -39,6 +39,7 @@
                     <td>
                       <button
                         class="btn btn-primary"
+                        [disabled]="emi.remainingInterest === 0 && emi.remainingPrincipal === 0"
                         data-bs-toggle="modal"
                         data-bs-target="#openSettleModal"
                         (click)="openSettleModal(emi)"

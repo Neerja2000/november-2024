@@ -83,43 +83,51 @@ export class EmiDetailsComponent implements OnInit {
       console.error('Form is invalid or no EMI selected!');
       return;
     }
-
+  
     const totalAmount = (
       this.selectedEmi.principalAmount + this.selectedEmi.interestAmount
     ).toFixed(2);
-
+  
     if (this.emiForm.value.principalAmount > totalAmount) {
       console.error('Settlement amount exceeds the remaining balance!');
       return;
     }
-
+  
     const body = {
       emiId: this.selectedEmi.emiId,
       amount: this.emiForm.value.principalAmount,
     };
-
+  
     this.transactionService.emiSettle(body).subscribe(
       (response) => {
         console.log('EMI settled successfully:', response);
-
+  
+        // Find the settled EMI and update its state
         const emiIndex = this.emiDetails.findIndex(
           (emi: any) => emi.emiId === this.selectedEmi.emiId
         );
         if (emiIndex > -1) {
           this.emiDetails[emiIndex].isSettled = true;
           this.emiDetails[emiIndex].settled = totalAmount;
+          this.emiDetails[emiIndex].remainingInterest = 0;  // Update remainingInterest
+          this.emiDetails[emiIndex].remainingPrincipal = 0;  // Update remainingPrincipal
         }
-
+  
+        // Close the modal
         const modalElement = this.openSettleModalRef.nativeElement;
         this.renderer.setAttribute(modalElement, 'style', 'display: none');
         modalElement.classList.remove('show');
         document.body.classList.remove('modal-open');
         const backdrop = document.querySelector('.modal-backdrop');
         if (backdrop) backdrop.remove();
+  
+        // Re-fetch EMI details to ensure the UI is updated after settlement
+        this.fetchEmiDetails();
       },
       (error: any) => console.error('Error settling EMI:', error)
     );
   }
+  
 
   fetchUsers(): void {
     this.emiService.userApplications().subscribe(
