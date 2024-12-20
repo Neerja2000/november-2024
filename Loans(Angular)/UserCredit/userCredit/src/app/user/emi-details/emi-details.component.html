@@ -27,8 +27,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let emi of emiDetails">
-            <td>{{ emi.emiId }}</td>
+          <tr *ngFor="let emi of emiDetails ; let i = index">
+                     
+            <td>{{ i + 1 }}</td> 
             <td>{{ emi.principalAmount }}</td>
             
             <td>{{ emi.interestAmount }}</td>

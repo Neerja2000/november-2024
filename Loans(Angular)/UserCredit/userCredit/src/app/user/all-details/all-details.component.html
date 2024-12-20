@@ -59,8 +59,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let transaction of transactions">
-                      <td>{{ transaction.transactionId }}</td>
+                    <tr *ngFor="let transaction of transactions; let i = index">
+                     
+                        <td>{{ i + 1 }}</td> 
                       <td>${{ transaction.principalAmount }}</td>
                       <td>{{transaction.totalInterest}}</td>
                       <td>${{ calculateTotalAmount(transaction) }}</td>

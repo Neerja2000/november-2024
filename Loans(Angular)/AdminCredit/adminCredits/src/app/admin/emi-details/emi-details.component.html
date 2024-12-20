@@ -30,7 +30,7 @@
                   <!-- Loop through EMIs -->
                   <tr *ngFor="let emi of emiDetails">
                     <td>{{ emi.emiNumber }}</td>
-                    <td>{{ emi.principalAmount }}</td>
+                    <td>${{ emi.principalAmount }}</td>
                     <td>{{ emi.interestAmount }}</td>
                     <td>{{ emi.dueDate | date: 'yyyy-MM-dd' }}</td>
 
