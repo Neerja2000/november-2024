@@ -73,50 +73,35 @@ export class LoginComponent implements OnInit {
     this.selectedCountryCode = target.value;
   }
 
-  // Registration form submission logic
   onSubmit(): void {
     if (this.registrationForm.invalid) {
-      Swal.fire('Error', 'Please fill in all fields correctly.', 'error'); // Show error for invalid form
+      Swal.fire('Error', 'Please fill in all fields correctly.', 'error');
       return;
     }
   
-    console.log('hello');
-    if (this.registrationForm.valid) {
-      const phoneNumber = this.registrationForm.value.phone_number;
-  
-      this.userLoginService
-        .register(
-          this.registrationForm.value.name,
-          this.registrationForm.value.email,
-          phoneNumber,
-          this.registrationForm.value.password
-        )
-        .subscribe({
-          next: (response) => {
-            console.log('Registration successful:', response);
-            Swal.fire('Success', 'Registration successful! Please verify your OTP.', 'success'); // SweetAlert2 success message
-            const generatedOtp = response.otp;
-            // Pass phone number as a query parameter
-            this.router.navigate(['/otp-verification'], {
-              queryParams: { phone_number: phoneNumber, otp: generatedOtp },
-            });
-          },
-          error: (err) => {
-            console.error('Registration failed:', err);
-  
-            // Check for "Duplicate entry" error in the response
-            if (err.status === 500 && err.error.sqlMessage && err.error.sqlMessage.includes('Duplicate entry')) {
-              const duplicateEmail = err.error.sqlMessage.split('\'')[1]; // Extract duplicate email from the error message
-              Swal.fire('Error', `The email address ${duplicateEmail} is already registered. Please use a different email.`, 'error');
-            } else {
-              Swal.fire('Error', 'Registration failed. Please try again.', 'error'); // General error message
-            }
-          },
+    this.userLoginService
+    .register(
+      this.registrationForm.value.name,
+      this.registrationForm.value.email,
+      this.registrationForm.value.phone_number,
+      this.registrationForm.value.password
+    )
+    .subscribe({
+      next: (response) => {
+        console.log('Registration successful:', response);
+        Swal.fire('Success', 'Registration successful! Please verify your OTP.', 'success');
+        this.router.navigate(['/otp-verification'], {
+          queryParams: { phone_number: this.registrationForm.value.phone_number, otp: response.otp },
         });
-    } else {
-      console.log('Form is invalid');
-    }
+      },
+      error: (err) => {
+        console.error('Registration failed:', err);
+        Swal.fire('Error', err.error.message ,'error');
+      },
+    });
+  
   }
+  
   
   
   

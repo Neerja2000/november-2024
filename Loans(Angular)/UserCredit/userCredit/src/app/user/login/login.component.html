@@ -28,7 +28,11 @@
                     </div>
                     
                 
-                    <input type="password" formControlName="password" placeholder="Password" required>
+                    <input type="password" formControlName="password" placeholder="Password" required style="margin-bottom: 3px;">
+                    <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched"   class="error-message d-flex justify-content-center" >
+                      <span style="color: red; margin: 0px; padding: 0px; font-size: 10px;font-weight: lighter;">Password must be at least 6 characters long.</span>
+                    </div>
+                
                     <button type="submit">Sign up</button>
                   </form>
                 </div>
