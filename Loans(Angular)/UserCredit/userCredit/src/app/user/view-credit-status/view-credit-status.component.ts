@@ -29,6 +29,7 @@ export class ViewCreditStatusComponent implements OnInit {
     });
   }
 
+  
   // Check if there are any approved applications
   hasApprovedApplications(): boolean {
     return this.creditApplications.some(app => app.status === 'Approved');
