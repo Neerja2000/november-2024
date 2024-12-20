@@ -38,11 +38,11 @@ export class AdminLoginComponent implements OnInit {
   
           // Navigate to the dashboard or other page
           this.router.navigate(['/layout/dashboard']); // Example redirection
-  
+          
           Swal.fire({
             icon: 'success',
-            title: 'Login Successful',
-            text: 'You have logged in successfully!',
+            title: 'Inicio de Sesión Exitoso',
+            text: '¡Has iniciado sesión correctamente!',
           });
         },
         (err: any) => {
@@ -52,22 +52,22 @@ export class AdminLoginComponent implements OnInit {
             // Unauthorized, wrong credentials
             Swal.fire({
               icon: 'error',
-              title: 'Invalid Credentials',
-              text: 'The email or password you entered is incorrect. Please try again.',
+              title: 'Credenciales Inválidas',
+              text: 'El correo electrónico o la contraseña que ingresaste son incorrectos. Por favor, inténtalo de nuevo.',
             });
           } else if (err.status === 500) {
             // Server error
             Swal.fire({
               icon: 'error',
-              title: 'Server Error',
-              text: 'There was an issue with the server. Please try again later.',
+              title: 'Error del Servidor',
+              text: 'Hubo un problema con el servidor. Por favor, inténtalo más tarde.',
             });
           } else {
             // General error
             Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: 'An unexpected error occurred. Please try again.',
+              text: 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo.',
             });
           }
         }
@@ -76,10 +76,9 @@ export class AdminLoginComponent implements OnInit {
       console.log('Invalid form data');
       Swal.fire({
         icon: 'warning',
-        title: 'Invalid Form',
-        text: 'Please fill in all required fields correctly.',
+        title: 'Formulario Inválido',
+        text: 'Por favor, completa todos los campos obligatorios correctamente.',
       });
     }
   }
-  
 }
