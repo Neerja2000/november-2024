@@ -1,126 +1,117 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md  mt-4">
-            <div class="card mt-5">
-                <div class="card-body">
-                   
-                    <div class="row">
-                        <div class="col-md-9">
-                            <h1>View Users</h1>
-                        </div>
-                        <div class="col-md">
-         <!-- Search Box -->
-                            <div class="input-group mb-3">
-                                <input
-                                type="text"
-                               class="form-control"
-                                placeholder=" Search "
-                                [(ngModel)]="searchTerm"
-                                aria-label="Search"
-                                aria-describedby="button-search"
-                              
-                                />
-                                <button class="btn btn-primary" type="button" id="button-search">
-                                    Search
-                                    </button>
-                            </div>
-                        </div>
-                    </div>
+  <div class="row">
+      <div class="col-md  mt-4">
+          <div class="card mt-5">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-9">
+                          <h1>Ver Usuarios</h1>
+                      </div>
+                      <div class="col-md">
+                          <!-- Cuadro de Búsqueda -->
+                          <div class="input-group mb-3">
+                              <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Buscar"
+                                  [(ngModel)]="searchTerm"
+                                  aria-label="Buscar"
+                                  aria-describedby="button-search"
+                              />
+                              <button class="btn btn-primary" type="button" id="button-search">
+                                  Buscar
+                              </button>
+                          </div>
+                      </div>
+                  </div>
 
-                    <table class="table table-striped mt-5" id="table1">
-                        <thead>
-                            <tr>
-                                <th>Sr No.</th>
-                                <th>Name</th>
-                                <th>Employer Name</th>
-                                <th>Phone No.</th>
-                               <th>Salary</th>
-                               <th>Employment Type</th>
-                               <th>Document</th>
-                               <th>Address</th>
-                               <th>Action</th>
-                               
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let application of filterApplications(); let i = index">
-                                <td>{{ i + 1 }}</td>
-                                <td class="text-bold-500">{{ application.full_name }}</td>
-                                <td>{{ application.employer_name }}</td>
-                                <td class="text-bold-500">{{ application.contact_details }}</td>
-                                <td>${{ application.monthly_income }}</td>
-                                <td>{{ application.employment_type }}</td>
-                                <td>
+                  <table class="table table-striped mt-5" id="table1">
+                      <thead>
+                          <tr>
+                              <th>N.º</th>
+                              <th>Nombre</th>
+                              <th>Nombre del Empleador</th>
+                              <th>N.º de Teléfono</th>
+                              <th>Salario</th>
+                              <th>Tipo de Empleo</th>
+                              <th>Documento</th>
+                              <th>Dirección</th>
+                              <th>Acción</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let application of filterApplications(); let i = index">
+                              <td>{{ i + 1 }}</td>
+                              <td class="text-bold-500">{{ application.full_name }}</td>
+                              <td>{{ application.employer_name }}</td>
+                              <td class="text-bold-500">{{ application.contact_details }}</td>
+                              <td>${{ application.monthly_income }}</td>
+                              <td>{{ application.employment_type }}</td>
+                              <td>
                                   <a [href]="application.identity_proof" target="_blank" rel="noopener noreferrer">
-                                    <ng-container *ngIf="isImage(application.identity_proof); else fileIcon">
-                                      <img [src]="application.identity_proof" alt="Uploaded File" class="img-fluid" style="max-width: 100px; height: auto;">
-                                    </ng-container>
-                                    <ng-template #fileIcon>
-                                      <div class="text-center">
-                                        <i *ngIf="isPDF(application.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
-                                        <i *ngIf="isZIP(application.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
-                                        <i *ngIf="!isImage(application.identity_proof) && !isPDF(application.identity_proof) && !isZIP(application.identity_proof)" 
-                                           class="bi bi-file-earmark" style="font-size: 2rem;"></i>
-                                        <p>{{ getFileExtension(application.identity_proof) | uppercase }} File</p>
-                                      </div>
-                                    </ng-template>
+                                      <ng-container *ngIf="isImage(application.identity_proof); else fileIcon">
+                                          <img [src]="application.identity_proof" alt="Archivo Subido" class="img-fluid" style="max-width: 100px; height: auto;">
+                                      </ng-container>
+                                      <ng-template #fileIcon>
+                                          <div class="text-center">
+                                              <i *ngIf="isPDF(application.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                              <i *ngIf="isZIP(application.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                              <i *ngIf="!isImage(application.identity_proof) && !isPDF(application.identity_proof) && !isZIP(application.identity_proof)" 
+                                                  class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                              <p>{{ getFileExtension(application.identity_proof) | uppercase }} Archivo</p>
+                                          </div>
+                                      </ng-template>
                                   </a>
-                                </td>
-                                <td>{{ application.address }}</td>
-                                <td>
+                              </td>
+                              <td>{{ application.address }}</td>
+                              <td>
                                   <div class="d-flex">
-                                    <i 
-                                      class="bi bi-check text-success me-2 cursor-pointer" 
-                                      (click)="statusChanged(application.id, 'Approved', application.user_id)" 
-                                      title="Approved" style="font-size: 30px;">
-                                    </i>
-                                    <i 
-                                      class="bi bi-x text-danger cursor-pointer" 
-                                      (click)="statusChanged(application.id, 'Rejected', application.user_id)" 
-                                      title="Rejected" style="font-size: 30px;">
-                                    </i>
-                                    <i 
-                                      class="bi bi-exclamation text-warning me-2 cursor-pointer" 
-                                      (click)="statusChanged(application.id, 'Review Required', application.user_id)" 
-                                      title="Review Required" style="font-size: 30px;">
-                                    </i>
+                                      <i 
+                                          class="bi bi-check text-success me-2 cursor-pointer" 
+                                          (click)="statusChanged(application.id, 'Approved', application.user_id)" 
+                                          title="Aprobado" style="font-size: 30px;">
+                                      </i>
+                                      <i 
+                                          class="bi bi-x text-danger cursor-pointer" 
+                                          (click)="statusChanged(application.id, 'Rejected', application.user_id)" 
+                                          title="Rechazado" style="font-size: 30px;">
+                                      </i>
+                                      <i 
+                                          class="bi bi-exclamation text-warning me-2 cursor-pointer" 
+                                          (click)="statusChanged(application.id, 'Review Required', application.user_id)" 
+                                          title="Revisión Requerida" style="font-size: 30px;">
+                                      </i>
                                   </div>
-                                </td>
-                              </tr>
-                              
-                              
-<!-- Modal -->
-<div class="modal fade" id="creditModal" tabindex="-1" aria-labelledby="creditModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="creditModalLabel">Add Credit</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="creditAmount" class="form-label">Credit Amount</label>
-                        <input type="number" class="form-control" id="creditAmount" placeholder="Enter credit amount" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
-                            
-                              
-                                                              
-                                                                    
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                              </td>
+                          </tr>
 
+                          <!-- Modal -->
+                          <div class="modal fade" id="creditModal" tabindex="-1" aria-labelledby="creditModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="creditModalLabel">Añadir Crédito</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <form>
+                                              <div class="mb-3">
+                                                  <label for="creditAmount" class="form-label">Monto del Crédito</label>
+                                                  <input type="number" class="form-control" id="creditAmount" placeholder="Ingrese el monto del crédito" required>
+                                              </div>
+                                          </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Enviar</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

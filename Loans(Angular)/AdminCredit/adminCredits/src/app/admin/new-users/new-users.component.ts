@@ -15,53 +15,52 @@ export class NewUsersComponent implements OnInit {
   ngOnInit(): void {
     this.getUserApplications();
   }
-searchTerm:string=''
-filterApplications() {
-  if (!this.searchTerm.trim()) {
-    return this.userApplications;
+
+  searchTerm: string = '';
+  filterApplications() {
+    if (!this.searchTerm.trim()) {
+      return this.userApplications;
+    }
+
+    const term = this.searchTerm.toLowerCase();
+    return this.userApplications.filter(application =>
+      application.full_name.toLowerCase().includes(term) ||
+      application.contact_details.includes(term)
+    );
   }
-
-  const term = this.searchTerm.toLowerCase();
-  return this.userApplications.filter(application =>
-    application.full_name.toLowerCase().includes(term) ||
-    application.contact_details.includes(term)
-  );
-}
-
 
   isImage(fileUrl: string): boolean {
     const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
     const extension = this.getFileExtension(fileUrl);
     return imageExtensions.includes(extension);
   }
-  
+
   isPDF(fileUrl: string): boolean {
     return this.getFileExtension(fileUrl) === 'pdf';
   }
-  
+
   isZIP(fileUrl: string): boolean {
     const zipExtensions = ['zip', 'rar', '7z'];
     return zipExtensions.includes(this.getFileExtension(fileUrl));
   }
-  
+
   getFileExtension(fileUrl: string): string {
     return fileUrl.split('.').pop()?.toLowerCase() || '';
   }
-  
+
   // Fetch user applications
   getUserApplications() {
     this.userService.userApplications().subscribe(
       (res: any) => {
-        // Filter and format the applications
         this.userApplications = res
           .filter(
             (application: any) => application.status !== 'Approved' && application.status !== 'Rejected'
-          ) // Exclude 'Approved' and 'Rejected'
+          )
           .map((application: any) => ({
             ...application,
             identity_proof: `http://194.238.17.235:7700/${application.identity_proof}`
           }));
-  
+
         console.log('User Applications:', this.userApplications);
       },
       (err: any) => {
@@ -69,115 +68,105 @@ filterApplications() {
       }
     );
   }
-  
 
   // Handle status change
- // Handle status change
-statusChanged(applicationId: number, status: string, userId: number) {
-  if (status === 'Approved') {
-    Swal.fire({
-      title: 'Enter Credit Limit',
-      input: 'number',
-      inputPlaceholder: 'Enter the credit limit',
-      showCancelButton: true,
-      confirmButtonText: 'Approve',
-      cancelButtonText: 'Cancel',
-      inputValidator: (value) => {
-        const creditLimit = parseFloat(value);
-        if (!value) {
-          return 'Credit limit is required!';
+  statusChanged(applicationId: number, status: string, userId: number) {
+    if (status === 'Approved') {
+      Swal.fire({
+        title: 'Ingrese el límite de crédito',
+        input: 'number',
+        inputPlaceholder: 'Ingrese el límite de crédito',
+        showCancelButton: true,
+        confirmButtonText: 'Aprobar',
+        cancelButtonText: 'Cancelar',
+        inputValidator: (value) => {
+          const creditLimit = parseFloat(value);
+          if (!value) {
+            return '¡El límite de crédito es obligatorio!';
+          }
+          if (isNaN(creditLimit) || creditLimit <= 0) {
+            return 'Por favor, introduzca un límite de crédito válido';
+          }
+          return undefined;
         }
-        if (isNaN(creditLimit) || creditLimit <= 0) {
-          return 'Please enter a valid credit limit';
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const creditLimit = parseFloat(result.value);
+          this.updateCreditLimit(userId, creditLimit)
+            .then(() => this.changeStatus(applicationId, status, '', userId))
+            .then(() => {
+              this.getUserApplications();
+              Swal.fire('Éxito', '¡Límite de crédito añadido y estado actualizado!', 'success');
+            })
+            .catch((error) => {
+              console.error('Error en el proceso:', error);
+              Swal.fire('Error', '¡Algo salió mal!', 'error');
+            });
         }
-        return undefined; // Valid input
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const creditLimit = parseFloat(result.value);
-        // Add credit limit first
-        this.updateCreditLimit(userId, creditLimit)
-          .then(() => {
-            // Then change the status after credit is added
-            return this.changeStatus(applicationId, status, '', userId); // No review message for approved
-          })
-          .then(() => {
-            this.getUserApplications(); // Refresh applications
-            Swal.fire('Success', 'Credit limit added and status updated!', 'success');
-          })
-          .catch((error) => {
-            console.error('Error in the process:', error);
-            Swal.fire('Error', 'Something went wrong!', 'error');
-          });
-      }
-    });
-  } else if (status === 'Review Required') {
-    // If status is 'Review Required', ask for a review message
-    Swal.fire({
-      title: 'Enter Review Message',
-      input: 'text',
-      inputPlaceholder: 'Enter a message for the review',
-      showCancelButton: true,
-      confirmButtonText: 'Submit Review',
-      cancelButtonText: 'Cancel',
-      inputValidator: (value) => {
-        if (!value) {
-          return 'Review message is required!';
-        }
-        return undefined; // Valid input
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const reviewMessage = result.value;
-        // Send the status change request with the review message
-        this.changeStatus(applicationId, status, reviewMessage, userId) // Pass reviewMessage here
-          .then(() => {
-            this.getUserApplications(); // Refresh applications
-            Swal.fire('Success', 'Review message added and status updated!', 'success');
-          })
-          .catch((error) => {
-            console.error('Error in the process:', error);
-            Swal.fire('Error', 'Something went wrong!', 'error');
-          });
-      }
-    });
-  } else {
-    // Directly change the status if not 'Approved' or 'Review Required'
-    this.changeStatus(applicationId, status, '', userId) // No review message
-      .then(() => {
-        this.getUserApplications(); // Refresh applications
-        Swal.fire('Success', 'Status updated successfully!', 'success');
-      })
-      .catch((error) => {
-        console.error('Error changing status:', error);
-        Swal.fire('Error', 'Could not update status!', 'error');
       });
+    } else if (status === 'Review Required') {
+      Swal.fire({
+        title: 'Ingrese un mensaje de revisión',
+        input: 'text',
+        inputPlaceholder: 'Ingrese un mensaje para la revisión',
+        showCancelButton: true,
+        confirmButtonText: 'Enviar revisión',
+        cancelButtonText: 'Cancelar',
+        inputValidator: (value) => {
+          if (!value) {
+            return '¡El mensaje de revisión es obligatorio!';
+          }
+          return undefined;
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const reviewMessage = result.value;
+          this.changeStatus(applicationId, status, reviewMessage, userId)
+            .then(() => {
+              this.getUserApplications();
+              Swal.fire('Éxito', '¡Mensaje de revisión añadido y estado actualizado!', 'success');
+            })
+            .catch((error) => {
+              console.error('Error en el proceso:', error);
+              Swal.fire('Error', '¡Algo salió mal!', 'error');
+            });
+        }
+      });
+    } else {
+      this.changeStatus(applicationId, status, '', userId)
+        .then(() => {
+          this.getUserApplications();
+          Swal.fire('Éxito', '¡Estado actualizado con éxito!', 'success');
+        })
+        .catch((error) => {
+          console.error('Error al cambiar el estado:', error);
+          Swal.fire('Error', '¡No se pudo actualizar el estado!', 'error');
+        });
+    }
   }
-}
 
-// Change application status and handle review message if provided
-changeStatus(applicationId: number, status: string, reviewMessage: string = '', userId: number): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const body = {
-      applicationId,
-      status,
-      reviewMessage,  // Include review message if available
-      userId
-    };
+  // Change application status
+  changeStatus(applicationId: number, status: string, reviewMessage: string = '', userId: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const body = {
+        applicationId,
+        status,
+        reviewMessage,
+        userId
+      };
 
-    this.userService.changeStatus(applicationId, status, reviewMessage, userId).subscribe(
-      (res: any) => {
-        console.log('Status changed successfully:', res);
-        resolve();
-      },
-      (err: any) => {
-        console.error('Error changing status:', err);
-        reject(err);
-      }
-    );
-  });
-}
-
+      this.userService.changeStatus(applicationId, status, reviewMessage, userId).subscribe(
+        (res: any) => {
+          console.log('Estado cambiado con éxito:', res);
+          resolve();
+        },
+        (err: any) => {
+          console.error('Error al cambiar el estado:', err);
+          reject(err);
+        }
+      );
+    });
+  }
 
   // Update credit limit
   updateCreditLimit(userId: number, creditLimit: number): Promise<void> {
@@ -185,11 +174,11 @@ changeStatus(applicationId: number, status: string, reviewMessage: string = '', 
     return new Promise((resolve, reject) => {
       this.userService.creditAdded(body).subscribe(
         (res: any) => {
-          console.log('Credit limit updated successfully:', res);
+          console.log('Límite de crédito actualizado con éxito:', res);
           resolve();
         },
         (err: any) => {
-          console.error('Error updating credit limit:', err);
+          console.error('Error al actualizar el límite de crédito:', err);
           reject(err);
         }
       );
