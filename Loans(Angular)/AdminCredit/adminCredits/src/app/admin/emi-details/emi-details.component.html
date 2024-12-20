@@ -5,36 +5,42 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-9">
-              <h1>EMI Details</h1>
+              <h1>Detalles de EMI</h1>
             </div>
             <div class="col-md-3">
-              <button class="btn btn-success float-end" (click)="exportToExcel()">Export to Excel</button>
+              <button class="btn btn-success float-end" (click)="exportToExcel()">Exportar a Excel</button>
             </div>
           </div>
 
-          <!-- Transaction Table -->
+          <!-- Tabla de Transacciones -->
           <div class="container mt-4">
             <div class="table-responsive mt-4">
               <table class="table table-bordered">
                 <thead>
                   <tr>
                     <th>EMI</th>
-                    <th>EMI Amount</th>
-                    <th>EMI Interest</th>
-                    <th>Due Date</th>
-                    <th>Settled Amount </th>
-                    <th>Actions</th>
+                    <th>Monto de EMI</th>
+                    <th>Interés de EMI</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th>Monto Liquidado</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- Loop through EMIs -->
+                  <!-- Recorre las EMI -->
                   <tr *ngFor="let emi of emiDetails">
                     <td>{{ emi.emiNumber }}</td>
                     <td>${{ emi.principalAmount }}</td>
                     <td>{{ emi.interestAmount }}</td>
                     <td>{{ emi.dueDate | date: 'yyyy-MM-dd' }}</td>
 
-                    <td>{{ emi.settled ? (emi.principalAmount + emi.interestAmount | number: '1.2-2') : 'Not Settled' }}</td>
+                    <td>
+                      {{
+                        emi.settled
+                          ? (emi.principalAmount + emi.interestAmount | number: '1.2-2')
+                          : 'No Liquidado'
+                      }}
+                    </td>
 
                     <td>
                       <button
@@ -44,55 +50,66 @@
                         data-bs-target="#openSettleModal"
                         (click)="openSettleModal(emi)"
                       >
-                        Settle
+                        Liquidar
                       </button>
                     </td>
                   </tr>
-                  
-                  
                 </tbody>
               </table>
             </div>
           </div>
-          
-
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal for Settling EMI -->
-<div class="modal fade" id="openSettleModal" tabindex="-1" aria-labelledby="openSettleModalLabel" aria-hidden="true">
+<!-- Modal para Liquidar EMI -->
+<div
+  class="modal fade"
+  id="openSettleModal"
+  tabindex="-1"
+  aria-labelledby="openSettleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="openSettleModalLabel">Settle EMI</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="openSettleModalLabel">Liquidar EMI</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="emiForm">
           <div class="mb-3">
-              <label for="amount" class="form-label">Total Amount (Principal + Interest)</label>
-              <input 
-              type="number" 
-              class="form-control" 
-              id="amount" 
-              [value]="selectedEmi ? (selectedEmi.principalAmount + selectedEmi.interestAmount).toFixed(2) : '0.00'" 
-              [disabled]="true" 
+            <label for="amount" class="form-label"
+              >Monto Total (Principal + Interés)</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="amount"
+              [value]="
+                selectedEmi
+                  ? (selectedEmi.principalAmount + selectedEmi.interestAmount).toFixed(2)
+                  : '0.00'
+              "
+              [disabled]="true"
             />
-            
-          
           </div>
-      </form>
-      
+        </form>
       </div>
-      
-      
-      
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="settleEMI()">Settle EMI</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="settleEMI()"
+        >
+          Liquidar EMI
+        </button>
       </div>
     </div>
   </div>
