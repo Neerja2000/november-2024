@@ -1,114 +1,109 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md mt-4">
-        <div class="card mt-5">
-          <div class="card-body">
-            <div class="row">
-                <div class="col-md-9">
-                    <h1>View Users</h1>
-                </div>
-                <div class="col-md">
- <!-- Search Box -->
-                    <div class="input-group mb-3">
-                        <input
-                        type="text"
-                       class="form-control"
-                        placeholder=" Search "
-                        [(ngModel)]="searchTerm"
-                        aria-label="Search"
-                        aria-describedby="button-search"
-                        
-                        />
-                        <button class="btn btn-primary" type="button" id="button-search">
-                            Search
-                            </button>
-                    </div>
-                </div>
-            </div>
-           
-  
-           
-              
-  
-            <table class="table table-bordered mt-5">
-              <thead>
-                <tr>
-                  <th>Sr No.</th>
-                  <th>Name</th>
-                  <th>Employer Name</th>
-                  <th>Phone No.</th>
-                  <th>Monthly Income</th>
-                  <th>Employment_Type</th>
-                  <th>Identity Proof</th>
-                  <th>More Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Filtered List -->
-                <tr
-                  *ngFor="let user of filteredUsers(); let i = index"
-                >
-                  <td>{{ i + 1 }}</td>
-                  <td class="text-bold-500">{{ user.full_name }}</td>
-                  <td class="text-bold-500">{{ user.employer_name }}</td>
-                  <td>{{ user.contact_details }}</td>
-                  <td>{{ user.monthly_income }}</td>
-                  <td>{{ user.employment_type }}</td>
-                  <td>
-                    <a
-                      [href]="user.identity_proof"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ng-container *ngIf="isImage(user.identity_proof); else fileIcon">
-                        <!-- Show image preview for images -->
-                        <img
-                          [src]="user.identity_proof"
-                          alt="Uploaded File"
-                          class="img-fluid"
-                          style="max-width: 100px; height: auto;"
-                        />
-                      </ng-container>
-                      <ng-template #fileIcon>
-                        <div class="text-center">
-                          <i
-                            *ngIf="isPDF(user.identity_proof)"
-                            class="bi bi-file-pdf text-danger"
-                            style="font-size: 2rem;"
-                          ></i>
-                          <i
-                            *ngIf="isZIP(user.identity_proof)"
-                            class="bi bi-file-zip text-primary"
-                            style="font-size: 2rem;"
-                          ></i>
-                          <i
-                            *ngIf="
-                              !isImage(user.identity_proof) &&
-                              !isPDF(user.identity_proof) &&
-                              !isZIP(user.identity_proof)
-                            "
-                            class="bi bi-file-earmark"
-                            style="font-size: 2rem;"
-                          ></i>
-                          <p>{{ getFileExtension(user.identity_proof) | uppercase }} File</p>
-                        </div>
-                      </ng-template>
-                    </a>
-                  </td>
-                  <td>
-                    <a
-                      [routerLink]="['/layout/viewUserDetails', user.user_id]"
-                      class="btn btn-outline-success"
-                    >
-                      View Details
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+  <div class="row">
+    <div class="col-md mt-4">
+      <div class="card mt-5">
+        <div class="card-body">
+          <div class="row">
+              <div class="col-md-9">
+                  <h1>Ver Usuarios</h1>
+              </div>
+              <div class="col-md">
+<!-- Search Box -->
+                  <div class="input-group mb-3">
+                      <input
+                      type="text"
+                      class="form-control"
+                      placeholder=" Buscar "
+                      [(ngModel)]="searchTerm"
+                      aria-label="Buscar"
+                      aria-describedby="button-search"
+                      />
+                      <button class="btn btn-primary" type="button" id="button-search">
+                          Buscar
+                      </button>
+                  </div>
+              </div>
           </div>
+         
+          <table class="table table-bordered mt-5">
+            <thead>
+              <tr>
+                <th>
+                  Número de serie</th>
+                <th>Nombre</th>
+                <th>Nombre del Empleador</th>
+                <th>Núm. de Teléfono</th>
+                <th>Ingreso Mensual</th>
+                <th>Tipo de Empleo</th>
+                <th>Prueba de Identidad</th>
+                <th>Más Detalles</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filtered List -->
+              <tr
+                *ngFor="let user of filteredUsers(); let i = index"
+              >
+                <td>{{ i + 1 }}</td>
+                <td class="text-bold-500">{{ user.full_name }}</td>
+                <td class="text-bold-500">{{ user.employer_name }}</td>
+                <td>{{ user.contact_details }}</td>
+                <td>{{ user.monthly_income }}</td>
+                <td>{{ user.employment_type }}</td>
+                <td>
+                  <a
+                    [href]="user.identity_proof"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ng-container *ngIf="isImage(user.identity_proof); else fileIcon">
+                      <!-- Show image preview for images -->
+                      <img
+                        [src]="user.identity_proof"
+                        alt="Archivo Subido"
+                        class="img-fluid"
+                        style="max-width: 100px; height: auto;"
+                      />
+                    </ng-container>
+                    <ng-template #fileIcon>
+                      <div class="text-center">
+                        <i
+                          *ngIf="isPDF(user.identity_proof)"
+                          class="bi bi-file-pdf text-danger"
+                          style="font-size: 2rem;"
+                        ></i>
+                        <i
+                          *ngIf="isZIP(user.identity_proof)"
+                          class="bi bi-file-zip text-primary"
+                          style="font-size: 2rem;"
+                        ></i>
+                        <i
+                          *ngIf="
+                            !isImage(user.identity_proof) &&
+                            !isPDF(user.identity_proof) &&
+                            !isZIP(user.identity_proof)
+                          "
+                          class="bi bi-file-earmark"
+                          style="font-size: 2rem;"
+                        ></i>
+                        <p>{{ getFileExtension(user.identity_proof) | uppercase }} Archivo</p>
+                      </div>
+                    </ng-template>
+                  </a>
+                </td>
+                <td>
+                  <a
+                    [routerLink]="['/layout/viewUserDetails', user.user_id]"
+                    class="btn btn-outline-success"
+                  >
+                    Ver Detalles
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
