@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from
 import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from 'src/app/shared/transaction/transaction.service';
 import { UsersService } from 'src/app/shared/users/users.service';
-import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
+
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-view-user-details',
   templateUrl: './view-user-details.component.html',
@@ -26,7 +26,7 @@ export class ViewUserDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private transactionService: TransactionService,private userService:UsersService
+    private transactionService: TransactionService, private userService: UsersService
   ) {
     // Initialize form
     this.transactionForm = this.fb.group({
@@ -41,7 +41,7 @@ export class ViewUserDetailsComponent implements OnInit {
     this.updateCreditForm = this.fb.group({
       creditLimit: [null, [Validators.required, Validators.min(1)]],
     });
-    
+
   }
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class ViewUserDetailsComponent implements OnInit {
       this.userId = +params['userId'] || 0; // Default to 0 if no `userId` provided
       console.log('Fetched userId:', this.userId);
       this.fetchCreditStatus();
-      this.fetchUsers(); 
+      this.fetchUsers();
     });
   }
 
@@ -63,7 +63,7 @@ export class ViewUserDetailsComponent implements OnInit {
           availableCredit: status.availableCredit || 0
         };
         this.transactions = status.transactions || [];
-        
+
         console.log('Fetched Credit Status:', this.creditStatus);
         console.log('Fetched Transactions:', this.transactions);
       },
@@ -72,8 +72,8 @@ export class ViewUserDetailsComponent implements OnInit {
       }
     );
   }
-  
-  addTransaction(): void { 
+
+  addTransaction(): void {
     if (this.transactionForm.valid) {
       const formValue = this.transactionForm.value;
       const transactionData = {
@@ -86,31 +86,31 @@ export class ViewUserDetailsComponent implements OnInit {
         },
         userId: this.userId,
       };
-  
+
       console.log('Transaction data to be sent:', transactionData);
-  
+
       this.transactionService.transactionAdd(transactionData).subscribe(
         (response: any) => {
           console.log('Transaction added successfully:', response);
-  
+
           // Success alert using SweetAlert2
           Swal.fire({
-            title: 'Success!',
-            text: 'Transaction added successfully!',
+            title: '¡Éxito!',
+            text: '¡Transacción agregada con éxito!',
             icon: 'success',
             confirmButtonText: 'OK'
           });
-  
+
           this.transactionForm.reset();
           this.fetchCreditStatus();
         },
         (error) => {
           console.error('Error adding transaction:', error.message, error);
-  
+
           // Error alert using SweetAlert2
           Swal.fire({
-            title: 'Error!',
-            text: 'Failed to add transaction. Please try again.',
+            title: '¡Error!',
+            text: 'No se pudo agregar la transacción. Por favor, inténtelo nuevamente.',
             icon: 'error',
             confirmButtonText: 'OK'
           });
@@ -118,60 +118,48 @@ export class ViewUserDetailsComponent implements OnInit {
       );
     } else {
       console.error('Transaction form is invalid:', this.transactionForm.errors);
-  
+
       // Invalid form alert using SweetAlert2
       Swal.fire({
-        title: 'Warning!',
-        text: 'Please fill all required fields.',
+        title: '¡Advertencia!',
+        text: 'Por favor, complete todos los campos requeridos.',
         icon: 'warning',
         confirmButtonText: 'OK'
       });
     }
   }
-  
-
 
   viewEMIDetails(emis: any[]): void {
-    console.log('EMI Details:', emis);
+    console.log('Detalles del EMI:', emis);
     // You can implement modal or additional view logic here
   }
-  
 
- updateCreditLimit(userId: number, creditLimit: number): Promise<void> {
-  const body = { userId, creditLimit };
-  return new Promise((resolve, reject) => {
-    this.userService.creditAdded(body).subscribe(
-      (res: any) => {
-        console.log('Credit limit updated successfully:', res);
-        this.fetchCreditStatus()
-        resolve();
+  updateCreditLimit(userId: number, creditLimit: number): Promise<void> {
+    const body = { userId, creditLimit };
+    return new Promise((resolve, reject) => {
+      this.userService.creditAdded(body).subscribe(
+        (res: any) => {
+          console.log('Límite de crédito actualizado con éxito:', res);
+          this.fetchCreditStatus();
+          resolve();
+        },
+        (err: any) => {
+          console.error('Error al actualizar el límite de crédito:', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  fetchUsers(): void {
+    this.userService.userApplications().subscribe(
+      (response: any) => {
+        this.users = response || []; // Make sure the response is assigned to this.users
+        console.log(this.users); // This will now log the users array
       },
-      (err: any) => {
-        console.error('Error updating credit limit:', err);
-        reject(err);
+      (error) => {
+        console.error('Error fetching users:', error.message);
       }
     );
-  });
+  }
 }
-  
-fetchUsers(): void {
-  this.userService.userApplications().subscribe(
-    (response: any) => {
-      this.users = response || []; // Make sure the response is assigned to this.users
-      console.log(this.users); // This will now log the users array
-    
-
-    },
-    (error) => {
-      console.error('Error fetching users:', error.message);
-    }
-  );
-}
-
-
-
-
-
-}
-
-
