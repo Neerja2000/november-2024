@@ -1,20 +1,20 @@
-<div class="container my-5">
-  <h2 class="table-title" style="margin-top: 200px;">Credit Applications</h2>
+<div class="container my-5"> 
+  <h2 class="table-title" style="margin-top: 200px;">Solicitudes de Crédito</h2>
   <div class="table-responsive">
     <table class="table table-striped custom-table">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Address</th>
-          <th scope="col">Contact</th>
-          <th scope="col">Monthly Income</th>
-          <th scope="col">Employer Name</th>
-          <th scope="col">Employment Type</th>
-          <th scope="col">Identity Proof</th>
-          <th scope="col">Status</th>
-          <th *ngIf="hasRejectedApplications()" scope="col">Reason for Rejection</th>
-          <th *ngIf="hasApprovedApplications()">View Details</th>
-          <th *ngIf="hasReviewRequiredApplications()">Edit Application</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Contacto</th>
+          <th scope="col">Ingreso Mensual</th>
+          <th scope="col">Nombre del Empleador</th>
+          <th scope="col">Tipo de Empleo</th>
+          <th scope="col">Prueba de Identidad</th>
+          <th scope="col">Estado</th>
+          <th *ngIf="hasRejectedApplications()" scope="col">Razón de Rechazo</th>
+          <th *ngIf="hasApprovedApplications()">Ver Detalles</th>
+          <th *ngIf="hasReviewRequiredApplications()">Editar Solicitud</th>
         </tr>
       </thead>
       <tbody>
@@ -28,9 +28,9 @@
           <td>
             <!-- Open image in new tab -->
             <a *ngIf="application.identity_proof" [href]="application.identity_proof" target="_blank">
-              View Proof
+              Ver Prueba
             </a>
-            <span *ngIf="!application.identity_proof">No Proof Uploaded</span>
+            <span *ngIf="!application.identity_proof">No se ha cargado ninguna prueba</span>
           </td>
           <td>
             <span [ngClass]="{
@@ -44,22 +44,18 @@
           </td>
           <td *ngIf="application.status === 'Approved'" >
             <button 
-              
               class="btn btn-dark btn-sm" 
               [routerLink]="['/user/layout/all-user-details']">
-              View Details
+              Ver Detalles
             </button>
           </td>
 
           <td *ngIf="application.status === 'Review Required'" >
             <button 
-            class="btn btn-dark" 
-            [routerLink]="['/review-required', application.id]">
-            Update Application
-          </button>
-          
-          
-          
+              class="btn btn-dark" 
+              [routerLink]="['/review-required', application.id]">
+              Actualizar Solicitud
+            </button>
           </td>
           <td *ngIf="application.status === 'Rejected'">{{application.review_message}}</td>
         </tr>
