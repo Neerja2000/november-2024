@@ -1,58 +1,42 @@
+<div class="container py-5" style="margin-top: 100px;">
+  <div class="row">
+    <div class="col-md mt-4">
+      <div class="card mt-5">
+        <div class="card-body">
 
-<div class="container py-5 " style="margin-top: 100px;"  >
-    <div class="row">
-      <div class="col-md mt-4">
-        <div class="card mt-5">
-          <div class="card-body">
-            
-            
-                   <h2 class="text-center">EMI Details</h2>
-              
-       
-  <div class="container mt-4">
-   
-    <div class="table-responsive mt-4">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>EMI ID</th>
-            <th>Amount</th>
-            
-            <th>Interest</th>
-            <th>Total Amount</th>
-            <th>Due Date</th>
-            <th>Settled</th>
-            <th>Remaining Balance</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let emi of emiDetails ; let i = index">
-                     
-            <td>{{ i + 1 }}</td> 
-            <td>{{ emi.principalAmount }}</td>
-            
-            <td>{{ emi.interestAmount }}</td>
-            <td>${{ calculateTotalAmount(emi) }}</td>
-            <td>{{ emi.dueDate | date: 'yyyy-MM-dd' }}</td>
-            
-            <td>{{ calculateTotalremaining(emi) === 0 ? 'Fully Settled' : emi.settled }}</td>
- 
-            <td>${{  calculateTotalremaining(emi) }}</td>
-            
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    
-    
-  </div>
+          <h2 class="text-center">Detalles de EMI</h2>
+
+          <div class="container mt-4">
+            <div class="table-responsive mt-4">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID de EMI</th>
+                    <th>Monto</th>
+                    <th>Interés</th>
+                    <th>Monto Total</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th>Liquidado</th>
+                    <th>Saldo Restante</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let emi of emiDetails; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ emi.principalAmount }}</td>
+                    <td>{{ emi.interestAmount }}</td>
+                    <td>${{ calculateTotalAmount(emi) }}</td>
+                    <td>{{ emi.dueDate | date: 'yyyy-MM-dd' }}</td>
+                    <td>{{ calculateTotalremaining(emi) === 0 ? 'Totalmente Liquidado' : emi.settled }}</td>
+                    <td>${{ calculateTotalremaining(emi) }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
   </div>
-  
-  
-
+</div>
