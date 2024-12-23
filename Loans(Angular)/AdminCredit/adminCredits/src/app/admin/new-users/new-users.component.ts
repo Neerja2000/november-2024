@@ -135,15 +135,15 @@ export class NewUsersComponent implements OnInit {
     }
     else if (status === 'Rejected') {
       Swal.fire({
-        title: 'Enter a Message',
+        title: 'Ingrese un mensaje',
         input: 'text',
-        inputPlaceholder: 'Reason for Rejection',
+        inputPlaceholder: 'Razón para el rechazo',
         showCancelButton: true,
-        confirmButtonText: 'Submit',
-        cancelButtonText: 'Cancel',
+        confirmButtonText: 'Enviar',
+        cancelButtonText: 'Cancelar',
         inputValidator: (value) => {
           if (!value) {
-            return 'Rejection message is required!';
+            return '¡Se requiere un mensaje de rechazo!';
           }
           return undefined;
         }
@@ -153,15 +153,16 @@ export class NewUsersComponent implements OnInit {
           this.changeStatus(applicationId, status, rejectMessage, userId)
             .then(() => {
               this.getUserApplications();
-              Swal.fire('Success', 'Reason added and status updated!', 'success');
+              Swal.fire('Éxito', '¡Razón agregada y estado actualizado!', 'success');
             })
             .catch((error) => {
-              console.error('Error during the process:', error);
-              Swal.fire('Error', 'Something went wrong!', 'error');
+              console.error('Error durante el proceso:', error);
+              Swal.fire('Error', '¡Algo salió mal!', 'error');
             });
         }
       });
     }
+    
     else {
       this.changeStatus(applicationId, status, '', userId)
         .then(() => {
