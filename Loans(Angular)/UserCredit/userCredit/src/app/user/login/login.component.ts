@@ -79,83 +79,79 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registrationForm.invalid) {
-      Swal.fire('Error', 'Please fill in all fields correctly.', 'error');
+      Swal.fire('Error', 'Por favor, complete todos los campos correctamente.', 'error');
       return;
     }
   
     this.userLoginService
-    .register(
-      this.registrationForm.value.name,
-      this.registrationForm.value.email,
-      this.registrationForm.value.phone_number,
-      this.registrationForm.value.password
-    )
-    .subscribe({
-      next: (response) => {
-        console.log('Registration successful:', response);
-        Swal.fire('Success', 'Registration successful! Please verify your OTP.', 'success');
-        this.router.navigate(['/otp-verification'], {
-          queryParams: { phone_number: this.registrationForm.value.phone_number, otp: response.otp },
-        });
-      },
-      error: (err) => {
-        console.error('Registration failed:', err);
-        Swal.fire('Error', err.error.message ,'error');
-      },
-    });
-  
+      .register(
+        this.registrationForm.value.name,
+        this.registrationForm.value.email,
+        this.registrationForm.value.phone_number,
+        this.registrationForm.value.password
+      )
+      .subscribe({
+        next: (response) => {
+          console.log('Registro exitoso:', response);
+          Swal.fire('Éxito', '¡Registro exitoso! Por favor, verifica tu OTP.', 'success');
+          this.router.navigate(['/otp-verification'], {
+            queryParams: { phone_number: this.registrationForm.value.phone_number, otp: response.otp },
+          });
+        },
+        error: (err) => {
+          console.error('Error en el registro:', err);
+          Swal.fire('Error', err.error.message, 'error');
+        },
+      });
   }
   
-  
-  
-  
-
   // Login form submission logic
   onLogin(): void {
     console.log("hello")
     if (this.loginForm.invalid) {
-      Swal.fire('Error', 'Please fill in all fields correctly.', 'error'); // Show error for invalid form
+      Swal.fire('Error', 'Por favor, complete todos los campos correctamente.', 'error'); // Show error for invalid form
       return;
     }
-
-    console.log('Login form data:', this.loginForm.value);
+  
+    console.log('Datos del formulario de inicio de sesión:', this.loginForm.value);
     console.log('hello login');
     if (this.loginForm.valid) {
       const { phone_number, password } = this.loginForm.value;
       console.log(
-        'Form valid. Attempting to log in with phone:',
+        'Formulario válido. Intentando iniciar sesión con el teléfono:',
         phone_number,
-        'and password:',
+        'y contraseña:',
         password
       );
-
+  
       this.userLoginService.login(phone_number, password).subscribe({
         next: (response) => {
-          console.log('Login response:', response);
+          console.log('Respuesta de inicio de sesión:', response);
           if (response.token) {
-            console.log('Login successful:', response);
-
+            console.log('Inicio de sesión exitoso:', response);
+  
             // Store token using AuthService
             this.authService.storedata(response); 
-
+  
             // Show success message
-            Swal.fire('Success', 'Login successful! Redirecting...', 'success'); // SweetAlert2 success message
-
+            Swal.fire('Éxito', '¡Inicio de sesión exitoso! Redirigiendo...', 'success'); // SweetAlert2 success message
+  
             // Navigate to the home page
             this.router.navigate(['user/layout/home']);
           } else {
-            console.error('Login failed: Token not received');
-            Swal.fire('Error', 'Login failed. Please check your credentials.', 'error'); // SweetAlert2 error message
+            console.error('Error de inicio de sesión: No se recibió el token');
+            Swal.fire('Error', 'Error en el inicio de sesión. Por favor, verifique sus credenciales.', 'error'); // SweetAlert2 error message
           }
         },
         error: (error) => {
-          console.error('Login error:', error);
-          console.log('Error details:', error.error);
-          Swal.fire('Error', 'Login failed. Please try again later.', 'error'); // SweetAlert2 error message
+          console.error('Error de inicio de sesión:', error);
+          console.log('Detalles del error:', error.error);
+          Swal.fire('Error', 'Error en el inicio de sesión. Por favor, inténtelo de nuevo más tarde.', 'error'); // SweetAlert2 error message
         },
       });
     } else {
-      console.error('Invalid form data:', this.loginForm.value);
+      console.error('Datos del formulario inválidos:', this.loginForm.value);
     }
   }
+  
 }

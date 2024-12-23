@@ -1,84 +1,76 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="row">
-        <div class="col-md">
-            <div class="main">
-                <input type="checkbox" id="chk" aria-hidden="true">
-                <div class="signup">
-                  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-                    <label for="chk" aria-hidden="true" style="color: black;">Sign up</label>
-                    <input type="text" formControlName="name" placeholder="User name" required>
-                    <input type="email" formControlName="email" placeholder="Email" required>
-                    
-                    <div class="phone-container">
-                      <!-- Country Code Dropdown -->
-                      <select formControlName="countryCode" (change)="onCountryChange($event)" class="country-code">
-                        <option *ngFor="let country of countries" [value]="country.code">
-                          {{ country.name }} ({{ country.code }})
-                        </option>
-                      </select>
-                    
-                      <!-- Phone Number Field -->
-                      <input
-                        type="text"
-                        formControlName="phone_number" style="border-top-right-radius:5px; border-bottom-right-radius:5px;border-top-left-radius:0px; border-bottom-left-radius:0px;  "
-                        placeholder="Phone Number"
-                        [value]="selectedCountryCode"
-                        required
-                      />
-                    </div>
-                    
-                
-                    <input type="password" formControlName="password" placeholder="Password" required style="margin-bottom: 3px;">
-                    <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched"   class="error-message d-flex justify-content-center" >
-                      <span style="color: red; margin: 0px; padding: 0px; font-size: 10px;font-weight: lighter;">Password must be at least 6 characters long.</span>
-                    </div>
-                
-                    <button type="submit">Sign up</button>
-                  </form>
-                </div>
-                
-                
-                
-                
-                <div class="login">
-                  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-                    <label for="chk" aria-hidden="true">Login</label>
-                    
-                    <div class="phone-container">
-                      <!-- Country Code Dropdown -->
-                      <select formControlName="countryCode" (change)="onCountryChange($event)" class="country-code">
-                        <option *ngFor="let country of countries" [value]="country.code">
-                          {{ country.name }} ({{ country.code }})
-                        </option>
-                      </select>
-                    
-                      <!-- Phone Number Field -->
-                      <input
-                        type="text"
-                        formControlName="phone_number" style="border-top-right-radius:5px; border-bottom-right-radius:5px;border-top-left-radius:0px; border-bottom-left-radius:0px;  "
-                        placeholder="Phone Number"
-                        [value]="selectedCountryCode"
-                        required
-                      />
-                    </div>
+  <div class="row">
+      <div class="col-md">
+          <div class="main">
+              <input type="checkbox" id="chk" aria-hidden="true">
+              <div class="signup">
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                  <label for="chk" aria-hidden="true" style="color: black;">Registrarse</label>
+                  <input type="text" formControlName="name" placeholder="Nombre de usuario" required>
+                  <input type="email" formControlName="email" placeholder="Correo electrónico" required>
                   
-                    
-                    
+                  <div class="phone-container">
+                    <!-- Dropdown de código de país -->
+                    <select formControlName="countryCode" (change)="onCountryChange($event)" class="country-code">
+                      <option *ngFor="let country of countries" [value]="country.code">
+                        {{ country.name }} ({{ country.code }})
+                      </option>
+                    </select>
+                  
+                    <!-- Campo de número de teléfono -->
                     <input
-                      type="password"
-                      id="password"
-                      formControlName="password"
-                      placeholder="Password"
+                      type="text"
+                      formControlName="phone_number"
+                      style="border-top-right-radius:5px; border-bottom-right-radius:5px;border-top-left-radius:0px; border-bottom-left-radius:0px;"
+                      placeholder="Número de teléfono"
+                      [value]="selectedCountryCode"
+                      required
                     />
-                   
-                    
-                    <button type="submit" [disabled]="loginForm.invalid">Login</button>
-                  </form>
-                </div>
-                
-                
+                  </div>
                   
-            </div>
-        </div>
-    </div>
+                  <input type="password" formControlName="password" placeholder="Contraseña" required style="margin-bottom: 3px;">
+                  <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="error-message d-flex justify-content-center">
+                    <span style="color: red; margin: 0px; padding: 0px; font-size: 10px;font-weight: lighter;">La contraseña debe tener al menos 6 caracteres.</span>
+                  </div>
+              
+                  <button type="submit">Registrarse</button>
+                </form>
+              </div>
+              
+              <div class="login">
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                  <label for="chk" aria-hidden="true">Iniciar sesión</label>
+                  
+                  <div class="phone-container">
+                    <!-- Dropdown de código de país -->
+                    <select formControlName="countryCode" (change)="onCountryChange($event)" class="country-code">
+                      <option *ngFor="let country of countries" [value]="country.code">
+                        {{ country.name }} ({{ country.code }})
+                      </option>
+                    </select>
+                  
+                    <!-- Campo de número de teléfono -->
+                    <input
+                      type="text"
+                      formControlName="phone_number"
+                      style="border-top-right-radius:5px; border-bottom-right-radius:5px;border-top-left-radius:0px; border-bottom-left-radius:0px;"
+                      placeholder="Número de teléfono"
+                      [value]="selectedCountryCode"
+                      required
+                    />
+                  </div>
+                  
+                  <input
+                    type="password"
+                    id="password"
+                    formControlName="password"
+                    placeholder="Contraseña"
+                  />
+                  
+                  <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
+                </form>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
