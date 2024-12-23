@@ -132,7 +132,37 @@ export class NewUsersComponent implements OnInit {
             });
         }
       });
-    } else {
+    }
+    else if (status === 'Rejected') {
+      Swal.fire({
+        title: 'Enter a Message',
+        input: 'text',
+        inputPlaceholder: 'Reason for Rejection',
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        cancelButtonText: 'Cancel',
+        inputValidator: (value) => {
+          if (!value) {
+            return 'Rejection message is required!';
+          }
+          return undefined;
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const rejectMessage = result.value;
+          this.changeStatus(applicationId, status, rejectMessage, userId)
+            .then(() => {
+              this.getUserApplications();
+              Swal.fire('Success', 'Reason added and status updated!', 'success');
+            })
+            .catch((error) => {
+              console.error('Error during the process:', error);
+              Swal.fire('Error', 'Something went wrong!', 'error');
+            });
+        }
+      });
+    }
+    else {
       this.changeStatus(applicationId, status, '', userId)
         .then(() => {
           this.getUserApplications();

@@ -12,6 +12,7 @@
           <th scope="col">Employment Type</th>
           <th scope="col">Identity Proof</th>
           <th scope="col">Status</th>
+          <th *ngIf="hasRejectedApplications()" scope="col">Reason for Rejection</th>
           <th *ngIf="hasApprovedApplications()">View Details</th>
           <th *ngIf="hasReviewRequiredApplications()">Edit Application</th>
         </tr>
@@ -60,6 +61,7 @@
           
           
           </td>
+          <td *ngIf="application.status === 'Rejected'">{{application.review_message}}</td>
         </tr>
       </tbody>
     </table>

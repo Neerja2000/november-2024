@@ -22,6 +22,7 @@ export class ViewCreditStatusComponent implements OnInit {
           ...application,
           identity_proof: `http://194.238.17.235:7700/${application.identity_proof}`,
         }));
+        console.log(this.creditApplications)
       },
       error: (err) => {
         console.error('Error fetching credit applications:', err);
@@ -38,5 +39,8 @@ export class ViewCreditStatusComponent implements OnInit {
   // Check if there are any applications requiring review
   hasReviewRequiredApplications(): boolean {
     return this.creditApplications.some(app => app.status === 'Review Required');
+  }
+  hasRejectedApplications():boolean{
+    return this.creditApplications.some(app => app.status === 'Rejected');
   }
 }
