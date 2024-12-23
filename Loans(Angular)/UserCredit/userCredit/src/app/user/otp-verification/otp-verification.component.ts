@@ -16,7 +16,6 @@ export class OtpVerificationComponent implements OnInit {
   otpValue: string = '';  // To store OTP for autofill
   otpFields: string[] = Array(6).fill('');  // For 6 OTP input fields
 
-  
   constructor(
     private fb: FormBuilder,
     private userLoginService: UserLoginService,
@@ -70,7 +69,7 @@ export class OtpVerificationComponent implements OnInit {
     console.log("Phone Number from form:", phoneNumber);  // Check phone number value
   
     if (otp.length !== 6 || isNaN(Number(otp))) {
-      Swal.fire('Error', 'Please enter a valid 6-digit OTP.', 'error');
+      Swal.fire('Error', 'Por favor ingrese un OTP válido de 6 dígitos.', 'error');
       return;
     }
   
@@ -79,25 +78,25 @@ export class OtpVerificationComponent implements OnInit {
   
     // Ensure phoneNumber is not undefined before making the request
     if (!phoneNumber) {
-      Swal.fire('Error', 'Phone number is required.', 'error');
+      Swal.fire('Error', 'El número de teléfono es requerido.', 'error');
       return;
     }
 
     // Call the API to verify OTP
     this.userLoginService.verifyOTP(phoneNumber, otpNumber).subscribe({
       next: (response) => {
-        console.log('OTP Verified:', response);
+        console.log('OTP Verificado:', response);
         if (response.token) {
           this.authService.storedata(response);
-          Swal.fire('Success', 'OTP Verified Successfully', 'success');
+          Swal.fire('Éxito', 'OTP verificado correctamente', 'success');
           this.router.navigate(['user/layout/home']);
         } else {
-          Swal.fire('Error', 'OTP Verification failed.', 'error');
+          Swal.fire('Error', 'Falló la verificación del OTP.', 'error');
         }
       },
       error: (error) => {
-        console.error('OTP Verification error:', error);
-        Swal.fire('Error', 'OTP Verification failed. Please try again later.', 'error');
+        console.error('Error en la verificación del OTP:', error);
+        Swal.fire('Error', 'La verificación del OTP falló. Por favor intente más tarde.', 'error');
       },
     });
   }
