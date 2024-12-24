@@ -136,3 +136,13 @@ $(window).on('load', function() {
 
 })(jQuery);
 
+
+
+
+
+function showSection(sectionId) {
+	document.querySelectorAll('.product-section').forEach((section) => {
+	  section.classList.remove('active');
+	});
+	document.getElementById(sectionId).classList.add('active');
+  }

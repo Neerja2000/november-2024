@@ -1,0 +1,11 @@
+
+  .card{
+    border: none;
+  }
+
+  .product-section {
+    display: none;
+  }
+  .product-section.active {
+    display: flex;
+  }
