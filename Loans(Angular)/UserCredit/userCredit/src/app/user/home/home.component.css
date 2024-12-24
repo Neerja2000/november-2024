@@ -9,3 +9,6 @@
   .product-section.active {
     display: flex;
   }
+  .carousel-item img{
+height:500px
+  }
