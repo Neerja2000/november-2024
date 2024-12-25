@@ -14,8 +14,9 @@ export class BannerService {
      this.bannerbaseurl=_bannerurl
      this.token=this.authService.getToken()
    }
-   addBanner(){
-     const headers = new HttpHeaders().set('auth-token', this.token);
-     return this.http.post(this.bannerbaseurl+'/banners',{ headers })
-   }
+   addBanner(formData: FormData) {
+    const headers = new HttpHeaders().set('auth-token', this.token);
+    return this.http.post(`${this.bannerbaseurl}/banners`, formData, { headers });
+}
+
 }
