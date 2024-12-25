@@ -12,7 +12,7 @@ export function bannerbaseurl(){
 const provider=[
   {
     provide:'baseurl',useFactory:adminbaseurl,desp:[]
-  }
+  },
   {
     provide:'bannerurl',useFactory:bannerbaseurl,desp:[]
   }
