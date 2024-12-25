@@ -18,13 +18,17 @@ export class BannerViewDetailsComponent {
   fetchBanners(): void {
     this.bannerService.getBanners().subscribe(
       (response: any) => {
-        this.banners = response.banners;
+        this.banners = response.banners.map((banner: any) => ({
+          ...banner,
+          image_url: `http://194.238.17.235:7700/uploads/banners/${banner.image_url}`, // Construct the full URL dynamically
+        }));
       },
       (error) => {
         console.error('Error fetching banners', error);
       }
     );
   }
+  
 
   toggleStatus(banner: any) {
     const newStatus = banner.is_active === 1 ? 0 : 1;

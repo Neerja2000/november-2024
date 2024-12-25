@@ -33,12 +33,15 @@
                       <td>{{ banner.content }}</td>
                       <td>{{ banner.description }}</td>
                       <td>
-                        <img
-                          [src]="banner.image_url"
-                          alt="Banner image_url"
-                          width="50"
-                          height="50"
-                        />
+                        <a [href]="banner.image_url" target="_blank">
+                          <img
+                            [src]="banner.image_url"
+                            alt="Banner Image"
+                            width="50"
+                            height="50"
+                            style="cursor: pointer;"
+                          />
+                        </a>
                       </td>
                       <td class="text-center">
                         <i
