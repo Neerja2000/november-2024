@@ -12,6 +12,7 @@ import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
 import { AuthGuard } from './authGuard/auth.guard';
 import { BannerFormComponent } from './admin/banner-form/banner-form.component';
 import { BannerViewDetailsComponent } from './admin/banner-view-details/banner-view-details.component';
+import { UpdateBannerFormComponent } from './admin/update-banner-form/update-banner-form.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,10 @@ const routes: Routes = [
       },
       {
         path:'viewBanner',component:BannerViewDetailsComponent,canActivate:[AuthGuard]
-      }
+      },
+      {
+        path:'updateBanner/:id',component:UpdateBannerFormComponent,canActivate:[AuthGuard]
+      },
     ]
   }
 ];

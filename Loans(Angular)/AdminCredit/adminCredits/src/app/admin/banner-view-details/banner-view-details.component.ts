@@ -57,4 +57,50 @@ export class BannerViewDetailsComponent {
       }
     );
   }
+
+  deleteBanner(banner: any): void {
+    // Show confirmation dialog before deleting
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#51a992', // Your main color
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Call deleteBanner service
+        this.bannerService.deleteBanner(banner.id).subscribe(
+          (res: any) => {
+            // Show success message
+            Swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'The banner has been deleted successfully.',
+              confirmButtonColor: '#51a992', // Your main color
+            });
+  
+            // Remove the banner from the UI
+            const index = this.banners.indexOf(banner);
+            if (index > -1) {
+              this.banners.splice(index, 1); // Remove banner from the array
+            }
+          },
+          (error) => {
+            console.error('Error deleting banner:', error);
+            
+            // Show error message
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'There was an error deleting the banner. Please try again.',
+              confirmButtonColor: '#51a992', // Your main color
+            });
+          }
+        );
+      }
+    });
+  }
+  
 }

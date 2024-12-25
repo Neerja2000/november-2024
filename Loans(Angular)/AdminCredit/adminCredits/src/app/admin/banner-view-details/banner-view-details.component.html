@@ -55,12 +55,16 @@
                         ></i>
                       </td>
                       <td>
-                        <button class="btn btn-sm btn-warning me-2">
-                          <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="btn btn-sm btn-danger">
-                          <i class="fas fa-trash-alt"></i> Delete
-                        </button>
+                        
+                            <button class="btn btn-sm btn-warning me-2" [routerLink]="['/layout/updateBanner', banner.id]">
+                              <i class="fas fa-edit"></i> Edit
+                            </button>
+                       
+                          
+                        <button class="btn btn-sm btn-danger" (click)="deleteBanner(banner)">
+                            <i class="fas fa-trash-alt"></i> Delete
+                          </button>
+                          
                       </td>
                     </tr>
                  

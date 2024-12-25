@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BannerService } from 'src/app/shared/banner/banner.service';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 @Component({
   selector: 'app-banner-form',
@@ -9,7 +10,7 @@ import { BannerService } from 'src/app/shared/banner/banner.service';
 })
 export class BannerFormComponent implements OnInit {
   bannerForm = new FormGroup({
-    description: new FormControl('', [Validators.required]),
+    content: new FormControl('', [Validators.required]),
     image: new FormControl(null, [Validators.required]),
   });
 
@@ -19,12 +20,18 @@ export class BannerFormComponent implements OnInit {
 
   bannersave(): void {
     if (this.bannerForm.invalid) {
-      alert('Please fill all required fields!');
+      // Show SweetAlert2 error message if the form is invalid
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill all required fields!',
+        confirmButtonColor: '#51a992', // Your main color
+      });
       return;
     }
 
     const formData = new FormData();
-    formData.append('description', this.bannerForm.value.description!);
+    formData.append('content', this.bannerForm.value.content!);
     if (this.bannerForm.value.image) {
       formData.append('image', this.bannerForm.value.image);
     }
@@ -32,12 +39,24 @@ export class BannerFormComponent implements OnInit {
     this.bannerService.addBanner(formData).subscribe({
       next: (response) => {
         console.log('Banner added successfully:', response);
-        alert('Banner added successfully!');
+        // Show SweetAlert2 success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Banner added successfully!',
+          confirmButtonColor: '#51a992', // Your main color
+        });
         this.bannerForm.reset();
       },
       error: (error) => {
         console.error('Error adding banner:', error);
-        alert('Failed to add banner.');
+        // Show SweetAlert2 error message if the request fails
+        Swal.fire({
+          icon: 'error',
+          title: 'Failed!',
+          text: 'Failed to add banner.',
+          confirmButtonColor: '#51a992', // Your main color
+        });
       }
     });
   }

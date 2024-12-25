@@ -19,6 +19,7 @@ import{HttpClientModule}from '@angular/common/http';
 import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
 import { BannerFormComponent } from './admin/banner-form/banner-form.component';
 import { BannerViewDetailsComponent } from './admin/banner-view-details/banner-view-details.component';
+import { UpdateBannerFormComponent } from './admin/update-banner-form/update-banner-form.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { BannerViewDetailsComponent } from './admin/banner-view-details/banner-v
     EmiDetailsComponent,
     BannerFormComponent,
     BannerViewDetailsComponent,
+    UpdateBannerFormComponent
   
   ],
   imports: [

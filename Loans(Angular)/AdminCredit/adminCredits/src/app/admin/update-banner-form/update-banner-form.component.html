@@ -1,0 +1,59 @@
+<div class="container"> 
+    <div class="row">
+      <div class="col-md mt-4">
+        <div class="card mt-5">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-10">
+                <h1>Update Banner</h1>
+              </div>
+            </div>
+  
+            <div class="container mt-4">
+              <div class="card-body">
+                <form [formGroup]="bannerForm" (ngSubmit)="bannersave()">
+                    <!-- Banner Description -->
+                    <div class="mb-3">
+                      <label for="bannerDescription" class="form-label">Banner Description</label>
+                      <textarea
+                        id="bannerDescription"
+                        class="form-control"
+                        rows="4"
+                        placeholder="Enter Banner Description"
+                        formControlName="content"
+                      ></textarea>
+                    </div>
+                  
+                   
+                  
+                    <!-- Banner Image -->
+                    <div class="mb-3">
+                      <label for="bannerImage" class="form-label">Upload New Banner Image</label>
+                      <input
+                        type="file"
+                        id="bannerImage"
+                        class="form-control"
+                        (change)="onFileChange($event)"
+                      />
+                    </div>
+                  
+                    <!-- Submit Button -->
+                    <div>
+                      <button type="submit" class="btn btn-primary">
+                        Update Banner
+                      </button>
+                      <button type="reset" class="btn btn-secondary ms-3" (click)="bannerForm.reset()">
+                        Reset
+                      </button>
+                    </div>
+                  </form>
+                  
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

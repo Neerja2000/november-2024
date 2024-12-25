@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,24 @@ toggleBannerStatus(bannerId: number, isActive: boolean) {
     body,
     { headers }
   );
+}
+
+deleteBanner(bannerId: number){
+   const headers = new HttpHeaders().set('auth-token', this.token);
+   return this.http.delete(
+    `${this.bannerbaseurl}/banners/${bannerId}`,
+   
+    { headers }
+  );
+}
+updateBanner(bannerId: number, formData: FormData): Observable<any> {
+  const headers = new HttpHeaders().set('auth-token', this.token);
+
+  return this.http.put<any>(`${this.bannerbaseurl}/banners/${bannerId}`, formData, { headers });
+}
+
+getBannerById(bannerId: number) {
+  return this.http.get(`${this.bannerbaseurl}/banners/${bannerId}`);
 }
 
  
