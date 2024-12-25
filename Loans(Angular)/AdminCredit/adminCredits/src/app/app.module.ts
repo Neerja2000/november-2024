@@ -17,6 +17,8 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{HttpClientModule}from '@angular/common/http';
 import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
+import { BannerFormComponent } from './admin/banner-form/banner-form.component';
+import { BannerViewDetailsComponent } from './admin/banner-view-details/banner-view-details.component';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
     NewUsersComponent,
     AdminLoginComponent,
     EmiDetailsComponent,
+    BannerFormComponent,
+    BannerViewDetailsComponent,
   
   ],
   imports: [

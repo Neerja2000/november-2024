@@ -10,6 +10,8 @@ import { PrivacyPolicyComponent } from './admin/privacy-policy/privacy-policy.co
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
 import { AuthGuard } from './authGuard/auth.guard';
+import { BannerFormComponent } from './admin/banner-form/banner-form.component';
+import { BannerViewDetailsComponent } from './admin/banner-view-details/banner-view-details.component';
 
 const routes: Routes = [
   {
@@ -39,6 +41,12 @@ const routes: Routes = [
       },
       {
         path:'emiDetails/:userId/:transactionId',component:EmiDetailsComponent,canActivate:[AuthGuard]
+      },
+      {
+        path:'addBanner',component:BannerFormComponent,canActivate:[AuthGuard]
+      },
+      {
+        path:'viewBanner',component:BannerViewDetailsComponent,canActivate:[AuthGuard]
       }
     ]
   }

@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md mt-4">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h1>View Banner Details</h1>
+                        </div>
+                        <div class="col-md">
+                            <button routerLink="/layout/addBanner" class="btn btn-primary">
+                                Add Banner
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="container mt-4">
+                        <!-- Table of transactions -->
+                        <div class="table-responsive mt-4">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Sample Banner</td>
+                                        <td>This is a description.</td>
+                                        <td>
+                                            <img src="path/to/image.jpg" alt="Banner Image" width="50" height="50">
+                                        </td>
+                                        <td class="text-center">
+                                            <i class="fas fa-toggle-on text-success" style="font-size: 1.5rem;"></i>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning me-2">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash-alt"></i> Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Another Banner</td>
+                                        <td>Another description here.</td>
+                                        <td>
+                                            <img src="path/to/another-image.jpg" alt="Another Image" width="50" height="50">
+                                        </td>
+                                        <td class="text-center">
+                                            <i class="fas fa-toggle-off text-secondary" style="font-size: 1.5rem;"></i>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning me-2">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash-alt"></i> Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
