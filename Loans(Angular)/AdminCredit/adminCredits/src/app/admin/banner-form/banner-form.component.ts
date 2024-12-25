@@ -24,7 +24,7 @@ export class BannerFormComponent implements OnInit {
     }
 
     const formData = new FormData();
-    formData.append('description', this.bannerForm.value.description!);
+    formData.append('content', this.bannerForm.value.description!);
     if (this.bannerForm.value.image) {
       formData.append('image', this.bannerForm.value.image);
     }
