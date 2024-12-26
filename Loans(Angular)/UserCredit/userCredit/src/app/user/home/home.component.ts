@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
     
   }
 
+  
+
   fetchCreditApplications(): void {
     this.userLoginService.getCreditApplications().subscribe({
       next: (data) => {
