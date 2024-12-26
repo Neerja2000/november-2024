@@ -10,9 +10,9 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 })
 export class BannerFormComponent implements OnInit {
   bannerForm = new FormGroup({
-    title:new FormControl('',[Validators.required]),
-    content: new FormControl('', [Validators.required]),
-    image: new FormControl(null, [Validators.required]),
+    title:new FormControl(''),
+    content: new FormControl(''),
+    image: new FormControl(null),
   });
 
   constructor(private bannerService: BannerService) {}

@@ -10,8 +10,8 @@ import Swal from 'sweetalert2';
 })
 export class UpdateBannerFormComponent implements OnInit {
   bannerForm = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    content: new FormControl('', [Validators.required]),
+    title: new FormControl(''),
+    content: new FormControl(''),
     image: new FormControl(null, []),
   });
   bannerId: number = 0;
