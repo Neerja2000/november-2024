@@ -53,15 +53,7 @@ export class UpdateBannerFormComponent implements OnInit {
   }
 
   bannersave(): void {
-    if (this.bannerForm.invalid) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please fill all required fields!',
-        confirmButtonColor: '#51a992',
-      });
-      return;
-    }
+  
 
     const formData = new FormData();
     formData.append('title', this.bannerForm.value.title!);
@@ -84,14 +76,19 @@ export class UpdateBannerFormComponent implements OnInit {
       },
       
       error: (error) => {
-        console.error('Error updating banner:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Failed!',
-          text: 'Failed to update banner.',
-          confirmButtonColor: '#51a992',
-        });
-      },
+             console.error('Error adding banner:', error);
+       
+             // Extract the specific error message from the backend
+             const errorMessage = error.error?.error || error.error?.message || 'Failed to update banner.';
+       
+             // Show SweetAlert2 error message
+             Swal.fire({
+               icon: 'error',
+               title: 'Failed!',
+               text: errorMessage,
+               confirmButtonColor: '#51a992', // Your main color
+             });
+           }
     });
   }
 }

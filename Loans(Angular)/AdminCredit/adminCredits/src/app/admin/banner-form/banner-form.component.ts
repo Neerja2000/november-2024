@@ -20,16 +20,7 @@ export class BannerFormComponent implements OnInit {
   ngOnInit(): void {}
 
   bannersave(): void {
-    if (this.bannerForm.invalid) {
-      // Show SweetAlert2 error message if the form is invalid
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please fill all required fields!',
-        confirmButtonColor: '#51a992', // Your main color
-      });
-      return;
-    }
+
 
     const formData = new FormData();
     formData.append('title',this.bannerForm.value.title!);
@@ -45,21 +36,25 @@ export class BannerFormComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'Success!',
-          text: 'Banner added successfully!',
+          text:  'Banner added successfully!',
           confirmButtonColor: '#51a992', // Your main color
         });
-        this.bannerForm.reset();
       },
       error: (error) => {
         console.error('Error adding banner:', error);
-        // Show SweetAlert2 error message if the request fails
+  
+        // Extract the specific error message from the backend
+        const errorMessage = error.error?.error || error.error?.message || 'Failed to add banner.';
+  
+        // Show SweetAlert2 error message
         Swal.fire({
           icon: 'error',
           title: 'Failed!',
-          text: 'Failed to add banner.',
+          text: errorMessage,
           confirmButtonColor: '#51a992', // Your main color
         });
       }
+      
     });
   }
 
