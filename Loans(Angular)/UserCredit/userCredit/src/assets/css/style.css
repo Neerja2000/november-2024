@@ -657,12 +657,12 @@ CTA section
 
 .cta-section {
 	text-align: center;
-	padding: 100px 0 78px;
+
 }
 
 .cta-section h2 {
 	font-size: 48px;
-	margin-bottom: 10px;
+	margin-top: 20%;
 }
 
 .cta-section h2 strong {
@@ -802,7 +802,7 @@ Score section
 
 .score-section .hand-img {
 	position: absolute;
-	right: 170px;
+	right: 10px;
 	bottom: 0;
 }
 
