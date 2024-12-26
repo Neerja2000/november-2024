@@ -12,6 +12,17 @@
             <div class="container mt-4">
               <div class="card-body">
                 <form [formGroup]="bannerForm" (ngSubmit)="bannersave()">
+                  <div class="mb-3">
+                    <label for="bannerTitle" class="form-label">Banner Title</label>
+                    <input
+                      type="text"
+                      id="bannerTitle"
+                      class="form-control"
+                      placeholder="Enter Banner Title"
+                      required
+                      formControlName="title"
+                    />
+                  </div>
                     <!-- Banner Description -->
                     <div class="mb-3">
                       <label for="bannerDescription" class="form-label">Banner Description</label>

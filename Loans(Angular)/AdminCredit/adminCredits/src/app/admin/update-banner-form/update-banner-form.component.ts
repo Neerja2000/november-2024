@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class UpdateBannerFormComponent implements OnInit {
   bannerForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
     content: new FormControl('', [Validators.required]),
     image: new FormControl(null, []),
   });
@@ -32,6 +33,7 @@ export class UpdateBannerFormComponent implements OnInit {
 
         // Populate the form with fetched details
         this.bannerForm.patchValue({
+          title:banner.title,
           content: banner.content,
         });
 
@@ -62,6 +64,7 @@ export class UpdateBannerFormComponent implements OnInit {
     }
 
     const formData = new FormData();
+    formData.append('title', this.bannerForm.value.title!);
     formData.append('content', this.bannerForm.value.content!);
 
     if (this.bannerForm.value.image) {
