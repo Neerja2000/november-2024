@@ -14,3 +14,10 @@ height:80vh;
   }
 
  
+  .carousel-caption {
+    position: absolute; /* Ensure this is contained within the carousel item */
+    bottom: 25%; /* Position content at the bottom */
+  
+  }
+  
+  

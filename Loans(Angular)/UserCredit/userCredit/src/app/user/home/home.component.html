@@ -1,61 +1,61 @@
 
 <section class="hero-section" data-bs-ride="carousel">
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
-      <div class="carousel-indicators">
-        <button
-          *ngFor="let banner of banners; let i = index"
-          type="button"
-          [class.active]="i === 0"
-          [attr.data-bs-target]="'#carouselExampleFade'"
-          [attr.data-bs-slide-to]="i"
-          [attr.aria-label]="'Slide ' + (i + 1)"
-        ></button>
-      </div>
-  
-      <div class="carousel-inner">
-        <div
-          *ngFor="let banner of banners; let i = index"
-          class="carousel-item"
-          [class.active]="i === 0"
-        >
-          
-          <img [src]="banner.image_url" class="d-block w-100" [alt]="'Banner ' + (i + 1)" />
-          
-          <div class="carousel-caption d-flex justify-content-start align-items-top text-start" style="top:25%;">
-            <div class="row">
-              <div class="col-md-8">
-                <div class="carousel-text">
-                  <h2 style="font-size: 48px;">{{banner.title}}</h2>
-                  <p style="font-size: 20px;">{{ banner.content }}</p>
-                  <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger mt-5">Apply Credit</a>
-                  <a
-                    *ngIf="isCreditApplied"
-                    routerLink="/user/layout/view-credit-status"
-                    class="site-btn sb-danger mt-5"
-                  >
-                    View Credit Application Status
-                  </a>
-                </div>
+  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+    <div class="carousel-indicators">
+      <button
+        *ngFor="let banner of banners; let i = index"
+        type="button"
+        [class.active]="i === 0"
+        [attr.data-bs-target]="'#carouselExampleFade'"
+        [attr.data-bs-slide-to]="i"
+        [attr.aria-label]="'Slide ' + (i + 1)"
+      ></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div
+        *ngFor="let banner of banners; let i = index"
+        class="carousel-item"
+        [class.active]="i === 0"
+      >
+        <img [src]="banner.image_url" class="d-block w-100" [alt]="'Banner ' + (i + 1)" />
+
+        <div class="carousel-caption d-flex flex-column justify-content-between align-items-start text-start" style="padding-top: 0%;">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="carousel-text">
+                <h2 style="font-size: 48px;">{{ banner.title }}</h2>
+                <p style="font-size: 20px;">{{ banner.content }}</p>
               </div>
             </div>
-           
+          </div>
+
+          <!-- Buttons positioned at the bottom -->
+          <div >
+            <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger ">Apply Credit</a>
+            <a
+              *ngIf="isCreditApplied"
+              routerLink="/user/layout/view-credit-status"
+              class="site-btn sb-danger "
+            >
+              View Credit Application Status
+            </a>
           </div>
         </div>
       </div>
-  
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
-  </section>
-  
 
-  
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
   
 <!-- Hero Section end -->
 <section class="about-section spad" id="about">
