@@ -20,20 +20,25 @@
         >
           
           <img [src]="banner.image_url" class="d-block w-100" [alt]="'Banner ' + (i + 1)" />
- 
-          <div class="carousel-caption d-flex justify-content-start align-items-top text-start" style="top:35%;">
-            <div class="carousel-text">
-              <h2 style="font-size: 60px;">{{banner.title}}</h2>
-              <p style="font-size: 20px;">{{ banner.content }}</p>
-              <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger mt-5">Apply Credit</a>
-              <a
-                *ngIf="isCreditApplied"
-                routerLink="/user/layout/view-credit-status"
-                class="site-btn sb-danger mt-5"
-              >
-                View Credit Application Status
-              </a>
+          
+          <div class="carousel-caption d-flex justify-content-start align-items-top text-start" style="top:25%;">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="carousel-text">
+                  <h2 style="font-size: 48px;">{{banner.title}}</h2>
+                  <p style="font-size: 20px;">{{ banner.content }}</p>
+                  <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger mt-5">Apply Credit</a>
+                  <a
+                    *ngIf="isCreditApplied"
+                    routerLink="/user/layout/view-credit-status"
+                    class="site-btn sb-danger mt-5"
+                  >
+                    View Credit Application Status
+                  </a>
+                </div>
+              </div>
             </div>
+           
           </div>
         </div>
       </div>
