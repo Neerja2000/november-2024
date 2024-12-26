@@ -30,8 +30,8 @@
                   <tbody>
                     <tr *ngFor="let banner of banners; let i = index">
                       <td>{{ i + 1 }}</td>
+                      <td>{{ banner.title }}</td>
                       <td>{{ banner.content }}</td>
-                      <td>{{ banner.description }}</td>
                       <td>
                         <a [href]="banner.image_url" target="_blank">
                           <img

@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 })
 export class BannerFormComponent implements OnInit {
   bannerForm = new FormGroup({
+    title:new FormControl('',[Validators.required]),
     content: new FormControl('', [Validators.required]),
     image: new FormControl(null, [Validators.required]),
   });
@@ -31,6 +32,7 @@ export class BannerFormComponent implements OnInit {
     }
 
     const formData = new FormData();
+    formData.append('title',this.bannerForm.value.title!);
     formData.append('content', this.bannerForm.value.content!);
     if (this.bannerForm.value.image) {
       formData.append('image', this.bannerForm.value.image);
