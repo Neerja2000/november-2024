@@ -35,25 +35,32 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
-  
   fetchBanners(): void {
     this.bannerService.getBanners().subscribe(
       (response: any) => {
-        console.log("banners",response.banners)
+        console.log("banners", response.banners); // Log the entire response to inspect the structure
+    
         this.banners = response.banners
-        
           .filter((banner: any) => banner.is_active === 1) // Only include active banners
-          .map((banner: any) => ({
-            ...banner,
-            image_url: `http://194.238.17.235:7700/uploads/banners/${banner.image_url}`, // Construct the full URL dynamically
-          }));
+          .map((banner: any) => {
+            const imageUrl = banner.image_url.startsWith('http')
+              ? banner.image_url // If the image URL already starts with 'http', use it directly
+              : `http://194.238.17.235:7700/uploads/${banner.image_url}`; // Otherwise, construct the full URL
+            
+            console.log('Full image URL:', imageUrl); // Log the full image URL
+            return {
+              ...banner,
+              image_url: imageUrl, // Use the correctly constructed URL
+            };
+          });
       },
       (error) => {
         console.error('Error fetching banners', error);
       }
     );
   }
+  
+  
   
   
 
