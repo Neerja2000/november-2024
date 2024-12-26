@@ -14,8 +14,9 @@ export class HomeComponent implements OnInit {
   constructor(private userLoginService: UserLoginService,private bannerService:BannerService) {}
 
   ngOnInit(): void {
-    this.fetchCreditApplications();
     this.fetchBanners();
+    this.fetchCreditApplications();
+    
   }
 
   fetchCreditApplications(): void {
