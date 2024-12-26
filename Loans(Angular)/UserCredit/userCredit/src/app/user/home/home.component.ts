@@ -37,7 +37,9 @@ export class HomeComponent implements OnInit {
   fetchBanners(): void {
     this.bannerService.getBanners().subscribe(
       (response: any) => {
+        console.log("banners",response.banners)
         this.banners = response.banners
+        
           .filter((banner: any) => banner.is_active === 1) // Only include active banners
           .map((banner: any) => ({
             ...banner,
