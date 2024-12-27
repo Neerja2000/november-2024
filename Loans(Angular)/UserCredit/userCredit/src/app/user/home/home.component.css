@@ -19,5 +19,18 @@ height:80vh;
     bottom: 25%; /* Position content at the bottom */
   
   }
-  
-  
+ 
+  /* Make Previous and Next Icons Visible */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black for visibility */
+    border-radius: 50%; /* Optional for a rounded appearance */
+  }
+
+  /* Optional: Increase size for better visibility */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 2rem;
+    height: 2rem;
+    
+  }
