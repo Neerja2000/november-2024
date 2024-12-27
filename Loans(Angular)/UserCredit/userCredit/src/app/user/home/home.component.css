@@ -19,6 +19,16 @@ height:80vh;
     bottom: 25%; /* Position content at the bottom */
   
   }
+
+  @media (max-width: 576px) { /* Adjust for small devices, like phones */
+    .carousel-item img {
+      height: 100vh; /* Make image height 100vh on small devices */
+    }
+  
+    .carousel-caption {
+      bottom: 25%; /* Keep the caption 25% from the bottom */
+    }
+  }
  
   /* Make Previous and Next Icons Visible */
   .carousel-control-prev-icon,
