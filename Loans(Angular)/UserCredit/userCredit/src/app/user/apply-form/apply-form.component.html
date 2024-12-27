@@ -53,105 +53,118 @@
 
     <!-- Show form if it is not submitted yet -->
     <form
-     
-      [formGroup]="applyForm"
-      (ngSubmit)="onSubmit()"
-      enctype="multipart/form-data"
-      class="hero-form mt-4"
-    >
-      <!-- Name Field -->
-      <div class="form-group">
-        <label for="name" class="form-label text-white">Your Name:</label>
-        <input
-          type="text"
-          id="name"
-          formControlName="full_name"
-          placeholder="Enter your name"
-          required
-        />
-      </div>
-
-      <!-- Address Field -->
-      <div class="form-group">
-        <label for="address" class="form-label text-white">Your Address:</label>
-        <input
-          type="text"
-          id="address"
-          formControlName="address"
-          placeholder="Enter your address"
-          required
-        />
-      </div>
-
-      <!-- Phone Field -->
-      <div class="form-group">
-        <label for="contact" class="form-label text-white">Your Phone:</label>
-        <input
-          type="tel"
-          id="contact"
-          formControlName="contact_details"
-          placeholder="Enter your phone number"
-          required
-        />
-      </div>
-
-      <!-- Monthly Income Field -->
-      <div class="form-group">
-        <label for="salary" class="form-label text-white">Monthly Income:</label>
-        <input
-          type="number"
-          id="salary"
-          formControlName="monthly_income"
-          placeholder="Enter your monthly income"
-          required
-        />
-      </div>
-
-      <!-- Employer Name Field -->
-      <div class="form-group">
-        <label for="employer" class="form-label text-white">Employer Name:</label>
-        <input
-          type="text"
-          id="employer"
-          formControlName="employer_name"
-          placeholder="Enter your employer name"
-          required
-        />
-      </div>
-
-      <!-- Employment Type Field -->
-      <div class="form-group">
-        <label for="employmentType" class="form-label text-white"
-          >Employment Type:</label
-        >
-        <input
-          type="text"
-          id="employmentType"
-          formControlName="employment_type"
-          placeholder="Enter your employment type"
-          required
-        />
-      </div>
-
-      <!-- Document Upload Field -->
-      <div class="form-group">
-        <label for="identityProof" class="form-label text-white"
-          >Upload Document:</label
-        >
-        <input
-          type="file"
-          id="identityProof"
-          (change)="onFileSelected($event)"
-          required
-        />
-        <small class="form-text text-muted"
-          >Accepted formats: PDF, DOC, DOCX, JPG, PNG</small
-        >
-      </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="site-btn">Apply Now</button>
-    </form>
+    [formGroup]="applyForm"
+    (ngSubmit)="onSubmit()"
+    enctype="multipart/form-data"
+    class="hero-form mt-4"
+  >
+    <!-- Full Name Field -->
+    <div class="form-group">
+      <label for="name" class="form-label text-white">Full Name:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="full_name"
+        placeholder="Enter your full name"
+        required
+      />
+    </div>
+  
+    <!-- Address Field -->
+    <div class="form-group">
+      <label for="address" class="form-label text-white">Address:</label>
+      <input
+        type="text"
+        id="address"
+        formControlName="address"
+        placeholder="Enter your address"
+        required
+      />
+    </div>
+  
+    <!-- Contact Details Field -->
+    <div class="form-group">
+      <label for="contact" class="form-label text-white">Contact Details:</label>
+      <input
+        type="text"
+        id="contact"
+        formControlName="contact_details"
+        placeholder="Enter your contact details"
+        required
+      />
+    </div>
+  
+    <!-- Monthly Income Field -->
+    <div class="form-group">
+      <label for="income" class="form-label text-white">Monthly Income:</label>
+      <input
+        type="number"
+        id="income"
+        formControlName="monthly_income"
+        placeholder="Enter your monthly income"
+        required
+      />
+    </div>
+  
+    <!-- Employer Name Field -->
+    <div class="form-group">
+      <label for="employer" class="form-label text-white">Employer Name:</label>
+      <input
+        type="text"
+        id="employer"
+        formControlName="employer_name"
+        placeholder="Enter your employer name"
+      />
+    </div>
+  
+    <!-- Employment Type Field -->
+    <div class="form-group">
+      <label for="employmentType" class="form-label text-white">Employment Type:</label>
+      <input
+        type="text"
+        id="employmentType"
+        formControlName="employment_type"
+        placeholder="Enter your employment type"
+      />
+    </div>
+  
+    <!-- Identity Proof Upload -->
+    <div class="form-group">
+      <label for="identityProof" class="form-label text-white">Identity Proof:</label>
+      <input
+        type="file"
+        id="identityProof"
+        (change)="onFileSelected($event, 'identity_proof')"
+        required
+      />
+    </div>
+  
+    <!-- Proof of Residence Upload -->
+    <div class="form-group">
+      <label for="residenceProof" class="form-label text-white">Proof of Residence:</label>
+      <input
+        type="file"
+        id="residenceProof"
+        (change)="onFileSelected($event, 'proof_of_residence')"
+        required
+      />
+    </div>
+  
+    <!-- Proof of Income Upload -->
+    <div class="form-group">
+      <label for="incomeProof" class="form-label text-white">Proof of Income:</label>
+      <input
+        type="file"
+        id="incomeProof"
+        (change)="onFileSelected($event, 'proof_of_income')"
+        required
+      />
+    </div>
+  
+    <!-- Submit Button -->
+    <button type="submit" class="site-btn">Apply Now</button>
+  </form>
+  
   </div>
 </section>
 

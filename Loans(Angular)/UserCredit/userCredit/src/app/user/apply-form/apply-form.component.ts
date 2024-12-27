@@ -25,17 +25,32 @@ export class ApplyFormComponent implements OnInit {
     this.applyForm = this.fb.group({
       full_name: ['', Validators.required],
       address: ['', Validators.required],
-      contact_details: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      contact_details: [
+        '',
+        [Validators.required, Validators.pattern(/^[0-9]{10}$/)]
+      ],
       monthly_income: [0, Validators.required],
       employer_name: ['', Validators.required],
       employment_type: ['', Validators.required],
+      identity_proof: [null, Validators.required],
+      proof_of_residence: [null, Validators.required],
+      proof_of_income: [null, Validators.required]
     });
-
-    // Check login status
   }
 
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
+  onFileSelected(event: any, field: string): void {
+    const file = event.target.files[0];
+    if (file) {
+      if (!['application/pdf', 'image/jpeg', 'image/png'].includes(file.type)) {
+        Swal.fire('Invalid File', 'Only PDF, JPG, and PNG files are allowed.', 'warning');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        Swal.fire('File Too Large', 'File size cannot exceed 5 MB.', 'warning');
+        return;
+      }
+      this.applyForm.patchValue({ [field]: file });
+    }
   }
 
   onSubmit(): void {
@@ -48,7 +63,7 @@ export class ApplyFormComponent implements OnInit {
     }
   
     console.log('Form submission started...');
-    if (this.applyForm.valid && this.selectedFile) {
+   
       const formData = new FormData();
       Object.keys(this.applyForm.value).forEach((key) =>
         formData.append(key, this.applyForm.value[key])
@@ -75,9 +90,7 @@ export class ApplyFormComponent implements OnInit {
           }
         },
       });
-    } else {
-      Swal.fire('Invalid', 'Please fill all fields and upload a document.', 'warning'); // SweetAlert2 for form validation error
-    }
+    
   }
   
   
