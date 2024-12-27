@@ -55,7 +55,9 @@ export class UserDetailsComponent implements OnInit {
           .filter((user: any) => user.status === 'Approved')
           .map((user: any) => ({
             ...user,
-            identity_proof: `http://194.238.17.235:7700/${user.identity_proof}`
+            identity_proof: `http://194.238.17.235:7700/${user.identity_proof}`,
+            proof_of_residence: `http://194.238.17.235:7700/${user.proof_of_residence}`,
+            proof_of_income: `http://194.238.17.235:7700/${user.proof_of_income}`
           }));
         console.log('Approved Users:', this.users);
       },

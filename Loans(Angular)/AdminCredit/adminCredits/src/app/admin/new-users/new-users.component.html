@@ -28,16 +28,17 @@
                   <table class="table table-striped mt-5" id="table1">
                       <thead>
                           <tr>
-                              <th>
-                                Número de serie</th>
-                              <th>Nombre</th>
-                              <th>Nombre del Empleador</th>
-                              <th>N.º de Teléfono</th>
-                              <th>Salario</th>
-                              <th>Tipo de Empleo</th>
-                              <th>Documento</th>
-                              <th>Dirección</th>
-                              <th>Acción</th>
+                            <th>Número de serie</th>
+                            <th>Nombre</th>
+                            <th>Nombre del Empleador</th>
+                            <th>N.º de Teléfono</th>
+                            <th>Salario</th>
+                            <th>Tipo de Empleo</th>
+                            <th>Documento</th>
+                            <th>Dirección</th>
+                            <th>Prueba de Residencia</th>
+                            <th>Prueba de Ingreso</th>
+                            <th>Acción</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -63,6 +64,36 @@
                                           </div>
                                       </ng-template>
                                   </a>
+                              </td>
+                              <td>
+                                <a [href]="application.proof_of_residence" target="_blank" rel="noopener noreferrer">
+                                  <ng-container *ngIf="isImage(application.proof_of_residence); else fileIconRes">
+                                    <img [src]="application.proof_of_residence" alt="Prueba de Residencia" class="img-fluid" style="max-width: 100px; height: auto;">
+                                  </ng-container>
+                                  <ng-template #fileIconRes>
+                                    <div class="text-center">
+                                      <i *ngIf="isPDF(application.proof_of_residence)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                      <i *ngIf="isZIP(application.proof_of_residence)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                      <i *ngIf="!isImage(application.proof_of_residence) && !isPDF(application.proof_of_residence) && !isZIP(application.proof_of_residence)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                      <p>{{ getFileExtension(application.proof_of_residence) | uppercase }} Archivo</p>
+                                    </div>
+                                  </ng-template>
+                                </a>
+                              </td>
+                              <td>
+                                <a [href]="application.proof_of_income" target="_blank" rel="noopener noreferrer">
+                                  <ng-container *ngIf="isImage(application.proof_of_income); else fileIconIncome">
+                                    <img [src]="application.proof_of_income" alt="Prueba de Ingreso" class="img-fluid" style="max-width: 100px; height: auto;">
+                                  </ng-container>
+                                  <ng-template #fileIconIncome>
+                                    <div class="text-center">
+                                      <i *ngIf="isPDF(application.proof_of_income)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                      <i *ngIf="isZIP(application.proof_of_income)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                      <i *ngIf="!isImage(application.proof_of_income) && !isPDF(application.proof_of_income) && !isZIP(application.proof_of_income)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                      <p>{{ getFileExtension(application.proof_of_income) | uppercase }} Archivo</p>
+                                    </div>
+                                  </ng-template>
+                                </a>
                               </td>
                               <td>{{ application.address }}</td>
                               <td>

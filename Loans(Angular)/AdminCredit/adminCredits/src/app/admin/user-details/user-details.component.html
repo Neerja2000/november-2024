@@ -28,22 +28,21 @@
           <table class="table table-bordered mt-5">
             <thead>
               <tr>
-                <th>
-                  Número de serie</th>
+                <th>Número de serie</th>
                 <th>Nombre</th>
                 <th>Nombre del Empleador</th>
                 <th>Núm. de Teléfono</th>
                 <th>Ingreso Mensual</th>
                 <th>Tipo de Empleo</th>
                 <th>Prueba de Identidad</th>
+                <th>Prueba de Residencia</th>
+                <th>Prueba de Ingreso</th>
                 <th>Más Detalles</th>
               </tr>
             </thead>
             <tbody>
               <!-- Filtered List -->
-              <tr
-                *ngFor="let user of filteredUsers(); let i = index"
-              >
+              <tr *ngFor="let user of filteredUsers(); let i = index">
                 <td>{{ i + 1 }}</td>
                 <td class="text-bold-500">{{ user.full_name }}</td>
                 <td class="text-bold-500">{{ user.employer_name }}</td>
@@ -51,57 +50,65 @@
                 <td>{{ user.monthly_income }}</td>
                 <td>{{ user.employment_type }}</td>
                 <td>
-                  <a
-                    [href]="user.identity_proof"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a [href]="user.identity_proof" target="_blank" rel="noopener noreferrer">
                     <ng-container *ngIf="isImage(user.identity_proof); else fileIcon">
                       <!-- Show image preview for images -->
-                      <img
-                        [src]="user.identity_proof"
-                        alt="Archivo Subido"
-                        class="img-fluid"
-                        style="max-width: 100px; height: auto;"
-                      />
+                      <img [src]="user.identity_proof" alt="Archivo Subido" class="img-fluid" style="max-width: 100px; height: auto;" />
                     </ng-container>
                     <ng-template #fileIcon>
                       <div class="text-center">
-                        <i
-                          *ngIf="isPDF(user.identity_proof)"
-                          class="bi bi-file-pdf text-danger"
-                          style="font-size: 2rem;"
-                        ></i>
-                        <i
-                          *ngIf="isZIP(user.identity_proof)"
-                          class="bi bi-file-zip text-primary"
-                          style="font-size: 2rem;"
-                        ></i>
-                        <i
-                          *ngIf="
-                            !isImage(user.identity_proof) &&
-                            !isPDF(user.identity_proof) &&
-                            !isZIP(user.identity_proof)
-                          "
-                          class="bi bi-file-earmark"
-                          style="font-size: 2rem;"
-                        ></i>
+                        <i *ngIf="isPDF(user.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                        <i *ngIf="isZIP(user.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                        <i *ngIf="!isImage(user.identity_proof) && !isPDF(user.identity_proof) && !isZIP(user.identity_proof)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
                         <p>{{ getFileExtension(user.identity_proof) | uppercase }} Archivo</p>
                       </div>
                     </ng-template>
                   </a>
                 </td>
+          
+                <!-- Proof of Residence Column -->
                 <td>
-                  <a
-                    [routerLink]="['/layout/viewUserDetails', user.user_id]"
-                    class="btn btn-outline-success"
-                  >
-                    Ver Detalles
+                  <a [href]="user.proof_of_residence" target="_blank" rel="noopener noreferrer">
+                    <ng-container *ngIf="isImage(user.proof_of_residence); else fileIcon">
+                      <!-- Show image preview for images -->
+                      <img [src]="user.proof_of_residence" alt="Prueba de Residencia" class="img-fluid" style="max-width: 100px; height: auto;" />
+                    </ng-container>
+                    <ng-template #fileIcon>
+                      <div class="text-center">
+                        <i *ngIf="isPDF(user.proof_of_residence)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                        <i *ngIf="isZIP(user.proof_of_residence)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                        <i *ngIf="!isImage(user.proof_of_residence) && !isPDF(user.proof_of_residence) && !isZIP(user.proof_of_residence)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                        <p>{{ getFileExtension(user.proof_of_residence) | uppercase }} Archivo</p>
+                      </div>
+                    </ng-template>
                   </a>
+                </td>
+          
+                <!-- Proof of Income Column -->
+                <td>
+                  <a [href]="user.proof_of_income" target="_blank" rel="noopener noreferrer">
+                    <ng-container *ngIf="isImage(user.proof_of_income); else fileIcon">
+                      <!-- Show image preview for images -->
+                      <img [src]="user.proof_of_income" alt="Prueba de Ingreso" class="img-fluid" style="max-width: 100px; height: auto;" />
+                    </ng-container>
+                    <ng-template #fileIcon>
+                      <div class="text-center">
+                        <i *ngIf="isPDF(user.proof_of_income)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                        <i *ngIf="isZIP(user.proof_of_income)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                        <i *ngIf="!isImage(user.proof_of_income) && !isPDF(user.proof_of_income) && !isZIP(user.proof_of_income)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                        <p>{{ getFileExtension(user.proof_of_income) | uppercase }} Archivo</p>
+                      </div>
+                    </ng-template>
+                  </a>
+                </td>
+          
+                <td>
+                  <a [routerLink]="['/layout/viewUserDetails', user.user_id]" class="btn btn-outline-success">Ver Detalles</a>
                 </td>
               </tr>
             </tbody>
           </table>
+          
         </div>
       </div>
     </div>
