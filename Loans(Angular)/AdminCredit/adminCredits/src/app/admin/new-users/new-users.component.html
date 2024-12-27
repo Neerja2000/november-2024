@@ -24,132 +24,139 @@
                           </div>
                       </div>
                   </div>
-
-                  <table class="table table-striped mt-5" id="table1">
-                      <thead>
-                          <tr>
-                            <th>Número de serie</th>
-                            <th>Nombre</th>
-                            <th>Nombre del Empleador</th>
-                            <th>N.º de Teléfono</th>
-                            <th>Salario</th>
-                            <th>Tipo de Empleo</th>
-                            <th>Documento</th>
-                            <th>Dirección</th>
-                            <th>Prueba de Residencia</th>
-                            <th>Prueba de Ingreso</th>
-                            <th>Acción</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr *ngFor="let application of filterApplications(); let i = index">
-                              <td>{{ i + 1 }}</td>
-                              <td class="text-bold-500">{{ application.full_name }}</td>
-                              <td>{{ application.employer_name }}</td>
-                              <td class="text-bold-500">{{ application.contact_details }}</td>
-                              <td>${{ application.monthly_income }}</td>
-                              <td>{{ application.employment_type }}</td>
-                              <td>
-                                  <a [href]="application.identity_proof" target="_blank" rel="noopener noreferrer">
-                                      <ng-container *ngIf="isImage(application.identity_proof); else fileIcon">
-                                          <img [src]="application.identity_proof" alt="Archivo Subido" class="img-fluid" style="max-width: 100px; height: auto;">
-                                      </ng-container>
-                                      <ng-template #fileIcon>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                        <table class="table table-striped mt-5 table-responsive" id="table1">
+                            <thead>
+                                <tr>
+                                  <th>Número de serie</th>
+                                  <th>Nombre</th>
+                                  <th>Nombre del Empleador</th>
+                                  <th>N.º de Teléfono</th>
+                                  <th>Salario</th>
+                                  <th>Tipo de Empleo</th>
+                                  <th>Documento</th>
+                                  <th>Dirección</th>
+                                  <th>Prueba de Residencia</th>
+                                  <th>Prueba de Ingreso</th>
+                                  <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let application of filterApplications(); let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td class="text-bold-500">{{ application.full_name }}</td>
+                                    <td>{{ application.employer_name }}</td>
+                                    <td class="text-bold-500">{{ application.contact_details }}</td>
+                                    <td>${{ application.monthly_income }}</td>
+                                    <td>{{ application.employment_type }}</td>
+                                    <td>
+                                        <a [href]="application.identity_proof" target="_blank" rel="noopener noreferrer">
+                                            <ng-container *ngIf="isImage(application.identity_proof); else fileIcon">
+                                                <img [src]="application.identity_proof" alt="Archivo Subido" class="img-fluid" style="max-width: 100px; height: auto;">
+                                            </ng-container>
+                                            <ng-template #fileIcon>
+                                                <div class="text-center">
+                                                    <i *ngIf="isPDF(application.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                                    <i *ngIf="isZIP(application.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                                    <i *ngIf="!isImage(application.identity_proof) && !isPDF(application.identity_proof) && !isZIP(application.identity_proof)" 
+                                                        class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                                    <p>{{ getFileExtension(application.identity_proof) | uppercase }} Archivo</p>
+                                                </div>
+                                            </ng-template>
+                                        </a>
+                                    </td>
+                                    <td>
+                                      <a [href]="application.proof_of_residence" target="_blank" rel="noopener noreferrer">
+                                        <ng-container *ngIf="isImage(application.proof_of_residence); else fileIconRes">
+                                          <img [src]="application.proof_of_residence" alt="Prueba de Residencia" class="img-fluid" style="max-width: 100px; height: auto;">
+                                        </ng-container>
+                                        <ng-template #fileIconRes>
                                           <div class="text-center">
-                                              <i *ngIf="isPDF(application.identity_proof)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
-                                              <i *ngIf="isZIP(application.identity_proof)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
-                                              <i *ngIf="!isImage(application.identity_proof) && !isPDF(application.identity_proof) && !isZIP(application.identity_proof)" 
-                                                  class="bi bi-file-earmark" style="font-size: 2rem;"></i>
-                                              <p>{{ getFileExtension(application.identity_proof) | uppercase }} Archivo</p>
+                                            <i *ngIf="isPDF(application.proof_of_residence)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                            <i *ngIf="isZIP(application.proof_of_residence)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                            <i *ngIf="!isImage(application.proof_of_residence) && !isPDF(application.proof_of_residence) && !isZIP(application.proof_of_residence)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                            <p>{{ getFileExtension(application.proof_of_residence) | uppercase }} Archivo</p>
                                           </div>
-                                      </ng-template>
-                                  </a>
-                              </td>
-                              <td>
-                                <a [href]="application.proof_of_residence" target="_blank" rel="noopener noreferrer">
-                                  <ng-container *ngIf="isImage(application.proof_of_residence); else fileIconRes">
-                                    <img [src]="application.proof_of_residence" alt="Prueba de Residencia" class="img-fluid" style="max-width: 100px; height: auto;">
-                                  </ng-container>
-                                  <ng-template #fileIconRes>
-                                    <div class="text-center">
-                                      <i *ngIf="isPDF(application.proof_of_residence)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
-                                      <i *ngIf="isZIP(application.proof_of_residence)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
-                                      <i *ngIf="!isImage(application.proof_of_residence) && !isPDF(application.proof_of_residence) && !isZIP(application.proof_of_residence)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
-                                      <p>{{ getFileExtension(application.proof_of_residence) | uppercase }} Archivo</p>
+                                        </ng-template>
+                                      </a>
+                                    </td>
+                                    <td>
+                                      <a [href]="application.proof_of_income" target="_blank" rel="noopener noreferrer">
+                                        <ng-container *ngIf="isImage(application.proof_of_income); else fileIconIncome">
+                                          <img [src]="application.proof_of_income" alt="Prueba de Ingreso" class="img-fluid" style="max-width: 100px; height: auto;">
+                                        </ng-container>
+                                        <ng-template #fileIconIncome>
+                                          <div class="text-center">
+                                            <i *ngIf="isPDF(application.proof_of_income)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
+                                            <i *ngIf="isZIP(application.proof_of_income)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
+                                            <i *ngIf="!isImage(application.proof_of_income) && !isPDF(application.proof_of_income) && !isZIP(application.proof_of_income)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
+                                            <p>{{ getFileExtension(application.proof_of_income) | uppercase }} Archivo</p>
+                                          </div>
+                                        </ng-template>
+                                      </a>
+                                    </td>
+                                    <td>{{ application.address }}</td>
+                                    <td>
+                                      <!-- Show buttons if the status is not 'Review Required' -->
+                                      <div *ngIf="application.status !== 'Review Required'" class="d-flex">
+                                        <i 
+                                            class="bi bi-check text-success me-2 cursor-pointer" 
+                                            (click)="statusChanged(application.id, 'Approved', application.user_id)" 
+                                            title="Aprobado" style="font-size: 30px;">
+                                        </i>
+                                        <i 
+                                            class="bi bi-x text-danger cursor-pointer" 
+                                            (click)="statusChanged(application.id, 'Rejected', application.user_id)" 
+                                            title="Rechazado" style="font-size: 30px;">
+                                        </i>
+                                        <i 
+                                            class="bi bi-exclamation text-warning me-2 cursor-pointer" 
+                                            (click)="statusChanged(application.id, 'Review Required', application.user_id)" 
+                                            title="Revisión Requerida" style="font-size: 30px;">
+                                        </i>
+                                      </div>
+                                      
+                                      <!-- Show message if the status is 'Review Required' -->
+                                      <div *ngIf="application.status === 'Review Required'" class="text-warning mt-2">
+                                        <strong>Aplicación enviada para cambios</strong>
+                                      </div>
+                                    </td>
+                                    
+                                    
+                                </tr>
+      
+                                <!-- Modal -->
+                                <div class="modal fade" id="creditModal" tabindex="-1" aria-labelledby="creditModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="creditModalLabel">Añadir Crédito</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <label for="creditAmount" class="form-label">Monto del Crédito</label>
+                                                        <input type="number" class="form-control" id="creditAmount" placeholder="Ingrese el monto del crédito" required>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Enviar</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </ng-template>
-                                </a>
-                              </td>
-                              <td>
-                                <a [href]="application.proof_of_income" target="_blank" rel="noopener noreferrer">
-                                  <ng-container *ngIf="isImage(application.proof_of_income); else fileIconIncome">
-                                    <img [src]="application.proof_of_income" alt="Prueba de Ingreso" class="img-fluid" style="max-width: 100px; height: auto;">
-                                  </ng-container>
-                                  <ng-template #fileIconIncome>
-                                    <div class="text-center">
-                                      <i *ngIf="isPDF(application.proof_of_income)" class="bi bi-file-pdf text-danger" style="font-size: 2rem;"></i>
-                                      <i *ngIf="isZIP(application.proof_of_income)" class="bi bi-file-zip text-primary" style="font-size: 2rem;"></i>
-                                      <i *ngIf="!isImage(application.proof_of_income) && !isPDF(application.proof_of_income) && !isZIP(application.proof_of_income)" class="bi bi-file-earmark" style="font-size: 2rem;"></i>
-                                      <p>{{ getFileExtension(application.proof_of_income) | uppercase }} Archivo</p>
-                                    </div>
-                                  </ng-template>
-                                </a>
-                              </td>
-                              <td>{{ application.address }}</td>
-                              <td>
-                                <!-- Show buttons if the status is not 'Review Required' -->
-                                <div *ngIf="application.status !== 'Review Required'" class="d-flex">
-                                  <i 
-                                      class="bi bi-check text-success me-2 cursor-pointer" 
-                                      (click)="statusChanged(application.id, 'Approved', application.user_id)" 
-                                      title="Aprobado" style="font-size: 30px;">
-                                  </i>
-                                  <i 
-                                      class="bi bi-x text-danger cursor-pointer" 
-                                      (click)="statusChanged(application.id, 'Rejected', application.user_id)" 
-                                      title="Rechazado" style="font-size: 30px;">
-                                  </i>
-                                  <i 
-                                      class="bi bi-exclamation text-warning me-2 cursor-pointer" 
-                                      (click)="statusChanged(application.id, 'Review Required', application.user_id)" 
-                                      title="Revisión Requerida" style="font-size: 30px;">
-                                  </i>
                                 </div>
-                                
-                                <!-- Show message if the status is 'Review Required' -->
-                                <div *ngIf="application.status === 'Review Required'" class="text-warning mt-2">
-                                  <strong>Aplicación enviada para cambios</strong>
-                                </div>
-                              </td>
-                              
-                              
-                          </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                  </div>
 
-                          <!-- Modal -->
-                          <div class="modal fade" id="creditModal" tabindex="-1" aria-labelledby="creditModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <h5 class="modal-title" id="creditModalLabel">Añadir Crédito</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                                      </div>
-                                      <div class="modal-body">
-                                          <form>
-                                              <div class="mb-3">
-                                                  <label for="creditAmount" class="form-label">Monto del Crédito</label>
-                                                  <input type="number" class="form-control" id="creditAmount" placeholder="Ingrese el monto del crédito" required>
-                                              </div>
-                                          </form>
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Enviar</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </tbody>
-                  </table>
+                  
               </div>
           </div>
       </div>
