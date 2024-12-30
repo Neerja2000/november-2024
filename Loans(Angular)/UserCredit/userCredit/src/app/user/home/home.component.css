@@ -22,11 +22,23 @@ height:80vh;
 
   @media (max-width: 576px) { /* Adjust for small devices, like phones */
     .carousel-item img {
-      height: 100vh; /* Make image height 100vh on small devices */
+      height: 30vh; 
     }
-  
+  .carousel-text h2{
+    font-size:20px !important;
+  }
+  .sit-btn{
+    font-weight: 400 !important;
+    min-width: 80px !important;
+    padding: 10px 20px !important
+
+  }
+  .carousel-caption p{
+    font-size: 10px !important;
+  }
     .carousel-caption {
-      bottom: 25%; /* Keep the caption 25% from the bottom */
+      top: 30%;
+      bottom: 10%; /* Keep the caption 25% from the bottom */
     }
   }
  

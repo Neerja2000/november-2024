@@ -25,18 +25,18 @@
             <div class="col-md-8">
               <div class="carousel-text">
                 <h2 style="font-size: 48px;">{{ banner.title }}</h2>
-                <p style="font-size: 20px;">{{ banner.content }}</p>
+                <p style="font-size: 20px; color: rgb(253, 237, 237);" >{{ banner.content }}</p>
               </div>
             </div>
           </div>
 
           <!-- Buttons positioned at the bottom -->
           <div >
-            <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger ">Apply Credit</a>
+            <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger sit-btn ">Apply Credit</a>
             <a
               *ngIf="isCreditApplied"
               routerLink="/user/layout/view-credit-status"
-              class="site-btn sb-danger "
+              class="site-btn sb-danger sit-btn "
             >
               View Credit Application Status
             </a>
