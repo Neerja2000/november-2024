@@ -103,7 +103,14 @@ Helper CSS
 	padding-top: 102px;
 	padding-bottom: 102px;
 }
-
+/* Reduce padding for small screens */
+@media (max-width: 576px) { 
+	.spad {
+	  padding-top: 50px; /* Reduced padding on top */
+	  padding-bottom: 50px; /* Reduced padding on bottom */
+	}
+  }
+  
 .text-white h1,
 .text-white h2,
 .text-white h3,
