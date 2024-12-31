@@ -10,11 +10,12 @@
     display: flex;
   }
   .carousel-item img{
-height:80vh;
+height:100vh;
   }
 
  
   .carousel-caption {
+    top:20%;
     position: absolute; /* Ensure the caption is inside the carousel item */
     bottom: 25%; /* Position content towards the bottom */
   }
@@ -70,13 +71,7 @@ height:80vh;
     .carousel-item img {
       height: 80vh; /* Default image height for large screens */
     }
-    .carousel-text h2 {
-      font-size: 60px !important; /* Increase font size for headings */
-    }
-  
-    .carousel-caption p {
-      font-size: 30px !important; /* Slightly larger font size for caption */
-    }
+   
     .carousel-caption {
       bottom: 25%; /* Position the caption at the bottom for large screens */
     }
