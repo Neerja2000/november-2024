@@ -15,52 +15,70 @@ height:80vh;
 
  
   .carousel-caption {
-    position: absolute; /* Ensure this is contained within the carousel item */
-    bottom: 25%; /* Position content at the bottom */
+    position: absolute; /* Ensure the caption is inside the carousel item */
+    bottom: 25%; /* Position content towards the bottom */
+  }
   
-  }
-
-  @media (max-width: 576px) { /* Adjust for small devices, like phones */
+  /* For small screens (phones) */
+  @media (max-width: 576px) { 
     .carousel-item img {
-      height: 30vh; 
+      height: 30vh; /* Reduced height on small devices */
     }
-  .carousel-text h2{
-    font-size:20px !important;
-  }
-  .sit-btn{
-    font-weight: 400 !important;
-    min-width: 80px !important;
-    padding: 10px 20px !important
-
-  }
-  .carousel-caption p{
-    font-size: 10px !important;
-  }
+  
+    .carousel-text h2 {
+      font-size: 20px !important; /* Smaller font size for headings */
+    }
+  
+    .sit-btn {
+      font-weight: 400 !important;
+      min-width: 80px !important;
+      padding: 10px 20px !important;
+    }
+  
+    .carousel-caption p {
+      font-size: 10px !important; /* Smaller text for captions */
+    }
+  
     .carousel-caption {
       top: 30%;
-      bottom: 10%; /* Keep the caption 25% from the bottom */
+      bottom: 10%; /* Adjust caption position */
     }
   }
- 
-
-
-
+  
+  /* For medium screens (tablets) */
   @media (min-width: 768px) and (max-width: 1024px) {
     .carousel-item img {
-      height: 50vh; 
+      height: 50vh; /* Adjust image height for tablets */
     }
-  .carousel-text h2{
-    font-size:40px !important;
-  }
-
-  .carousel-caption p{
-    font-size: 20px !important;
-  }
+  
+    .carousel-text h2 {
+      font-size: 40px !important; /* Increase font size for headings */
+    }
+  
+    .carousel-caption p {
+      font-size: 20px !important; /* Slightly larger font size for caption */
+    }
+  
     .carousel-caption {
-      top: 30%;
-      bottom: 10%; /* Keep the caption 25% from the bottom */
+      top: 20%;
+      bottom: 10%; /* Adjust caption position */
     }
   }
+  
+  /* For large screens (desktops) */
+  @media (min-width: 1024px) {
+    .carousel-item img {
+      height: 80vh; /* Default image height for large screens */
+    }
+  
+    .carousel-caption {
+      bottom: 25%; /* Position the caption at the bottom for large screens */
+    }
+  }
+  
+ /* Corrected media query for the 664px to 768px range */
+
+
   /* Make Previous and Next Icons Visible */
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
