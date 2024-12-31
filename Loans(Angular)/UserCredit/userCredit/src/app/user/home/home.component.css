@@ -22,7 +22,7 @@ height:80vh;
   /* For small screens (phones) */
   @media (max-width: 576px) { 
     .carousel-item img {
-      height: 30vh; /* Reduced height on small devices */
+      height: 60vh; /* Reduced height on small devices */
     }
   
     .carousel-text h2 {
@@ -70,7 +70,13 @@ height:80vh;
     .carousel-item img {
       height: 80vh; /* Default image height for large screens */
     }
+    .carousel-text h2 {
+      font-size: 60px !important; /* Increase font size for headings */
+    }
   
+    .carousel-caption p {
+      font-size: 30px !important; /* Slightly larger font size for caption */
+    }
     .carousel-caption {
       bottom: 25%; /* Position the caption at the bottom for large screens */
     }
@@ -89,8 +95,8 @@ height:80vh;
   /* Optional: Increase size for better visibility */
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
-    width: 2rem;
-    height: 2rem;
+    width: 1rem;
+    height: 1rem;
     
   }
   @media (min-width: 768px) and (max-width: 1024px) {
