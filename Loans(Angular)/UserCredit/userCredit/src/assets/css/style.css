@@ -436,7 +436,7 @@ Header section
 	left: 0;
 	top: 0;
 	padding-left: 53px;
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0);
 	z-index: 999;
 }
 

@@ -6,7 +6,14 @@
       <ul class="main-menu">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About Us</a></li>
-        <li><a href="#score">Credit Score</a></li>
+        <li> <a *ngIf="!isCreditApplied" routerLink="/applyForm" >Apply Credit</a>
+          <a
+            *ngIf="isCreditApplied"
+            routerLink="/user/layout/view-credit-status"
+            
+          >
+            View Credit Application Status
+          </a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="header-right">
