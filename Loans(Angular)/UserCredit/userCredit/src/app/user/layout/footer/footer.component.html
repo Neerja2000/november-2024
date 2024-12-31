@@ -10,29 +10,33 @@
                          <strong style="font-size: 28px; color: #f43f00;">Opticatijuana</strong>
                     </a>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis alias inventore harum modi, cumque consequuntur suscipit, corporis illo soluta dolorem fugit repudiandae, voluptas fugiat veniam ducimus provident nostrum nihil a!</p>
-                    <a href="./form.html" >
-                        <button class="site-btn">Apply</button>
+                    <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger sit-btn ">Aplicar Crédito</a>
+                    <a
+                      *ngIf="isCreditApplied"
+                      routerLink="/user/layout/view-credit-status"
+                      class="site-btn sb-danger sit-btn "
+                    >
+                      
+          Ver el Estado de la Solicitud de Crédito
                     </a>
                 </div>
             </div>
             <div class="col-lg-2 col-sm-6">
                 
             </div>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-3 col-sm-6"> 
                 <div class="footer-widget">
-                    <h2>Quick Links</h2>
+                    <h2>Enlaces Rápidos</h2>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About US</a></li>
-                        <li><a href="#score">Credit Score</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Sobre Nosotros</a></li>
+                        <li><a href="#contact">Contacto</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div class="footer-widget socialLinks">
-                    <h2>Social Links</h2>
+                    <h2>Redes Sociales</h2>
                     <ul style="list-style: none; padding: 0;">
                         <li>
                             <a href="https://wa.me/your-number" target="_blank" style="text-decoration: none; color: white;">
@@ -52,6 +56,7 @@
                     </ul>
                 </div>
             </div>
+            
             
             
         </div>
