@@ -5,7 +5,7 @@
   <nav class="header-nav">
       <ul class="main-menu">
           <li><a href="#home">Inicio</a></li>
-          <li><a href="#about">Sobre Nosotros</a></li>
+          <li><a href="#product">Productos</a></li>
           <li>
               <a *ngIf="!isCreditApplied" routerLink="/applyForm">Solicitar Crédito</a>
               <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status">
@@ -37,8 +37,14 @@
       </label>
       <ul class="slicknav_nav">
           <li><a href="#home">Inicio</a></li>
-          <li><a href="#about">Sobre Nosotros</a></li>
-          <li><a href="#score">Puntaje de Crédito</a></li>
+      
+<li><a href="#product">Productos</a></li>
+<li>
+  <a *ngIf="!isCreditApplied" routerLink="/applyForm">Solicitar Crédito</a>
+  <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status">
+      Ver Estado de la Solicitud de Crédito
+  </a>
+</li>
           <li><a href="#contact">Contacto</a></li>
           <a *ngIf="!isLoggedIn" routerLink="/login"><button class="btn btn-dark">Registrarse</button></a>
           <a *ngIf="isLoggedIn"><button class="btn btn-dark" (click)="logout()">Cerrar Sesión</button></a>
