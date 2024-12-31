@@ -74,3 +74,8 @@
         display: none; /* Hide toggle menu on desktop */
     }
 }
+
+html {
+    scroll-behavior: smooth;
+}
+

@@ -6,6 +6,7 @@
       <ul class="main-menu">
           <li><a href="#home">Inicio</a></li>
           <li><a href="#product">Productos</a></li>
+
           <li>
               <a *ngIf="!isCreditApplied" routerLink="/applyForm">Solicitar Crédito</a>
               <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status">
@@ -38,7 +39,7 @@
       <ul class="slicknav_nav">
           <li><a href="#home">Inicio</a></li>
       
-<li><a href="#product">Productos</a></li>
+<li><a href="#products">Productos</a></li>
 <li>
   <a *ngIf="!isCreditApplied" routerLink="/applyForm">Solicitar Crédito</a>
   <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status">
