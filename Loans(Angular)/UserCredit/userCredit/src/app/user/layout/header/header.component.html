@@ -1,34 +1,31 @@
 <header class="header-section">
-    <a href="index.html" class="site-logo mt-3">
+  <a href="index.html" class="site-logo mt-3">
       <p style="font-size: 29px; color: #f43f00;">Opticatijuana</p>
-    </a>
-    <nav class="header-nav">
+  </a>
+  <nav class="header-nav">
       <ul class="main-menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li> <a *ngIf="!isCreditApplied" routerLink="/applyForm" >Apply Credit</a>
-          <a
-            *ngIf="isCreditApplied"
-            routerLink="/user/layout/view-credit-status"
-            
-          >
-            View Credit Application Status
-          </a></li>
-        <li><a href="#contact">Contact</a></li>
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#about">Sobre Nosotros</a></li>
+          <li>
+              <a *ngIf="!isCreditApplied" routerLink="/applyForm">Solicitar Crédito</a>
+              <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status">
+                  Ver Estado de la Solicitud de Crédito
+              </a>
+          </li>
+          <li><a href="#contact">Contacto</a></li>
       </ul>
       <div class="header-right">
-        <!-- Show 'Sign Up' if not logged in -->
-        <a *ngIf="!isLoggedIn" routerLink="/login">
-          <div class="hr-btn hr-btn-2">Sign Up</div>
-        </a>
-        <!-- Show 'Sign Out' if logged in -->
-        <div *ngIf="isLoggedIn" class="hr-btn hr-btn-2" (click)="logout()">Logout</div>
+          <!-- Mostrar 'Registrarse' si no ha iniciado sesión -->
+          <a *ngIf="!isLoggedIn" routerLink="/login">
+              <div class="hr-btn hr-btn-2">Registrarse</div>
+          </a>
+          <!-- Mostrar 'Cerrar Sesión' si ha iniciado sesión -->
+          <div *ngIf="isLoggedIn" class="hr-btn hr-btn-2" (click)="logout()">Cerrar Sesión</div>
       </div>
-    </nav>
+  </nav>
 
-
-    <div class="slicknav_menu">
-      <!-- Hidden Checkbox for Toggle -->
+  <div class="slicknav_menu">
+      <!-- Checkbox oculto para alternar -->
       <input type="checkbox" id="menu-toggle" class="menu-toggle" />
       <label for="menu-toggle" class="slicknav_btn" style="outline: none;">
           <span class="slicknav_menutxt"></span>
@@ -39,14 +36,12 @@
           </span>
       </label>
       <ul class="slicknav_nav">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#score">Credit Score</a></li>
-          <li><a href="#contact">Contact</a></li>
-         <a *ngIf="!isLoggedIn" routerLink="/login"><button class="btn btn-dark">Sign up</button></a>
-          <a *ngIf="isLoggedIn"><button class="btn btn-dark" (click)="logout()">Logout</button></a>
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#about">Sobre Nosotros</a></li>
+          <li><a href="#score">Puntaje de Crédito</a></li>
+          <li><a href="#contact">Contacto</a></li>
+          <a *ngIf="!isLoggedIn" routerLink="/login"><button class="btn btn-dark">Registrarse</button></a>
+          <a *ngIf="isLoggedIn"><button class="btn btn-dark" (click)="logout()">Cerrar Sesión</button></a>
       </ul>
-     
   </div>
-  </header>
-  
+</header>
