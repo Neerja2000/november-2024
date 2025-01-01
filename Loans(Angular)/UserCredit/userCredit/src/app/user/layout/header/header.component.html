@@ -1,54 +1,49 @@
 <header class="header-section">
-  <a href="index.html" class="site-logo mt-3">
+    <a href="index.html" class="site-logo mt-3">
       <p style="font-size: 29px; color: #f43f00;">Opticatijuana</p>
-  </a>
-  <nav class="header-nav">
+    </a>
+    <nav class="header-nav">
       <ul class="main-menu">
-          <li><a href="#home">Inicio</a></li>
-          <li><a href="#product">Productos</a></li>
-
-          <li>
-              <a *ngIf="!isCreditApplied" routerLink="/applyForm">Solicitar Crédito</a>
-              <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status">
-                  Ver Estado de la Solicitud de Crédito
-              </a>
-          </li>
-          <li><a href="#contact">Contacto</a></li>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#product">Productos</a></li>
+  
+        <li>
+          <a *ngIf="!isCreditApplied" routerLink="/applyForm">Solicitar Crédito</a>
+          <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status">
+            Ver Estado de la Solicitud de Crédito
+          </a>
+        </li>
+        <li><a href="#contact">Contacto</a></li>
       </ul>
       <div class="header-right">
-          <!-- Mostrar 'Registrarse' si no ha iniciado sesión -->
-          <a *ngIf="!isLoggedIn" routerLink="/login">
-              <div class="hr-btn hr-btn-2">Registrarse</div>
-          </a>
-          <!-- Mostrar 'Cerrar Sesión' si ha iniciado sesión -->
-          <div *ngIf="isLoggedIn" class="hr-btn hr-btn-2" (click)="logout()">Cerrar Sesión</div>
+        <!-- 'Registrarse' should always be visible -->
+        <a *ngIf="!isLoggedIn" routerLink="/login">
+          <div class="hr-btn hr-btn-2">Registrarse</div>
+        </a>
+        <!-- Show 'Cerrar Sesión' only if logged in -->
+        <div *ngIf="isLoggedIn" class="hr-btn hr-btn-2" (click)="logout()">Cerrar Sesión</div>
       </div>
-  </nav>
-
-  <div class="slicknav_menu">
-      <!-- Checkbox oculto para alternar -->
+    </nav>
+  
+    <div class="slicknav_menu">
       <input type="checkbox" id="menu-toggle" class="menu-toggle" />
       <label for="menu-toggle" class="slicknav_btn" style="outline: none;">
-          <span class="slicknav_menutxt"></span>
-          <span class="slicknav_icon">
-              <span class="slicknav_icon-bar"></span>
-              <span class="slicknav_icon-bar"></span>
-              <span class="slicknav_icon-bar"></span>
-          </span>
+        <span class="slicknav_menutxt"></span>
+        <span class="slicknav_icon">
+          <span class="slicknav_icon-bar"></span>
+          <span class="slicknav_icon-bar"></span>
+          <span class="slicknav_icon-bar"></span>
+        </span>
       </label>
       <ul class="slicknav_nav">
-          <li><a href="#home">Inicio</a></li>
-      
-<li><a href="#products">Productos</a></li>
-<li>
-  <a *ngIf="!isCreditApplied" routerLink="/applyForm">Solicitar Crédito</a>
-  <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status">
-      Ver Estado de la Solicitud de Crédito
-  </a>
-</li>
-          <li><a href="#contact">Contacto</a></li>
-          <a *ngIf="!isLoggedIn" routerLink="/login"><button class="btn btn-dark">Registrarse</button></a>
-          <a *ngIf="isLoggedIn"><button class="btn btn-dark" (click)="logout()">Cerrar Sesión</button></a>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#products">Productos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+        <!-- 'Registrarse' should always be visible -->
+        <a *ngIf="!isLoggedIn" routerLink="/login"><button class="btn btn-dark">Registrarse</button></a>
+        <!-- Show 'Cerrar Sesión' only if logged in -->
+        <a *ngIf="isLoggedIn"><button class="btn btn-dark" (click)="logout()">Cerrar Sesión</button></a>
       </ul>
-  </div>
-</header>
+    </div>
+  </header>
+  

@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
           .map((banner: any) => {
             const imageUrl = banner.image_url.startsWith('http')
               ? banner.image_url // If the image URL already starts with 'http', use it directly
-              : `http://194.238.17.235:7700/uploads/${banner.image_url}`; // Otherwise, construct the full URL
+              : `http://208.109.247.10:7700/uploads/${banner.image_url}`; // Otherwise, construct the full URL
             
             console.log('Full image URL:', imageUrl); // Log the full image URL
             return {

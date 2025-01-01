@@ -8,14 +8,22 @@ import { UserLoginService } from 'src/app/shared/userLogin/user-login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isLoggedIn: boolean = false; // Define the isLoggedIn property
+  isLoggedIn: boolean = false;
   isCreditApplied: boolean = false;
-  constructor(private authService: AuthService,private userLoginService: UserLoginService) {}
+
+  constructor(
+    private authService: AuthService,
+    private userLoginService: UserLoginService
+  ) {}
 
   ngOnInit(): void {
     // Check if the user is logged in
-    this.isLoggedIn = !!this.authService.getToken(); // Convert token presence to a boolean
-    this.fetchCreditApplications();
+    this.isLoggedIn = !!this.authService.getToken();
+    
+    // Fetch credit applications only if logged in
+    if (this.isLoggedIn) {
+      this.fetchCreditApplications();
+    }
   }
 
   logout(): void {
@@ -23,17 +31,15 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = false; // Update isLoggedIn status
     console.log('User logged out');
   }
+
   fetchCreditApplications(): void {
     this.userLoginService.getCreditApplications().subscribe({
       next: (data) => {
-        if (data.creditApplications && data.creditApplications.length > 0) {
-          this.isCreditApplied = true;
-        } else {
-          this.isCreditApplied = false;
-        }
+        this.isCreditApplied = !!(data.creditApplications && data.creditApplications.length > 0);
       },
       error: (err) => {
         console.error('Error fetching credit applications:', err);
+        this.isCreditApplied = false; // Fallback to false in case of error
       }
     });
   }
