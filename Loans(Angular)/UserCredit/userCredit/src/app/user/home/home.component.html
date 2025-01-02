@@ -1,4 +1,3 @@
-
 <section class="hero-section" data-bs-ride="carousel">
   <div
     id="carouselExampleFade"
@@ -48,6 +47,20 @@
               [alt]="'Banner ' + (i + 1)"
             />
           </a>
+
+          <!-- Caption Section -->
+          <div class="carousel-caption d-flex flex-column justify-content-between align-items-start text-start" style="padding-top: 0%;">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="carousel-text">
+                  <h2 style="font-size: 48px; font-family: Georgia, 'Times New Roman', Times, serif;">{{ banner.title }}</h2>
+                  <p style="font-size: 20px; color: rgb(253, 237, 237); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="mt-3">
+                    {{ banner.content }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
