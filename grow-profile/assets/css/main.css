@@ -291,7 +291,7 @@ h6 {
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
-    color: var(--nav-color);
+    /* color: var(--nav-color); */
     font-size: 28px;
     line-height: 0;
     margin-right: 10px;
@@ -435,7 +435,7 @@ h6 {
 }
 
 .footer .footer-about .logo img {
-  max-height: 40px;
+  /* max-height: 40px; */
   margin-right: 6px;
 }
 
