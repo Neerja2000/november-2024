@@ -1,6 +1,11 @@
 
 <section class="hero-section" data-bs-ride="carousel">
-  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+  <div
+    id="carouselExampleFade"
+    class="carousel slide carousel-fade"
+    data-bs-ride="carousel"
+    data-bs-interval="4000"
+  >
     <div class="carousel-indicators">
       <button
         *ngFor="let banner of banners; let i = index"
@@ -18,61 +23,50 @@
         class="carousel-item"
         [class.active]="i === 0"
       >
-      <a
-      *ngIf="!isCreditApplied"
-      routerLink="/applyForm"
-      class="d-block w-100"
-    >
-      <img
-        [src]="banner.image_url"
-        class="d-block w-100"
-        [alt]="'Banner ' + (i + 1)"
-      />
-    </a>
-    <a
-      *ngIf="isCreditApplied"
-      routerLink="/user/layout/view-credit-status"
-      class="d-block w-100"
-    >
-      <img
-        [src]="banner.image_url"
-        class="d-block w-100"
-        [alt]="'Banner ' + (i + 1)"
-      />
-    </a>
-
-    
-
-        <div class="carousel-caption d-flex flex-column justify-content-between align-items-start text-start" style="padding-top: 0%;">
-          <div class="row">
-            <div class="col-md-8">
-              <div class="carousel-text">
-                <h2 style="font-size: 48px; font-family: Georgia, 'Times New Roman', Times, serif;">{{ banner.title }}</h2>
-                <p style="font-size: 20px; color: rgb(253, 237, 237); font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="mt-3">{{ banner.content }}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Buttons positioned at the bottom -->
-          <!-- <div >
-            <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger sit-btn ">Apply Credit</a>
-            <a
-              *ngIf="isCreditApplied"
-              routerLink="/user/layout/view-credit-status"
-              class="site-btn sb-danger sit-btn "
-            >
-              View Credit Application Status
-            </a>
-          </div> -->
+        <div class="d-block w-100">
+          <a
+            *ngIf="!isCreditApplied"
+            routerLink="/applyForm"
+            class="d-block w-100"
+            style="pointer-events: auto;"
+          >
+            <img
+              [src]="banner.image_url"
+              class="d-block w-100"
+              [alt]="'Banner ' + (i + 1)"
+            />
+          </a>
+          <a
+            *ngIf="isCreditApplied"
+            routerLink="/user/layout/view-credit-status"
+            class="d-block w-100"
+            style="pointer-events: auto;"
+          >
+            <img
+              [src]="banner.image_url"
+              class="d-block w-100"
+              [alt]="'Banner ' + (i + 1)"
+            />
+          </a>
         </div>
       </div>
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleFade"
+      data-bs-slide="prev"
+    >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleFade"
+      data-bs-slide="next"
+    >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>

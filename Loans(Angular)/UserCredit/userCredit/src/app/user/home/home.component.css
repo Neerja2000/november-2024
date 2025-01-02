@@ -98,3 +98,12 @@ height:100vh;
 
     
   }
+
+
+  .carousel a {
+    pointer-events: auto;
+  }
+  
+  .carousel-inner {
+    pointer-events: none;
+  }
