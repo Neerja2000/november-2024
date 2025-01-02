@@ -18,7 +18,28 @@
         class="carousel-item"
         [class.active]="i === 0"
       >
-        <img [src]="banner.image_url" class="d-block w-100" [alt]="'Banner ' + (i + 1)" />
+      <a
+      *ngIf="!isCreditApplied"
+      routerLink="/applyForm"
+      class="d-block w-100"
+    >
+      <img
+        [src]="banner.image_url"
+        class="d-block w-100"
+        [alt]="'Banner ' + (i + 1)"
+      />
+    </a>
+    <a
+      *ngIf="isCreditApplied"
+      routerLink="/user/layout/view-credit-status"
+      class="d-block w-100"
+    >
+      <img
+        [src]="banner.image_url"
+        class="d-block w-100"
+        [alt]="'Banner ' + (i + 1)"
+      />
+    </a>
 
         <div class="carousel-caption d-flex flex-column justify-content-between align-items-start text-start" style="padding-top: 0%;">
           <div class="row">
