@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error en el registro:', err);
-          Swal.fire('Error', err.error.message, 'error');
+          Swal.fire('Error', err.error.error, 'error');
         },
       });
   }

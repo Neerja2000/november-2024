@@ -11,15 +11,12 @@
           <th scope="col">Nombre del Empleador</th>
           <th scope="col">Tipo de Empleo</th>
           <th scope="col">Prueba de Identidad</th>
-          <th scope="col">Prueba de Residencia</th>
-          <th scope="col">Prueba de Ingresos</th>
           <th scope="col">Estado</th>
-          <th *ngIf="hasRejectedApplications()" scope="col">Razón del Rechazo</th>
+          <th *ngIf="hasRejectedApplications()" scope="col">Razón de Rechazo</th>
           <th *ngIf="hasApprovedApplications()">Ver Detalles</th>
           <th *ngIf="hasReviewRequiredApplications()">Editar Solicitud</th>
         </tr>
       </thead>
-      
       <tbody>
         <tr *ngFor="let application of creditApplications">
           <td>{{ application.full_name }}</td>
@@ -29,22 +26,11 @@
           <td>{{ application.employer_name }}</td>
           <td>{{ application.employment_type }}</td>
           <td>
+            <!-- Open image in new tab -->
             <a *ngIf="application.identity_proof" [href]="application.identity_proof" target="_blank">
-              View Proof
+              Ver Prueba
             </a>
-            <span *ngIf="!application.identity_proof">No proof uploaded</span>
-          </td>
-          <td>
-            <a *ngIf="application.proof_of_residence" [href]="application.proof_of_residence" target="_blank">
-              View Proof
-            </a>
-            <span *ngIf="!application.proof_of_residence">No proof uploaded</span>
-          </td>
-          <td>
-            <a *ngIf="application.proof_of_income" [href]="application.proof_of_income" target="_blank">
-              View Proof
-            </a>
-            <span *ngIf="!application.proof_of_income">No proof uploaded</span>
+            <span *ngIf="!application.identity_proof">No se ha cargado ninguna prueba</span>
           </td>
           <td>
             <span [ngClass]="{
@@ -56,24 +42,25 @@
               {{ application.status }}
             </span>
           </td>
-          <td *ngIf="application.status === 'Approved'">
+          <td *ngIf="application.status === 'Approved'" >
             <button 
               class="btn btn-dark btn-sm" 
               [routerLink]="['/user/layout/all-user-details']">
-              View Details
+              Ver Detalles
+              
             </button>
           </td>
-          <td *ngIf="application.status === 'Review Required'">
+
+          <td *ngIf="application.status === 'Review Required'" >
             <button 
               class="btn btn-dark" 
               [routerLink]="['/review-required', application.id]">
-              Update Application
+              Actualizar Solicitud
             </button>
           </td>
-          <td *ngIf="application.status === 'Rejected'">{{ application.review_message }}</td>
+          <td *ngIf="application.status === 'Rejected'">{{application.review_message}}</td>
         </tr>
       </tbody>
-      
     </table>
   </div>
 </div>
