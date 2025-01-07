@@ -2,10 +2,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 export function getbaseurl(){
-  return "http://208.109.247.10:7700/api/users"
+  return "https://api-docs.opticatijuana.com/api/users"
  }
  export function bannerbaseurl(){
-  return "http://208.109.247.10:7700/api/banner"
+  return "https://api-docs.opticatijuana.com/api/banner"
  }
  const provider=[
   {

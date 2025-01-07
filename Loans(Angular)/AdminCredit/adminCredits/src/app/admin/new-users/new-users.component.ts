@@ -58,9 +58,9 @@ export class NewUsersComponent implements OnInit {
           )
           .map((application: any) => ({
             ...application,
-            identity_proof: `http://208.109.247.10:7700/${application.identity_proof}`,
-            proof_of_residence: `http://208.109.247.10:7700/${application.proof_of_residence}`,
-            proof_of_income: `http://208.109.247.10:7700/${application.proof_of_income}`
+            identity_proof: `https://api-docs.opticatijuana.com/${application.identity_proof}`,
+            proof_of_residence: `https://api-docs.opticatijuana.com/${application.proof_of_residence}`,
+            proof_of_income: `https://api-docs.opticatijuana.com/${application.proof_of_income}`
           }));
 
         console.log('User Applications:', this.userApplications);

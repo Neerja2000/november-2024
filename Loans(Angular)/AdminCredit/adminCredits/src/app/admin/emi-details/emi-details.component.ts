@@ -169,56 +169,54 @@ export class EmiDetailsComponent implements OnInit {
     if (this.users.length > 0 || this.emiDetails.length > 0 || this.transaction) {
       // User worksheet data
       const userWorksheetData = this.users.map((user: any, index: number) => ({
-        'Sr No.': index + 1,
-        Name: user.full_name,
-        'Employer Name': user.employer_name,
-        'Phone No.': user.contact_details,
-        'Monthly Income': user.monthly_income,
-        Employment_Type: user.employment_type,
-        'Identity Proof': user.identity_proof,
+        'No. Sr.': index + 1,
+        Nombre: user.full_name,
+        'Nombre del Empleador': user.employer_name,
+        'No. de Teléfono': user.contact_details,
+        'Ingresos Mensuales': user.monthly_income,
+        'Tipo de Empleo': user.employment_type,
+        'Prueba de Identidad': user.identity_proof,
       }));
   
-
-      const transactionWorksheetData = this.transaction && this.transaction.length > 0
-      ? this.transaction.map((transaction: any) => ({
-          'Transaction ID': transaction.transactionId,
-          'Principal Amount': transaction.principalAmount,
-          'Remaining Balance': transaction.remainingBalance,
-          'Total Interest': transaction.totalInterest,
-      }))
-      : [];
-   
+      // Transaction worksheet data
+      const transactionWorksheetData =
+        this.transaction && this.transaction.length > 0
+          ? this.transaction.map((transaction: any) => ({
+              'ID de Transacción': transaction.transactionId,
+              'Monto Principal': transaction.principalAmount,
+              'Saldo Restante': transaction.remainingBalance,
+              'Interés Total': transaction.totalInterest,
+            }))
+          : [];
+  
       // EMI worksheet data
       const emiWorksheetData = this.emiDetails.map((emi: any) => ({
-        'EMI ID': emi.emiId,
-        'EMI Amount': emi.principalAmount,
-        'EMI Interest': emi.interestAmount,
-        'Due Date': new Date(emi.dueDate).toLocaleDateString('en-CA'), // 'yyyy-MM-dd' format
-        'Settled Amount': emi.settled
+        'ID de EMI': emi.emiId,
+        'Monto de EMI': emi.principalAmount,
+        'Interés de EMI': emi.interestAmount,
+        'Fecha de Vencimiento': new Date(emi.dueDate).toLocaleDateString('en-CA'), // 'yyyy-MM-dd' format
+        'Monto Liquidado': emi.settled
           ? (emi.principalAmount + (emi.interestAmount || 0)).toFixed(2)
-          : 'Not Settled',
+          : 'No Liquidado',
+        'Fecha de Recepción': emi.receivingDate || 'N/A', // Include receiving date
+        'Comentarios Adicionales': emi.additionalremarks || 'N/A', // Include additional remarks
       }));
-      
-  
-   
   
       // Create workbook and append sheets
       const workbook = XLSX.utils.book_new();
   
       if (userWorksheetData.length > 0) {
         const userWorksheet = XLSX.utils.json_to_sheet(userWorksheetData);
-        XLSX.utils.book_append_sheet(workbook, userWorksheet, 'User Details');
+        XLSX.utils.book_append_sheet(workbook, userWorksheet, 'Detalles de Usuario');
       }
       if (transactionWorksheetData.length > 0) {
         const transactionWorksheet = XLSX.utils.json_to_sheet(transactionWorksheetData);
-        XLSX.utils.book_append_sheet(workbook, transactionWorksheet, 'Transaction Details');
+        XLSX.utils.book_append_sheet(workbook, transactionWorksheet, 'Detalles de Transacción');
       }
       if (emiWorksheetData.length > 0) {
         const emiWorksheet = XLSX.utils.json_to_sheet(emiWorksheetData);
-        XLSX.utils.book_append_sheet(workbook, emiWorksheet, 'EMI Details');
+        XLSX.utils.book_append_sheet(workbook, emiWorksheet, 'Detalles de EMI');
       }
-  
-    
   
       // Write and save the workbook
       const excelBuffer: any = XLSX.write(workbook, {
@@ -230,14 +228,12 @@ export class EmiDetailsComponent implements OnInit {
         type: 'application/octet-stream',
       });
   
-      saveAs(
-        blob,
-        `EMI_Details_${new Date().toISOString().replace(/:/g, '-')}.xlsx`
-      );
+      saveAs(blob, `Detalles_EMI_${new Date().toISOString().replace(/:/g, '-')}.xlsx`);
     } else {
-      console.log('No users, transactions, or EMI details to export');
+      console.log('No hay usuarios, transacciones o detalles de EMI para exportar');
     }
   }
+  
   
   
 }

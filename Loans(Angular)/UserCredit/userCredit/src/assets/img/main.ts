@@ -4,10 +4,10 @@ import { AppModule } from './app/app.module';
 
 
 export function adminbaseurl(){
-return 'https://api-docs.opticatijuana.com/api/admin'
+return 'http://208.109.247.10:7700/api/admin'
 }
 export function bannerbaseurl(){
-  return 'https://api-docs.opticatijuana.com/api/banner'
+  return 'http://208.109.247.10:7700/api/banner'
   }
 const provider=[
   {

@@ -55,9 +55,9 @@ export class UserDetailsComponent implements OnInit {
           .filter((user: any) => user.status === 'Approved')
           .map((user: any) => ({
             ...user,
-            identity_proof: `http://208.109.247.10:7700/${user.identity_proof}`,
-            proof_of_residence: `http://208.109.247.10:7700/${user.proof_of_residence}`,
-            proof_of_income: `http://208.109.247.10:7700/${user.proof_of_income}`
+            identity_proof: `https://api-docs.opticatijuana.com/${user.identity_proof}`,
+            proof_of_residence: `https://api-docs.opticatijuana.com/${user.proof_of_residence}`,
+            proof_of_income: `https://api-docs.opticatijuana.com/${user.proof_of_income}`
           }));
         console.log('Approved Users:', this.users);
       },
