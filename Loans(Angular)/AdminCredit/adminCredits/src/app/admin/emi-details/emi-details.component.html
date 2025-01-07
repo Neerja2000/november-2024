@@ -23,6 +23,7 @@
                     <th>Interés de EMI</th>
                     <th>Fecha de Vencimiento</th>
                     <th>Monto Liquidado</th>
+                    <th>Fecha de Actualización</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -41,6 +42,11 @@
                           : 'No Liquidado'
                       }}
                     </td>
+                    <td>
+                      {{ emi.updatedDate ? (emi.updatedDate | date: 'yyyy-MM-dd HH:mm') : 'No Actualizado' }}
+                    </td>
+                    <td>{{emi.receivingDate}}</td>
+                    <td>{{emi.additionalremarks}}</td>
 
                     <td>
                       <button
@@ -76,7 +82,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="openSettleModalLabel">Liquidar EMI</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Cerrar"
+        ></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="emiForm">
@@ -96,6 +107,24 @@
               [disabled]="true"
             />
           </div>
+          <div class="mb-3">
+            <label for="receivingDate" class="form-label">Fecha de Recepción</label>
+            <input
+              type="date"
+              class="form-control"
+              id="receivingDate"
+              formControlName="receivingDate"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="additionalRemarks" class="form-label">Comentarios Adicionales</label>
+            <textarea
+              class="form-control"
+              id="additionalRemarks"
+              formControlName="additionalRemarks"
+              rows="3"
+            ></textarea>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -114,3 +143,4 @@
     </div>
   </div>
 </div>
+

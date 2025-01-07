@@ -31,6 +31,8 @@ export class EmiDetailsComponent implements OnInit {
   ) {
     this.emiForm = this.fb.group({
       principalAmount: [0, [Validators.required, Validators.min(1)]],
+      receivingDate: [''], // Default value
+      additionalRemarks: [''],
     });
   }
 
@@ -75,8 +77,13 @@ export class EmiDetailsComponent implements OnInit {
     const totalAmount = Number(
       (emi.principalAmount + emi.interestAmount).toFixed(2)
     );
-    this.emiForm.patchValue({ principalAmount: totalAmount });
+    this.emiForm.patchValue({
+      principalAmount: totalAmount,
+      receivingDate: emi.receivingDate || new Date().toISOString().split('T')[0],
+      additionalRemarks: emi.additionalRemarks || '',
+    });
   }
+  
 
   settleEMI(): void {
     if (this.emiForm.invalid || !this.selectedEmi) {
@@ -84,49 +91,35 @@ export class EmiDetailsComponent implements OnInit {
       return;
     }
   
-    const totalAmount = (
-      this.selectedEmi.principalAmount + this.selectedEmi.interestAmount
-    ).toFixed(2);
-  
-    if (this.emiForm.value.principalAmount > totalAmount) {
-      console.error('Settlement amount exceeds the remaining balance!');
-      return;
-    }
-  
     const body = {
       emiId: this.selectedEmi.emiId,
       amount: this.emiForm.value.principalAmount,
+      receivingDate: this.emiForm.value.receivingDate,
+      additionalRemarks: this.emiForm.value.additionalRemarks,
     };
   
     this.transactionService.emiSettle(body).subscribe(
       (response) => {
         console.log('EMI settled successfully:', response);
   
-        // Find the settled EMI and update its state
         const emiIndex = this.emiDetails.findIndex(
           (emi: any) => emi.emiId === this.selectedEmi.emiId
         );
         if (emiIndex > -1) {
           this.emiDetails[emiIndex].isSettled = true;
-          this.emiDetails[emiIndex].settled = totalAmount;
-          this.emiDetails[emiIndex].remainingInterest = 0;  // Update remainingInterest
-          this.emiDetails[emiIndex].remainingPrincipal = 0;  // Update remainingPrincipal
+          this.emiDetails[emiIndex].settled = body.amount;
+         
+          this.emiDetails[emiIndex].receivingDate = body.receivingDate;
+          this.emiDetails[emiIndex].additionalRemarks = body.additionalRemarks;
         }
   
-        // Close the modal
-        const modalElement = this.openSettleModalRef.nativeElement;
-        this.renderer.setAttribute(modalElement, 'style', 'display: none');
-        modalElement.classList.remove('show');
-        document.body.classList.remove('modal-open');
-        const backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) backdrop.remove();
-  
-        // Re-fetch EMI details to ensure the UI is updated after settlement
         this.fetchEmiDetails();
       },
       (error: any) => console.error('Error settling EMI:', error)
     );
   }
+  
+  
   
 
   fetchUsers(): void {
