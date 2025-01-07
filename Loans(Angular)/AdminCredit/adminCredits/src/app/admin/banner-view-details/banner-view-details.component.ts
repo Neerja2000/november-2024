@@ -22,7 +22,7 @@ export class BannerViewDetailsComponent {
           // Check if the image_url already contains "http"
           const fullUrl = banner.image_url.startsWith('http')
             ? banner.image_url // Use as-is if it's a full URL
-            : `http://194.238.17.235:7700/uploads/${banner.image_url}`; // Otherwise, construct the full URL
+            : `http://208.109.247.10:7700/uploads/${banner.image_url}`; // Otherwise, construct the full URL
   
           console.log('Full Image URL:', fullUrl); // Log the corrected URL
           return {
