@@ -1598,7 +1598,7 @@ Contact Page
 		padding: 40px 20px 50px;
 	}
 	.icon-box-item .ib-icon {
-		float: none;
+		/* float: none; */
 		margin-bottom: 20px;
 	}
 	.site-btn.sb-big {

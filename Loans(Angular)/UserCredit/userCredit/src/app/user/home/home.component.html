@@ -104,61 +104,55 @@
 </section>
 <!-- Why Section end -->
 <section class="why-section spad">
-    <div class="container">
-        <div class="text-center mb-5 pb-4">
-            <h2>Why Choose us?</h2>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="icon-box-item">
-                    <div class="ib-icon">
-                        <i class="flaticon-012-24-hours"></i>
-                    </div>
-                    <div class="ib-text">
-                        <h5>Money in 1 Hour!</h5>
-                        <p>Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tem por incididunt
-                            ut labore et dolore mag na aliqua. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="icon-box-item">
-                    <div class="ib-icon">
-                        <i class="flaticon-036-customer-service"></i>
-                    </div>
-                    <div class="ib-text">
-                        <h5>Helpfull Staff</h5>
-                        <p>Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tem por incididunt
-                            ut labore et dolore mag na aliqua. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="icon-box-item">
-                    <div class="ib-icon">
-                        <i class="flaticon-039-info"></i>
-                    </div>
-                    <div class="ib-text">
-                        <h5>Credit History Considered</h5>
-                        <p>Lorem ipsum dolor sit amet, consecte-tur adipiscing elit, sed do eiusmod tem por incididunt
-                            ut labore et dolore mag na aliqua. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center pt-3">
-          <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger sit-btn ">Aplicar Crédito</a>
-          <a
-            *ngIf="isCreditApplied"
-            routerLink="/user/layout/view-credit-status"
-            class="site-btn sb-danger sit-btn "
-          >
-            
-Ver el Estado de la Solicitud de Crédito
+  <div class="container">
+      <div class="text-center mb-5 pb-4">
+          <h2>¿Por qué elegirnos?</h2>
+      </div>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="icon-box-item">
+                  <div class="ib-icon">
+                      <i class="flaticon-012-24-hours"></i>
+                  </div>
+                  <div class="ib-text">
+                      <h5>Aprobación de Crédito Rápida</h5>
+                      <p>Obtén la aprobación de tu crédito en menos de una hora y lleva a casa tus gafas o lentes favoritos sin complicaciones.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="icon-box-item">
+                  <div class="ib-icon">
+                      <i class="flaticon-036-customer-service"></i>
+                  </div>
+                  <div class="ib-text">
+                      <h5>Asistencia Experta</h5>
+                      <p>Nuestro personal amable y capacitado está aquí para ayudarte a elegir las gafas o lentes perfectos que se adapten a tu estilo y necesidades.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="icon-box-item">
+                  <div class="ib-icon">
+                      <i class="flaticon-039-info"></i>
+                  </div>
+                  <div class="ib-text">
+                      <h5>Opciones de Crédito Flexibles</h5>
+                      <p>Ya sea que tengas un buen historial crediticio o estés comenzando, ofrecemos soluciones de crédito adaptadas para todos.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="text-center pt-3">
+          <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger sit-btn">Solicitar Crédito</a>
+          <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status" class="site-btn sb-danger sit-btn">
+              Ver Estado de la Solicitud de Crédito
           </a>
-        </div>
-    </div>
+      </div>
+  </div>
 </section>
+
+
 <div class="container py-5">
   <div class="row align-items-center">
     <!-- Left Side: Image -->
