@@ -23,7 +23,7 @@ height:100vh;
   /* For small screens (phones) */
   @media (max-width: 576px) { 
     .carousel-item img {
-      height: 60vh; /* Reduced height on small devices */
+      height: 40vh; /* Reduced height on small devices */
     }
   
     .carousel-text h2 {
@@ -37,11 +37,12 @@ height:100vh;
     }
   
     .carousel-caption p {
-      font-size: 10px !important; /* Smaller text for captions */
+      font-size: 10px !important;
+      line-height: 1.5 !important; /* Smaller text for captions */
     }
   
     .carousel-caption {
-      top: 30%;
+      top: 20%;
       bottom: 10%; /* Adjust caption position */
     }
   }

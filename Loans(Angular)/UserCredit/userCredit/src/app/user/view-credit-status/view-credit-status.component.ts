@@ -20,7 +20,7 @@ export class ViewCreditStatusComponent implements OnInit {
       next: (data) => {
         this.creditApplications = data.creditApplications.map((application: any) => ({
           ...application,
-          identity_proof: `http://194.238.17.235:7700/${application.identity_proof}`,
+          identity_proof: `http://208.109.247.10:7700/${application.identity_proof}`,
         }));
         console.log(this.creditApplications)
       },
