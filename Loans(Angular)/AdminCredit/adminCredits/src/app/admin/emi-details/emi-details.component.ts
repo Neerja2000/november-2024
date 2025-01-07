@@ -32,7 +32,7 @@ export class EmiDetailsComponent implements OnInit {
     this.emiForm = this.fb.group({
       principalAmount: [0, [Validators.required, Validators.min(1)]],
       receivingDate: [''], // Default value
-      additionalRemarks: [''],
+      additionalremarks: [''],
     });
   }
 
@@ -80,7 +80,7 @@ export class EmiDetailsComponent implements OnInit {
     this.emiForm.patchValue({
       principalAmount: totalAmount,
       receivingDate: emi.receivingDate || new Date().toISOString().split('T')[0],
-      additionalRemarks: emi.additionalRemarks || '',
+      additionalremarks: emi.additionalremarks || '',
     });
   }
   
@@ -95,7 +95,7 @@ export class EmiDetailsComponent implements OnInit {
       emiId: this.selectedEmi.emiId,
       amount: this.emiForm.value.principalAmount,
       receivingDate: this.emiForm.value.receivingDate,
-      additionalRemarks: this.emiForm.value.additionalRemarks,
+      additionalremarks: this.emiForm.value.additionalremarks,
     };
   
     this.transactionService.emiSettle(body).subscribe(
@@ -110,7 +110,7 @@ export class EmiDetailsComponent implements OnInit {
           this.emiDetails[emiIndex].settled = body.amount;
          
           this.emiDetails[emiIndex].receivingDate = body.receivingDate;
-          this.emiDetails[emiIndex].additionalRemarks = body.additionalRemarks;
+          this.emiDetails[emiIndex].additionalremarks = body.additionalremarks;
         }
   
         this.fetchEmiDetails();
