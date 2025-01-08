@@ -353,59 +353,55 @@
 
 <!-- Feature Section -->
 <section class="feature-section spad">
-    <div class="container">
-        <div class="feature-item">
-            <div class="row">
-                <div class="col-lg-6">
-                    <img src="../../../assets/img/feature-1.jpg" alt="">
-                </div>
-                <div class="col-lg-6">
-                    <div class="feature-text">
-                        <h2>Get a personal Credit from just 8.5% APR</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut
-                            labore et dolore mag na aliqua. Class aptent taciti sociosqu ad litora torquent per conubia
-                            nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius
-                            lorem sodales nec. In libero orci, ornare non nisl.</p>
-                            <a *ngIf="!isCreditApplied" routerLink="/applyForm" style="color: #f43f00; font-weight: 900; font-size: 16px;">Aplicar Crédito</a>
-                            <a  style="color: #f43f00; font-weight: 900; font-size: 16px;"
-                              *ngIf="isCreditApplied"
-                              routerLink="/user/layout/view-credit-status"
-                            
-                            >
-                             
-Ver el Estado de la Solicitud de Crédito
-                            </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="feature-item">
-            <div class="row">
-                <div class="col-lg-6 order-lg-2">
-                    <img src="../../../assets/img/feature-2.jpg" alt="">
-                </div>
-                <div class="col-lg-6 order-lg-1">
-                    <div class="feature-text">
-                        <h2>Get aproved in minutes after you apply online</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt ut
-                            labore et dolore mag na aliqua. Class aptent taciti sociosqu ad litora torquent per conubia
-                            nostra, per inceptos himenaeos. Suspendisse potenti. Ut gravida mattis magna, non varius
-                            lorem sodales nec. In libero orci, ornare non nisl.</p>
-                            <a *ngIf="!isCreditApplied" routerLink="/applyForm" style="color: #f43f00; font-weight: 900; font-size: 16px;" >Aplicar Crédito</a>
-                            <a style="color: #f43f00; font-weight: 900; font-size: 16px;"
-                              *ngIf="isCreditApplied"
-                              routerLink="/user/layout/view-credit-status"
-                              
-                            >
-                            
-Ver el Estado de la Solicitud de Crédito
-                            </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="container">
+      <!-- Feature 1 -->
+      <div class="feature-item">
+          <div class="row">
+              <div class="col-lg-6">
+                  <img src="../../../assets/img/feature-1.jpg" alt="Solicitud de Crédito para Lentes">
+              </div>
+              <div class="col-lg-6">
+                  <div class="feature-text">
+                      <h2>Solicita un Crédito Fácil para tus Lentes</h2>
+                      <p>Creemos que todos merecen una visión clara y marcos elegantes sin estrés financiero. Con nuestros planes de crédito flexibles, puedes comprar tus lentes favoritos hoy y pagar de manera conveniente. ¡Solicitarlo es rápido, sencillo y sin complicaciones!</p>
+                      <a *ngIf="!isCreditApplied" routerLink="/applyForm" style="color: #f43f00; font-weight: 900; font-size: 16px;">
+                          Solicitar Crédito
+                      </a>
+                      <a style="color: #f43f00; font-weight: 900; font-size: 16px;" 
+                         *ngIf="isCreditApplied" 
+                         routerLink="/user/layout/view-credit-status">
+                          Ver el Estado de la Solicitud de Crédito
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-item">
+          <div class="row">
+              <div class="col-lg-6 order-lg-2">
+                  <img src="../../../assets/img/feature-2.jpg" alt="Aprobación de Crédito para Lentes">
+              </div>
+              <div class="col-lg-6 order-lg-1">
+                  <div class="feature-text">
+                      <h2>Obtén Aprobación en Minutos</h2>
+                      <p>Con nuestro proceso de solicitud en línea sin complicaciones, puedes obtener la aprobación de crédito para tus lentes en solo unos minutos. ¡No hay necesidad de esperar! Empieza a disfrutar de tus nuevos lentes mientras pagas después en un plan que se adapte a ti.</p>
+                      <a *ngIf="!isCreditApplied" routerLink="/applyForm" style="color: #f43f00; font-weight: 900; font-size: 16px;">
+                          Solicitar Crédito
+                      </a>
+                      <a style="color: #f43f00; font-weight: 900; font-size: 16px;" 
+                         *ngIf="isCreditApplied" 
+                         routerLink="/user/layout/view-credit-status">
+                          Ver el Estado de la Solicitud de Crédito
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </section>
+
 <!-- Feature Section end -->
 
 <section class="score-section text-white set-bg" id="score"  
