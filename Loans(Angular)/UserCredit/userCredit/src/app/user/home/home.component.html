@@ -153,6 +153,8 @@
 </section>
 
 
+
+
 <div class="container py-5">
   <div class="row align-items-center">
     <!-- Left Side: Image -->
@@ -170,8 +172,9 @@
         Con la confianza de miles de personas, te ofrecemos la mezcla perfecta de elegancia, durabilidad y rendimiento. 
         ¡Renueva tus gafas hoy y ve el mundo como nunca antes!
       </p>
-      <a href="#" class="btn mt-4 p-3" style="background-color: #446693; color: white; font-size: 1rem;">
-        Compra lo Mejor Ahora
+      <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-danger sit-btn">Solicitar Crédito</a>
+      <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status" class="site-btn sb-danger sit-btn">
+          Ver Estado de la Solicitud de Crédito
       </a>
     </div>
   </div>
@@ -342,7 +345,10 @@
         <h2>Transforma tu visión con  
           <strong>Optica Tijuana</strong> Gafas  
         </h2>
-        <a href="#" class="site-btn sb-dark sb-big mt-4 mb-4">Descubre Más</a>
+        <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-dark mt-4 sit-btn">Solicitar Crédito</a>
+        <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status" class="site-btn sb-dark mt-4 sit-btn">
+            Ver Estado de la Solicitud de Crédito
+        </a>
       </div>
     </div>
   </div>
@@ -410,7 +416,10 @@
             <div class="col-xl-6 col-lg-8">
                 <h2>Ve con claridad todos los días</h2>
                 <h4>Descubre lentes de alta calidad, gafas elegantes y monturas duraderas para una comodidad incomparable y una visión perfecta a diario.</h4>
-                <a href="#" class="site-btn sb-big">Contáctanos</a>
+                <a *ngIf="!isCreditApplied" routerLink="/applyForm" class="site-btn sb-big sit-btn">Solicitar Crédito</a>
+          <a *ngIf="isCreditApplied" routerLink="/user/layout/view-credit-status" class="site-btn sb-big sit-btn">
+              Ver Estado de la Solicitud de Crédito
+          </a>
             </div>
         </div>
         <div class="offset-5">
