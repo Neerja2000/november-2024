@@ -21,7 +21,7 @@
   .card-text {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #f43f00; /* Bootstrap Primary Color */
+    color: #446693; /* Bootstrap Primary Color */
   }
   
   /* Table Styling */
@@ -33,7 +33,7 @@
   }
   
   .table thead th {
-    background-color: #f43f00; /* Header background */
+    background-color: #446693; /* Header background */
     color: #fff; /* Header text */
     border: none;
     text-align: center;

@@ -30,7 +30,7 @@
   }
   
   .otp-input:focus {
-    border-color: #f43f00;
+    border-color: #446693;
     box-shadow: 0 0 3px rgba(81, 169, 146, 0.5);
     outline: none;
   }
@@ -42,7 +42,7 @@
   }
   
   .btn-submit {
-    background-color: #f43f00;
+    background-color: #446693;
     border: none;
     color: white;
     font-weight: bold;
