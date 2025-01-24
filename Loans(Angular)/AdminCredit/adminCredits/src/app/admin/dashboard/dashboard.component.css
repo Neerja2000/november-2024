@@ -21,3 +21,20 @@
     font-size: 18px;
   }
   
+
+
+  .nav-tabs .nav-link {
+    font-size: 18px;
+  color: black;
+    border: none;
+    padding: 12px 20px;
+    text-transform: capitalize;
+  }
+  
+  .nav-tabs .nav-link.active {
+    background-color: #5D87FF;
+    color: white;
+    border-radius: 10px 10px 0 0;
+  }
+
+  
