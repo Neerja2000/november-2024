@@ -73,30 +73,71 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header text-white">
+          <div class="card-header text-white bg-primary">
             <h2 class="mb-0">View EMIs</h2>
           </div>
           <div class="card-body">
             <!-- Tabs Navigation -->
             <ul class="nav nav-tabs" id="emiTabs" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" href="#upcoming" role="tab" aria-controls="upcoming" aria-selected="true">Upcoming</a>
+                <a
+                  class="nav-link active"
+                  id="upcoming-tab"
+                  data-bs-toggle="tab"
+                  href="#upcoming"
+                  role="tab"
+                  aria-controls="upcoming"
+                  aria-selected="true"
+                  >Upcoming</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false">Pending</a>
+                <a
+                  class="nav-link"
+                  id="pending-tab"
+                  data-bs-toggle="tab"
+                  href="#pending"
+                  role="tab"
+                  aria-controls="pending"
+                  aria-selected="false"
+                  >Pending</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="settled-tab" data-bs-toggle="tab" href="#settled" role="tab" aria-controls="settled" aria-selected="false">Settled</a>
+                <a
+                  class="nav-link"
+                  id="settled-tab"
+                  data-bs-toggle="tab"
+                  href="#settled"
+                  role="tab"
+                  aria-controls="settled"
+                  aria-selected="false"
+                  >Settled</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="settled-tab" data-bs-toggle="tab" href="#all" role="tab" aria-controls="settled" aria-selected="false">All</a>
+                <a
+                  class="nav-link"
+                  id="all-tab"
+                  data-bs-toggle="tab"
+                  href="#all"
+                  role="tab"
+                  aria-controls="all"
+                  aria-selected="false"
+                  >All</a
+                >
               </li>
             </ul>
   
             <!-- Tab Content -->
             <div class="tab-content mt-4" id="emiTabsContent">
               <!-- Upcoming Tab -->
-              <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+              <div
+                class="tab-pane fade show active"
+                id="upcoming"
+                role="tabpanel"
+                aria-labelledby="upcoming-tab"
+              >
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -110,21 +151,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td class="text-bold-500">Michael Right</td>
-                      <td>+91 9874635534</td>
-                      <td>₹10,000</td>
-                      <td>₹12,000</td>
+                    <tr *ngFor="let emi of futureUnsettledEmis; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td class="text-bold-500">{{ emi.name }}</td>
+                      <td>{{ emi.phone }}</td>
+                      <td>₹{{ emi.transactionAmount }}</td>
+                      <td>₹{{ emi.emiInterest }}</td>
                       <td>Upcoming</td>
-                      <td>2025-01-28</td>
+                      <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
   
               <!-- Pending Tab -->
-              <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+              <div
+                class="tab-pane fade"
+                id="pending"
+                role="tabpanel"
+                aria-labelledby="pending-tab"
+              >
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -138,21 +184,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>2</td>
-                      <td class="text-bold-500">John Doe</td>
-                      <td>+91 9874635535</td>
-                      <td>₹15,000</td>
-                      <td>₹18,000</td>
+                    <tr *ngFor="let emi of pastUnsettledEmis; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td class="text-bold-500">{{ emi.name }}</td>
+                      <td>{{ emi.phone }}</td>
+                      <td>₹{{ emi.transactionAmount }}</td>
+                      <td>₹{{ emi.emiInterest }}</td>
                       <td>Pending</td>
-                      <td>2025-01-15</td>
+                      <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
   
               <!-- Settled Tab -->
-              <div class="tab-pane fade" id="settled" role="tabpanel" aria-labelledby="settled-tab">
+              <div
+                class="tab-pane fade"
+                id="settled"
+                role="tabpanel"
+                aria-labelledby="settled-tab"
+              >
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -166,19 +217,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>3</td>
-                      <td class="text-bold-500">Jane Smith</td>
-                      <td>+91 9874635536</td>
-                      <td>₹20,000</td>
-                      <td>₹22,500</td>
+                    <tr *ngFor="let emi of emisList; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td class="text-bold-500">{{ emi.name }}</td>
+                      <td>{{ emi.phone }}</td>
+                      <td>₹{{ emi.transactionAmount }}</td>
+                      <td>₹{{ emi.emiInterest }}</td>
                       <td>Settled</td>
-                      <td>2025-01-10</td>
+                      <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="settled-tab">
+  
+              <!-- All Tab -->
+              <div
+                class="tab-pane fade"
+                id="all"
+                role="tabpanel"
+                aria-labelledby="all-tab"
+              >
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -192,14 +250,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>3</td>
-                      <td class="text-bold-500">Jane Smith</td>
-                      <td>+91 9874635536</td>
-                      <td>₹20,000</td>
-                      <td>₹22,500</td>
-                      <td>Settled</td>
-                      <td>2025-01-10</td>
+                    <tr *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList); let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td class="text-bold-500">{{ emi.name }}</td>
+                      <td>{{ emi.phone }}</td>
+                      <td>₹{{ emi.transactionAmount }}</td>
+                      <td>₹{{ emi.emiInterest }}</td>
+                      <td>{{ emi.settled === 1 ? 'Settled' : emi.due_date >= today ? 'Upcoming' : 'Pending' }}</td>
+                      <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -210,6 +268,7 @@
       </div>
     </div>
   </div>
+  
   
   
   
