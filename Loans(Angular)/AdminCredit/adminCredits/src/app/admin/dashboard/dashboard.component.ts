@@ -11,10 +11,10 @@ export class DashboardComponent implements OnInit {
   futureUnsettledEmis: any[] = []; // Future unsettled EMIs
   pastUnsettledEmis: any[] = []; // Past unsettled EMIs
   today: string;
-  constructor(private dashboardService: DashboardService)
-   {
-    this.today = new Date().toISOString().split('T')[0];
-   }
+
+  constructor(private dashboardService: DashboardService) {
+    this.today = new Date().toISOString().split('T')[0]; // Get current date in yyyy-mm-dd format
+  }
 
   ngOnInit(): void {
     this.getAllEmis();
@@ -25,19 +25,31 @@ export class DashboardComponent implements OnInit {
       (data: any[]) => {
         const currentDate = new Date(); // Get current date
         
-        // Filter settled EMIs (settled = 1)
-        this.emisList = data.filter((emi) => emi.settled === 1);
+        // Filter and calculate EMI + Interest for settled EMIs (settled = 1)
+        this.emisList = data
+          .filter((emi) => emi.settled === 1)
+          .map((emi) => ({
+            ...emi,
+            emi_with_interest: emi.principal_amount + emi.interest_amount // Calculate EMI + Interest
+          }));
 
-        // Filter future unsettled EMIs (settled = 0, date >= current date)
-        this.futureUnsettledEmis = data.filter(
-          (emi) => emi.settled === 0 && new Date(emi.due_date) >= currentDate
-        );
+        // Filter and calculate EMI + Interest for future unsettled EMIs (settled = 0, date >= current date)
+        this.futureUnsettledEmis = data
+          .filter((emi) => emi.settled === 0 && new Date(emi.due_date) >= currentDate)
+          .map((emi) => ({
+            ...emi,
+            emi_with_interest: emi.principal_amount + emi.interest_amount // Calculate EMI + Interest
+          }));
 
-        // Filter past unsettled EMIs (settled = 0, date < current date)
-        this.pastUnsettledEmis = data.filter(
-          (emi) => emi.settled === 0 && new Date(emi.due_date) < currentDate
-        );
+        // Filter and calculate EMI + Interest for past unsettled EMIs (settled = 0, date < current date)
+        this.pastUnsettledEmis = data
+          .filter((emi) => emi.settled === 0 && new Date(emi.due_date) < currentDate)
+          .map((emi) => ({
+            ...emi,
+            emi_with_interest: emi.principal_amount + emi.interest_amount // Calculate EMI + Interest
+          }));
 
+        // Log the filtered and calculated lists
         console.log('Filtered settled EMIs:', this.emisList);
         console.log('Future unsettled EMIs:', this.futureUnsettledEmis);
         console.log('Past unsettled EMIs:', this.pastUnsettledEmis);
@@ -48,4 +60,3 @@ export class DashboardComponent implements OnInit {
     );
   }
 }
-

@@ -156,7 +156,7 @@
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
                       <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emiInterest }}</td>
+                      <td>₹{{ emi.emi_with_interest }}</td> 
                       <td>Upcoming</td>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
@@ -189,7 +189,7 @@
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
                       <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emiInterest }}</td>
+                      <td>₹{{ emi.emi_with_interest }}</td>  
                       <td>Pending</td>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
@@ -222,7 +222,7 @@
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
                       <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emiInterest }}</td>
+                      <td>₹{{ emi.emi_with_interest }}</td> 
                       <td>Settled</td>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
