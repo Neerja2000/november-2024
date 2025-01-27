@@ -1,19 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/shared/dashboad/dashboard.service';
+import { TransactionService } from 'src/app/shared/transaction/transaction.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  emisList: any[] = []; // All settled EMIs
-  futureUnsettledEmis: any[] = []; // Future unsettled EMIs
-  pastUnsettledEmis: any[] = []; // Past unsettled EMIs
+  emisList: any[] = [];
+  futureUnsettledEmis: any[] = [];
+  pastUnsettledEmis: any[] = [];
   today: string;
+  emiDetails: any[] = [];
+  selectedEmi: any | null = null;
+  emiForm: FormGroup;
 
-  constructor(private dashboardService: DashboardService) {
-    this.today = new Date().toISOString().split('T')[0]; // Get current date in yyyy-mm-dd format
+  constructor(
+    private dashboardService: DashboardService,
+    private transactionService: TransactionService,
+    private fb: FormBuilder
+  ) {
+    this.today = new Date().toISOString().split('T')[0];
+    this.emiForm = this.fb.group({
+      principalAmount: ['', [Validators.required, Validators.min(0)]],
+      receivingDate: [this.today, Validators.required],
+      additionalremarks: [''],
+    });
   }
 
   ngOnInit(): void {
@@ -23,40 +37,76 @@ export class DashboardComponent implements OnInit {
   getAllEmis(): void {
     this.dashboardService.getAllEmis().subscribe(
       (data: any[]) => {
-        const currentDate = new Date(); // Get current date
-        
-        // Filter and calculate EMI + Interest for settled EMIs (settled = 1)
-        this.emisList = data
-          .filter((emi) => emi.settled === 1)
-          .map((emi) => ({
-            ...emi,
-            emi_with_interest: emi.principal_amount + emi.interest_amount // Calculate EMI + Interest
-          }));
+        const currentDate = new Date();
 
-        // Filter and calculate EMI + Interest for future unsettled EMIs (settled = 0, date >= current date)
-        this.futureUnsettledEmis = data
-          .filter((emi) => emi.settled === 0 && new Date(emi.due_date) >= currentDate)
-          .map((emi) => ({
-            ...emi,
-            emi_with_interest: emi.principal_amount + emi.interest_amount // Calculate EMI + Interest
-          }));
+        this.emisList = data.filter((emi) => emi.settled === 1).map((emi) => ({
+          ...emi,
+          emi_with_interest: emi.principal_amount + emi.interest_amount,
+        }));
 
-        // Filter and calculate EMI + Interest for past unsettled EMIs (settled = 0, date < current date)
-        this.pastUnsettledEmis = data
-          .filter((emi) => emi.settled === 0 && new Date(emi.due_date) < currentDate)
-          .map((emi) => ({
-            ...emi,
-            emi_with_interest: emi.principal_amount + emi.interest_amount // Calculate EMI + Interest
-          }));
+        this.futureUnsettledEmis = data.filter(
+          (emi) => emi.settled === 0 && new Date(emi.due_date) >= currentDate
+        ).map((emi) => ({
+          ...emi,
+          emi_with_interest: emi.principal_amount + emi.interest_amount,
+        }));
 
-        // Log the filtered and calculated lists
-        console.log('Filtered settled EMIs:', this.emisList);
-        console.log('Future unsettled EMIs:', this.futureUnsettledEmis);
-        console.log('Past unsettled EMIs:', this.pastUnsettledEmis);
+        this.pastUnsettledEmis = data.filter(
+          (emi) => emi.settled === 0 && new Date(emi.due_date) < currentDate
+        ).map((emi) => ({
+          ...emi,
+          emi_with_interest: emi.principal_amount + emi.interest_amount,
+        }));
       },
       (error) => {
         console.error('Error fetching EMIs:', error);
       }
+    );
+  }
+
+  openSettleModal(emi: any): void {
+    this.selectedEmi = emi;
+    console.log(this.selectedEmi);  // Check if emiId exists here
+    const totalAmount = Number((emi.principal_amount + emi.interest_amount).toFixed(2));
+    this.emiForm.patchValue({
+      principalAmount: totalAmount,
+      receivingDate: emi.receivingDate || this.today,
+      additionalremarks: emi.additionalremarks || '',
+    });
+  }
+  
+
+  settleEMI(): void {
+    if (this.emiForm.invalid || !this.selectedEmi) {
+      console.error('Form is invalid or no EMI selected!');
+      return;
+    }
+  
+    const body = {
+      emiId: this.selectedEmi.emi_id, 
+      amount: this.emiForm.value.principalAmount,
+      receivingDate: this.emiForm.value.receivingDate,
+      additionalremarks: this.emiForm.value.additionalremarks,
+    };
+  
+    this.transactionService.emiSettle(body).subscribe(
+      (response) => {
+        console.log('EMI settled successfully:', response);
+  
+        const emiIndex = this.emiDetails.findIndex(
+          (emi: any) => emi.emiId === this.selectedEmi.emiId
+        );
+        if (emiIndex > -1) {
+          this.emiDetails[emiIndex].isSettled = true;
+          this.emiDetails[emiIndex].settled = body.amount;
+         
+          this.emiDetails[emiIndex].receivingDate = body.receivingDate;
+          this.emiDetails[emiIndex].additionalremarks = body.additionalremarks;
+        }
+  
+        this.getAllEmis();
+      },
+      (error: any) => console.error('Error settling EMI:', error)
     );
   }
 }

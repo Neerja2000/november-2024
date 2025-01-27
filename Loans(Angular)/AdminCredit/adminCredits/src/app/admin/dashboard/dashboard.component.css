@@ -37,4 +37,16 @@
     border-radius: 10px 10px 0 0;
   }
 
-  
+ /* Override styles for buttons inside the table */
+.table button {
+  visibility: visible;  /* Ensures buttons are visible */
+  z-index: 1;  /* Places buttons on top if needed */
+  background-color: #007bff;  /* Ensures button background color is set */
+  color: white;  /* Button text color */
+}
+
+.table button[disabled] {
+  background-color: #6c757d;  /* Grey color for disabled buttons */
+  color: #fff;  /* White color for disabled button text */
+}
+ 

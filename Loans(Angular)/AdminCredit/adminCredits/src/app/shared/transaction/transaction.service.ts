@@ -12,7 +12,7 @@ export class TransactionService {
   { 
     this.adminbaseurl=_baseurl
     this.token=this.authService.getToken()
-    console.log("jj",this.token)
+   
   }
 
 
