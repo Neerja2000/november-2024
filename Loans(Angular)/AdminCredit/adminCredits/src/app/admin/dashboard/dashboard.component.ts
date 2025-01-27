@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/shared/dashboad/dashboard.service';
 import { TransactionService } from 'src/app/shared/transaction/transaction.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -100,37 +101,58 @@ showLess(tab: string): void {
 
  
 
-  settleEMI(): void {
-    if (this.emiForm.invalid || !this.selectedEmi) {
-      console.error('Form is invalid or no EMI selected!');
-      return;
-    }
-  
-    const body = {
-      emiId: this.selectedEmi.emi_id, 
-      amount: this.emiForm.value.principalAmount,
-      receivingDate: this.emiForm.value.receivingDate,
-      additionalremarks: this.emiForm.value.additionalremarks,
-    };
-  
-    this.transactionService.emiSettle(body).subscribe(
-      (response) => {
-        console.log('EMI settled successfully:', response);
-  
-        const emiIndex = this.emiDetails.findIndex(
-          (emi: any) => emi.emiId === this.selectedEmi.emiId
-        );
-        if (emiIndex > -1) {
-          this.emiDetails[emiIndex].isSettled = true;
-          this.emiDetails[emiIndex].settled = body.amount;
-         
-          this.emiDetails[emiIndex].receivingDate = body.receivingDate;
-          this.emiDetails[emiIndex].additionalremarks = body.additionalremarks;
-        }
-  
-        this.getAllEmis();
-      },
-      (error: any) => console.error('Error settling EMI:', error)
-    );
+settleEMI(): void {
+  if (this.emiForm.invalid || !this.selectedEmi) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Input',
+      text: 'Please fill in all required fields and select a valid EMI!',
+    });
+    return;
   }
+
+  const body = {
+    emiId: this.selectedEmi.emi_id,
+    amount: this.emiForm.value.principalAmount,
+    receivingDate: this.emiForm.value.receivingDate,
+    additionalremarks: this.emiForm.value.additionalremarks,
+  };
+
+  this.transactionService.emiSettle(body).subscribe(
+    (response) => {
+      console.log('EMI settled successfully:', response);
+
+      // Update EMI details in the table
+      const emiIndex = this.emiDetails.findIndex(
+        (emi: any) => emi.emiId === this.selectedEmi.emiId
+      );
+      if (emiIndex > -1) {
+        this.emiDetails[emiIndex].isSettled = true;
+        this.emiDetails[emiIndex].settled = body.amount;
+        this.emiDetails[emiIndex].receivingDate = body.receivingDate;
+        this.emiDetails[emiIndex].additionalremarks = body.additionalremarks;
+      }
+
+      this.getAllEmis();
+
+      // Show success alert
+      Swal.fire({
+        icon: 'success',
+        title: 'EMI Settled',
+        text: `EMI for ${this.selectedEmi.name} has been settled successfully.`,
+      });
+    },
+    (error: any) => {
+      console.error('Error settling EMI:', error);
+
+      // Show error alert
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred while settling the EMI. Please try again later.',
+      });
+    }
+  );
+}
+
 }

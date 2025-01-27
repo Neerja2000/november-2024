@@ -41,8 +41,12 @@
 .table button {
   visibility: visible;  /* Ensures buttons are visible */
   z-index: 1;  /* Places buttons on top if needed */
-  background-color: #007bff;  /* Ensures button background color is set */
-  color: white;  /* Button text color */
+  background-color: #007bff; 
+  padding: 5px 10px; /* Ensures button background color is set */
+  color: white;
+  margin-top: 10%;
+  margin-left: 20%;
+ 
 }
 
 .table button[disabled] {
