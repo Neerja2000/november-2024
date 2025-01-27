@@ -75,6 +75,19 @@ export class DashboardComponent implements OnInit {
     });
   }
   
+  initialRows = 10; // Number of rows to show initially
+  rowsToShow = this.initialRows; // Rows currently displayed
+
+  showMore() {
+    // Increase rowsToShow by 10
+    this.rowsToShow += 10;
+  }
+
+  showLess() {
+    // Reset rowsToShow to initialRows
+    this.rowsToShow  -=10;
+  }
+
 
   settleEMI(): void {
     if (this.emiForm.invalid || !this.selectedEmi) {

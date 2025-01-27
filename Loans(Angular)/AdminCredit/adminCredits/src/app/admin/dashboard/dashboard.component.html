@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid ">
 
 
@@ -12,7 +10,8 @@
               <div class="row align-items-center">
                 <div class="col-4">
                   <div class="d-flex justify-content-center">
-                    <div class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
+                    <div
+                      class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-person-fill fs-6"></i>
                     </div>
                   </div>
@@ -25,14 +24,15 @@
             </div>
           </div>
         </div>
-  
+
         <div class="col-6 col-lg-4 col-md-6">
           <div class="card">
             <div class="card-body px-4 py-4-5">
               <div class="row align-items-center">
                 <div class="col-4">
                   <div class="d-flex justify-content-center">
-                    <div class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
+                    <div
+                      class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-person-plus-fill fs-6"></i>
                     </div>
                   </div>
@@ -45,14 +45,15 @@
             </div>
           </div>
         </div>
-  
+
         <div class="col-6 col-lg-4 col-md-6">
           <div class="card">
             <div class="card-body px-4 py-4-5">
               <div class="row align-items-center">
                 <div class="col-4">
                   <div class="d-flex justify-content-center">
-                    <div class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
+                    <div
+                      class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-box-arrow-in-right fs-6"></i>
                     </div>
                   </div>
@@ -68,7 +69,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-12">
@@ -80,64 +81,27 @@
             <!-- Tabs Navigation -->
             <ul class="nav nav-tabs" id="emiTabs" role="tablist">
               <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="upcoming-tab"
-                  data-bs-toggle="tab"
-                  href="#upcoming"
-                  role="tab"
-                  aria-controls="upcoming"
-                  aria-selected="true"
-                  >Upcoming</a
-                >
+                <a class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" href="#upcoming" role="tab"
+                  aria-controls="upcoming" aria-selected="true">Upcoming</a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="pending-tab"
-                  data-bs-toggle="tab"
-                  href="#pending"
-                  role="tab"
-                  aria-controls="pending"
-                  aria-selected="false"
-                  >Pending</a
-                >
+                <a class="nav-link" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab"
+                  aria-controls="pending" aria-selected="false">Pending</a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="settled-tab"
-                  data-bs-toggle="tab"
-                  href="#settled"
-                  role="tab"
-                  aria-controls="settled"
-                  aria-selected="false"
-                  >Settled</a
-                >
+                <a class="nav-link" id="settled-tab" data-bs-toggle="tab" href="#settled" role="tab"
+                  aria-controls="settled" aria-selected="false">Settled</a>
               </li>
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="all-tab"
-                  data-bs-toggle="tab"
-                  href="#all"
-                  role="tab"
-                  aria-controls="all"
-                  aria-selected="false"
-                  >All</a
-                >
+                <a class="nav-link" id="all-tab" data-bs-toggle="tab" href="#all" role="tab" aria-controls="all"
+                  aria-selected="false">All</a>
               </li>
             </ul>
-  
+
             <!-- Tab Content -->
             <div class="tab-content mt-4" id="emiTabsContent">
               <!-- Upcoming Tab -->
-              <div
-                class="tab-pane fade show active"
-                id="upcoming"
-                role="tabpanel"
-                aria-labelledby="upcoming-tab"
-              >
+              <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -151,42 +115,34 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let emi of futureUnsettledEmis; let i = index">
+                    <tr *ngFor="let emi of futureUnsettledEmis| slice: 0:rowsToShow; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
                       <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td> 
-                      <button
-  *ngIf="emi.settled === 0"
-  class="btn btn-primary"
-  data-bs-toggle="modal"
-  data-bs-target="#openSettleModal"
-  (click)="openSettleModal(emi)"
->
-  Settle
-</button>
+                      <td>₹{{ emi.emi_with_interest }}</td>
+                      <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+                        Settle
+                      </button>
 
-<button
-  *ngIf="emi.settled === 1"
-  class="btn btn-secondary"
-  disabled
->
-  Settled
-</button>
+                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+                        Settled
+                      </button>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
+                <div class="text-center mt-3">
+                  <button *ngIf="futureUnsettledEmis.length > rowsToShow" class="btn btn-primary"
+                    (click)="showMore()">View More</button>
+                  <button *ngIf="rowsToShow > initialRows" class="btn btn-secondary" (click)="showLess()">View
+                    Less</button>
+                </div>
               </div>
-  
+
               <!-- Pending Tab -->
-              <div
-                class="tab-pane fade"
-                id="pending"
-                role="tabpanel"
-                aria-labelledby="pending-tab"
-              >
+              <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -205,37 +161,23 @@
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
                       <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>  
-                      <button
-  *ngIf="emi.settled === 0"
-  class="btn btn-primary"
-  data-bs-toggle="modal"
-  data-bs-target="#openSettleModal"
-  (click)="openSettleModal(emi)"
->
-  Settle
-</button>
+                      <td>₹{{ emi.emi_with_interest }}</td>
+                      <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+                        Settle
+                      </button>
 
-<button
-  *ngIf="emi.settled === 1"
-  class="btn btn-secondary"
-  disabled
->
-  Settled
-</button>
+                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+                        Settled
+                      </button>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-  
+
               <!-- Settled Tab -->
-              <div
-                class="tab-pane fade"
-                id="settled"
-                role="tabpanel"
-                aria-labelledby="settled-tab"
-              >
+              <div class="tab-pane fade" id="settled" role="tabpanel" aria-labelledby="settled-tab">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -254,37 +196,23 @@
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
                       <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td> 
-                      <button
-  *ngIf="emi.settled === 0"
-  class="btn btn-primary"
-  data-bs-toggle="modal"
-  data-bs-target="#openSettleModal"
-  (click)="openSettleModal(emi)"
->
-  Settle
-</button>
+                      <td>₹{{ emi.emi_with_interest }}</td>
+                      <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+                        Settle
+                      </button>
 
-<button
-  *ngIf="emi.settled === 1"
-  class="btn btn-secondary"
-  disabled
->
-  Settled
-</button>
+                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+                        Settled
+                      </button>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-  
+
               <!-- All Tab -->
-              <div
-                class="tab-pane fade"
-                id="all"
-                role="tabpanel"
-                aria-labelledby="all-tab"
-              >
+              <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -298,29 +226,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList); let i = index">
+                    <tr
+                      *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList); let i = index">
                       <td>{{ i + 1 }}</td>
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
                       <td>₹{{ emi.transactionAmount }}</td>
                       <td>₹{{ emi.emi_with_interest }}</td>
-                      <button
-  *ngIf="emi.settled === 0"
-  class="btn "
-  data-bs-toggle="modal"
-  data-bs-target="#openSettleModal"
-  (click)="openSettleModal(emi)"
->
-  Settle
-</button>
+                      <button *ngIf="emi.settled === 0" class="btn " data-bs-toggle="modal"
+                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+                        Settle
+                      </button>
 
-<button
-  *ngIf="emi.settled === 1"
-  class="btn btn-secondary"
-  disabled
->
-  Settled
-</button>
+                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+                        Settled
+                      </button>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
@@ -332,16 +252,12 @@
       </div>
     </div>
   </div>
-  
-  
-  
-  
+
+
+
+
 </div>
 
-
-
-
-<!-- Modal para Liquidar EMI -->
 <!-- Modal for Settling EMI -->
 <div class="modal fade" id="openSettleModal" tabindex="-1" aria-labelledby="openSettleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -355,7 +271,7 @@
           <div class="mb-3">
             <label for="amount" class="form-label">Monto Total (Principal + Interés)</label>
             <input type="number" class="form-control" id="amount"
-              [value]="selectedEmi ? (selectedEmi.principal_amount + selectedEmi.interest_amount).toFixed(2) : '0.00'" 
+              [value]="selectedEmi ? (selectedEmi.principal_amount + selectedEmi.interest_amount).toFixed(2) : '0.00'"
               [disabled]="true" />
           </div>
           <div class="mb-3">
@@ -364,13 +280,15 @@
           </div>
           <div class="mb-3">
             <label for="additionalRemarks" class="form-label">Comentarios Adicionales</label>
-            <textarea class="form-control" id="additionalRemarks" formControlName="additionalremarks" rows="3"></textarea>
+            <textarea class="form-control" id="additionalRemarks" formControlName="additionalremarks"
+              rows="3"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="settleEMI()">Liquidar EMI</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="settleEMI()">Liquidar
+          EMI</button>
       </div>
     </div>
   </div>
