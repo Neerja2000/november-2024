@@ -75,19 +75,30 @@ export class DashboardComponent implements OnInit {
     });
   }
   
-  initialRows = 10; // Number of rows to show initially
-  rowsToShow = this.initialRows; // Rows currently displayed
+  initialRows = 10;
 
-  showMore() {
-    // Increase rowsToShow by 10
-    this.rowsToShow += 10;
-  }
+// Rows to show for each tab
+rowsToShowUpcoming = this.initialRows;
+rowsToShowPending = this.initialRows;
+rowsToShowSettled = this.initialRows;
+rowsToShowAll = this.initialRows;
 
-  showLess() {
-    // Reset rowsToShow to initialRows
-    this.rowsToShow  -=10;
-  }
+showMore(tab: string): void {
+  if (tab === 'upcoming') this.rowsToShowUpcoming += 10;
+  else if (tab === 'pending') this.rowsToShowPending += 10;
+  else if (tab === 'settled') this.rowsToShowSettled += 10;
+  else if (tab === 'all') this.rowsToShowAll += 10;
+}
 
+showLess(tab: string): void {
+  if (tab === 'upcoming') this.rowsToShowUpcoming -= 10;
+  else if (tab === 'pending') this.rowsToShowPending -= 10;
+  else if (tab === 'settled') this.rowsToShowSettled -= 10;
+  else if (tab === 'all') this.rowsToShowAll -= 10;
+}
+
+
+ 
 
   settleEMI(): void {
     if (this.emiForm.invalid || !this.selectedEmi) {

@@ -101,169 +101,166 @@
             <!-- Tab Content -->
             <div class="tab-content mt-4" id="emiTabsContent">
               <!-- Upcoming Tab -->
-              <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>SR NO.</th>
-                      <th>NAME</th>
-                      <th>PHONE NO.</th>
-                      <th>TRANSACTION AMOUNT</th>
-                      <th>EMI+INTEREST</th>
-                      <th>STATUS</th>
-                      <th>DATE</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let emi of futureUnsettledEmis| slice: 0:rowsToShow; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td class="text-bold-500">{{ emi.name }}</td>
-                      <td>{{ emi.phone }}</td>
-                      <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>
-                      <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
-                        Settle
-                      </button>
+             <!-- Upcoming Tab -->
+<div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SR NO.</th>
+        <th>NAME</th>
+        <th>PHONE NO.</th>
+        <th>TRANSACTION AMOUNT</th>
+        <th>EMI+INTEREST</th>
+        <th>STATUS</th>
+        <th>DATE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emi of futureUnsettledEmis | slice: 0:rowsToShowUpcoming; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td class="text-bold-500">{{ emi.name }}</td>
+        <td>{{ emi.phone }}</td>
+        <td>₹{{ emi.transactionAmount }}</td>
+        <td>₹{{ emi.emi_with_interest }}</td>
+        <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+          Settle
+        </button>
+        <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+          Settled
+        </button>
+        <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center mt-3">
+    <button *ngIf="futureUnsettledEmis.length > rowsToShowUpcoming" class="btn btn-primary"
+      (click)="showMore('upcoming')">View More</button>
+    <button *ngIf="rowsToShowUpcoming > initialRows" class="btn btn-secondary"
+      (click)="showLess('upcoming')">View Less</button>
+  </div>
+</div>
 
-                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
-                        Settled
-                      </button>
-                      <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="text-center mt-3">
-                  <button *ngIf="futureUnsettledEmis.length > rowsToShow" class="btn btn-primary"
-                    (click)="showMore()">View More</button>
-                  <button *ngIf="rowsToShow > initialRows" class="btn btn-secondary" (click)="showLess()">View
-                    Less</button>
-                </div>
-              </div>
+<!-- Pending Tab -->
+<div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SR NO.</th>
+        <th>NAME</th>
+        <th>PHONE NO.</th>
+        <th>TRANSACTION AMOUNT</th>
+        <th>EMI+INTEREST</th>
+        <th>STATUS</th>
+        <th>DATE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emi of pastUnsettledEmis | slice: 0:rowsToShowPending; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td class="text-bold-500">{{ emi.name }}</td>
+        <td>{{ emi.phone }}</td>
+        <td>₹{{ emi.transactionAmount }}</td>
+        <td>₹{{ emi.emi_with_interest }}</td>
+        <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+          Settle
+        </button>
+        <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+          Settled
+        </button>
+        <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center mt-3">
+    <button *ngIf="pastUnsettledEmis.length > rowsToShowPending" class="btn btn-primary"
+      (click)="showMore('pending')">View More</button>
+    <button *ngIf="rowsToShowPending > initialRows" class="btn btn-secondary"
+      (click)="showLess('pending')">View Less</button>
+  </div>
+</div>
 
-              <!-- Pending Tab -->
-              <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>SR NO.</th>
-                      <th>NAME</th>
-                      <th>PHONE NO.</th>
-                      <th>TRANSACTION AMOUNT</th>
-                      <th>EMI+INTEREST</th>
-                      <th>STATUS</th>
-                      <th>DATE</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let emi of pastUnsettledEmis | slice: 0:rowsToShow; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td class="text-bold-500">{{ emi.name }}</td>
-                      <td>{{ emi.phone }}</td>
-                      <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>
-                      <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
-                        Settle
-                      </button>
+<!-- Settled Tab -->
+<div class="tab-pane fade" id="settled" role="tabpanel" aria-labelledby="settled-tab">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SR NO.</th>
+        <th>NAME</th>
+        <th>PHONE NO.</th>
+        <th>TRANSACTION AMOUNT</th>
+        <th>EMI+INTEREST</th>
+        <th>STATUS</th>
+        <th>DATE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emi of emisList | slice: 0:rowsToShowSettled; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td class="text-bold-500">{{ emi.name }}</td>
+        <td>{{ emi.phone }}</td>
+        <td>₹{{ emi.transactionAmount }}</td>
+        <td>₹{{ emi.emi_with_interest }}</td>
+        <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+          Settle
+        </button>
+        <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+          Settled
+        </button>
+        <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center mt-3">
+    <button *ngIf="emisList.length > rowsToShowSettled" class="btn btn-primary"
+      (click)="showMore('settled')">View More</button>
+    <button *ngIf="rowsToShowSettled > initialRows" class="btn btn-secondary"
+      (click)="showLess('settled')">View Less</button>
+  </div>
+</div>
 
-                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
-                        Settled
-                      </button>
-                      <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="text-center mt-3">
-                  <button *ngIf="pastUnsettledEmis.length > rowsToShow" class="btn btn-primary"
-                    (click)="showMore()">View More</button>
-                  <button *ngIf="rowsToShow > initialRows" class="btn btn-secondary" (click)="showLess()">View
-                    Less</button>
-                </div>
-              </div>
+<!-- All Tab -->
+<div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SR NO.</th>
+        <th>NAME</th>
+        <th>PHONE NO.</th>
+        <th>TRANSACTION AMOUNT</th>
+        <th>EMI+INTEREST</th>
+        <th>STATUS</th>
+        <th>DATE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList) | slice: 0:rowsToShowAll; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td class="text-bold-500">{{ emi.name }}</td>
+        <td>{{ emi.phone }}</td>
+        <td>₹{{ emi.transactionAmount }}</td>
+        <td>₹{{ emi.emi_with_interest }}</td>
+        <button *ngIf="emi.settled === 0" class="btn" data-bs-toggle="modal"
+          data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+          Settle
+        </button>
+        <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+          Settled
+        </button>
+        <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center mt-3">
+    <button *ngIf="futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList).length > rowsToShowAll" class="btn btn-primary"
+      (click)="showMore('all')">View More</button>
+    <button *ngIf="rowsToShowAll > initialRows" class="btn btn-secondary"
+      (click)="showLess('all')">View Less</button>
+  </div>
+</div>
 
-              <!-- Settled Tab -->
-              <div class="tab-pane fade" id="settled" role="tabpanel" aria-labelledby="settled-tab">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>SR NO.</th>
-                      <th>NAME</th>
-                      <th>PHONE NO.</th>
-                      <th>TRANSACTION AMOUNT</th>
-                      <th>EMI+INTEREST</th>
-                      <th>STATUS</th>
-                      <th>DATE</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let emi of emisList | slice: 0:rowsToShow; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td class="text-bold-500">{{ emi.name }}</td>
-                      <td>{{ emi.phone }}</td>
-                      <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>
-                      <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
-                        Settle
-                      </button>
-
-                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
-                        Settled
-                      </button>
-                      <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="text-center mt-3">
-                  <button *ngIf="emisList.length > rowsToShow" class="btn btn-primary"
-                    (click)="showMore()">View More</button>
-                  <button *ngIf="rowsToShow > initialRows" class="btn btn-secondary" (click)="showLess()">View
-                    Less</button>
-                </div>
-              </div>
-
-              <!-- All Tab -->
-              <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>SR NO.</th>
-                      <th>NAME</th>
-                      <th>PHONE NO.</th>
-                      <th>TRANSACTION AMOUNT</th>
-                      <th>EMI+INTEREST</th>
-                      <th>STATUS</th>
-                      <th>DATE</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr
-                      *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList)| slice: 0:rowsToShow; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td class="text-bold-500">{{ emi.name }}</td>
-                      <td>{{ emi.phone }}</td>
-                      <td>₹{{ emi.transactionAmount }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>
-                      <button *ngIf="emi.settled === 0" class="btn " data-bs-toggle="modal"
-                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
-                        Settle
-                      </button>
-
-                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
-                        Settled
-                      </button>
-                      <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="text-center mt-3">
-                  <button *ngIf="futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList).length > rowsToShow" class="btn btn-primary"
-                    (click)="showMore()">View More</button>
-                  <button *ngIf="rowsToShow > initialRows" class="btn btn-secondary" (click)="showLess()">View
-                    Less</button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
