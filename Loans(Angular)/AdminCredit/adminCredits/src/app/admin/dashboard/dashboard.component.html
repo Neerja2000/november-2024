@@ -156,7 +156,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let emi of pastUnsettledEmis; let i = index">
+                    <tr *ngFor="let emi of pastUnsettledEmis | slice: 0:rowsToShow; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
@@ -174,6 +174,12 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="text-center mt-3">
+                  <button *ngIf="pastUnsettledEmis.length > rowsToShow" class="btn btn-primary"
+                    (click)="showMore()">View More</button>
+                  <button *ngIf="rowsToShow > initialRows" class="btn btn-secondary" (click)="showLess()">View
+                    Less</button>
+                </div>
               </div>
 
               <!-- Settled Tab -->
@@ -191,7 +197,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let emi of emisList; let i = index">
+                    <tr *ngFor="let emi of emisList | slice: 0:rowsToShow; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
@@ -209,6 +215,12 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="text-center mt-3">
+                  <button *ngIf="emisList.length > rowsToShow" class="btn btn-primary"
+                    (click)="showMore()">View More</button>
+                  <button *ngIf="rowsToShow > initialRows" class="btn btn-secondary" (click)="showLess()">View
+                    Less</button>
+                </div>
               </div>
 
               <!-- All Tab -->
@@ -227,7 +239,7 @@
                   </thead>
                   <tbody>
                     <tr
-                      *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList); let i = index">
+                      *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList)| slice: 0:rowsToShow; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td class="text-bold-500">{{ emi.name }}</td>
                       <td>{{ emi.phone }}</td>
@@ -245,6 +257,12 @@
                     </tr>
                   </tbody>
                 </table>
+                <div class="text-center mt-3">
+                  <button *ngIf="futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList).length > rowsToShow" class="btn btn-primary"
+                    (click)="showMore()">View More</button>
+                  <button *ngIf="rowsToShow > initialRows" class="btn btn-secondary" (click)="showLess()">View
+                    Less</button>
+                </div>
               </div>
             </div>
           </div>
