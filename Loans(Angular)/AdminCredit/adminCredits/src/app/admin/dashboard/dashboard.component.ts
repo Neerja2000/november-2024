@@ -69,7 +69,6 @@ export class DashboardComponent implements OnInit {
 
   openSettleModal(emi: any): void {
     this.selectedEmi = emi;
-    console.log(this.selectedEmi);  // Check if emiId exists here
     const totalAmount = Number((emi.principal_amount + emi.interest_amount).toFixed(2));
     this.emiForm.patchValue({
       principalAmount: totalAmount,
@@ -77,98 +76,88 @@ export class DashboardComponent implements OnInit {
       additionalremarks: emi.additionalremarks || '',
     });
   }
-  
+
   initialRows = 10;
 
-// Rows to show for each tab
-rowsToShowUpcoming = this.initialRows;
-rowsToShowPending = this.initialRows;
-rowsToShowSettled = this.initialRows;
-rowsToShowAll = this.initialRows;
+  rowsToShowUpcoming = this.initialRows;
+  rowsToShowPending = this.initialRows;
+  rowsToShowSettled = this.initialRows;
+  rowsToShowAll = this.initialRows;
 
-showMore(tab: string): void {
-  if (tab === 'upcoming') this.rowsToShowUpcoming += 10;
-  else if (tab === 'pending') this.rowsToShowPending += 10;
-  else if (tab === 'settled') this.rowsToShowSettled += 10;
-  else if (tab === 'all') this.rowsToShowAll += 10;
-}
-
-showLess(tab: string): void {
-  if (tab === 'upcoming') this.rowsToShowUpcoming -= 10;
-  else if (tab === 'pending') this.rowsToShowPending -= 10;
-  else if (tab === 'settled') this.rowsToShowSettled -= 10;
-  else if (tab === 'all') this.rowsToShowAll -= 10;
-}
-
-
- 
-
-settleEMI(): void {
-  if (this.emiForm.invalid || !this.selectedEmi) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Input',
-      text: 'Please fill in all required fields and select a valid EMI!',
-    });
-    return;
+  showMore(tab: string): void {
+    if (tab === 'upcoming') this.rowsToShowUpcoming += 10;
+    else if (tab === 'pending') this.rowsToShowPending += 10;
+    else if (tab === 'settled') this.rowsToShowSettled += 10;
+    else if (tab === 'all') this.rowsToShowAll += 10;
   }
 
-  const body = {
-    emiId: this.selectedEmi.emi_id,
-    amount: this.emiForm.value.principalAmount,
-    receivingDate: this.emiForm.value.receivingDate,
-    additionalremarks: this.emiForm.value.additionalremarks,
-  };
+  showLess(tab: string): void {
+    if (tab === 'upcoming') this.rowsToShowUpcoming -= 10;
+    else if (tab === 'pending') this.rowsToShowPending -= 10;
+    else if (tab === 'settled') this.rowsToShowSettled -= 10;
+    else if (tab === 'all') this.rowsToShowAll -= 10;
+  }
 
-  this.transactionService.emiSettle(body).subscribe(
-    (response) => {
-      console.log('EMI settled successfully:', response);
-
-      // Update EMI details in the table
-      const emiIndex = this.emiDetails.findIndex(
-        (emi: any) => emi.emiId === this.selectedEmi.emiId
-      );
-      if (emiIndex > -1) {
-        this.emiDetails[emiIndex].isSettled = true;
-        this.emiDetails[emiIndex].settled = body.amount;
-        this.emiDetails[emiIndex].receivingDate = body.receivingDate;
-        this.emiDetails[emiIndex].additionalremarks = body.additionalremarks;
-      }
-
-      this.getAllEmis();
-
-      // Show success alert
-      Swal.fire({
-        icon: 'success',
-        title: 'EMI Settled',
-        text: `EMI for ${this.selectedEmi.name} has been settled successfully.`,
-      });
-    },
-    (error: any) => {
-      console.error('Error settling EMI:', error);
-
-      // Show error alert
+  settleEMI(): void {
+    if (this.emiForm.invalid || !this.selectedEmi) {
       Swal.fire({
         icon: 'error',
-        title: 'Error',
-        text: 'An error occurred while settling the EMI. Please try again later.',
+        title: 'Entrada inválida',
+        text: '¡Por favor complete todos los campos obligatorios y seleccione un EMI válido!',
       });
+      return;
     }
-  );
-}
 
+    const body = {
+      emiId: this.selectedEmi.emi_id,
+      amount: this.emiForm.value.principalAmount,
+      receivingDate: this.emiForm.value.receivingDate,
+      additionalremarks: this.emiForm.value.additionalremarks,
+    };
 
+    this.transactionService.emiSettle(body).subscribe(
+      (response) => {
+        console.log('EMI settled successfully:', response);
 
-getDashboard() {
-  this.dashboardService.getAllDashboard().subscribe(
-    (res: any) => {
-      this.dashboardData = res; // Assign response to variable
-      console.log('Dashboard Data:', this.dashboardData);
-    },
-    (err) => {
-      console.error('Error fetching dashboard data:', err);
-    }
-  );
-}
+        const emiIndex = this.emiDetails.findIndex(
+          (emi: any) => emi.emiId === this.selectedEmi.emiId
+        );
+        if (emiIndex > -1) {
+          this.emiDetails[emiIndex].isSettled = true;
+          this.emiDetails[emiIndex].settled = body.amount;
+          this.emiDetails[emiIndex].receivingDate = body.receivingDate;
+          this.emiDetails[emiIndex].additionalremarks = body.additionalremarks;
+        }
 
+        this.getAllEmis();
+
+        Swal.fire({
+          icon: 'success',
+          title: 'EMI Liquidado',
+          text: `El EMI para ${this.selectedEmi.name} se ha liquidado con éxito.`,
+        });
+      },
+      (error: any) => {
+        console.error('Error settling EMI:', error);
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Se produjo un error al liquidar el EMI. Por favor, inténtelo de nuevo más tarde.',
+        });
+      }
+    );
+  }
+
+  getDashboard() {
+    this.dashboardService.getAllDashboard().subscribe(
+      (res: any) => {
+        this.dashboardData = res;
+        console.log('Datos del Dashboard:', this.dashboardData);
+      },
+      (err) => {
+        console.error('Error fetching dashboard data:', err);
+      }
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BannerService } from 'src/app/shared/banner/banner.service';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-banner-view-details',
   templateUrl: './banner-view-details.component.html',
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
 export class BannerViewDetailsComponent {
   banners: any[] = [];
 
-  constructor(private bannerService:BannerService) {}
+  constructor(private bannerService: BannerService) {}
 
   ngOnInit(): void {
     this.fetchBanners();
@@ -28,8 +29,6 @@ export class BannerViewDetailsComponent {
       }
     );
   }
-  
-
 
   toggleStatus(banner: any) {
     const newStatus = banner.is_active === 1 ? 0 : 1;
@@ -40,8 +39,8 @@ export class BannerViewDetailsComponent {
         // SweetAlert for success message
         Swal.fire({
           icon: 'success',
-          title: newStatus === 1 ? 'Activated!' : 'Deactivated!',
-          text: `The banner has been ${newStatus === 1 ? 'activated' : 'deactivated'} successfully.`,
+          title: newStatus === 1 ? '¡Activado!' : '¡Desactivado!',
+          text: `El banner ha sido ${newStatus === 1 ? 'activado' : 'desactivado'} exitosamente.`,
           confirmButtonColor: '#51a992', // Your main color
         });
       },
@@ -51,8 +50,8 @@ export class BannerViewDetailsComponent {
         // SweetAlert for error message
         Swal.fire({
           icon: 'error',
-          title: 'Oops!',
-          text: 'There was an error toggling the banner status. Please try again.',
+          title: '¡Ups!',
+          text: 'Hubo un error al cambiar el estado del banner. Por favor, inténtelo de nuevo.',
           confirmButtonColor: '#51a992', // Your main color
         });
       }
@@ -62,13 +61,13 @@ export class BannerViewDetailsComponent {
   deleteBanner(banner: any): void {
     // Show confirmation dialog before deleting
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
+      title: '¿Estás seguro?',
+      text: '¡No podrás revertir esto!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#51a992', // Your main color
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Sí, ¡eliminarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
         // Call deleteBanner service
@@ -77,8 +76,8 @@ export class BannerViewDetailsComponent {
             // Show success message
             Swal.fire({
               icon: 'success',
-              title: 'Deleted!',
-              text: 'The banner has been deleted successfully.',
+              title: '¡Eliminado!',
+              text: 'El banner ha sido eliminado exitosamente.',
               confirmButtonColor: '#51a992', // Your main color
             });
   
@@ -94,8 +93,8 @@ export class BannerViewDetailsComponent {
             // Show error message
             Swal.fire({
               icon: 'error',
-              title: 'Oops!',
-              text: 'There was an error deleting the banner. Please try again.',
+              title: '¡Ups!',
+              text: 'Hubo un error al eliminar el banner. Por favor, inténtelo de nuevo.',
               confirmButtonColor: '#51a992', // Your main color
             });
           }
@@ -103,5 +102,4 @@ export class BannerViewDetailsComponent {
       }
     });
   }
-  
 }

@@ -1,83 +1,77 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md mt-4">
-        <div class="card mt-5">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-10">
-                <h1>View Banner Details</h1>
-              </div>
-              <div class="col-md">
-                <button routerLink="/layout/addBanner" class="btn btn-primary">
-                  Add Banner
-                </button>
-              </div>
+  <div class="row">
+    <div class="col-md mt-4">
+      <div class="card mt-5">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-10">
+              <h1>Ver Detalles del Banner</h1>
             </div>
-  
-            <div class="container mt-4">
-              <div class="table-responsive mt-4">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Sr No.</th>
-                      <th>Title</th>
-                      <th style="width: 40%;">Description</th>
-                      <th>Image</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let banner of banners; let i = index">
-                      <td>{{ i + 1 }}</td>
-                      <td>{{ banner.title }}</td>
-                      <td style=" word-wrap: break-word;">{{ banner.content }}</td>
-                      <td>
-                        <a [href]="banner.image_url" target="_blank">
-                          <img
-                            [src]="banner.image_url"
-                            alt="Banner Image"
-                            width="50"
-                            height="50"
-                            style="cursor: pointer;"
-                          />
-                        </a>
-                      </td>
-                      <td class="text-center">
-                        <i
-                          class="fas"
-                          [ngClass]="{
-                            'fa-toggle-on text-dark': banner.is_active === 1,
-                            'fa-toggle-off text-dark': banner.is_active === 0
-                          }"
-                          style="font-size: 1.5rem; cursor: pointer;"
-                          (click)="toggleStatus(banner)"
-                        ></i>
-                      </td>
-                      <td>
-                        <div class="d-flex">
-                          <button class="btn btn-sm btn-warning me-2" [routerLink]="['/layout/updateBanner', banner.id]">
-                            <i class="fas fa-edit"></i> Edit
-                          </button>
-                     
-                        
-                      <button class="btn btn-sm btn-danger" (click)="deleteBanner(banner)">
-                          <i class="fas fa-trash-alt"></i> Delete
+            <div class="col-md">
+              <button routerLink="/layout/addBanner" class="btn btn-primary">
+                Agregar Banner
+              </button>
+            </div>
+          </div>
+
+          <div class="container mt-4">
+            <div class="table-responsive mt-4">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Número de serie</th>
+                    <th>Título</th>
+                    <th style="width: 40%;">Descripción</th>
+                    <th>Imagen</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let banner of banners; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ banner.title }}</td>
+                    <td style="word-wrap: break-word;">{{ banner.content }}</td>
+                    <td>
+                      <a [href]="banner.image_url" target="_blank">
+                        <img
+                          [src]="banner.image_url"
+                          alt="Imagen del Banner"
+                          width="50"
+                          height="50"
+                          style="cursor: pointer;"
+                        />
+                      </a>
+                    </td>
+                    <td class="text-center">
+                      <i
+                        class="fas"
+                        [ngClass]="{
+                          'fa-toggle-on text-dark': banner.is_active === 1,
+                          'fa-toggle-off text-dark': banner.is_active === 0
+                        }"
+                        style="font-size: 1.5rem; cursor: pointer;"
+                        (click)="toggleStatus(banner)"
+                      ></i>
+                    </td>
+                    <td>
+                      <div class="d-flex">
+                        <button class="btn btn-sm btn-warning me-2" [routerLink]="['/layout/updateBanner', banner.id]">
+                          <i class="fas fa-edit"></i> Editar
                         </button>
-                        </div>
-                        
-                          
-                          
-                      </td>
-                    </tr>
-                 
-                  </tbody>
-                </table>
-              </div>
+
+                        <button class="btn btn-sm btn-danger" (click)="deleteBanner(banner)">
+                          <i class="fas fa-trash-alt"></i> Eliminar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

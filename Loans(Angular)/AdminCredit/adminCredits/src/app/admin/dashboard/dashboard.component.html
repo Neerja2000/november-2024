@@ -3,285 +3,281 @@
     <div class="col-lg-12 align-items-stretch mt-5">
       <div class="row">
 
-        <!-- Due This Week Count -->
+        <!-- Cuotas Vencen Esta Semana -->
         <div class="col-6 col-lg-4 col-md-6">
-          <div class="card">
-            <div class="card-body px-4 py-4-5">
-              <div class="row align-items-center">
-                <div class="col-4">
-                  <div class="d-flex justify-content-center">
-                    <div
-                      class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-calendar-week fs-6"></i>
+            <div class="card">
+                <div class="card-body px-4 py-4-5">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center">
+                                <div
+                                    class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-calendar-week fs-6"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <h6 class="text-muted font-semibold">Cuotas Vencen Esta Semana</h6>
+                            <h6 class="font-extrabold mb-0">{{ dashboardData?.due_this_week_count || 0 }}</h6>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-8">
-                  <h6 class="text-muted font-semibold">EMI Due This Week</h6>
-                  <h6 class="font-extrabold mb-0">{{ dashboardData?.due_this_week_count || 0 }}</h6>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-
-        <!-- Review Required Count -->
+    
+        <!-- Revisión Requerida -->
         <div class="col-6 col-lg-4 col-md-6">
-          <div class="card">
-            <div class="card-body px-4 py-4-5">
-              <div class="row align-items-center">
-                <div class="col-4">
-                  <div class="d-flex justify-content-center">
-                    <div
-                      class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-clipboard-check fs-6"></i>
+            <div class="card">
+                <div class="card-body px-4 py-4-5">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center">
+                                <div
+                                    class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-clipboard-check fs-6"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <h6 class="text-muted font-semibold">Usuarios Pendientes</h6>
+                            <h6 class="font-extrabold mb-0">{{ dashboardData?.review_required_count || 0 }}</h6>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-8">
-                  <h6 class="text-muted font-semibold">Pending User</h6>
-                  <h6 class="font-extrabold mb-0">{{ dashboardData?.review_required_count || 0 }}</h6>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-
-        <!-- Users Joined This Month -->
+    
+        <!-- Usuarios Registrados Este Mes -->
         <div class="col-6 col-lg-4 col-md-6">
-          <div class="card">
-            <div class="card-body px-4 py-4-5">
-              <div class="row align-items-center">
-                <div class="col-4">
-                  <div class="d-flex justify-content-center">
-                    <div
-                      class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-person-plus fs-6"></i>
+            <div class="card">
+                <div class="card-body px-4 py-4-5">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center">
+                                <div
+                                    class="icon-wrapper text-white bg-secondary rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-person-plus fs-6"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <h6 class="text-muted font-semibold">Nuevos Usuarios Este Mes</h6>
+                            <h6 class="font-extrabold mb-0">{{ dashboardData?.users_joined_this_month_count || 0 }}</h6>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-8">
-                  <h6 class="text-muted font-semibold">New Users This Month</h6>
-                  <h6 class="font-extrabold mb-0">{{ dashboardData?.users_joined_this_month_count || 0 }}</h6>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-
-      </div>
+    
+    </div>
+    
     </div>
   </div>
-
 
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header ">
-            <h2 class="mb-0">View EMIs</h2>
+          <div class="card-header">
+            <h2 class="mb-0">Ver EMIs</h2>
           </div>
           <div class="card-body">
-            <!-- Tabs Navigation -->
+            <!-- Navegación de pestañas -->
             <ul class="nav nav-tabs" id="emiTabs" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" href="#upcoming" role="tab"
-                  aria-controls="upcoming" aria-selected="true">Upcoming</a>
+                  aria-controls="upcoming" aria-selected="true">Próximos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="pending-tab" data-bs-toggle="tab" href="#pending" role="tab"
-                  aria-controls="pending" aria-selected="false">Pending</a>
+                  aria-controls="pending" aria-selected="false">Pendientes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="settled-tab" data-bs-toggle="tab" href="#settled" role="tab"
-                  aria-controls="settled" aria-selected="false">Settled</a>
+                  aria-controls="settled" aria-selected="false">Liquidados</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="all-tab" data-bs-toggle="tab" href="#all" role="tab" aria-controls="all"
-                  aria-selected="false">All</a>
+                <a class="nav-link" id="all-tab" data-bs-toggle="tab" href="#all" role="tab"
+                  aria-controls="all" aria-selected="false">Todos</a>
               </li>
             </ul>
-
-            <!-- Tab Content -->
+  
+            <!-- Contenido de las pestañas -->
             <div class="tab-content mt-4" id="emiTabsContent">
-              <!-- Upcoming Tab -->
-              <!-- Upcoming Tab -->
+              <!-- Pestaña Próximos -->
               <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>SR NO.</th>
-                      <th>NAME</th>
-                      <th>PHONE NO.</th>
-                      <th>TRANSACTION AMOUNT</th>
-                      <th>EMI+INTEREST</th>
-                      <th>ACTION</th>
-                      <th>DATE</th>
+                      <th>Número de serie</th>
+                      <th>NOMBRE</th>
+                      <th>N.º TELÉFONO</th>
+                      <th>MONTO DE TRANSACCIÓN</th>
+                      <th>EMI + INTERÉS</th>
+                      <th>ACCIÓN</th>
+                      <th>FECHA</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let emi of futureUnsettledEmis | slice: 0:rowsToShowUpcoming; let i = index">
                       <td>{{ i + 1 }}</td>
                       <td class="text-bold-500">{{ emi.user_name }}</td>
-                      <td>{{ emi.
-                        user_phone_number }}</td>
-                      <td>₹{{ emi.transaction_principal_amount
-                        }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>
-                      <button *ngIf="emi.settled === 0" class="btn table-btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
-                        Settle
-                      </button>
-                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
-                        Settled
-                      </button>
+                      <td>{{ emi.user_phone_number }}</td>
+                      <td>${{ emi.transaction_principal_amount }}</td>
+                      <td>${{ emi.emi_with_interest }}</td>
+                      <td>
+                        <button *ngIf="emi.settled === 0" class="btn table-btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+                          Liquidar
+                        </button>
+                        <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+                          Liquidado
+                        </button>
+                      </td>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="text-center mt-3">
                   <button *ngIf="futureUnsettledEmis.length > rowsToShowUpcoming" class="btn btn-primary"
-                    (click)="showMore('upcoming')">View More</button>
+                    (click)="showMore('upcoming')">Ver Más</button>
                   <button *ngIf="rowsToShowUpcoming > initialRows" class="btn btn-secondary ms-1"
-                    (click)="showLess('upcoming')">View Less</button>
+                    (click)="showLess('upcoming')">Ver Menos</button>
                 </div>
               </div>
-
-              <!-- Pending Tab -->
+  
+              <!-- Pestaña Pendientes -->
               <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>SR NO.</th>
-                      <th>NAME</th>
-                      <th>PHONE NO.</th>
-                      <th>TRANSACTION AMOUNT</th>
-                      <th>EMI+INTEREST</th>
-                      <th>ACTION</th>
-                      <th>DATE</th>
+                      <th>Número de serie</th>
+                      <th>NOMBRE</th>
+                      <th>N.º TELÉFONO</th>
+                      <th>MONTO DE TRANSACCIÓN</th>
+                      <th>EMI + INTERÉS</th>
+                      <th>ACCIÓN</th>
+                      <th>FECHA</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let emi of pastUnsettledEmis | slice: 0:rowsToShowPending; let i = index">
                       <td>{{ i + 1 }}</td>
-                      <td class="text-bold-500">{{ emi.user_name}}</td>
-                      <td>{{ emi.
-                        user_phone_number }}</td>
-                      <td>₹{{ emi.transaction_principal_amount
-                        }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>
-                      <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
-                        Settle
-                      </button>
-                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
-                        Settled
-                      </button>
+                      <td class="text-bold-500">{{ emi.user_name }}</td>
+                      <td>{{ emi.user_phone_number }}</td>
+                      <td>${{ emi.transaction_principal_amount }}</td>
+                      <td>${{ emi.emi_with_interest }}</td>
+                      <td>
+                        <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+                          Liquidar
+                        </button>
+                        <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+                          Liquidado
+                        </button>
+                      </td>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="text-center mt-3">
                   <button *ngIf="pastUnsettledEmis.length > rowsToShowPending" class="btn btn-primary"
-                    (click)="showMore('pending')">View More</button>
+                    (click)="showMore('pending')">Ver Más</button>
                   <button *ngIf="rowsToShowPending > initialRows" class="btn btn-secondary ms-1"
-                    (click)="showLess('pending')">View Less</button>
+                    (click)="showLess('pending')">Ver Menos</button>
                 </div>
               </div>
-
-              <!-- Settled Tab -->
+  
+              <!-- Pestaña Liquidados -->
               <div class="tab-pane fade" id="settled" role="tabpanel" aria-labelledby="settled-tab">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>SR NO.</th>
-                      <th>NAME</th>
-                      <th>PHONE NO.</th>
-                      <th>TRANSACTION AMOUNT</th>
-                      <th>EMI+INTEREST</th>
-                      <th>STATUS</th>
-                      <th>DATE</th>
+                      <th>Número de serie</th>
+                      <th>NOMBRE</th>
+                      <th>N.º TELÉFONO</th>
+                      <th>MONTO DE TRANSACCIÓN</th>
+                      <th>EMI + INTERÉS</th>
+                      <th>ESTADO</th>
+                      <th>FECHA</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let emi of emisList | slice: 0:rowsToShowSettled; let i = index">
                       <td>{{ i + 1 }}</td>
-                      <td class="text-bold-500">{{ emi.user_name
-                        }}</td>
-                      <td>{{ emi.
-                        user_phone_number }}</td>
-                      <td>₹{{ emi.transaction_principal_amount
-                        }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>
-                      <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
-                        Settle
-                      </button>
-                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
-                        Settled
-                      </button>
+                      <td class="text-bold-500">{{ emi.user_name }}</td>
+                      <td>{{ emi.user_phone_number }}</td>
+                      <td>${{ emi.transaction_principal_amount }}</td>
+                      <td>${{ emi.emi_with_interest }}</td>
+                      <td>
+                        <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+                          Liquidar
+                        </button>
+                        <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+                          Liquidado
+                        </button>
+                      </td>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="text-center mt-3">
                   <button *ngIf="emisList.length > rowsToShowSettled" class="btn btn-primary"
-                    (click)="showMore('settled')">View More</button>
+                    (click)="showMore('settled')">Ver Más</button>
                   <button *ngIf="rowsToShowSettled > initialRows" class="btn btn-secondary ms-1"
-                    (click)="showLess('settled')">View Less</button>
+                    (click)="showLess('settled')">Ver Menos</button>
                 </div>
               </div>
-
-              <!-- All Tab -->
+  
+              <!-- Pestaña Todos -->
               <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>SR NO.</th>
-                      <th>NAME</th>
-                      <th>PHONE NO.</th>
-                      <th>TRANSACTION AMOUNT</th>
-                      <th>EMI+INTEREST</th>
-                      <th>ACTION</th>
-                      <th>DATE</th>
+                      <th>Número de serie</th>
+                      <th>NOMBRE</th>
+                      <th>N.º TELÉFONO</th>
+                      <th>MONTO DE TRANSACCIÓN</th>
+                      <th>EMI + INTERÉS</th>
+                      <th>ACCIÓN</th>
+                      <th>FECHA</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr
-                      *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList) | slice: 0:rowsToShowAll; let i = index">
+                    <tr *ngFor="let emi of futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList) | slice: 0:rowsToShowAll; let i = index">
                       <td>{{ i + 1 }}</td>
-                      <td class="text-bold-500">{{ emi.user_name
-                        }}</td>
-                      <td>{{ emi.
-                        user_phone_number }}</td>
-                      <td>₹{{ emi.transaction_principal_amount
-                        }}</td>
-                      <td>₹{{ emi.emi_with_interest }}</td>
-                      <button *ngIf="emi.settled === 0" class="btn" data-bs-toggle="modal"
-                        data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
-                        Settle
-                      </button>
-                      <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
-                        Settled
-                      </button>
+                      <td class="text-bold-500">{{ emi.user_name }}</td>
+                      <td>{{ emi.user_phone_number }}</td>
+                      <td>${{ emi.transaction_principal_amount }}</td>
+                      <td>${{ emi.emi_with_interest }}</td>
+                      <td>
+                        <button *ngIf="emi.settled === 0" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#openSettleModal" (click)="openSettleModal(emi)">
+                          Liquidar
+                        </button>
+                        <button *ngIf="emi.settled === 1" class="btn btn-secondary" disabled>
+                          Liquidado
+                        </button>
+                      </td>
                       <td>{{ emi.due_date | date: 'yyyy-MM-dd' }}</td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="text-center mt-3">
                   <button *ngIf="futureUnsettledEmis.concat(pastUnsettledEmis).concat(emisList).length > rowsToShowAll"
-                    class="btn btn-primary" (click)="showMore('all')">View More</button>
+                    class="btn btn-primary" (click)="showMore('all')">Ver Más</button>
                   <button *ngIf="rowsToShowAll > initialRows" class="btn btn-secondary ms-1"
-                    (click)="showLess('all')">View Less</button>
+                    (click)="showLess('all')">Ver Menos</button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
 
 
 

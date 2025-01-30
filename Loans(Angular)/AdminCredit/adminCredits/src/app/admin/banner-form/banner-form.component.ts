@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 })
 export class BannerFormComponent implements OnInit {
   bannerForm = new FormGroup({
-    title:new FormControl(''),
+    title: new FormControl(''),
     content: new FormControl(''),
     image: new FormControl(null),
   });
@@ -20,10 +20,8 @@ export class BannerFormComponent implements OnInit {
   ngOnInit(): void {}
 
   bannersave(): void {
-
-
     const formData = new FormData();
-    formData.append('title',this.bannerForm.value.title!);
+    formData.append('title', this.bannerForm.value.title!);
     formData.append('content', this.bannerForm.value.content!);
     if (this.bannerForm.value.image) {
       formData.append('image', this.bannerForm.value.image);
@@ -35,8 +33,8 @@ export class BannerFormComponent implements OnInit {
         // Show SweetAlert2 success message
         Swal.fire({
           icon: 'success',
-          title: 'Success!',
-          text:  'Banner added successfully!',
+          title: '¡Éxito!',
+          text: '¡Banner agregado con éxito!',
           confirmButtonColor: '#51a992', // Your main color
         });
       },
@@ -44,17 +42,16 @@ export class BannerFormComponent implements OnInit {
         console.error('Error adding banner:', error);
   
         // Extract the specific error message from the backend
-        const errorMessage = error.error?.error || error.error?.message || 'Failed to add banner.';
+        const errorMessage = error.error?.error || error.error?.message || 'Error al agregar el banner.';
   
         // Show SweetAlert2 error message
         Swal.fire({
           icon: 'error',
-          title: 'Failed!',
+          title: '¡Fallido!',
           text: errorMessage,
           confirmButtonColor: '#51a992', // Your main color
         });
       }
-      
     });
   }
 

@@ -1,76 +1,71 @@
 <div class="container"> 
-    <div class="row">
-      <div class="col-md mt-4">
-        <div class="card mt-5">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-10">
-                <h1>Update Banner</h1>
-              </div>
-              <div class="col-md">
-                <button routerLink="/layout/viewBanner" class="btn btn-primary">
-                  <i class="bi bi-arrow-90deg-up"></i>   
-                </button>
-              </div>
+  <div class="row">
+    <div class="col-md mt-4">
+      <div class="card mt-5">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-10">
+              <h1>Actualizar Banner</h1>
             </div>
-  
-            <div class="container mt-4">
-              <div class="card-body">
-                <form [formGroup]="bannerForm" (ngSubmit)="bannersave()">
-                  <div class="mb-3">
-                    <label for="bannerTitle" class="form-label">Banner Title</label>
-                    <input
-                      type="text"
-                      id="bannerTitle"
-                      class="form-control"
-                      placeholder="Enter Banner Title"
-                      required
-                      formControlName="title"
-                    />
-                  </div>
-                    <!-- Banner Description -->
-                    <div class="mb-3">
-                      <label for="bannerDescription" class="form-label">Banner Description</label>
-                      <textarea
-                        id="bannerDescription"
-                        class="form-control"
-                        rows="4"
-                        placeholder="Enter Banner Description"
-                        formControlName="content"
-                      ></textarea>
-                    </div>
-                  
-                   
-                  
-                    <!-- Banner Image -->
-                    <div class="mb-3">
-                      <label for="bannerImage" class="form-label">Upload New Banner Image</label>
-                      <input
-                        type="file"
-                        id="bannerImage"
-                        class="form-control"
-                        (change)="onFileChange($event)"
-                      />
-                      <span class="text-muted" style="font-size: 10px;">File should not be more than 5MB</span>
-                    </div>
-                  
-                    <!-- Submit Button -->
-                    <div>
-                      <button type="submit" class="btn btn-primary">
-                        Update Banner
-                      </button>
-                      <button type="reset" class="btn btn-secondary ms-3" (click)="bannerForm.reset()">
-                        Reset
-                      </button>
-                    </div>
-                  </form>
-                  
-                  
-              </div>
+            <div class="col-md">
+              <button routerLink="/layout/viewBanner" class="btn btn-primary">
+                <i class="bi bi-arrow-90deg-up"></i>   
+              </button>
+            </div>
+          </div>
+
+          <div class="container mt-4">
+            <div class="card-body">
+              <form [formGroup]="bannerForm" (ngSubmit)="bannersave()">
+                <div class="mb-3">
+                  <label for="bannerTitle" class="form-label">Título del Banner</label>
+                  <input
+                    type="text"
+                    id="bannerTitle"
+                    class="form-control"
+                    placeholder="Ingrese el título del banner"
+                    required
+                    formControlName="title"
+                  />
+                </div>
+                <!-- Descripción del Banner -->
+                <div class="mb-3">
+                  <label for="bannerDescription" class="form-label">Descripción del Banner</label>
+                  <textarea
+                    id="bannerDescription"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Ingrese la descripción del banner"
+                    formControlName="content"
+                  ></textarea>
+                </div>
+
+                <!-- Imagen del Banner -->
+                <div class="mb-3">
+                  <label for="bannerImage" class="form-label">Subir Nueva Imagen del Banner</label>
+                  <input
+                    type="file"
+                    id="bannerImage"
+                    class="form-control"
+                    (change)="onFileChange($event)"
+                  />
+                  <span class="text-muted" style="font-size: 10px;">El archivo no debe ser mayor a 5MB</span>
+                </div>
+
+                <!-- Botón de Enviar -->
+                <div>
+                  <button type="submit" class="btn btn-primary">
+                    Actualizar Banner
+                  </button>
+                  <button type="reset" class="btn btn-secondary ms-3" (click)="bannerForm.reset()">
+                    Restablecer
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

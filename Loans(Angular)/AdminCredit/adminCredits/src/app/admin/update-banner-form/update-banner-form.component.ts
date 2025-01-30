@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BannerService } from 'src/app/shared/banner/banner.service';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-update-banner-form',
   templateUrl: './update-banner-form.component.html',
@@ -37,8 +38,6 @@ export class UpdateBannerFormComponent implements OnInit {
           content: banner.content,
         });
 
-
-
         console.log('Fetched Banner Details:', banner);
       },
       error: (error) => {
@@ -53,8 +52,6 @@ export class UpdateBannerFormComponent implements OnInit {
   }
 
   bannersave(): void {
-  
-
     const formData = new FormData();
     formData.append('title', this.bannerForm.value.title!);
     formData.append('content', this.bannerForm.value.content!);
@@ -68,27 +65,27 @@ export class UpdateBannerFormComponent implements OnInit {
         console.log('Banner updated successfully:', response);
         Swal.fire({
           icon: 'success',
-          title: 'Success!',
-          text: 'Banner updated successfully!',
+          title: '¡Éxito!',
+          text: '¡Banner actualizado correctamente!',
           confirmButtonColor: '#51a992',
         });
         this.fetchBannerDetails();
       },
       
       error: (error) => {
-             console.error('Error adding banner:', error);
+        console.error('Error adding banner:', error);
        
-             // Extract the specific error message from the backend
-             const errorMessage = error.error?.error || error.error?.message || 'Failed to update banner.';
+        // Extract the specific error message from the backend
+        const errorMessage = error.error?.error || error.error?.message || 'No se pudo actualizar el banner.';
        
-             // Show SweetAlert2 error message
-             Swal.fire({
-               icon: 'error',
-               title: 'Failed!',
-               text: errorMessage,
-               confirmButtonColor: '#51a992', // Your main color
-             });
-           }
+        // Show SweetAlert2 error message
+        Swal.fire({
+          icon: 'error',
+          title: '¡Fallido!',
+          text: errorMessage,
+          confirmButtonColor: '#51a992', // Your main color
+        });
+      }
     });
   }
 }
