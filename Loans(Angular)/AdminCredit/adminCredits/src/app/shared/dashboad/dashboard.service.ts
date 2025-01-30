@@ -18,4 +18,11 @@ export class DashboardService {
     const headers = new HttpHeaders().set('auth-token', this.token);
     return this.http.get<any[]>(`${this.adminbaseurl}/emis`, { headers });
   }
+
+
+  getAllDashboard(): Observable<any[]> {
+    const headers = new HttpHeaders().set('auth-token', this.token);
+    return this.http.get<any[]>(`${this.adminbaseurl}/dashboard-counts`, { headers });
+  }
+  
 }

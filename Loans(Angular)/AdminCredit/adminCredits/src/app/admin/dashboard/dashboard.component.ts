@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   emiDetails: any[] = [];
   selectedEmi: any | null = null;
   emiForm: FormGroup;
+  dashboardData: any = {};
 
   constructor(
     private dashboardService: DashboardService,
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getDashboard();
     this.getAllEmis();
   }
 
@@ -151,6 +153,20 @@ settleEMI(): void {
         title: 'Error',
         text: 'An error occurred while settling the EMI. Please try again later.',
       });
+    }
+  );
+}
+
+
+
+getDashboard() {
+  this.dashboardService.getAllDashboard().subscribe(
+    (res: any) => {
+      this.dashboardData = res; // Assign response to variable
+      console.log('Dashboard Data:', this.dashboardData);
+    },
+    (err) => {
+      console.error('Error fetching dashboard data:', err);
     }
   );
 }
