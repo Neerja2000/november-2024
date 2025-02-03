@@ -532,6 +532,20 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   border: 2px solid #cda45e;
 }
+
+ .btn-books {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+  line-height: 1;
+  color: white;
+  border: 2px solid #cda45e;
+}
 #hero .btn-menu:hover, #hero .btn-book:hover {
   background: #cda45e;
   color: #fff;
@@ -1071,7 +1085,7 @@ section {
 # Events
 --------------------------------------------------------------*/
 .events {
-  background: url(../img/events-bg.jpg) center center no-repeat;
+  background: url(https://img.freepik.com/free-photo/young-adult-businessman-modern-office-typing-generated-by-ai_188544-26240.jpg?t=st=1738584356~exp=1738587956~hmac=345faa23721e29a0ef63c3b6225c9882a5e0727a3665e99278ab48a87186f987&w=996) center center no-repeat;
   background-size: cover;
   position: relative;
 }
