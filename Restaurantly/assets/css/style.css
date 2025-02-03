@@ -518,7 +518,20 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   border: 2px solid #cda45e;
 }
-
+.btn-menus {
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+  line-height: 1;
+  color: white;
+  border: 2px solid #cda45e;
+}
 #hero .btn-menu:hover, #hero .btn-book:hover {
   background: #cda45e;
   color: #fff;
@@ -756,7 +769,7 @@ section {
 # About
 --------------------------------------------------------------*/
 .about {
-  background: url("../img/about-bg.jpg") center center;
+  background: url("https://img.freepik.com/free-photo/workplace-office-with-laptop-coffee-dark-room-night_169016-47422.jpg?t=st=1738569544~exp=1738573144~hmac=db2147dd66b9202e0a43a6d0fa30864a597fc9222cd5b71d09671a795e6bd331&w=900") center center;
   background-size: cover;
   position: relative;
   padding: 80px 0;
