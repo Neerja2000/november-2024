@@ -1,6 +1,6 @@
 /**
-* Template Name: Restaurantly - v3.1.0
-* Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+* Template Name: opulencialy - v3.1.0
+* Template URL: https://bootstrapmade.com/opulencialy-opulencia-template/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */

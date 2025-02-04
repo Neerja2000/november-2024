@@ -1,6 +1,6 @@
 Thanks for downloading this template!
 
-Template Name: Restaurantly
-Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+Template Name: opulencialy
+Template URL: https://bootstrapmade.com/opulencialy-opulencia-template/
 Author: BootstrapMade.com
 License: https://bootstrapmade.com/license/
