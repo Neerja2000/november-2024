@@ -15,7 +15,11 @@ export class NewUsersComponent implements OnInit {
   ngOnInit(): void {
     this.getUserApplications();
   }
+  unrejectOptionsVisible: number | null = null;
 
+  toggleUnrejectOptions(applicationId: number): void {
+    this.unrejectOptionsVisible = this.unrejectOptionsVisible === applicationId ? null : applicationId;
+  }
   searchTerm: string = '';
   filterApplications() {
     if (!this.searchTerm.trim()) {
@@ -54,7 +58,7 @@ export class NewUsersComponent implements OnInit {
       (res: any) => {
         this.userApplications = res
           .filter(
-            (application: any) => application.status !== 'Approved' && application.status !== 'Rejected'
+            (application: any) => application.status !== 'Approved'
           )
           .map((application: any) => ({
             ...application,
@@ -71,6 +75,11 @@ export class NewUsersComponent implements OnInit {
     );
   }
 
+
+
+  showUnrejectOptions(application: any) {
+    application.showUnrejectOptions = true;
+  }
   // Handle status change
   statusChanged(applicationId: number, status: string, userId: number) {
     if (status === 'Approved') {

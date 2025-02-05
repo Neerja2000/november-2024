@@ -100,28 +100,40 @@
                                     <td>{{ application.address }}</td>
                                     <td>
                                       <!-- Show buttons if the status is not 'Review Required' -->
-                                      <div *ngIf="application.status !== 'Review Required'" class="d-flex">
+                                      <div *ngIf="application.status !== 'Review Required' && application.status !== 'Rejected'" class="d-flex">
                                         <i 
-                                            class="bi bi-check text-success me-2 cursor-pointer" 
-                                            (click)="statusChanged(application.id, 'Approved', application.user_id)" 
-                                            title="Aprobado" style="font-size: 30px;">
+                                          class="bi bi-check text-success me-2 cursor-pointer" 
+                                          (click)="statusChanged(application.id, 'Approved', application.user_id)" 
+                                          title="Aprobado" style="font-size: 30px;">
                                         </i>
                                         <i 
-                                            class="bi bi-x text-danger cursor-pointer" 
-                                            (click)="statusChanged(application.id, 'Rejected', application.user_id)" 
-                                            title="Rechazado" style="font-size: 30px;">
+                                          class="bi bi-x text-danger cursor-pointer" 
+                                          (click)="statusChanged(application.id, 'Rejected', application.user_id)" 
+                                          title="Rechazado" style="font-size: 30px;">
                                         </i>
                                         <i 
-                                            class="bi bi-exclamation text-warning me-2 cursor-pointer" 
-                                            (click)="statusChanged(application.id, 'Review Required', application.user_id)" 
-                                            title="Revisión Requerida" style="font-size: 30px;">
+                                          class="bi bi-exclamation text-warning me-2 cursor-pointer" 
+                                          (click)="statusChanged(application.id, 'Review Required', application.user_id)" 
+                                          title="Revisión Requerida" style="font-size: 30px;">
                                         </i>
                                       </div>
+                                      
                                       
                                       <!-- Show message if the status is 'Review Required' -->
                                       <div *ngIf="application.status === 'Review Required'" class="text-warning mt-2">
                                         <strong>Aplicación enviada para cambios</strong>
                                       </div>
+                                      <div *ngIf="application.status === 'Rejected' && !application.showUnrejectOptions" class="text-warning mt-2">
+                                        <button class="btn btn-danger" (click)="showUnrejectOptions(application)">Unreject</button>
+                                      </div>
+                                    
+                                      <!-- Options for Approved and Review Required -->
+                                      <div *ngIf="application.showUnrejectOptions" class="d-flex">
+                                        <button class="btn btn-success btn-sm me-2 p-1" (click)="statusChanged(application.id, 'Approved', application.user_id)">Approve</button>
+                                        <button class="btn btn-sm btn-warning p-1" (click)="statusChanged(application.id, 'Review Required', application.user_id)">ReviewRequired</button>
+                                      </div>
+                                   
+                                      
                                     </td>
                                     
                                     
