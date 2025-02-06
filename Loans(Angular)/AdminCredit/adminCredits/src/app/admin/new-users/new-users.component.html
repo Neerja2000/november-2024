@@ -26,6 +26,22 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12">
+                      <div class="container mt-4">
+                        <!-- Tab Navigation -->
+                        <ul class="nav nav-tabs">
+                          <li class="nav-item">
+                            <a class="nav-link" [class.active]="selectedTab === 'All'" (click)="changeTab('All')">All</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" [class.active]="selectedTab === 'Pending'" (click)="changeTab('Pending')">Pending</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" [class.active]="selectedTab === 'Review Required'" (click)="changeTab('Review Required')">Review Required</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" [class.active]="selectedTab === 'Rejected'" (click)="changeTab('Rejected')">Rejected</a>
+                          </li>
+                        </ul>
                         <div class="table-responsive">
                         <table class="table table-striped mt-5 table-responsive" id="table1">
                             <thead>
@@ -165,6 +181,8 @@
                             </tbody>
                         </table>
                     </div>
+                    </div>
+                    
                     </div>
                   </div>
 

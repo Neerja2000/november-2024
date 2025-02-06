@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/shared/users/users.service';
 })
 export class NewUsersComponent implements OnInit {
   userApplications: any[] = [];
+  selectedTab: string = 'All';
   filteredApplications: any[] = [];
   constructor(private userService: UsersService) {}
 
@@ -21,16 +22,17 @@ export class NewUsersComponent implements OnInit {
     this.unrejectOptionsVisible = this.unrejectOptionsVisible === applicationId ? null : applicationId;
   }
   searchTerm: string = '';
-  filterApplications() {
-    if (!this.searchTerm.trim()) {
-      return this.userApplications;
-    }
+  changeTab(tab: string): void {
+    this.selectedTab = tab;
+  }
 
-    const term = this.searchTerm.toLowerCase();
-    return this.userApplications.filter(application =>
-      application.full_name.toLowerCase().includes(term) ||
-      application.contact_details.includes(term)
-    );
+  filterApplications(): any[] {
+    return this.userApplications.filter(application => {
+      if (this.selectedTab !== 'All' && application.status !== this.selectedTab) {
+        return false;
+      }
+      return application.full_name.toLowerCase().includes(this.searchTerm.toLowerCase());
+    });
   }
 
   isImage(fileUrl: string): boolean {
@@ -75,6 +77,8 @@ export class NewUsersComponent implements OnInit {
     );
   }
 
+
+  
 
 
   showUnrejectOptions(application: any) {
