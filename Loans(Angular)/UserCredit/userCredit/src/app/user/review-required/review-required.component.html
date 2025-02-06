@@ -44,108 +44,117 @@
   
 
     <form
-     
-      [formGroup]="applyForm"
-      (ngSubmit)="onSubmit()"
-      enctype="multipart/form-data"
-      class="hero-form mt-4"
-    >
-     
-      
-      
+    [formGroup]="applyForm"
+    (ngSubmit)="onSubmit()"
+    enctype="multipart/form-data"
+    class="hero-form mt-4"
+  >
+    <!-- Campo Nombre Completo -->
+    <div class="form-group">
+      <label for="name" class="form-label text-white">Nombre Completo:</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="full_name"
+        placeholder="Ingresa tu nombre completo"
+        required
+      />
+    </div>
 
-      <div class="form-group">
-        <label for="name" class="form-label text-white">Your Name:</label>
-        <input
-          type="text"
-          id="name"
-          formControlName="full_name"
-          placeholder="Enter your name"
-          required
-        />
-      </div>
+    <!-- Campo Dirección -->
+    <div class="form-group">
+      <label for="address" class="form-label text-white">Dirección:</label>
+      <input
+        type="text"
+        id="address"
+        formControlName="address"
+        placeholder="Ingresa tu dirección"
+        required
+      />
+    </div>
 
-      <!-- Address Field -->
-      <div class="form-group">
-        <label for="address" class="form-label text-white">Your Address:</label>
-        <input
-          type="text"
-          id="address"
-          formControlName="address"
-          placeholder="Enter your address"
-          required
-        />
-      </div>
+    <!-- Campo Detalles de Contacto -->
+    <div class="form-group">
+      <label for="contact" class="form-label text-white">Detalles de Contacto:</label>
+      <input
+        type="text"
+        id="contact"
+        formControlName="contact_details"
+        placeholder="Ingresa tus datos de contacto"
+        required
+      />
+    </div>
 
-      <!-- Phone Field -->
-      <div class="form-group">
-        <label for="contact" class="form-label text-white">Your Phone:</label>
-        <input
-          type="tel"
-          id="contact"
-          formControlName="contact_details"
-          placeholder="Enter your phone number"
-          required
-        />
-      </div>
+    <!-- Campo Ingreso Mensual -->
+    <div class="form-group">
+      <label for="income" class="form-label text-white">Ingreso Mensual:</label>
+      <input
+        type="number"
+        id="income"
+        formControlName="monthly_income"
+        placeholder="Ingresa tu ingreso mensual"
+        required
+      />
+    </div>
 
-      <!-- Monthly Income Field -->
-      <div class="form-group">
-        <label for="salary" class="form-label text-white">Monthly Income:</label>
-        <input
-          type="number"
-          id="salary"
-          formControlName="monthly_income"
-          placeholder="Enter your monthly income"
-          required
-        />
-      </div>
+    <!-- Campo Nombre del Empleador -->
+    <div class="form-group">
+      <label for="employer" class="form-label text-white">Nombre del Empleador:</label>
+      <input
+        type="text"
+        id="employer"
+        formControlName="employer_name"
+        placeholder="Ingresa el nombre de tu empleador"
+      />
+    </div>
 
-      <!-- Employer Name Field -->
-      <div class="form-group">
-        <label for="employer" class="form-label text-white">Employer Name:</label>
-        <input
-          type="text"
-          id="employer"
-          formControlName="employer_name"
-          placeholder="Enter your employer name"
-          required
-        />
-      </div>
+    <!-- Campo Tipo de Empleo -->
+    <div class="form-group">
+      <label for="employmentType" class="form-label text-white">Tipo de Empleo:</label>
+      <input
+        type="text"
+        id="employmentType"
+        formControlName="employment_type"
+        placeholder="Ingresa tu tipo de empleo"
+      />
+    </div>
 
-      <!-- Employment Type Field -->
-      <div class="form-group">
-        <label for="employmentType" class="form-label text-white"
-          >Employment Type:</label
-        >
-        <input
-          type="text"
-          id="employmentType"
-          formControlName="employment_type"
-          placeholder="Enter your employment type"
-          required
-        />
-      </div>
+    <!-- Cargar Prueba de Identidad -->
+    <div class="form-group">
+      <label for="identityProof" class="form-label text-white">Prueba de Identidad:</label>
+      <input
+        type="file"
+        id="identityProof"
+        (change)="onFileSelected($event, 'identity_proof')"
+        required
+      />
+    </div>
 
-      <!-- Document Upload Field -->
-      <div class="form-group">
-        <label for="identityProof" class="form-label text-white"
-          >Upload Document:</label
-        >
-        <input
-          type="file"
-          id="identityProof"
-          (change)="onFileSelected($event)"
-          required
-        />
-        <small class="form-text text-muted"
-          >Accepted formats: PDF, DOC, DOCX, JPG, PNG</small
-        >
-      </div>
+    <!-- Cargar Comprobante de Residencia -->
+    <div class="form-group">
+      <label for="residenceProof" class="form-label text-white">Comprobante de Residencia:</label>
+      <input
+        type="file"
+        id="residenceProof"
+        (change)="onFileSelected($event, 'proof_of_residence')"
+        required
+      />
+    </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="site-btn">Update</button>
-    </form>
+    <!-- Cargar Comprobante de Ingreso -->
+    <div class="form-group">
+      <label for="incomeProof" class="form-label text-white">Comprobante de Ingreso:</label>
+      <input
+        type="file"
+        id="incomeProof"
+        (change)="onFileSelected($event, 'proof_of_income')"
+        required
+      />
+    </div>
+
+    <!-- Botón Enviar -->
+    <button type="submit" class="site-btn">Solicitar Ahora</button>
+  </form>
   </div>
 </section>
 
