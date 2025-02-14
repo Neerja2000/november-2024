@@ -100,8 +100,8 @@ Helper CSS
 }
 
 .spad {
-	padding-top: 102px;
-	padding-bottom: 102px;
+	padding-top: 90px;
+	padding-bottom: 90px;
 }
 /* Reduce padding for small screens */
 @media (max-width: 576px) { 
