@@ -20,6 +20,7 @@ import { EmiDetailsComponent } from './admin/emi-details/emi-details.component';
 import { BannerFormComponent } from './admin/banner-form/banner-form.component';
 import { BannerViewDetailsComponent } from './admin/banner-view-details/banner-view-details.component';
 import { UpdateBannerFormComponent } from './admin/update-banner-form/update-banner-form.component';
+import { ChangePasswordComponent } from './admin/change-password/change-password.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { UpdateBannerFormComponent } from './admin/update-banner-form/update-ban
     EmiDetailsComponent,
     BannerFormComponent,
     BannerViewDetailsComponent,
-    UpdateBannerFormComponent
+    UpdateBannerFormComponent,
+    ChangePasswordComponent
   
   ],
   imports: [

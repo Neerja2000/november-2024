@@ -33,10 +33,10 @@
     <span class="close" (click)="closeForgotPasswordModal()">&times;</span>
     <h2>Reset Password</h2>
     <form [formGroup]="forgotPasswordForm" (ngSubmit)="sendResetEmail()">
-      <div class="user-box">
-        <input type="email" formControlName="email" class="form-control offset-md-3 mt-3 " style="width: 50%;" required placeholder="Enter your email" />
+      <div class="user-box" style="display: flex; align-items: center; justify-content: center;">
+        <input type="email" formControlName="email" class="form-control mt-4 " style="width: 30%;" required placeholder="Enter your email" />
       </div>
-      <button type="submit" class="submit-button btn mt-5">Submit</button>
+      <button type="submit" class="submit-button btn mt-3" style=" width: 30%;">Submit</button>
     </form>
   </div>
 </div>
