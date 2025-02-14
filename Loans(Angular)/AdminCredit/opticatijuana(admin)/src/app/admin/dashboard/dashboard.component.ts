@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   selectedEmi: any | null = null;
   emiForm: FormGroup;
   dashboardData: any = {};
-
+  selectedTab: string ='all';
   constructor(
     private dashboardService: DashboardService,
     private transactionService: TransactionService,
@@ -159,5 +159,28 @@ export class DashboardComponent implements OnInit {
         console.error('Error fetching dashboard data:', err);
       }
     );
+  }
+
+
+  setActiveTab(tab: string) {
+    this.selectedTab = tab; // Change selected tab
+  }
+
+  getTabClass(tab: string): string {
+    if (this.selectedTab === null || this.selectedTab === tab) {
+      switch (tab) {
+        case 'upcoming':
+          return 'bg-warning text-white'; // Yellow for upcoming
+        case 'pending':
+          return 'bg-danger text-white'; // Red for pending
+        case 'settled':
+          return 'bg-success text-white'; // Green for settled
+        case 'all':
+          return 'bg-primary text-white'; // Blue for "All"
+        default:
+          return 'bg-light'; // Default style
+      }
+    }
+    return 'bg-light'; // Default background when unselected
   }
 }

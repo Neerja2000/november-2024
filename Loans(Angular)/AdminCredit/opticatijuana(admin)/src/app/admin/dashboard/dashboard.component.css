@@ -53,4 +53,26 @@
   background-color: #6c757d;  /* Grey color for disabled buttons */
   color: #fff;  /* White color for disabled button text */
 }
+
+
+
+
+
+.bg-warning {
+  color:black !important;
+  background-color: rgb(245, 245, 0) !important;
+}
+
+.bg-danger {
+  background-color: rgb(232, 5, 5) !important;
+}
+
+.bg-success {
+  background-color: green !important;
+}
+
+.bg-primary {
+  background-color: blue !important;
+}
+
  
