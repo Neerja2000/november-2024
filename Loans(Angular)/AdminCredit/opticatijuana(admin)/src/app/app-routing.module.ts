@@ -13,6 +13,7 @@ import { AuthGuard } from './authGuard/auth.guard';
 import { BannerFormComponent } from './admin/banner-form/banner-form.component';
 import { BannerViewDetailsComponent } from './admin/banner-view-details/banner-view-details.component';
 import { UpdateBannerFormComponent } from './admin/update-banner-form/update-banner-form.component';
+import { ChangePasswordComponent } from './admin/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path:'adminLogin',component:AdminLoginComponent
+  },
+  {
+    path:'changePassword',component:ChangePasswordComponent
   },
   {
     path:"layout",component:LayoutComponent,
@@ -52,6 +56,7 @@ const routes: Routes = [
       {
         path:'updateBanner/:id',component:UpdateBannerFormComponent,canActivate:[AuthGuard]
       },
+     
     ]
   }
 ];
