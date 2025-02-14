@@ -23,8 +23,8 @@ const routes: Routes = [
     path:'adminLogin',component:AdminLoginComponent
   },
   {
-    path:'changePassword',component:ChangePasswordComponent
-  },
+    path: 'changePassword/:token', component: ChangePasswordComponent
+  },  
   {
     path:"layout",component:LayoutComponent,
     children:[
