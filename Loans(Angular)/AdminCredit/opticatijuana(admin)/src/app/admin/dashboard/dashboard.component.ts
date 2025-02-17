@@ -19,6 +19,13 @@ export class DashboardComponent implements OnInit {
   emiForm: FormGroup;
   dashboardData: any = {};
   selectedTab: string ='all';
+
+  activeTab: string = 'upcoming'; // Default active tab
+
+  // Method to set active tab
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
   constructor(
     private dashboardService: DashboardService,
     private transactionService: TransactionService,
@@ -35,7 +42,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getDashboard();
     this.getAllEmis();
-    this.setActiveTab('all');
   }
 
   
@@ -163,24 +169,8 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  setActiveTab(tab: string) {
-    this.selectedTab = tab;
-  
-    if (tab === 'all') {
-      this.emiDetails = [...this.emisList, ...this.futureUnsettledEmis, ...this.pastUnsettledEmis];
-    } else if (tab === 'upcoming') {
-      this.emiDetails = [...this.futureUnsettledEmis];
-    } else if (tab === 'pending') {
-      this.emiDetails = [...this.pastUnsettledEmis];
-    } else if (tab === 'settled') {
-      this.emiDetails = [...this.emisList];
-    }
-  }
-  
-  
-
   getTabClass(tab: string): string {
-    if (this.selectedTab === null || this.selectedTab === tab) {
+    if (this.activeTab === tab) {
       switch (tab) {
         case 'upcoming':
           return 'bg-warning text-white'; // Yellow for upcoming
