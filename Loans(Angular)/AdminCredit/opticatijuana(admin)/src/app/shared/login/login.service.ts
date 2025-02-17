@@ -19,6 +19,9 @@ export class LoginService {
 
 
   sendResetEmail(email: string): Observable<any> {
-    return this.http.post<any>(this.adminbaseurl+'/for', { email });
+    return this.http.post<any>(this.adminbaseurl+'/forgot', { email });
+  }
+  updateAccount(body: any): Observable<any> {
+    return this.http.post<any>(this.adminbaseurl + '/reset-password', body);
   }
 }

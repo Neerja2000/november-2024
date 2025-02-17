@@ -35,8 +35,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getDashboard();
     this.getAllEmis();
+    this.setActiveTab('all');
   }
 
+  
   getAllEmis(): void {
     this.dashboardService.getAllEmis().subscribe(
       (data: any[]) => {
@@ -161,10 +163,21 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-
   setActiveTab(tab: string) {
-    this.selectedTab = tab; // Change selected tab
+    this.selectedTab = tab;
+  
+    if (tab === 'all') {
+      this.emiDetails = [...this.emisList, ...this.futureUnsettledEmis, ...this.pastUnsettledEmis];
+    } else if (tab === 'upcoming') {
+      this.emiDetails = [...this.futureUnsettledEmis];
+    } else if (tab === 'pending') {
+      this.emiDetails = [...this.pastUnsettledEmis];
+    } else if (tab === 'settled') {
+      this.emiDetails = [...this.emisList];
+    }
   }
+  
+  
 
   getTabClass(tab: string): string {
     if (this.selectedTab === null || this.selectedTab === tab) {
