@@ -24,19 +24,20 @@
     <button type="submit" class="submit-button">Enviar</button>
   <!-- Change Password Link -->
 <div class="mt-3" style="font-size: 18px; text-align: center; cursor: pointer;" (click)="openForgotPasswordModal()">
-  <i class="bi bi-key-fill"></i> Change Password
+  <i class="bi bi-key-fill"></i>Cambiar Contraseña
 </div>
   </form>
 </div>
-<div id="forgotPasswordModal" class="modal" *ngIf="showForgotPasswordModal">
+<div id="forgotPasswordModal" class="modal" *ngIf="showForgotPasswordModal"> 
   <div class="modal-content">
     <span class="close" (click)="closeForgotPasswordModal()">&times;</span>
-    <h2>Reset Password</h2>
+    <h2 class="mt-5">Correo Electrónico para Verificación</h2>
     <form [formGroup]="forgotPasswordForm" (ngSubmit)="sendResetEmail()">
       <div class="user-box" style="display: flex; align-items: center; justify-content: center;">
-        <input type="email" formControlName="email" class="form-control mt-4 " style="width: 30%;" required placeholder="Enter your email" />
+        <input type="email" formControlName="email" class="form-control mt-4" style="width: 40%;" required placeholder="Introduce tu correo electrónico" />
       </div>
-      <button type="submit" class="submit-button btn mt-3" style=" width: 30%;">Submit</button>
+      <button type="submit" class="submit-button btn mt-3" style="width: 40%;">Enviar</button>
     </form>
   </div>
 </div>
+
